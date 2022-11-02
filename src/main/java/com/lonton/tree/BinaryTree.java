@@ -124,7 +124,7 @@ public class BinaryTree implements ITraverser {
                 if(temp != null){
                     if(temp.getRight() == null || temp.getRight() == pre){
                         temp = stack.pop();
-                        og.info("当前节点：{}",temp.getData());
+                        log.info("当前节点：{}",temp.getData());
                         pre = temp;
                         temp = null;
                     }else {
