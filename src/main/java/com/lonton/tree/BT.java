@@ -7,19 +7,19 @@ import java.util.List;
  * @author 张利红
  */
 public interface BT<T extends Comparable<T>> {
-        // 添加
-        public void add(T key);
+         // 添加
+        void add(T key);
         // 查找
-        public TreeNode<T> search(T key);
+       TreeNode<T> search(T key);
         //递归遍历
-        public List<T> pre();
-        public List<T> mid();
-        public List<T> post();
+        List<T> pre();
+        List<T> mid();
+        List<T> post();
 
        /* // 非递归
-        public void preOrder(TreeNode  data);
-        public void midOrder(TreeNode  data);
-        public void postOrder(TreeNode  data);
+        void preOrder(TreeNode  data);
+        void midOrder(TreeNode  data);
+        void postOrder(TreeNode  data);
 
         */
 

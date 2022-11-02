@@ -9,36 +9,21 @@ import lombok.extern.slf4j.Slf4j;
 
 @Data
 @Slf4j
-public class TreeNode<T extends Comparable<T>> {
+public class TreeNode<T> {
     /**
-     * 父节点
+     * 当前节点
      */
-    private TreeNode<T> parent;
+    private T data;
 
     /**
      * 左子节点
      */
-    private TreeNode<T> left;
+    private TreeNode left;
 
     /**
      * 右子节点
      */
-    private TreeNode<T> right;
-
-    /**
-     * 任意类型
-     */
-    private T key;
-
-    /**
-     * 节点数
-     */
-    private int nodes;
-
-    /**
-     * 树高
-     */
-    private  int height;
+    private TreeNode right;
 
     /**
      * 排名
@@ -50,7 +35,7 @@ public class TreeNode<T extends Comparable<T>> {
      */
     private String name;
 
-     /**
+    /**
      * 构造函数
      * @param rank
      * @param name
@@ -59,32 +44,24 @@ public class TreeNode<T extends Comparable<T>> {
         this.rank = rank;
         this.name = name;
     }
-
-    public TreeNode(T key,TreeNode<T> parent) {
-        this.key = key;
-        this.parent = parent;
-    }
-
     /**
      * 构造函数
-     * @param parent
+     * @param data
      */
-    public TreeNode(TreeNode<T> parent) {
-        this.parent = parent;
+    public TreeNode(T data) {
+        this.data = data;
     }
-
     /**
      * 构造函数
-     * @param parent
+     * @param data
      * @param left
      * @param right
      */
-    public TreeNode(TreeNode<T> parent, TreeNode<T> left, TreeNode<T> right) {
-        this.parent = parent;
+    public TreeNode(T data, TreeNode left, TreeNode right) {
+        this.data = data;
         this.left = left;
         this.right = right;
     }
-
 }
 
 
