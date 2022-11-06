@@ -1,19 +1,35 @@
 package com.lonton.tree;
 
+import com.lonton.tree.impl.BinaryTree;
+import com.lonton.tree.pojo.TreeNode;
+
 /**
- * 二叉树遍历数据接口
+ *二叉树遍历数据接口
+ *
  * @author 张利红
+ * date:2022-11-05
  */
 public interface ITraverser {
-    //递归遍历
-    void pre(TreeNode  data);
-    void mid(TreeNode  data);
-    void post(TreeNode  data);
+    /**
+     * 递归遍历二叉树
+     * @param binaryTree
+     */
+    void RecursiveTraversal(BinaryTree binaryTree);
 
-    //非递归
-    void preOrder(TreeNode  data);
-    void midOrder(TreeNode  data);
-    void postOrder(TreeNode  data);
+    /**
+     * 非递归遍历二叉树
+     * @param binaryTree
+     */
+    void NotRecursiveTraversal(BinaryTree binaryTree);
+
+    /**
+     * 根据id遍历搜索树
+     * @param binaryTree
+     * @param id
+     * @return
+     */
+    TreeNode TraversalSearch(BinaryTree binaryTree, int id);
+
 
     /**
      *
@@ -31,3 +47,5 @@ public interface ITraverser {
      * 还是得根据实际的情况用哪种方式来遍历，非递归可以通过模拟栈和循环来实现递归。
      */
 }
+
+
