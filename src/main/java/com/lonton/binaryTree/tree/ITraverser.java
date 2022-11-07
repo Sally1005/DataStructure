@@ -1,7 +1,7 @@
-package com.lonton.tree;
+package com.lonton.binaryTree.tree;
 
-import com.lonton.tree.impl.BinaryTree;
-import com.lonton.tree.pojo.TreeNode;
+import com.lonton.binaryTree.tree.impl.BinaryTree;
+import com.lonton.binaryTree.tree.pojo.TreeNode;
 
 /**
  *二叉树遍历数据接口

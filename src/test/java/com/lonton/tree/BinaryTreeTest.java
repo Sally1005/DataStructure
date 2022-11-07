@@ -1,8 +1,8 @@
 package com.lonton.tree;
 
-import com.lonton.dao.NodeDao;
-import com.lonton.tree.impl.*;
-import com.lonton.tree.pojo.TreeNode;
+import com.lonton.binaryTree.dao.NodeDao;
+import com.lonton.binaryTree.tree.impl.*;
+import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 

@@ -1,7 +1,7 @@
-package com.lonton.tree.impl;
+package com.lonton.binaryTree.tree.impl;
 
-import com.lonton.tree.IVisitor;
-import com.lonton.tree.pojo.TreeNode;
+import com.lonton.binaryTree.tree.IVisitor;
+import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 
 /**

@@ -1,4 +1,4 @@
-package com.lonton.utils;
+package com.lonton.binaryTree.utils;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
 import lombok.extern.slf4j.Slf4j;
