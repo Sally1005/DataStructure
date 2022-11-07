@@ -61,7 +61,7 @@ public class MidTraverser implements ITraverser {
      */
     private void midOrder(TreeNode data) {
         if (data == null) {
-            log.info(null);
+          return;
         }
         TreeNode temp = data; // 1.先将当前节点入栈
         Stack<TreeNode> stack = new Stack<>();
