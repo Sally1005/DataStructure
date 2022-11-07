@@ -58,15 +58,6 @@ public class PostTraverser implements ITraverser {
         return null;
     }
 
-    @Override
-    public void RecursiveTraversal(BinaryTree binaryTree) {
-        post(binaryTree.getRoot());
-    }
-
-    @Override
-    public TreeNode TraversalSearch(BinaryTree binaryTree, int id) {
-        return postOrderTraversalSearch(binaryTree.getRoot(), id);
-    }
 
     /**
      * 非递归后序遍历
@@ -74,7 +65,7 @@ public class PostTraverser implements ITraverser {
      */
     private void postOrder(TreeNode data) {
         if (data == null) {
-            log.info(null);
+           return;
         }
         /**
          * 1.先将当前节点入栈
@@ -109,6 +100,16 @@ public class PostTraverser implements ITraverser {
             }
 
         }
+    }
+
+    @Override
+    public void RecursiveTraversal(BinaryTree binaryTree) {
+        post(binaryTree.getRoot());
+    }
+
+    @Override
+    public TreeNode TraversalSearch(BinaryTree binaryTree, int id) {
+        return postOrderTraversalSearch(binaryTree.getRoot(), id);
     }
 
     @Override
