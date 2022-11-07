@@ -19,6 +19,7 @@ public class BinaryTreeTest {
     public BinaryTree BuildTree() {
         NodeDao stringNodeDao = new NodeDao();
         BinaryTree binaryTree = new BinaryTree();
+
         List<TreeNode> nodeList = stringNodeDao.getNodeList();
         nodeList.sort(new Comparator<TreeNode>() {
             @Override
@@ -78,17 +79,21 @@ public class BinaryTreeTest {
     /**
      * 非递归中序遍历打印二叉树
      */
-    //@Test
+    @Test
     public void midOrder() {
-
+        BinaryTree binaryTree = BuildTree();
+       MidTraverser midTraverser = new MidTraverser();
+       midTraverser.NotRecursiveTraversal(binaryTree);
     }
 
     /**
      * 非递归后序遍历打印二叉树
      */
-    // @Test
+    @Test
     public void postOrder() {
-
+        BinaryTree binaryTree = BuildTree();
+        PostTraverser postTraverser = new PostTraverser();
+        postTraverser.NotRecursiveTraversal(binaryTree);
     }
 
     /**
