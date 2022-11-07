@@ -61,13 +61,13 @@ public class PreTraverser implements ITraverser {
      */
     private void preOrder(TreeNode data) {
         if (data == null) {
-           return ;
+           return;
         }
         Stack<TreeNode> stack = new Stack<>(); // 创建一个栈对象
         stack.push(data); // 将当前节点放入栈中
         while (!stack.isEmpty()) {
             TreeNode temp = stack.pop();
-            log.info(temp.getData() + " "); // 栈不为空时，弹出栈中元素
+            log.info("data:{}",temp.getData()); // 栈不为空时，弹出栈中元素
             if (temp.getRight() != null) { // 如果当前节点存在右子树，则将右子树入栈
                 stack.push(temp.getRight());
             }
@@ -79,7 +79,7 @@ public class PreTraverser implements ITraverser {
 
     @Override
     public void RecursiveTraversal(BinaryTree binaryTree) {
-        preOrder(binaryTree.getRoot());
+        pre(binaryTree.getRoot());
     }
 
     @Override
@@ -89,6 +89,7 @@ public class PreTraverser implements ITraverser {
 
     @Override
     public void NotRecursiveTraversal(BinaryTree binaryTree) {
+        preOrder(binaryTree.getRoot());
 
     }
 
