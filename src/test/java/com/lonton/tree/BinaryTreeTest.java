@@ -145,9 +145,9 @@ public class BinaryTreeTest {
     @Test
     public void countHeight() {
         HeightVisitor heightVisitor = new HeightVisitor();
-        heightVisitor.visit(this.BuildTree());
-        int target = 3;
-       // assertIterableEquals(target,);
+        int target = heightVisitor.visit(this.BuildTree());
+        int expected = 3;
+        assert target==expected;
     }
 
     /**
@@ -156,7 +156,9 @@ public class BinaryTreeTest {
     @Test
     public void countNodes() {
         CountVisitor countVisitor = new CountVisitor();
-        countVisitor.visit(this.BuildTree());
+        int target = countVisitor.visit(this.BuildTree());
+        int expected = 7;
+        assert target==expected;
     }
 
     /**
@@ -167,7 +169,10 @@ public class BinaryTreeTest {
         PreTraverser preTraverser = new PreTraverser();
         int id = 1;
         TreeNode treeNode = preTraverser.TraversalSearch(this.BuildTree(), id);
-        log.info("id为{}时，所查询的节点为:{}",id,treeNode.getData());
+        String target = treeNode.getData();
+        String expected = "水果";
+        assert target.equals(expected);
+        //log.info("id为{}时，所查询的节点为:{}",id,treeNode.getData());
     }
 
     /**
@@ -178,7 +183,10 @@ public class BinaryTreeTest {
          MidTraverser midTraverser = new MidTraverser();
          int id = 2;
          TreeNode treeNode = midTraverser.TraversalSearch(this.BuildTree(), id);
-         log.info("id为{}时，所查询的节点为:{}",id,treeNode.getData());
+         String target = treeNode.getData();
+         String expected = "柑橘类";
+         assert target.equals(expected);
+         //log.info("id为{}时，所查询的节点为:{}",id,treeNode.getData());
      }
 
     /**
@@ -189,6 +197,9 @@ public class BinaryTreeTest {
         PostTraverser postTraverser = new PostTraverser();
         int id = 3;
         TreeNode treeNode = postTraverser.TraversalSearch(this.BuildTree(), id);
-        log.info("id为{}时，所查询的节点为:{}",id,treeNode.getData());
+        String target = treeNode.getData();
+        String expected = "瓜果类";
+        assert target.equals(expected);
+        //log.info("id为{}时，所查询的节点为:{}",id,treeNode.getData());
     }
 }
