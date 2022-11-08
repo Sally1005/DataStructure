@@ -4,6 +4,7 @@ import com.lonton.binaryTree.tree.ITraverser;
 import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -18,13 +19,13 @@ public class MidTraverser implements ITraverser {
      * 递归中序遍历
      * @param data
      */
-    private void mid(TreeNode data) {
+    private void mid(TreeNode data, ArrayList<String> arrayList) {
         if (data == null) {
             return;
         }
-        mid(data.getLeft());
-        log.info("data:{}" ,data.getData());
-        mid(data.getRight());
+        mid(data.getLeft(),arrayList);
+        arrayList.add(data.getData());
+        mid(data.getRight(),arrayList);
     }
 
     /**
@@ -59,7 +60,7 @@ public class MidTraverser implements ITraverser {
      * 非递归中序遍历
      * @param data
      */
-    private void midOrder(TreeNode data) {
+    private void midOrder(TreeNode data, ArrayList<String> arrayList) {
         if (data == null) {
           return;
         }
@@ -72,7 +73,7 @@ public class MidTraverser implements ITraverser {
                 temp = temp.getLeft();
             }
             temp = stack.pop();
-            log.info(temp.getData() + " ");
+            arrayList.add(temp.getData());
             if (temp.getRight() != null) { // 3.访问栈顶元素，如果栈顶元素存在右子树，则继续第2步
                 temp = temp.getRight();
             } else {
@@ -81,8 +82,11 @@ public class MidTraverser implements ITraverser {
         }
     }
     @Override
-    public void RecursiveTraversal(BinaryTree binaryTree) {
-        mid(binaryTree.getRoot());
+    public ArrayList<String>  RecursiveTraversal(BinaryTree binaryTree) {
+        ArrayList<String> strings = new ArrayList<>();
+        mid(binaryTree.getRoot(), strings);
+        return strings;
+
     }
 
     @Override
@@ -91,7 +95,9 @@ public class MidTraverser implements ITraverser {
     }
 
     @Override
-    public void NotRecursiveTraversal(BinaryTree binaryTree) {
-        midOrder(binaryTree.getRoot());
+    public ArrayList<String> NotRecursiveTraversal(BinaryTree binaryTree) {
+        ArrayList<String> strings = new ArrayList<>();
+        midOrder(binaryTree.getRoot(),strings);
+        return strings;
     }
 }

@@ -3,6 +3,8 @@ package com.lonton.binaryTree.tree;
 import com.lonton.binaryTree.tree.impl.BinaryTree;
 import com.lonton.binaryTree.tree.pojo.TreeNode;
 
+import java.util.ArrayList;
+
 /**
  *二叉树遍历数据接口
  *
@@ -14,13 +16,13 @@ public interface ITraverser {
      * 递归遍历二叉树
      * @param binaryTree
      */
-    void RecursiveTraversal(BinaryTree binaryTree);
+    ArrayList<String> RecursiveTraversal(BinaryTree binaryTree);
 
     /**
      * 非递归遍历二叉树
      * @param binaryTree
      */
-    void NotRecursiveTraversal(BinaryTree binaryTree);
+    ArrayList<String> NotRecursiveTraversal(BinaryTree binaryTree);
 
     /**
      * 根据id遍历搜索树

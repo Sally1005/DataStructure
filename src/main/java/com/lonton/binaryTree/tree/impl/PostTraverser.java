@@ -4,6 +4,7 @@ import com.lonton.binaryTree.tree.ITraverser;
 import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 /**
@@ -19,13 +20,13 @@ public class PostTraverser implements ITraverser {
      * 递归后序遍历
      * @param data
      */
-    private void post(TreeNode data) {
+    private void post(TreeNode data, ArrayList<String> arrayList) {
         if (data == null) {
             return;
         }
-        post(data.getLeft());
-        post(data.getRight());
-        log.info("data:{}", data.getData());
+        post(data.getLeft(),arrayList);
+        post(data.getRight(),arrayList);
+        arrayList.add(data.getData());
     }
 
     /**
@@ -63,7 +64,7 @@ public class PostTraverser implements ITraverser {
      * 非递归后序遍历
      * @param data
      */
-    private void postOrder(TreeNode data) {
+    private void postOrder(TreeNode data,ArrayList<String> arrayList) {
         if (data == null) {
            return;
         }
@@ -90,7 +91,7 @@ public class PostTraverser implements ITraverser {
                 if (temp != null) {
                     if (temp.getRight() == null || temp.getRight() == pre) {
                         temp = stack.pop();
-                        log.info(temp.getData() + "");
+                        arrayList.add(temp.getData());
                         pre = temp;
                         temp = null;
                     } else {
@@ -103,8 +104,11 @@ public class PostTraverser implements ITraverser {
     }
 
     @Override
-    public void RecursiveTraversal(BinaryTree binaryTree) {
-        post(binaryTree.getRoot());
+    public ArrayList<String> RecursiveTraversal(BinaryTree binaryTree) {
+        ArrayList<String> strings = new ArrayList<>();
+        post(binaryTree.getRoot(),strings);
+        return strings;
+
     }
 
     @Override
@@ -113,7 +117,9 @@ public class PostTraverser implements ITraverser {
     }
 
     @Override
-    public void NotRecursiveTraversal(BinaryTree binaryTree) {
-        postOrder(binaryTree.getRoot());
+    public ArrayList<String> NotRecursiveTraversal(BinaryTree binaryTree) {
+        ArrayList<String> strings = new ArrayList<>();
+        postOrder(binaryTree.getRoot(),strings);
+        return strings;
     }
 }
