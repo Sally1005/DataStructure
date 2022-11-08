@@ -13,5 +13,5 @@ public interface IVisitor {
      * 访问树
      * @param binaryTree
      */
-    void visit(BinaryTree binaryTree);
+    int visit(BinaryTree binaryTree);
 }

@@ -16,11 +16,12 @@ import java.util.Queue;
 @Slf4j
 public class HeightVisitor implements IVisitor {
     @Override
-    public void visit(BinaryTree binaryTree) {
+    public int visit(BinaryTree binaryTree) {
         TreeNode root = binaryTree.getRoot();
         int res = 0;
         if (root == null)
-            log.info("树的高度为：{}",String.valueOf(0));
+            return 0;
+           // log.info("树的高度为：{}",String.valueOf(0));
         Queue<TreeNode> queue = new LinkedList<>();
          // 根节点入队
         queue.add(root);
@@ -35,8 +36,8 @@ public class HeightVisitor implements IVisitor {
             }
             res++;
         }
-        log.info("树的高度为：{}",String.valueOf(res));
+        return res;
+       //log.info("树的高度为：{}",String.valueOf(res));
+
     }
-
-
 }

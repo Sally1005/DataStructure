@@ -14,12 +14,13 @@ import lombok.extern.slf4j.Slf4j;
 public class PrintVisitor implements IVisitor {
 
     @Override
-    public void visit(BinaryTree binaryTree) {
+    public int visit(BinaryTree binaryTree) {
         act(binaryTree.getRoot());
+        return 0;
     }
 
     /**
-     * 遍历访问
+     * 遍历打印
      * @param treeNode
      */
     private void act(TreeNode treeNode) {

@@ -15,7 +15,7 @@ public class TreeNode<T> {
     /**
      * 当前节点
      */
-    private T data;
+    private String data;
 
     /**
      * 左子节点
@@ -49,7 +49,7 @@ public class TreeNode<T> {
      * @param id
      * @param parentID
      */
-    public TreeNode(T data, int id, int parentID) {
+    public TreeNode(String data, int id, int parentID) {
         this.data = data;
         this.id = id;
         this.parentID = parentID;

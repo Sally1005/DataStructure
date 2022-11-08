@@ -12,7 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CountVisitor implements IVisitor {
     @Override
-    public void visit(BinaryTree binaryTree) {
-        log.info("树的节点数为：{}",String.valueOf(binaryTree.getNodeCount()));
+    public int visit(BinaryTree binaryTree) {
+        return binaryTree.getNodeCount();
+        //log.info("树的节点数为：{}",String.valueOf(binaryTree.getNodeCount()));
     }
 }
