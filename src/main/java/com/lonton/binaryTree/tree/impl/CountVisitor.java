@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
  *计算树的节点
  *
  * @author 张利红
- * date:2022-11-06
  */
 @Slf4j
 public class CountVisitor implements IVisitor {

@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
  *打印访问输出
  *
  * @author 张利红
- * date:2022-11-06
  */
 @Slf4j
 public class PrintVisitor implements IVisitor {

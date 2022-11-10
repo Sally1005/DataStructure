@@ -9,20 +9,19 @@ import java.util.ArrayList;
  *二叉树遍历数据接口
  *
  * @author 张利红
- * date:2022-11-05
  */
 public interface ITraverser {
     /**
      * 递归遍历二叉树
      * @param binaryTree
      */
-    ArrayList<String> RecursiveTraversal(BinaryTree binaryTree);
+    ArrayList<String> recursiveTraversal(BinaryTree binaryTree);
 
     /**
      * 非递归遍历二叉树
      * @param binaryTree
      */
-    ArrayList<String> NotRecursiveTraversal(BinaryTree binaryTree);
+    ArrayList<String> notRecursiveTraversal(BinaryTree binaryTree);
 
     /**
      * 根据id遍历搜索树
@@ -30,7 +29,7 @@ public interface ITraverser {
      * @param id
      * @return
      */
-    TreeNode TraversalSearch(BinaryTree binaryTree, int id);
+    TreeNode traversalSearch(BinaryTree binaryTree, int id);
 
 
     /**

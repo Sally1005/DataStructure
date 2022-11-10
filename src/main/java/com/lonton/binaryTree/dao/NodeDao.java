@@ -11,7 +11,6 @@ import java.util.List;
  * 节点DAO层
  *
  * @author 张利红
- * date:2022-11-07
  */
 public class NodeDao {
     private final QueryRunner queryRunner = new QueryRunner();

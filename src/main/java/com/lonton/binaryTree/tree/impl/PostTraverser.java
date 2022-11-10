@@ -11,7 +11,6 @@ import java.util.Stack;
  *后序遍历
  *
  * @author 张利红
- * date:2022-11-06
  */
 
 @Slf4j
@@ -104,7 +103,7 @@ public class PostTraverser implements ITraverser {
     }
 
     @Override
-    public ArrayList<String> RecursiveTraversal(BinaryTree binaryTree) {
+    public ArrayList<String> recursiveTraversal(BinaryTree binaryTree) {
         ArrayList<String> strings = new ArrayList<>();
         post(binaryTree.getRoot(),strings);
         return strings;
@@ -112,12 +111,12 @@ public class PostTraverser implements ITraverser {
     }
 
     @Override
-    public TreeNode TraversalSearch(BinaryTree binaryTree, int id) {
+    public TreeNode traversalSearch(BinaryTree binaryTree, int id) {
         return postOrderTraversalSearch(binaryTree.getRoot(), id);
     }
 
     @Override
-    public ArrayList<String> NotRecursiveTraversal(BinaryTree binaryTree) {
+    public ArrayList<String> notRecursiveTraversal(BinaryTree binaryTree) {
         ArrayList<String> strings = new ArrayList<>();
         postOrder(binaryTree.getRoot(),strings);
         return strings;

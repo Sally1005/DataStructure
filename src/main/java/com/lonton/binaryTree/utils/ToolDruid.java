@@ -13,7 +13,6 @@ import java.util.Properties;
  *数据库连接池
  *
  * @author 张利红
- * date:2022-11-07
  */
 @Slf4j
 public class ToolDruid {

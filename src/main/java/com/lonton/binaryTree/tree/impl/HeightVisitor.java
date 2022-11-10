@@ -11,7 +11,6 @@ import java.util.Queue;
  * 访问树高
  *
  * @author 张利红
- * date:2022-11-06
  */
 @Slf4j
 public class HeightVisitor implements IVisitor {

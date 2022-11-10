@@ -28,7 +28,7 @@ public class BinaryTree<T> {
      * @param treeNode
      * @return
      */
-    public boolean AddNode(TreeNode<T> treeNode) {
+    public boolean addNode(TreeNode<T> treeNode) {
         if (this.root == null) {
             this.root = treeNode;
             this.nodeCount++;
