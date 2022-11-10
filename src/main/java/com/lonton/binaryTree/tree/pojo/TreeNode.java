@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
  *节点类
  *
  * @author 张利红
- * date:2022-11-05
  */
 
 @Data
@@ -37,21 +36,4 @@ public class TreeNode<T> {
      */
     private int parentID;
 
-    /**
-     * 无参构造
-     */
-    public TreeNode() {
-    }
-
-    /**
-     * 有参构造
-     * @param data
-     * @param id
-     * @param parentID
-     */
-    public TreeNode(String data, int id, int parentID) {
-        this.data = data;
-        this.id = id;
-        this.parentID = parentID;
-    }
 }

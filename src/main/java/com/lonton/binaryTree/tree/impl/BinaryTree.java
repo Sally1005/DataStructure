@@ -1,16 +1,17 @@
 package com.lonton.binaryTree.tree.impl;
 
 import com.lonton.binaryTree.tree.pojo.TreeNode;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * 二叉树类
  *
  * @author 张利红
- * date:2022-11-05
  */
 
 @Slf4j
+@Data
 public class BinaryTree<T> {
     /**
      * 根节点
@@ -21,28 +22,6 @@ public class BinaryTree<T> {
      * 节点数
      */
     private int nodeCount;
-
-    /**
-     * 获得根节点
-     * @return
-     */
-    public TreeNode<T> getRoot() {
-        return root;
-    }
-
-    /**
-     * 含参构造函数
-     * @param root
-     */
-    public BinaryTree(TreeNode<T> root) {
-        this.root = root;
-    }
-
-    /**
-     * 无参构造函数
-     */
-    public BinaryTree() {
-    }
 
     /**
      * 添加节点
@@ -92,15 +71,6 @@ public class BinaryTree<T> {
         }
         return search(id, curNode.getRight());
     }
-
-    /**
-     * 计算节点
-     * @return
-     */
-    public int getNodeCount() {
-        return nodeCount;
-    }
-
 
 }
 
