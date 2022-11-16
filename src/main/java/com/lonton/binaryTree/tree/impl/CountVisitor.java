@@ -1,13 +1,13 @@
 package com.lonton.binaryTree.tree.impl;
 
 import com.lonton.binaryTree.tree.IVisitor;
+import com.lonton.binaryTree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  *计算树的节点
- *
+ *　<p/>
  * @author 张利红
- * date:2022-11-06
  */
 @Slf4j
 public class CountVisitor implements IVisitor {

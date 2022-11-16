@@ -1,14 +1,14 @@
 package com.lonton.binaryTree.tree.impl;
 
 import com.lonton.binaryTree.tree.IVisitor;
+import com.lonton.binaryTree.tree.pojo.BinaryTree;
 import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  *打印访问输出
- *
+ *　<p/>
  * @author 张利红
- * date:2022-11-06
  */
 @Slf4j
 public class PrintVisitor implements IVisitor {

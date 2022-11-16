@@ -1,6 +1,7 @@
 package com.lonton.binaryTree.tree.impl;
 
 import com.lonton.binaryTree.tree.ITraverser;
+import com.lonton.binaryTree.tree.pojo.BinaryTree;
 import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 
@@ -9,9 +10,8 @@ import java.util.Stack;
 
 /**
  *前序遍历
- *
+ * 　<p/>
  * @author 张利红
- * date:2022-11-06
  */
 @Slf4j
 public class PreTraverser implements ITraverser {
@@ -79,19 +79,19 @@ public class PreTraverser implements ITraverser {
     }
 
     @Override
-    public ArrayList<String> RecursiveTraversal(BinaryTree binaryTree) {
+    public ArrayList<String> recursiveTraversal(BinaryTree binaryTree) {
         ArrayList<String> strings = new ArrayList<>();
         pre(binaryTree.getRoot(),strings);
         return strings;
     }
 
     @Override
-    public TreeNode TraversalSearch(BinaryTree binaryTree, int id) {
+    public TreeNode traversalSearch(BinaryTree binaryTree, int id) {
         return preOrderTraversalSearch(binaryTree.getRoot(), id);
     }
 
     @Override
-    public  ArrayList<String> NotRecursiveTraversal(BinaryTree binaryTree) {
+    public  ArrayList<String> notRecursiveTraversal(BinaryTree binaryTree) {
         ArrayList<String> strings = new ArrayList<>();
         preOrder(binaryTree.getRoot(),strings);
         return strings;
