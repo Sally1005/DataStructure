@@ -1,6 +1,5 @@
 package com.lonton.binaryTree.tree.pojo;
 
-import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 

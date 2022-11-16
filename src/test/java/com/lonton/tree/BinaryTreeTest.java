@@ -15,7 +15,6 @@ import java.util.List;
  *二叉树单元测试
  *
  * @author 张利红
- * date:2022-11-07
  */
 @Slf4j
 public class BinaryTreeTest {
@@ -38,7 +37,7 @@ public class BinaryTreeTest {
             }
         });
         for (TreeNode stringTreeNode : nodeList) {
-            binaryTree.AddNode(stringTreeNode);
+            binaryTree.addNode(stringTreeNode);
         }
         return binaryTree;
     }
@@ -50,7 +49,7 @@ public class BinaryTreeTest {
     public void pre() {
         BinaryTree binaryTree = BuildTree();
         PreTraverser preTraverser = new PreTraverser();
-        ArrayList<String> strings = preTraverser.RecursiveTraversal(binaryTree);
+        ArrayList<String> strings = preTraverser.recursiveTraversal(binaryTree);
         StringBuilder result= new StringBuilder();
         for (String string : strings) {
             result.append(string+" ");
@@ -66,7 +65,7 @@ public class BinaryTreeTest {
     public void mid() {
         BinaryTree binaryTree = BuildTree();
         MidTraverser midTraverser = new MidTraverser();
-        ArrayList<String> strings = midTraverser.RecursiveTraversal(binaryTree);
+        ArrayList<String> strings = midTraverser.recursiveTraversal(binaryTree);
         StringBuilder result= new StringBuilder();
         for (String string : strings) {
             result.append(string+" ");
@@ -83,7 +82,7 @@ public class BinaryTreeTest {
     public void post() {
         BinaryTree binaryTree = BuildTree();
         PostTraverser postTraverser = new PostTraverser();
-        ArrayList<String> strings = postTraverser.RecursiveTraversal(binaryTree);
+        ArrayList<String> strings = postTraverser.recursiveTraversal(binaryTree);
         StringBuilder result= new StringBuilder();
         for (String string : strings) {
             result.append(string+" ");
@@ -98,7 +97,7 @@ public class BinaryTreeTest {
     public void preOrder() {
         BinaryTree binaryTree = BuildTree();
         PreTraverser preTraverser = new PreTraverser();
-         ArrayList<String> strings = preTraverser.NotRecursiveTraversal(binaryTree);
+         ArrayList<String> strings = preTraverser.notRecursiveTraversal(binaryTree);
          StringBuilder result= new StringBuilder();
          for (String string : strings) {
              result.append(string+" ");
@@ -114,7 +113,7 @@ public class BinaryTreeTest {
     public void midOrder() {
         BinaryTree binaryTree = BuildTree();
        MidTraverser midTraverser = new MidTraverser();
-        ArrayList<String> strings = midTraverser.NotRecursiveTraversal(binaryTree);
+        ArrayList<String> strings = midTraverser.notRecursiveTraversal(binaryTree);
         StringBuilder result= new StringBuilder();
         for (String string : strings) {
             result.append(string+" ");
@@ -130,7 +129,7 @@ public class BinaryTreeTest {
     public void postOrder() {
         BinaryTree binaryTree = BuildTree();
         PostTraverser postTraverser = new PostTraverser();
-        ArrayList<String> strings = postTraverser.NotRecursiveTraversal(binaryTree);
+        ArrayList<String> strings = postTraverser.notRecursiveTraversal(binaryTree);
         StringBuilder result= new StringBuilder();
         for (String string : strings) {
             result.append(string+" ");
@@ -168,7 +167,7 @@ public class BinaryTreeTest {
     public void preOrderTraversalSearch() {
         PreTraverser preTraverser = new PreTraverser();
         int id = 1;
-        TreeNode treeNode = preTraverser.TraversalSearch(this.BuildTree(), id);
+        TreeNode treeNode = preTraverser.traversalSearch(this.BuildTree(), id);
         String target = treeNode.getData();
         String expected = "水果";
         assert target.equals(expected);
@@ -182,7 +181,7 @@ public class BinaryTreeTest {
     public void midOrderTraversalSearch() {
          MidTraverser midTraverser = new MidTraverser();
          int id = 2;
-         TreeNode treeNode = midTraverser.TraversalSearch(this.BuildTree(), id);
+         TreeNode treeNode = midTraverser.traversalSearch(this.BuildTree(), id);
          String target = treeNode.getData();
          String expected = "柑橘类";
          assert target.equals(expected);
@@ -196,7 +195,7 @@ public class BinaryTreeTest {
     public void postOrderTraversalSearch() {
         PostTraverser postTraverser = new PostTraverser();
         int id = 3;
-        TreeNode treeNode = postTraverser.TraversalSearch(this.BuildTree(), id);
+        TreeNode treeNode = postTraverser.traversalSearch(this.BuildTree(), id);
         String target = treeNode.getData();
         String expected = "瓜果类";
         assert target.equals(expected);
