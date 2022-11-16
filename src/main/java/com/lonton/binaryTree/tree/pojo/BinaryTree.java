@@ -1,6 +1,5 @@
-package com.lonton.binaryTree.tree.impl;
+package com.lonton.binaryTree.tree.pojo;
 
-import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -10,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author 张利红
  */
 
+@SuppressWarnings("all")
 @Slf4j
 @Data
 public class BinaryTree<T> {
