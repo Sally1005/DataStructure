@@ -1,6 +1,6 @@
-package tree;
+package com.lonton.leetCode.tree;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
