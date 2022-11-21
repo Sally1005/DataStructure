@@ -2,7 +2,6 @@ package com.lonton.binaryTree.tree.impl;
 
 import com.lonton.binaryTree.tree.IVisitor;
 import com.lonton.binaryTree.tree.pojo.BinaryTree;
-import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,7 +22,7 @@ public class PrintVisitor implements IVisitor {
      * 遍历打印
      * @param treeNode
      */
-    private void act(TreeNode treeNode) {
+    private void act(BinaryTree.TreeNode treeNode) {
         if(treeNode==null){
             return;
         }

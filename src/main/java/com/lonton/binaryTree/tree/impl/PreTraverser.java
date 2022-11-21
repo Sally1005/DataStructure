@@ -2,7 +2,6 @@ package com.lonton.binaryTree.tree.impl;
 
 import com.lonton.binaryTree.tree.ITraverser;
 import com.lonton.binaryTree.tree.pojo.BinaryTree;
-import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class PreTraverser implements ITraverser {
      * 递归前序遍历
      * @param data
      */
-    private void pre(TreeNode data,ArrayList<String> arrayList) {
+    private void pre(BinaryTree.TreeNode data, ArrayList<String> arrayList) {
         if (data == null) {
             return;
         }
@@ -34,8 +33,8 @@ public class PreTraverser implements ITraverser {
      * @param id
      * @return
      */
-    private TreeNode preOrderTraversalSearch(TreeNode data, int id) {
-        TreeNode resultNode; // 查询结果为空
+    private BinaryTree.TreeNode preOrderTraversalSearch(BinaryTree.TreeNode data, int id) {
+        BinaryTree.TreeNode resultNode; // 查询结果为空
         if (data == null) {
             return null;
         }
@@ -60,14 +59,14 @@ public class PreTraverser implements ITraverser {
      * 非递归前序遍历
      * @param data
      */
-    private void preOrder(TreeNode data,ArrayList<String> arrayList) {
+    private void preOrder(BinaryTree.TreeNode data, ArrayList<String> arrayList) {
         if (data == null) {
            return;
         }
-        Stack<TreeNode> stack = new Stack<>(); // 创建一个栈对象
+        Stack<BinaryTree.TreeNode> stack = new Stack<>(); // 创建一个栈对象
         stack.push(data); // 将当前节点放入栈中
         while (!stack.isEmpty()) {
-            TreeNode temp = stack.pop();
+            BinaryTree.TreeNode temp = stack.pop();
            arrayList.add(temp.getData()); // 栈不为空时，弹出栈中元素
             if (temp.getRight() != null) { // 如果当前节点存在右子树，则将右子树入栈
                 stack.push(temp.getRight());
@@ -86,7 +85,7 @@ public class PreTraverser implements ITraverser {
     }
 
     @Override
-    public TreeNode traversalSearch(BinaryTree binaryTree, int id) {
+    public BinaryTree.TreeNode traversalSearch(BinaryTree binaryTree, int id) {
         return preOrderTraversalSearch(binaryTree.getRoot(), id);
     }
 

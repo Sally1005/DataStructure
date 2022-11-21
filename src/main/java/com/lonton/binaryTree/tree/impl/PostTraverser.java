@@ -2,7 +2,6 @@ package com.lonton.binaryTree.tree.impl;
 
 import com.lonton.binaryTree.tree.ITraverser;
 import com.lonton.binaryTree.tree.pojo.BinaryTree;
-import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class PostTraverser implements ITraverser {
      * 递归后序遍历
      * @param data
      */
-    private void post(TreeNode data, ArrayList<String> arrayList) {
+    private void post(BinaryTree.TreeNode data, ArrayList<String> arrayList) {
         if (data == null) {
             return;
         }
@@ -35,8 +34,8 @@ public class PostTraverser implements ITraverser {
      * @param id
      * @return
      */
-    private TreeNode postOrderTraversalSearch(TreeNode data, int id) {
-        TreeNode resultNode;
+    private BinaryTree.TreeNode postOrderTraversalSearch(BinaryTree.TreeNode data, int id) {
+        BinaryTree.TreeNode resultNode;
         if (data == null) {
             return null;
         }
@@ -64,16 +63,16 @@ public class PostTraverser implements ITraverser {
      * 非递归后序遍历
      * @param data
      */
-    private void postOrder(TreeNode data,ArrayList<String> arrayList) {
+    private void postOrder(BinaryTree.TreeNode data, ArrayList<String> arrayList) {
         if (data == null) {
            return;
         }
         /**
          * 1.先将当前节点入栈
          */
-        TreeNode temp = data; // 记录当前访问的节点
-        TreeNode pre = null; // 上一个访问的节点
-        Stack<TreeNode> stack = new Stack<>();
+        BinaryTree.TreeNode temp = data; // 记录当前访问的节点
+        BinaryTree.TreeNode pre = null; // 上一个访问的节点
+        Stack<BinaryTree.TreeNode> stack = new Stack<>();
         while (temp != null || !stack.isEmpty()) {
             /**
              * 2.将当前节点的所有左子树入栈，直到左子树为空
@@ -112,7 +111,7 @@ public class PostTraverser implements ITraverser {
     }
 
     @Override
-    public TreeNode traversalSearch(BinaryTree binaryTree, int id) {
+    public BinaryTree.TreeNode traversalSearch(BinaryTree binaryTree, int id) {
         return postOrderTraversalSearch(binaryTree.getRoot(), id);
     }
 

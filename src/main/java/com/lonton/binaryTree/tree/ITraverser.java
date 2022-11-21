@@ -1,7 +1,6 @@
 package com.lonton.binaryTree.tree;
 
-import com.lonton.binaryTree.tree.impl.BinaryTree;
-import com.lonton.binaryTree.tree.pojo.TreeNode;
+import com.lonton.binaryTree.tree.pojo.BinaryTree;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,7 @@ public interface ITraverser {
      * @param id
      * @return
      */
-    TreeNode traversalSearch(BinaryTree binaryTree, int id);
+    BinaryTree.TreeNode traversalSearch(BinaryTree binaryTree, int id);
 
 
     /**

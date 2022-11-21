@@ -2,7 +2,6 @@ package com.lonton.binaryTree.tree.impl;
 
 import com.lonton.binaryTree.tree.ITraverser;
 import com.lonton.binaryTree.tree.pojo.BinaryTree;
-import com.lonton.binaryTree.tree.pojo.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class MidTraverser implements ITraverser {
      * 递归中序遍历
      * @param data
      */
-    private void mid(TreeNode data, ArrayList<String> arrayList) {
+    private void mid(BinaryTree.TreeNode data, ArrayList<String> arrayList) {
         if (data == null) {
             return;
         }
@@ -34,8 +33,8 @@ public class MidTraverser implements ITraverser {
      * @param id
      * @return
      */
-    private TreeNode midOrderTraversalSearch(TreeNode data, int id) {
-        TreeNode resultNode; // 查询结果为空
+    private BinaryTree.TreeNode midOrderTraversalSearch(BinaryTree.TreeNode data, int id) {
+        BinaryTree.TreeNode resultNode; // 查询结果为空
         if (data == null) {
             return null;
         }
@@ -60,12 +59,12 @@ public class MidTraverser implements ITraverser {
      * 非递归中序遍历
      * @param data
      */
-    private void midOrder(TreeNode data, ArrayList<String> arrayList) {
+    private void midOrder(BinaryTree.TreeNode data, ArrayList<String> arrayList) {
         if (data == null) {
           return;
         }
-        TreeNode temp = data; // 1.先将当前节点入栈
-        Stack<TreeNode> stack = new Stack<>();
+        BinaryTree.TreeNode temp = data; // 1.先将当前节点入栈
+        Stack<BinaryTree.TreeNode> stack = new Stack<>();
         while (temp != null || !stack.isEmpty()) {
 
             while (temp != null) { // 2.将当前节点的所有左子树入栈，直到左子树为空
@@ -90,7 +89,7 @@ public class MidTraverser implements ITraverser {
     }
 
     @Override
-    public TreeNode traversalSearch(BinaryTree binaryTree, int id) {
+    public BinaryTree.TreeNode traversalSearch(BinaryTree binaryTree, int id) {
         return midOrderTraversalSearch(binaryTree.getRoot(), id);
     }
 
