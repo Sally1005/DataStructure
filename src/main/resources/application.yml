@@ -23,7 +23,7 @@ mybatis:
   # 指定Mybatis的实体目录
   type-aliases-package: com.lonton.binaryTree.tree.pojo
 server:
-  port: 8080
+  port: 8081
 
 
 
