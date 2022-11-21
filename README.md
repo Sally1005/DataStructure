@@ -1,7 +1,7 @@
 # 项目介绍
 
 该工程是一个简单的Java工程项目。主要是练习数据结构中的树。包括二叉树的递归遍历和非递归遍历、计算节点、树高和查找树等。<br/>
-同时，还包括对力扣网上题目的一些练习，以下是个人的LeetCode个人页链接：<https://leetcode.cn/u/cool-hawking8aq/>
+同时，还包括对力扣网上题目的一些练习，以下是LeetCode个人页链接：<https://leetcode.cn/u/cool-hawking8aq/>
                       
 
 # 目录结构
