@@ -25,7 +25,8 @@ public class BinaryTree<T> {
 
     /**
      * 添加节点<br/>
-     * @param treeNode <br/>
+     *
+     * @param BinaryTree.TreeNode <br/>
      * @return
      */
     public boolean addNode(TreeNode<T> treeNode) {
@@ -33,7 +34,7 @@ public class BinaryTree<T> {
             this.root = treeNode;
             this.nodeCount++;
         } else {
-             // 找到对应的父节点
+            // 找到对应的父节点
             TreeNode<T> parent = this.search(treeNode.getParentID(), this.root);
             if (parent == null) {
                 return false; // 插入失败
@@ -54,6 +55,7 @@ public class BinaryTree<T> {
 
     /**
      * 根据id查询节点
+     *
      * @param id
      * @param curNode
      * @return
@@ -70,6 +72,35 @@ public class BinaryTree<T> {
             return node;
         }
         return search(id, curNode.getRight());
+    }
+
+    @Data
+    public static class TreeNode<T> {
+        /**
+         * 当前节点
+         */
+        private String data;
+
+        /**
+         * 左子节点
+         */
+        private TreeNode left;
+
+        /**
+         * 右子节点
+         */
+        private TreeNode right;
+
+        /**
+         * id
+         */
+        private int id;
+
+        /**
+         * 父id
+         */
+        private int parentID;
+
     }
 
 }
