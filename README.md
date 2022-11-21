@@ -12,15 +12,14 @@
 │  │  ├─java
 │  │  │  └─com
 │  │  │      └─lonton
+│  │  │          └─leetcode                 力扣网刷题
 │  │  │          └─binaryTree
 │  │  │                  ├─dao              持久层
 │  │  │                  ├─tree             树包，内置实体类、接口、实现类
 │  │  │                  └─utils            工具包                                      
 │  │  └─resources                           配置   
 │  └─test                                   测试  
-├─LeetCode                                  力扣网刷题
-│  ├─src
-│  │  ├─tree                                树结构相关
+
 
 ```
 
