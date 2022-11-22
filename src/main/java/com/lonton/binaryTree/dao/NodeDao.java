@@ -17,8 +17,8 @@ import java.util.List;
 @Mapper
 public interface NodeDao extends Mapper {
 
-    //    //查询多行
-    @Select("select id,data,parentId from fruit")
+     // 查询多行
+    @Select("select id,data,weight from score")
     List<BinaryTree.TreeNode> getNodeList();
 
 
