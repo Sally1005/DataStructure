@@ -6,13 +6,13 @@ import com.lonton.binaryTree.tree.impl.*;
 import com.lonton.binaryTree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 
@@ -21,34 +21,17 @@ import java.util.List;
  *
  * @author 张利红
  */
+@SuppressWarnings("all")
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TreeApplication.class)
 public class BinaryTreeTest {
-    /*** 建树
-     *        水果
-     *
-     *  柑橘类     瓜果类
-     *
-     *橙子  沃柑   西瓜  哈密瓜
-     *
-     */
     @Autowired
     NodeDao stringNodeDao;
 
     public BinaryTree BuildTree() {
-        BinaryTree binaryTree = new BinaryTree();
         List<BinaryTree.TreeNode> nodeList = stringNodeDao.getNodeList();
-        nodeList.sort(new Comparator<BinaryTree.TreeNode>() {
-            @Override
-            public int compare(BinaryTree.TreeNode t, BinaryTree.TreeNode t1) {
-                return t.getParentID() - t1.getParentID();
-            }
-        });
-        for (BinaryTree.TreeNode treeNode : nodeList) {
-            binaryTree.addNode(treeNode);
-        }
-
+        BinaryTree binaryTree = new BinaryTree(nodeList);
         return binaryTree;
     }
 
@@ -59,20 +42,16 @@ public class BinaryTreeTest {
     public void pre() {
         BinaryTree binaryTree = BuildTree();
         PreTraverser preTraverser = new PreTraverser();
-        ArrayList<String> strings = preTraverser.recursiveTraversal(binaryTree);
-        StringBuilder result = new StringBuilder();
-        for (String string : strings) {
-            result.append(string + " ");
-        }
+        ArrayList<String> target = preTraverser.recursiveTraversal(binaryTree);
         ArrayList<String> list = new ArrayList<>();
-        list.add("水果");
-        list.add("柑橘类");
-        list.add("橙子");
-        list.add("沃柑");
-        list.add("瓜果类");
-        list.add("西瓜");
-        list.add("哈密瓜");
-       //  assert list.equals(result.toString());
+        list.add("小明");
+        list.add("小绿");
+        list.add("小黄");
+        list.add("小红");
+        list.add("小吴");
+        list.add("小哈");
+        list.add("小黑");
+        assert target.equals(list);
 
     }
 
@@ -83,13 +62,16 @@ public class BinaryTreeTest {
     public void mid() {
         BinaryTree binaryTree = BuildTree();
         MidTraverser midTraverser = new MidTraverser();
-        ArrayList<String> strings = midTraverser.recursiveTraversal(binaryTree);
-        StringBuilder result = new StringBuilder();
-        for (String string : strings) {
-            result.append(string + " ");
-        }
-        String target = "橙子 柑橘类 沃柑 水果 西瓜 瓜果类 哈密瓜 ";
-        assert target.equals(result.toString());
+        ArrayList<String> target = midTraverser.recursiveTraversal(binaryTree);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("小绿");
+        list.add("小黄");
+        list.add("小明");
+        list.add("小哈");
+        list.add("小吴");
+        list.add("小黑");
+        list.add("小红");
+        assert target.equals(list);
 
     }
 
@@ -100,13 +82,16 @@ public class BinaryTreeTest {
     public void post() {
         BinaryTree binaryTree = BuildTree();
         PostTraverser postTraverser = new PostTraverser();
-        ArrayList<String> strings = postTraverser.recursiveTraversal(binaryTree);
-        StringBuilder result = new StringBuilder();
-        for (String string : strings) {
-            result.append(string + " ");
-        }
-        String target = "橙子 沃柑 柑橘类 西瓜 哈密瓜 瓜果类 水果 ";
-        assert target.equals(result.toString());
+        ArrayList<String> target = postTraverser.recursiveTraversal(binaryTree);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("小黄");
+        list.add("小绿");
+        list.add("小哈");
+        list.add("小黑");
+        list.add("小吴");
+        list.add("小红");
+        list.add("小明");
+        assert target.equals(list);
     }
 
     /**
@@ -116,13 +101,16 @@ public class BinaryTreeTest {
     public void preOrder() {
         BinaryTree binaryTree = BuildTree();
         PreTraverser preTraverser = new PreTraverser();
-        ArrayList<String> strings = preTraverser.notRecursiveTraversal(binaryTree);
-        StringBuilder result = new StringBuilder();
-        for (String string : strings) {
-            result.append(string + " ");
-        }
-        String target = "水果 柑橘类 橙子 沃柑 瓜果类 西瓜 哈密瓜 ";
-        assert target.equals(result.toString());
+        ArrayList<String> target = preTraverser.notRecursiveTraversal(binaryTree);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("小明");
+        list.add("小绿");
+        list.add("小黄");
+        list.add("小红");
+        list.add("小吴");
+        list.add("小哈");
+        list.add("小黑");
+        assert target.equals(list);
     }
 
     /**
@@ -132,13 +120,16 @@ public class BinaryTreeTest {
     public void midOrder() {
         BinaryTree binaryTree = BuildTree();
         MidTraverser midTraverser = new MidTraverser();
-        ArrayList<String> strings = midTraverser.notRecursiveTraversal(binaryTree);
-        StringBuilder result = new StringBuilder();
-        for (String string : strings) {
-            result.append(string + " ");
-        }
-        String target = "橙子 柑橘类 沃柑 水果 西瓜 瓜果类 哈密瓜 ";
-        assert target.equals(result.toString());
+        ArrayList<String> target = midTraverser.notRecursiveTraversal(binaryTree);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("小绿");
+        list.add("小黄");
+        list.add("小明");
+        list.add("小哈");
+        list.add("小吴");
+        list.add("小黑");
+        list.add("小红");
+        assert target.equals(list);
     }
 
     /**
@@ -148,13 +139,16 @@ public class BinaryTreeTest {
     public void postOrder() {
         BinaryTree binaryTree = BuildTree();
         PostTraverser postTraverser = new PostTraverser();
-        ArrayList<String> strings = postTraverser.notRecursiveTraversal(binaryTree);
-        StringBuilder result = new StringBuilder();
-        for (String string : strings) {
-            result.append(string + " ");
-        }
-        String target = "橙子 沃柑 柑橘类 西瓜 哈密瓜 瓜果类 水果 ";
-        assert target.equals(result.toString());
+        ArrayList<String> target = postTraverser.notRecursiveTraversal(binaryTree);
+        ArrayList<String> list = new ArrayList<>();
+        list.add("小黄");
+        list.add("小绿");
+        list.add("小哈");
+        list.add("小黑");
+        list.add("小吴");
+        list.add("小红");
+        list.add("小明");
+        assert target.equals(list);
     }
 
     /**
@@ -164,19 +158,19 @@ public class BinaryTreeTest {
     public void countHeight() {
         HeightVisitor heightVisitor = new HeightVisitor();
         int target = heightVisitor.visit(this.BuildTree());
-        int expected = 3;
-        assert target == expected;
+        int expected = 4;
+        Assertions.assertSame(target,expected);
     }
 
     /**
      * 测试计算树的节点个数
      */
-    @Test
+   //  @Test
     public void countNodes() {
         CountVisitor countVisitor = new CountVisitor();
         int target = countVisitor.visit(this.BuildTree());
         int expected = 7;
-        assert target == expected;
+        Assertions.assertSame(expected,target);
     }
 
     /**
@@ -188,7 +182,7 @@ public class BinaryTreeTest {
         int id = 1;
         BinaryTree.TreeNode treeNode = preTraverser.traversalSearch(this.BuildTree(), id);
         String target = treeNode.getData();
-        String expected = "水果";
+        String expected = "小明";
         assert target.equals(expected);
         //log.info("id为{}时，所查询的节点为:{}",id,BinaryTree.TreeNode.getData());
     }
@@ -202,7 +196,7 @@ public class BinaryTreeTest {
         int id = 2;
         BinaryTree.TreeNode treeNode = midTraverser.traversalSearch(this.BuildTree(), id);
         String target = treeNode.getData();
-        String expected = "柑橘类";
+        String expected = "小红";
         assert target.equals(expected);
         //log.info("id为{}时，所查询的节点为:{}",id,BinaryTree.TreeNode.getData());
     }
@@ -216,7 +210,7 @@ public class BinaryTreeTest {
         int id = 3;
         BinaryTree.TreeNode treeNode = postTraverser.traversalSearch(this.BuildTree(), id);
         String target = treeNode.getData();
-        String expected = "瓜果类";
+        String expected = "小吴";
         assert target.equals(expected);
         //log.info("id为{}时，所查询的节点为:{}",id,BinaryTree.TreeNode.getData());
     }
