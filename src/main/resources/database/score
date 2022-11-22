@@ -1,0 +1,17 @@
+/*DDL 信息*/------------
+START TRANSACTION
+drop table fruit;
+CREATE TABLE `score` (
+  `id` INT(11) NOT NULL,
+  `data` VARCHAR(20) DEFAULT NULL,
+  `weight` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=INNODB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC
+SAVEPOINT a
+INSERT INTO `score` VALUES (1, '小明', 60);
+INSERT INTO `score` VALUES (2, '小红', 100);
+INSERT INTO `score` VALUES (3, '小吴', 75);
+INSERT INTO `score` VALUES (4, '小黑', 80);
+INSERT INTO `score` VALUES (5, '小绿', 44);
+INSERT INTO `score` VALUES (6, '小黄', 59);
+INSERT INTO `score` VALUES (7, '小哈', 61);
