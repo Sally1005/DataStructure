@@ -33,6 +33,8 @@ public class BinaryTree<T> {
         for (int i = 1; i < nodes.size(); i++) {
             TreeNode node = nodes.get(i);
             addNode(root, node);
+            this.nodeCount++;
+
         }
     }
 

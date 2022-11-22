@@ -165,7 +165,7 @@ public class BinaryTreeTest {
     /**
      * 测试计算树的节点个数
      */
-   //  @Test
+     @Test
     public void countNodes() {
         CountVisitor countVisitor = new CountVisitor();
         int target = countVisitor.visit(this.BuildTree());
