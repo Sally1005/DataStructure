@@ -3,6 +3,8 @@ package com.lonton.binaryTree.tree.pojo;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 /**
  * 二叉树类
  * 　<p/>
@@ -23,34 +25,47 @@ public class BinaryTree<T> {
      */
     private int nodeCount;
 
+    public BinaryTree(List<TreeNode> nodes) {
+        TreeNode treeNode = nodes.get(0);
+        this.root = treeNode;
+
+        this.nodeCount++;
+        for (int i = 1; i < nodes.size(); i++) {
+            TreeNode node = nodes.get(i);
+            addNode(root, node);
+        }
+    }
+
     /**
      * 添加节点<br/>
      *
      * @param BinaryTree.TreeNode <br/>
      * @return
      */
-    public boolean addNode(TreeNode<T> treeNode) {
-        if (this.root == null) {
-            this.root = treeNode;
-            this.nodeCount++;
-        } else {
-            // 找到对应的父节点
-            TreeNode<T> parent = this.search(treeNode.getParentID(), this.root);
-            if (parent == null) {
-                return false; // 插入失败
+    public void addNode(TreeNode<T> root,TreeNode<T> node) {
+        // 如果当前父节点值大于要插入的值
+        if(root.getWeight()> node.getWeight()) {
+            // 则判断当前父节点有无左节点 若有 则进行递归 若没有则直接插入
+            if (root.getLeft() != null) {
+                addNode(root.getLeft(), node);
+            } else {
+                root.setLeft(node);
             }
-            if (parent.getLeft() != null && parent.getRight() != null) {
-                return false;
+            return;
+        }else {
+            //当前父节点小于要插入的值
+            if(root.getWeight()< node.getWeight()) {
+                // 则判断当前父节点有无右节点 若有 则进行递归 若没有则直接插入
+                if (root.getRight() != null) {
+                    addNode(root.getRight(), node);
+                } else {
+                    root.setRight(node);
+                }
+                return;
             }
-            if (parent.getLeft() == null) {
-                parent.setLeft(treeNode);
-                this.nodeCount++;
-                return true;
-            }
-            parent.setRight(treeNode);
-            this.nodeCount++;
+
         }
-        return true;
+
     }
 
     /**
@@ -97,9 +112,9 @@ public class BinaryTree<T> {
         private int id;
 
         /**
-         * 父id
+         * 权重（分数)
          */
-        private int parentID;
+        private int weight;
 
     }
 
