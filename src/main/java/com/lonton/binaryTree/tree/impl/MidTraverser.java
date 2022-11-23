@@ -1,10 +1,12 @@
 package com.lonton.binaryTree.tree.impl;
 
 import com.lonton.binaryTree.tree.ITraverser;
+import com.lonton.binaryTree.tree.IVisitor;
 import com.lonton.binaryTree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**
@@ -13,90 +15,105 @@ import java.util.Stack;
  * @author 张利红
  */
 @Slf4j
-public class MidTraverser implements ITraverser {
+@SuppressWarnings("all")
+public class MidTraverser extends ITraverser {
     /**
-     * 递归中序遍历
-     * @param data
+     * 递归遍历 <br/>
+     * visitor决定访问行为，理解为先遍历左子树还是先遍历右子树<br/>
+     * traverser决定访问顺序，理解为前/中/后序遍历
      */
-    private void mid(BinaryTree.TreeNode data, ArrayList<String> arrayList) {
-        if (data == null) {
-            return;
+    private class Recursive implements IVisitor{
+
+        @Override
+        public void visit(BinaryTree.TreeNode root, List<Object> list) {
+             // 左子节点是否存在
+            if(root.getLeft() != null){
+                visit(root.getLeft(), list);
+            }
+             // 添加当前节点
+            list.add(root.getData());
+             // 右子节点是否存在
+            if(root.getRight() != null){
+                visit(root.getRight(), list);
+            }
         }
-        mid(data.getLeft(),arrayList);
-        arrayList.add(data.getData());
-        mid(data.getRight(),arrayList);
     }
 
     /**
-     * 中序遍历搜索查询
-     * @param data
-     * @param id
-     * @return
+     * 非递归遍历
      */
-    private BinaryTree.TreeNode midOrderTraversalSearch(BinaryTree.TreeNode data, int id) {
-        BinaryTree.TreeNode resultNode; // 查询结果为空
-        if (data == null) {
+    private class NotRecursive implements IVisitor{
+
+        @Override
+        public void visit(BinaryTree.TreeNode root, List<Object> list) {
+            if (root == null) {
+                return;
+            }
+             // 1.先将当前节点入栈
+            BinaryTree.TreeNode temp = root;
+            Stack<BinaryTree.TreeNode> stack = new Stack<>();
+            while (temp != null || !stack.isEmpty()) {
+                 // 2.将当前节点的所有左子树入栈，直到左子树为空
+                while (temp != null) {
+                    stack.push(temp);
+                    temp = temp.getLeft();
+                }
+                temp = stack.pop();
+                list.add(temp.getData());
+                 // 3.访问栈顶元素，如果栈顶元素存在右子树，则继续第2步
+                if (temp.getRight() != null) {
+                    temp = temp.getRight();
+                } else {
+                    temp = null;
+                }
+            }
+        }
+    }
+
+    public MidTraverser() {
+        this(true);
+    }
+
+     // 判断中序访问顺序是否为递归遍历
+    public MidTraverser(boolean recursive) {
+        if(recursive){
+            setVisitor(new Recursive());
+        }else{
+            setVisitor(new NotRecursive());
+        }
+    }
+
+    /**
+     * 查找
+     * <br/>
+     * @param root
+     * @param id
+     */
+    @Override
+    public BinaryTree.TreeNode search(BinaryTree.TreeNode root, int id) {
+        BinaryTree.TreeNode resultNode;
+        if (root == null) {
             return null;
         }
-        if (data.getLeft() != null) {
-            resultNode = midOrderTraversalSearch(data.getLeft(), id); // 如果左子节点不为空，向左递归遍历查询
-            if (resultNode != null) { // 查询结果不为空，则已查到该节点
+        if (root.getLeft() != null) {
+             // 如果左子节点不为空，向左递归遍历查询
+            resultNode = search(root.getLeft(), id);
+             // 查询结果不为空，则已查到该节点
+            if (resultNode != null) {
                 return resultNode;
             }
         }
-        if (data.getId() == id) {
-            return data;
+        if (root.getId() == id) {
+            return root;
         }
-        if (data.getRight() != null) {
-            resultNode = midOrderTraversalSearch(data.getRight(), id); // 如果右子节点不为空，向右递归遍历查询
-            // 查询结果不为空，则已查到该节点
-            return resultNode;
+        if (root.getRight() != null) {
+             // 如果右子节点不为空，向右递归遍历查询
+            resultNode = search(root.getRight(), id);
+             // 查询结果不为空，则已查到该节点
+            if (resultNode != null) {
+                return resultNode;
+            }
         }
         return null;
-    }
-
-    /**
-     * 非递归中序遍历
-     * @param data
-     */
-    private void midOrder(BinaryTree.TreeNode data, ArrayList<String> arrayList) {
-        if (data == null) {
-          return;
-        }
-        BinaryTree.TreeNode temp = data; // 1.先将当前节点入栈
-        Stack<BinaryTree.TreeNode> stack = new Stack<>();
-        while (temp != null || !stack.isEmpty()) {
-
-            while (temp != null) { // 2.将当前节点的所有左子树入栈，直到左子树为空
-                stack.push(temp);
-                temp = temp.getLeft();
-            }
-            temp = stack.pop();
-            arrayList.add(temp.getData());
-            if (temp.getRight() != null) { // 3.访问栈顶元素，如果栈顶元素存在右子树，则继续第2步
-                temp = temp.getRight();
-            } else {
-                temp = null;
-            }
-        }
-    }
-    @Override
-    public ArrayList<String>  recursiveTraversal(BinaryTree binaryTree) {
-        ArrayList<String> strings = new ArrayList<>();
-        mid(binaryTree.getRoot(), strings);
-        return strings;
-
-    }
-
-    @Override
-    public BinaryTree.TreeNode traversalSearch(BinaryTree binaryTree, int id) {
-        return midOrderTraversalSearch(binaryTree.getRoot(), id);
-    }
-
-    @Override
-    public ArrayList<String> notRecursiveTraversal(BinaryTree binaryTree) {
-        ArrayList<String> strings = new ArrayList<>();
-        midOrder(binaryTree.getRoot(),strings);
-        return strings;
     }
 }
