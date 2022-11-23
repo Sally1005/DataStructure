@@ -34,40 +34,34 @@ public class BinaryTree<T> {
             TreeNode node = nodes.get(i);
             addNode(root, node);
             this.nodeCount++;
-
         }
     }
 
     /**
      * 添加节点<br/>
-     *
      * @param BinaryTree.TreeNode <br/>
      * @return
      */
-    public void addNode(TreeNode<T> root,TreeNode<T> node) {
-        // 如果当前父节点值大于要插入的值
-        if(root.getWeight()> node.getWeight()) {
-            // 则判断当前父节点有无左节点 若有 则进行递归 若没有则直接插入
-            if (root.getLeft() != null) {
+    public void addNode(TreeNode<T> root, TreeNode<T> node) {
+        //如果当前父节点值大于要插入的值
+        if (root.getWeight() > node.getWeight()){
+            //则判断当前父节点有无左节点 若有 则进行递归 若没有则直接插入
+            if (root.getLeft() != null){
                 addNode(root.getLeft(), node);
-            } else {
+            }else{
                 root.setLeft(node);
             }
             return;
-        }else {
-            //当前父节点小于要插入的值
-            if(root.getWeight()< node.getWeight()) {
-                // 则判断当前父节点有无右节点 若有 则进行递归 若没有则直接插入
-                if (root.getRight() != null) {
-                    addNode(root.getRight(), node);
-                } else {
-                    root.setRight(node);
-                }
-                return;
+        }else{  //当前父节点小于要插入的值
+             //判断当前父节点有无右节点
+            if (root.getRight() != null){
+                //递归插入
+                addNode(root.getRight(), node);
+            }else{
+                root.setRight(node);
             }
-
+            return;
         }
-
     }
 
     /**
@@ -94,6 +88,11 @@ public class BinaryTree<T> {
     @Data
     public static class TreeNode<T> {
         /**
+         * id
+         */
+        private Integer id;
+
+        /**
          * 当前节点
          */
         private String data;
@@ -109,12 +108,7 @@ public class BinaryTree<T> {
         private TreeNode right;
 
         /**
-         * id
-         */
-        private int id;
-
-        /**
-         * 权重（分数)
+         * 权重
          */
         private int weight;
 
