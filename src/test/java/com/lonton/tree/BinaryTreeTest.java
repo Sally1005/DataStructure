@@ -2,6 +2,7 @@ package com.lonton.tree;
 
 import com.lonton.binaryTree.TreeApplication;
 import com.lonton.binaryTree.dao.NodeDao;
+import com.lonton.binaryTree.tree.ITraverser;
 import com.lonton.binaryTree.tree.impl.*;
 import com.lonton.binaryTree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ import java.util.List;
 
 /**
  * 二叉树单元测试
- *
+ * <p/>
  * @author 张利红
  */
 @SuppressWarnings("all")
@@ -29,6 +30,10 @@ public class BinaryTreeTest {
     @Autowired
     NodeDao stringNodeDao;
 
+    /**
+     * 建树
+     * @return
+     */
     public BinaryTree BuildTree() {
         List<BinaryTree.TreeNode> nodeList = stringNodeDao.getNodeList();
         BinaryTree binaryTree = new BinaryTree(nodeList);
@@ -36,22 +41,30 @@ public class BinaryTreeTest {
     }
 
     /**
+     * 遍历
+     * @param traverser
+     * @return
+     */
+    public List<Object> traversal(ITraverser traverser){
+        return traverser.traverser(BuildTree().getRoot());
+    }
+
+    /**
      * 前序遍历打印二叉树
      */
     @Test
     public void pre() {
-        BinaryTree binaryTree = BuildTree();
-        PreTraverser preTraverser = new PreTraverser();
-        ArrayList<String> target = preTraverser.recursiveTraversal(binaryTree);
-        ArrayList<String> list = new ArrayList<>();
-        list.add("小明");
-        list.add("小绿");
-        list.add("小黄");
-        list.add("小红");
-        list.add("小吴");
-        list.add("小哈");
-        list.add("小黑");
-        assert target.equals(list);
+            List<Object> target = traversal(new PreTraverser());
+            List<String> list = new ArrayList<>();
+            list.add("小明");
+            list.add("小绿");
+            list.add("小黄");
+            list.add("小红");
+            list.add("小吴");
+            list.add("小哈");
+            list.add("小黑");
+            assert target.equals(list);
+
 
     }
 
@@ -60,10 +73,8 @@ public class BinaryTreeTest {
      */
     @Test
     public void mid() {
-        BinaryTree binaryTree = BuildTree();
-        MidTraverser midTraverser = new MidTraverser();
-        ArrayList<String> target = midTraverser.recursiveTraversal(binaryTree);
-        ArrayList<String> list = new ArrayList<>();
+        List<Object> target = traversal(new MidTraverser());
+        List<String> list = new ArrayList<>();
         list.add("小绿");
         list.add("小黄");
         list.add("小明");
@@ -80,10 +91,8 @@ public class BinaryTreeTest {
      */
     @Test
     public void post() {
-        BinaryTree binaryTree = BuildTree();
-        PostTraverser postTraverser = new PostTraverser();
-        ArrayList<String> target = postTraverser.recursiveTraversal(binaryTree);
-        ArrayList<String> list = new ArrayList<>();
+        List<Object> target = traversal(new PostTraverser());
+        List<String> list = new ArrayList<>();
         list.add("小黄");
         list.add("小绿");
         list.add("小哈");
@@ -99,10 +108,8 @@ public class BinaryTreeTest {
      */
     @Test
     public void preOrder() {
-        BinaryTree binaryTree = BuildTree();
-        PreTraverser preTraverser = new PreTraverser();
-        ArrayList<String> target = preTraverser.notRecursiveTraversal(binaryTree);
-        ArrayList<String> list = new ArrayList<>();
+        List<Object> target = traversal(new PreTraverser(false));
+        List<String> list = new ArrayList<>();
         list.add("小明");
         list.add("小绿");
         list.add("小黄");
@@ -118,10 +125,8 @@ public class BinaryTreeTest {
      */
     @Test
     public void midOrder() {
-        BinaryTree binaryTree = BuildTree();
-        MidTraverser midTraverser = new MidTraverser();
-        ArrayList<String> target = midTraverser.notRecursiveTraversal(binaryTree);
-        ArrayList<String> list = new ArrayList<>();
+        List<Object> target = traversal(new MidTraverser(false));
+        List<String> list = new ArrayList<>();
         list.add("小绿");
         list.add("小黄");
         list.add("小明");
@@ -137,10 +142,8 @@ public class BinaryTreeTest {
      */
     @Test
     public void postOrder() {
-        BinaryTree binaryTree = BuildTree();
-        PostTraverser postTraverser = new PostTraverser();
-        ArrayList<String> target = postTraverser.notRecursiveTraversal(binaryTree);
-        ArrayList<String> list = new ArrayList<>();
+        List<Object> target = traversal(new PostTraverser(false));
+        List<String> list = new ArrayList<>();
         list.add("小黄");
         list.add("小绿");
         list.add("小哈");
@@ -152,25 +155,13 @@ public class BinaryTreeTest {
     }
 
     /**
-     * 测试计算树的高度
+     * 查询
+     * @param traverser
+     * @param id
+     * @return
      */
-    @Test
-    public void countHeight() {
-        HeightVisitor heightVisitor = new HeightVisitor();
-        int target = heightVisitor.visit(this.BuildTree());
-        int expected = 4;
-        Assertions.assertSame(target,expected);
-    }
-
-    /**
-     * 测试计算树的节点个数
-     */
-     @Test
-    public void countNodes() {
-        CountVisitor countVisitor = new CountVisitor();
-        int target = countVisitor.visit(this.BuildTree());
-        int expected = 7;
-        Assertions.assertSame(expected,target);
+    public BinaryTree.TreeNode search(ITraverser traverser, int id){
+        return traverser.search(BuildTree().getRoot(), id);
     }
 
     /**
@@ -178,13 +169,11 @@ public class BinaryTreeTest {
      */
     @Test
     public void preOrderTraversalSearch() {
-        PreTraverser preTraverser = new PreTraverser();
         int id = 1;
-        BinaryTree.TreeNode treeNode = preTraverser.traversalSearch(this.BuildTree(), id);
+        BinaryTree.TreeNode treeNode = search(new PreTraverser(), id);
         String target = treeNode.getData();
         String expected = "小明";
         assert target.equals(expected);
-        //log.info("id为{}时，所查询的节点为:{}",id,BinaryTree.TreeNode.getData());
     }
 
     /**
@@ -192,13 +181,11 @@ public class BinaryTreeTest {
      */
     @Test
     public void midOrderTraversalSearch() {
-        MidTraverser midTraverser = new MidTraverser();
         int id = 2;
-        BinaryTree.TreeNode treeNode = midTraverser.traversalSearch(this.BuildTree(), id);
+        BinaryTree.TreeNode treeNode = search(new MidTraverser(), id);
         String target = treeNode.getData();
         String expected = "小红";
         assert target.equals(expected);
-        //log.info("id为{}时，所查询的节点为:{}",id,BinaryTree.TreeNode.getData());
     }
 
     /**
@@ -206,12 +193,10 @@ public class BinaryTreeTest {
      */
     @Test
     public void postOrderTraversalSearch() {
-        PostTraverser postTraverser = new PostTraverser();
         int id = 3;
-        BinaryTree.TreeNode treeNode = postTraverser.traversalSearch(this.BuildTree(), id);
+        BinaryTree.TreeNode treeNode = search(new PostTraverser(), id);
         String target = treeNode.getData();
         String expected = "小吴";
         assert target.equals(expected);
-        //log.info("id为{}时，所查询的节点为:{}",id,BinaryTree.TreeNode.getData());
     }
 }
