@@ -12,25 +12,7 @@ import java.util.List;
  * @author 张利红
  */
 public class _144_BinaryTreePreorderTraversal {
-    @Test
-    public void test() {
-        /**       1      <br/>
-         *    null   2   <br/>
-         *              3<br/>
-         */
-        // 构建二叉树
-       TreeNode treeNode = new TreeNode(1,
-               null,
-               new TreeNode(2,
-                       new TreeNode(3),
-                       null));
-        List<Integer> list = preorderTraversal(treeNode);
-        List<Integer> target = Arrays.asList(1,2,3);
-        assert target.equals(list);
-    }
-
-
-    public List<Integer> preorderTraversal(TreeNode root) {
+    public static List<Integer> preorderTraversal(TreeNode root) {
         // 定义list集合，存储返回对象
         List<Integer> vals = new ArrayList<>();
         if(root == null){
@@ -48,7 +30,7 @@ public class _144_BinaryTreePreorderTraversal {
      * @param root 根节点 <br/>
      * @param vals list集合容器
      */
-    public void preorder(TreeNode root, List<Integer> vals) {
+    public static void preorder(TreeNode root, List<Integer> vals) {
         if(root == null){
             return;
         }
@@ -72,7 +54,7 @@ public class _144_BinaryTreePreorderTraversal {
      * 树中节点数目在范围 [0, 100] 内<br/>
      * -100 <= Node.val <= 100
      */
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;

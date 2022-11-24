@@ -1,6 +1,5 @@
-package com.lonton.tree;
+package com.lonton.binarytree;
 
-import com.lonton.binarytree.TreeApplication;
 import com.lonton.binarytree.dao.NodeDao;
 import com.lonton.binarytree.tree.ITraverser;
 import com.lonton.binarytree.tree.impl.*;

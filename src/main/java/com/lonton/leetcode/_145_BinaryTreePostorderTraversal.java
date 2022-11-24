@@ -1,9 +1,5 @@
 package com.lonton.leetcode;
-
-import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -11,25 +7,7 @@ import java.util.List;
  * @author 张利红
  */
 public class _145_BinaryTreePostorderTraversal {
-    @Test
-    public void test() {
-        /**       1      <br/>
-         *    null   2   <br/>
-         *              3<br/>
-         */
-        // 构建二叉树
-        TreeNode treeNode = new TreeNode(1,
-                null,
-                new TreeNode(2,
-                        new TreeNode(3),
-                        null));
-        List<Integer> list = postorderTraversal(treeNode);
-        List<Integer> target = Arrays.asList(3,2,1);
-        assert target.equals(list);
-    }
-
-
-    public List<Integer> postorderTraversal(TreeNode root) {
+    public static List<Integer> postorderTraversal(TreeNode root) {
         // 定义list集合，存储返回对象
         List<Integer> vals = new ArrayList<>();
         if(root == null){
@@ -40,14 +18,13 @@ public class _145_BinaryTreePostorderTraversal {
         return vals;
     }
 
-
     /**
      * 递归遍历下一个节点 <br/>
      * 左->右->根 <br/>
      * @param root 根节点 <br/>
      * @param vals list集合容器
      */
-    public void postorder(TreeNode root, List<Integer> vals) {
+    public static void postorder(TreeNode root, List<Integer> vals) {
         if(root == null){
             return;
         }
@@ -69,7 +46,7 @@ public class _145_BinaryTreePostorderTraversal {
      * 树中节点数目在范围 [0, 100] 内<br/>
      * -100 <= Node.val <= 100
      */
-    public class TreeNode {
+    public static class TreeNode {
         int val;
         TreeNode left;
         TreeNode right;
