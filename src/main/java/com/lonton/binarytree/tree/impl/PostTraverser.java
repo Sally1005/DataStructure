@@ -1,28 +1,27 @@
-package com.lonton.binaryTree.tree.impl;
+package com.lonton.binarytree.tree.impl;
 
-import com.lonton.binaryTree.tree.ITraverser;
-import com.lonton.binaryTree.tree.IVisitor;
-import com.lonton.binaryTree.tree.pojo.BinaryTree;
+import com.lonton.binarytree.tree.ITraverser;
+import com.lonton.binarytree.tree.IVisitor;
+import com.lonton.binarytree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 /**
- * 中序遍历
+ * 后序遍历
  * 　<p/>
  * @author 张利红
  */
+
 @Slf4j
-@SuppressWarnings("all")
-public class MidTraverser extends ITraverser {
+
+public class PostTraverser extends ITraverser {
+
     /**
-     * 递归遍历 <br/>
-     * visitor决定访问行为，理解为先遍历左子树还是先遍历右子树<br/>
-     * traverser决定访问顺序，理解为前/中/后序遍历
+     * 递归遍历
      */
-    private class Recursive implements IVisitor{
+    private class Recursive implements IVisitor {
 
         @Override
         public void visit(BinaryTree.TreeNode root, List<Object> list) {
@@ -30,12 +29,12 @@ public class MidTraverser extends ITraverser {
             if(root.getLeft() != null){
                 visit(root.getLeft(), list);
             }
-             // 添加当前节点
-            list.add(root.getData());
              // 右子节点是否存在
             if(root.getRight() != null){
                 visit(root.getRight(), list);
             }
+             // 添加当前节点
+            list.add(root.getData());
         }
     }
 
@@ -50,32 +49,41 @@ public class MidTraverser extends ITraverser {
                 return;
             }
              // 1.先将当前节点入栈
-            BinaryTree.TreeNode temp = root;
+            BinaryTree.TreeNode temp = root; // 记录当前访问的节点
+            BinaryTree.TreeNode pre = null; // 上一个访问的节点
             Stack<BinaryTree.TreeNode> stack = new Stack<>();
             while (temp != null || !stack.isEmpty()) {
-                 // 2.将当前节点的所有左子树入栈，直到左子树为空
+                // 2.将当前节点的所有左子树入栈，直到左子树为空
                 while (temp != null) {
                     stack.push(temp);
                     temp = temp.getLeft();
                 }
-                temp = stack.pop();
-                list.add(temp.getData());
-                 // 3.访问栈顶元素，如果栈顶元素存在右子树，则继续第2步
-                if (temp.getRight() != null) {
-                    temp = temp.getRight();
-                } else {
-                    temp = null;
+                 // 3.得到栈顶元素的值，先不访问，判断栈顶元素是否存在右子树，
+                 // 如果存在并且没有被访问，则将右子树入栈，否则，就访问栈顶元素
+                if (!stack.isEmpty()) {
+                     // 返回栈顶的元素但不移除它
+                    temp = stack.peek();
+                    if (temp != null) {
+                        if (temp.getRight() == null || temp.getRight() == pre) {
+                            temp = stack.pop();
+                            list.add(temp.getData());
+                            pre = temp;
+                            temp = null;
+                        } else {
+                            temp = temp.getRight();
+                        }
+                    }
                 }
+
             }
         }
     }
 
-    public MidTraverser() {
+    public PostTraverser() {
         this(true);
     }
-
-     // 判断中序访问顺序是否为递归遍历
-    public MidTraverser(boolean recursive) {
+     // 判断后序访问顺序是否为递归遍历
+    public PostTraverser(boolean recursive) {
         if(recursive){
             setVisitor(new Recursive());
         }else{
@@ -85,7 +93,6 @@ public class MidTraverser extends ITraverser {
 
     /**
      * 查找
-     * <br/>
      * @param root
      * @param id
      */
@@ -103,9 +110,6 @@ public class MidTraverser extends ITraverser {
                 return resultNode;
             }
         }
-        if (root.getId() == id) {
-            return root;
-        }
         if (root.getRight() != null) {
              // 如果右子节点不为空，向右递归遍历查询
             resultNode = search(root.getRight(), id);
@@ -114,6 +118,10 @@ public class MidTraverser extends ITraverser {
                 return resultNode;
             }
         }
+        if (root.getId() == id) {
+            return root;
+        }
         return null;
     }
+
 }

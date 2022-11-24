@@ -1,7 +1,7 @@
-package com.lonton.binaryTree.tree;
+package com.lonton.binarytree.tree;
 
 
-import com.lonton.binaryTree.tree.pojo.BinaryTree;
+import com.lonton.binarytree.tree.pojo.BinaryTree;
 
 import java.util.List;
 
@@ -10,7 +10,6 @@ import java.util.List;
  * <p/>
  * @author 张利红
  */
-@SuppressWarnings("all")
 public interface IVisitor {
     /**
      * 访问树

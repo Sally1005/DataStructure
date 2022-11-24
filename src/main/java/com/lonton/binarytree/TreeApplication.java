@@ -1,4 +1,4 @@
-package com.lonton.binaryTree;
+package com.lonton.binarytree;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

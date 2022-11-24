@@ -1,4 +1,4 @@
-package com.lonton.binaryTree.tree.pojo;
+package com.lonton.binarytree.tree.pojo;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,6 @@ import java.util.List;
  * @author 张利红
  */
 
-@SuppressWarnings("all")
 @Slf4j
 @Data
 public class BinaryTree<T> {

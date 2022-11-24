@@ -1,12 +1,9 @@
-package com.lonton.binaryTree.dao;
+package com.lonton.binarytree.dao;
 
-import com.lonton.binaryTree.tree.pojo.BinaryTree;
-import org.apache.commons.dbutils.QueryRunner;
-import org.apache.commons.dbutils.handlers.BeanListHandler;
+import com.lonton.binarytree.tree.pojo.BinaryTree;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import java.sql.Connection;
 import java.util.List;
 /**
  * 节点DAO层

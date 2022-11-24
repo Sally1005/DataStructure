@@ -1,13 +1,12 @@
 package com.lonton.tree;
 
-import com.lonton.binaryTree.TreeApplication;
-import com.lonton.binaryTree.dao.NodeDao;
-import com.lonton.binaryTree.tree.ITraverser;
-import com.lonton.binaryTree.tree.impl.*;
-import com.lonton.binaryTree.tree.pojo.BinaryTree;
+import com.lonton.binarytree.TreeApplication;
+import com.lonton.binarytree.dao.NodeDao;
+import com.lonton.binarytree.tree.ITraverser;
+import com.lonton.binarytree.tree.impl.*;
+import com.lonton.binarytree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +21,7 @@ import java.util.List;
  * <p/>
  * @author 张利红
  */
-@SuppressWarnings("all")
+
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TreeApplication.class)
