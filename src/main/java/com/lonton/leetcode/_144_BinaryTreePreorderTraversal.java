@@ -1,4 +1,4 @@
-package com.lonton.leetCode.tree;
+package com.lonton.leetcode;
 
 
 import org.junit.jupiter.api.Test;
@@ -11,7 +11,7 @@ import java.util.List;
  * 144. 二叉树的前序遍历 <p/>
  * @author 张利红
  */
-public class BinaryTreePreorderTraversal_144 {
+public class _144_BinaryTreePreorderTraversal {
     @Test
     public void test() {
         /**       1      <br/>

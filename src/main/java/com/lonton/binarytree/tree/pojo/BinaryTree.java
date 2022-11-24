@@ -37,9 +37,7 @@ public class BinaryTree<T> {
     }
 
     /**
-     * 添加节点<br/>
-     * @param BinaryTree.TreeNode <br/>
-     * @return
+     * 添加节点
      */
     public void addNode(TreeNode<T> root, TreeNode<T> node) {
         //如果当前父节点值大于要插入的值
