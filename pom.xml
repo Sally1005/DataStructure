@@ -45,6 +45,13 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.2.3</version>
         </dependency>
+
+        <!--JPA-->
+        <dependency>
+             <groupId>org.springframework.boot</groupId>
+             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
         <!--数据库CRUD操作的工具类-->
         <dependency>
             <groupId>commons-dbutils</groupId>
