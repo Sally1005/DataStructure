@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 与对应接口的全路径严格对应-->
+<mapper namespace="com.lonton.binarytree.dao.TreeNodeMapper">
+    <!-- List<BinaryTree.TreeNode> list(); -->
+    <select id="list" resultMap="ListItemResultMap">
+        SELECT
+        <include refid="ListItemQueryFields" />
+        FROM
+        score
+    </select>
+
+    <sql id="ListItemQueryFields">
+        <if test="true">
+            id,
+            data,
+            weight
+        </if>
+    </sql>
+
+    <resultMap id="ListItemResultMap" type="com.lonton.binarytree.tree.pojo.vo.TreeNodeListItemVO">
+        <id column="id" property="id"/>
+        <result column="data" property="data"/>
+        <result column="weight" property="weight"/>
+    </resultMap>
+
+</mapper>
