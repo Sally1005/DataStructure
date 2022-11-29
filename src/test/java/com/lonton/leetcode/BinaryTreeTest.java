@@ -1,7 +1,8 @@
-package com.lonton.binarytree;
+package com.lonton.leetcode;
 
+import com.lonton.binarytree.TreeApplication;
 import com.lonton.binarytree.dao.NodeDao;
-import com.lonton.binarytree.tree.ITraverser;
+import com.lonton.binarytree.tree.ATraverser;
 import com.lonton.binarytree.tree.impl.*;
 import com.lonton.binarytree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
@@ -43,7 +44,7 @@ public class BinaryTreeTest {
      * @param traverser
      * @return
      */
-    public List<Object> traversal(ITraverser traverser){
+    public List<Object> traversal(ATraverser traverser){
         return traverser.traverser(BuildTree().getRoot());
     }
 
@@ -61,6 +62,7 @@ public class BinaryTreeTest {
             list.add("小吴");
             list.add("小哈");
             list.add("小黑");
+            log.info("前序遍历打印二叉树:{}",list);
             assert target.equals(list);
 
 
@@ -80,6 +82,7 @@ public class BinaryTreeTest {
         list.add("小吴");
         list.add("小黑");
         list.add("小红");
+        log.info("中序遍历打印二叉树:{}",list);
         assert target.equals(list);
 
     }
@@ -98,6 +101,7 @@ public class BinaryTreeTest {
         list.add("小吴");
         list.add("小红");
         list.add("小明");
+        log.info("后序遍历打印二叉树:{}",list);
         assert target.equals(list);
     }
 
@@ -115,6 +119,7 @@ public class BinaryTreeTest {
         list.add("小吴");
         list.add("小哈");
         list.add("小黑");
+        log.info("非递归前序遍历打印二叉树:{}",list);
         assert target.equals(list);
     }
 
@@ -132,6 +137,7 @@ public class BinaryTreeTest {
         list.add("小吴");
         list.add("小黑");
         list.add("小红");
+        log.info("非递归中序遍历打印二叉树:{}",list);
         assert target.equals(list);
     }
 
@@ -149,6 +155,7 @@ public class BinaryTreeTest {
         list.add("小吴");
         list.add("小红");
         list.add("小明");
+        log.info("非递归后序遍历打印二叉树:{}",list);
         assert target.equals(list);
     }
 
@@ -158,7 +165,7 @@ public class BinaryTreeTest {
      * @param id
      * @return
      */
-    public BinaryTree.TreeNode search(ITraverser traverser, int id){
+    public BinaryTree.TreeNode search(ATraverser traverser, int id){
         return traverser.search(BuildTree().getRoot(), id);
     }
 
@@ -171,6 +178,7 @@ public class BinaryTreeTest {
         BinaryTree.TreeNode treeNode = search(new PreTraverser(), id);
         String target = treeNode.getData();
         String expected = "小明";
+        log.info("前序遍历查找节点:{}",target);
         assert target.equals(expected);
     }
 
@@ -183,6 +191,7 @@ public class BinaryTreeTest {
         BinaryTree.TreeNode treeNode = search(new MidTraverser(), id);
         String target = treeNode.getData();
         String expected = "小红";
+        log.info("中序遍历查找节点:{}",target);
         assert target.equals(expected);
     }
 
@@ -195,6 +204,8 @@ public class BinaryTreeTest {
         BinaryTree.TreeNode treeNode = search(new PostTraverser(), id);
         String target = treeNode.getData();
         String expected = "小吴";
+        log.info("后序遍历查找节点:{}",target);
         assert target.equals(expected);
+
     }
 }

@@ -1,6 +1,6 @@
 package com.lonton.binarytree.tree.impl;
 
-import com.lonton.binarytree.tree.ITraverser;
+import com.lonton.binarytree.tree.ATraverser;
 import com.lonton.binarytree.tree.IVisitor;
 import com.lonton.binarytree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import java.util.Stack;
  * @author 张利红
  */
 @Slf4j
-public class MidTraverser extends ITraverser {
+public class MidTraverser extends ATraverser {
     /**
      * 递归遍历 <br/>
      * visitor决定访问行为，理解为先遍历左子树还是先遍历右子树<br/>

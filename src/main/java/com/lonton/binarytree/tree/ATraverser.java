@@ -10,7 +10,7 @@ import java.util.List;
  * <p/>
  * @author 张利红
  */
-public abstract class ITraverser {
+public abstract class ATraverser {
 
     private IVisitor visitor;
 

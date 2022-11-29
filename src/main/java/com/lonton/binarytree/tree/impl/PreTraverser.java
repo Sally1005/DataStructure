@@ -1,6 +1,6 @@
 package com.lonton.binarytree.tree.impl;
 
-import com.lonton.binarytree.tree.ITraverser;
+import com.lonton.binarytree.tree.ATraverser;
 import com.lonton.binarytree.tree.IVisitor;
 import com.lonton.binarytree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import java.util.Stack;
  * @author 张利红
  */
 @Slf4j
-public class PreTraverser extends ITraverser {
+public class PreTraverser extends ATraverser {
 
     /**
      * 递归遍历
@@ -66,7 +66,11 @@ public class PreTraverser extends ITraverser {
     public PreTraverser() {
         this(true);
     }
-    // 判断前·序访问顺序是否为递归遍历
+
+    /**
+     * 判断前序访问顺序是否为递归遍历
+     * @param recursive  递归遍历
+     */
     public PreTraverser(boolean recursive) {
         if(recursive){
             setVisitor(new Recursive());

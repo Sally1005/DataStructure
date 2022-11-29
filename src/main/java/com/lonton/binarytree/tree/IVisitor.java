@@ -13,6 +13,8 @@ import java.util.List;
 public interface IVisitor {
     /**
      * 访问树
+     * @param root
+     * @param list
      */
     void visit(BinaryTree.TreeNode root, List<Object> list);
 }
