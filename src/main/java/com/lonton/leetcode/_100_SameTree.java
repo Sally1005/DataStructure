@@ -16,13 +16,6 @@ public class _100_SameTree {
      * <br/>
      * @return boolean
      */
-    @Test
-    public void test() {
-        TreeNode treeNode1 = new TreeNode(1, null,new TreeNode(2) );
-        TreeNode treeNode2 = new TreeNode(1, null, new TreeNode(2));
-        System.out.println(isSameTree(treeNode1, treeNode2));
-
-    }
     public static boolean isSameTree(TreeNode p, TreeNode q) {
         StringBuffer result1 = new StringBuffer();
         StringBuffer result2 = new StringBuffer();
