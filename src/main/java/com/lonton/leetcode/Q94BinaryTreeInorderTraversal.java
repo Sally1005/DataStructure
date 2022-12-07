@@ -1,15 +1,13 @@
 package com.lonton.leetcode;
-import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * 94. 二叉树的中序遍历 <p/>
  * @author 张利红
  */
-public class _94_BinaryTreeInorderTraversal {
+public class Q94BinaryTreeInorderTraversal {
 
 
 
