@@ -1,7 +1,6 @@
 package com.lonton.leetcode;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
 
 /**
  * 100. 相同的树 <p/>
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.Test;
  * @author 张利红
  */
 @Slf4j
-public class _100_SameTree {
+public class Q100SameTree {
     /**
      * 判断是否为相同的树
      * <br/>
