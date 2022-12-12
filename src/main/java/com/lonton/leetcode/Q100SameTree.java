@@ -16,41 +16,18 @@ public class Q100SameTree {
      * @return boolean
      */
     public static boolean isSameTree(TreeNode p, TreeNode q) {
-        StringBuffer result1 = new StringBuffer();
-        StringBuffer result2 = new StringBuffer();
-        // 将遍历的根节点放入字符串缓冲区内
-        nextNode(p,result1);
-        nextNode(q,result2);
-        return result1.toString().equals(result2.toString());
+         // 如果两棵树的根节点都为空，那么它们为相同的树
+        if(p == null && q == null){
+            return true;
+        }
+         // 如果两棵树要么一棵树根节点为空，要么另一棵树根节点不为空，不是相同的树（上面已对都为空的情况进行判断）
+        if(p == null || q == null){
+            return false;
+        }
+         // 排除不相等的情况，再讨论两棵树相同情况下的条件
+      return (p.val == q.val && isSameTree(p.left,q.left) && isSameTree(p.right,q.right));
 
     }
-
-    /**
-     * 递归遍历下一个节点 <br/>
-     * @param root 根节点 <br/>
-     * @param s 字符串缓冲区
-     */
-    public static void nextNode(TreeNode root, StringBuffer s) {
-        // 判断根节点是否存在，
-        if(root == null){
-            return;
-        }else {
-            s.append(root.val).append("-");
-        }
-        // 判断是否有左节点
-        if (root.left != null) {
-            nextNode(root.left, s);
-        }else {
-            s.append("-");
-        }
-        // 判断是否有右节点
-        if (root.right != null) {
-            nextNode(root.right, s);
-        }else {
-            s.append("-");
-        }
-    }
-
 
 
     /**
