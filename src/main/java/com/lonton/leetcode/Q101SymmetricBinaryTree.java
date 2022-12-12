@@ -8,71 +8,37 @@ package com.lonton.leetcode;
 public class Q101SymmetricBinaryTree {
 
     /**
-     * 判断是否为对称的树
+     * 判断是否为对称的树（镜像树）
      * <br/>
      * @return boolean
-     * <br/>
-     * 主要是判断左右子树是否对称，由示例图行可知：<br/>
-     * 左子树的遍历规律可以视为 “根-左-右”,右子树的遍历规律可以视为 “根-右-左”
      */
     public static boolean isSymmetric(TreeNode root){
-        StringBuffer result1 = new StringBuffer();
-        StringBuffer result2 = new StringBuffer();
-        nextNode(root.left,result1,1);
-        nextNode(root.right,result2,2);
-        return result1.toString().equals(result2.toString());
-
-
+        // 如果一棵树的根节点为空，那么它为镜像树
+        if(root == null) {
+            return true;
+        }
+         // 将左右子节点视为一棵新树，参照Q100比较两棵树是否相同做一点修改
+       return isSym(root.left,root.right);
     }
 
-    public static void nextNode(TreeNode root, StringBuffer s,int type) {
-        // 判断根节点是否存在，
-        if(root == null){
-            return;
-        }else {
-            s.append(root.val).append("-");
+    /**
+     * 判断两棵树是否为镜像树
+     * @param p 左子树根节点
+     * @param q 右子树根节点
+     * @return boolean
+     */
+    public static boolean isSym(TreeNode p,TreeNode q){
+         // 两节点均为空，镜像对称
+        if(p == null && q == null){
+            return true;
         }
-        if(type == 1){
-            // 判断是否有左节点
-            if (root.left != null) {
-                nextNode(root.left, s,1);
-            }else {
-                s.append("-");
-            }
-            // 判断是否有右节点
-            if (root.right != null) {
-                nextNode(root.right, s,1);
-            }else {
-                s.append("-");
-            }
-        }else {
-            // 判断是否有右节点
-            if (root.right != null) {
-                nextNode(root.right, s,1);
-            }else {
-                s.append("-");
-            }
-            // 判断是否有左节点
-            if (root.left != null) {
-                nextNode(root.left, s,1);
-            }else {
-                s.append("-");
-            }
+        // 如果两棵树要么一棵树根节点为空，要么另一棵树根节点不为空，不是镜像树（上面已对都为空的情况进行判断）
+        if(p == null || q == null){
+            return false;
         }
-
+        // 讨论两棵树对称情况下的条件
+        return (p.val == q.val && isSym(p.left,q.right) && isSym(p.right,q.left));
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
