@@ -24,10 +24,7 @@ public class Q144BinaryTreePreorderTraversalTest {
                         null));
         List<Integer> expected = Q144BinaryTreePreorderTraversal.preorderTraversal(treeNode);
         List<Integer> actual = Arrays.asList(1,2,3);
-         // assert target.equals(list);
-        log.info("expected:{}",expected);
-        // 断言检查两个集合是否相同
-        assertCollectionsAreEquals(expected,actual,"Equals");
+        assertCollectionsAreEquals(expected,actual,"NotEquals");
     }
     public static <T> void assertCollectionsAreEquals (Collection<T> expected, Collection<T> actual, String message) {
         Assertions.assertEquals(expected, actual, message);

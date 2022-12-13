@@ -58,17 +58,17 @@ public class Q111MinDepthTest {
         int expected = 2;
         int actual = new Q111MinDepth().minDepth(tree);
         // 断言期待值和实际值是否相同
-        Assertions.assertSame(expected,actual);
+        Assertions.assertSame(expected,actual,"期待值和实际值的最小深度不符");
 
         int expected2 = 5;
         int actual2 = new Q111MinDepth().minDepth(tree2);
         // 断言期待值和实际值是否相同
-        Assertions.assertSame(expected2,actual2);
+        Assertions.assertSame(expected2,actual2,"期待值和实际值的最小深度不符");
 
         int expected3 = 4;
         int actual3 = new Q111MinDepth().minDepth(tree3);
         // 断言期待值和实际值是否相同
-        Assertions.assertSame(expected3,actual3);
+        Assertions.assertSame(expected3,actual3,"期待值和实际值的最小深度不符");
     }
 
 }

@@ -29,7 +29,6 @@ public class Q101SymmetricBinaryTreeTest {
         // 断点
         boolean expected = true;
         boolean actual = Q101SymmetricBinaryTree.isSymmetric(treeNode);
-        log.info("是镜像树吗-{}",actual);
-        Assertions.assertSame(expected,actual);
+        Assertions.assertSame(expected,actual,"treeNode不是镜像树");
     }
 }

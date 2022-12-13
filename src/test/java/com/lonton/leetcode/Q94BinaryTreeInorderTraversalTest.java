@@ -25,7 +25,7 @@ public class Q94BinaryTreeInorderTraversalTest {
         List<Integer> actual = Arrays.asList(1,3,2);
         log.info("expected:{}",expected);
          // 断言检查两个集合是否相同
-        assertCollectionsAreEquals(expected,actual,"Equals");
+        assertCollectionsAreEquals(expected,actual,"NotEquals");
     }
     public static <T> void assertCollectionsAreEquals (Collection<T> expected, Collection<T> actual, String message) {
         Assertions.assertEquals(expected, actual, message);

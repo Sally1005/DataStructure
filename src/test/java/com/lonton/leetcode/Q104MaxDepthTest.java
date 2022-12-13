@@ -25,8 +25,7 @@ public class Q104MaxDepthTest {
 
           int expected = 3;
           int actual = new Q104MaxDepth().maxDepth(tree);
-           // 断言期待值和实际值是否相同
-          Assertions.assertSame(expected,actual);
+          Assertions.assertSame(expected,actual,"期待值和实际值的最大深度不符");
 
      }
 
