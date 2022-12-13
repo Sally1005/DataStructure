@@ -17,9 +17,9 @@ public class Q100SameTreeTest {
         Q100SameTree.TreeNode treeNode1 = new Q100SameTree.TreeNode(1, new Q100SameTree.TreeNode(2), null);
         Q100SameTree.TreeNode treeNode2 = new Q100SameTree.TreeNode(1, null,new Q100SameTree.TreeNode(2));
         // 断点
-        boolean expected = false;
+        boolean expected = true;
         boolean actual = Q100SameTree.isSameTree(treeNode1, treeNode2);
-        log.info("是相同的树吗-{}",actual);
-        Assertions.assertSame(expected,actual);
+        Assertions.assertSame(expected,actual,"treeNode1和treeNode2不是相同的树");
+
     }
 }
