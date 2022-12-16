@@ -1,7 +1,7 @@
 package com.lonton.leetcode;
 /**
- * 二叉树的最小深度
- * 二叉树的深度为根节点到最近叶子节点的最长路径上的节点数。
+ * 111. 二叉树的最小深度<p/>
+ * 二叉树的深度为根节点到最近叶子节点的最长路径上的节点数。<p/>
  * @author 张利红
  */
 public class Q111MinDepth {

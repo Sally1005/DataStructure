@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 145. 二叉树的后序遍历 <p/>
+ * 145. 二叉树的后序遍历
  * @author 张利红
  */
 public class Q145BinaryTreePostorderTraversal {

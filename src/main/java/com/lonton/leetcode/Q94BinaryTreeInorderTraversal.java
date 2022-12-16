@@ -9,9 +9,6 @@ import java.util.List;
  */
 public class Q94BinaryTreeInorderTraversal {
 
-
-
-
     public static List<Integer> inorderTraversal(TreeNode root) {
          // 定义list集合，存储返回对象
         List<Integer> vals = new ArrayList<>();
