@@ -3,14 +3,14 @@ package com.lonton.leetcode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-
 /**
- * 给定二叉树 [3,9,20,null,null,15,7],返回它的最大深度 3 。
- *           3
- *          / \
- *        9    20
- *            /  \
- *           15   7
+ * 给定二叉树 [3,9,20,null,null,15,7],校验二叉树最大深度是否正确，如检验该树的最大深度是否为3。<p/>
+ *            3     <p/>
+ *          /  \    <p/>
+ *        9     20  <p/>
+ *             /  \ <p/>
+ *           15   7 <p/>
+ *  @author 张利红
  */
 @Slf4j
 public class Q104MaxDepthTest {
@@ -22,10 +22,8 @@ public class Q104MaxDepthTest {
                   new Q104MaxDepth.TreeNode(20,
                           new Q104MaxDepth.TreeNode(15),
                           new Q104MaxDepth.TreeNode(7)));
-
-          int expected = 3;
-          int actual = new Q104MaxDepth().maxDepth(tree);
-          Assertions.assertSame(expected,actual,"期待值和实际值的最大深度不符");
+           // 断言判断证明没错
+          Assertions.assertSame(3,new Q104MaxDepth().maxDepth(tree),"最大深度计算错误。");
 
      }
 
