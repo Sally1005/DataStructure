@@ -51,8 +51,6 @@
             <artifactId>mybatis</artifactId>
             <version>3.5.0</version>
         </dependency>
-
-
         <!--数据库CRUD操作的工具类-->
         <dependency>
             <groupId>commons-dbutils</groupId>
@@ -85,6 +83,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
+        </dependency>
+        <!--cn.hutool工具库-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.3.6</version>
         </dependency>
     </dependencies>
 
