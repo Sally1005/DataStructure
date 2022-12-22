@@ -1,20 +1,25 @@
-/*删表如果存在fruit表*/
+-- 数据库：tree
+create database tree;
+
+-- 删表如果存在fruit表
 DROP TABLE IF EXISTS `fruit`;
-/*重新建表，添加表字段*/
+
+-- 水果表：创建数据表
 CREATE TABLE `fruit` (
-                         `id` INT(11) NOT NULL,
-                         `data` VARCHAR(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-                         `left_node` INT(11) NULL DEFAULT NULL,
-                         `right_node` INT(11) NULL DEFAULT NULL,
-                         `level` INT(11) NULL DEFAULT NULL,
-                         `parent_id` INT(11) NULL DEFAULT NULL,
-                         PRIMARY KEY (`id`) USING BTREE ) ENGINE = INNODB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
-/*插入数据*/
-INSERT INTO `fruit` VALUES (1, '水果', 2,3,1,0);
-INSERT INTO `fruit` VALUES (2, '柑橘类', 4,5,2, 1);
-INSERT INTO `fruit` VALUES (3, '瓜果类', 6,7,2,1);
-INSERT INTO `fruit` VALUES (4, '橙子', NULL, NULL,3, 2);
-INSERT INTO `fruit` VALUES (5, '沃柑', NULL, NULL,3, 2);
-INSERT INTO `fruit` VALUES (6, '西瓜',NULL, NULL,3, 3);
-INSERT INTO `fruit` VALUES (7, '哈密瓜', NULL, NULL,3, 3);
-SET FOREIGN_KEY_CHECKS = 1;
+                         `id` INT(11) NOT NULL AUTO_INCREMENT,
+                         `data` VARCHAR(20) DEFAULT NULL COMMENT '当前节点',
+                         `is_left` INT(11)  DEFAULT 1 COMMENT '左子节点',
+                         `level` INT(11)  DEFAULT NULL COMMENT '当前节点层级',
+                         `parent_id` INT(11)  DEFAULT NULL COMMENT '父节点id',
+                         PRIMARY KEY (id)
+) COMMENT '水果表' CHARSET utf8mb4;
+-- 水果表：插入测试数据
+INSERT INTO `fruit` VALUES (1, '水果', 0, 1, 0);
+INSERT INTO `fruit` VALUES (2, '柑橘类', 1, 2, 1);
+INSERT INTO `fruit` VALUES (3, '瓜果类', 0, 2, 1);
+INSERT INTO `fruit` VALUES (4, '橙子', 1, 3, 2);
+INSERT INTO `fruit` VALUES (5, '沃柑', 0, 3, 2);
+INSERT INTO `fruit` VALUES (6, '西瓜', 1, 3, 3);
+INSERT INTO `fruit` VALUES (7, '哈密瓜', 0, 3, 3);
+
+
