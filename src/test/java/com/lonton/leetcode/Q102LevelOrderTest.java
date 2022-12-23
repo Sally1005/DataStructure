@@ -1,10 +1,12 @@
 package com.lonton.leetcode;
 
-import cn.hutool.core.util.ArrayUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -23,14 +25,14 @@ public class Q102LevelOrderTest {
                 new Q102LevelOrder.TreeNode(9),
                 new Q102LevelOrder.TreeNode(20, new Q102LevelOrder.TreeNode(15), new Q102LevelOrder.TreeNode(7))
         );
-        Integer arr[][] = {{3},{9,20},{15,7}};
         List<List<Integer>> actual = new Q102LevelOrder().levelOrder(treeNode);
-        // cn.hutool.core.util.ArrayUtil:直接打印二维数组对象，而非对象地址
-        log.info("预期层序遍历树：{}",ArrayUtil.toString(arr));
-        log.info("实际层序遍历树：{}",actual);
-        Assertions.assertEquals(ArrayUtil.toString(arr),actual.toString(),"NotEquals");
+        log.info("actual:{}",actual);
 
+        List<List<Integer>> expected = new ArrayList<>(
+                Arrays.asList(Arrays.asList(3), Arrays.asList(9, 20), Arrays.asList(15, 7)));
+        log.info("expected:{}",expected);
 
+        Assertions.assertEquals(expected,actual,"NotEquals");
 
 
     }
