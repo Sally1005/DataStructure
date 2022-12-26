@@ -21,12 +21,4 @@ public interface ITraverser {
      */
     Object doVisitor(BinaryTree binaryTree, IVisitor visitor, Object... param);
 
-    /**
-     * 遍历树 (在具体的实现类中实现）
-     * @param tree 二叉树
-     * @param visitor 访问visitor
-     * @param param 可变参数
-     * @return 任意类型
-     */
-    Object traverser(BinaryTree tree, IVisitor visitor,Object... param);
 }
