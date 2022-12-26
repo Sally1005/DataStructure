@@ -17,8 +17,7 @@
         <if test="true">
             id,
             data,
-            left_node,
-            right_node,
+            is_left,
             level,
             parent_id
         </if>
@@ -27,8 +26,7 @@
     <resultMap id="ListItemResultMap" type="com.lonton.binarytree.tree.pojo.vo.TreeNodeListItemVO">
         <id column="id" property="id"/>
         <result column="data" property="data"/>
-        <result column="left_node" property="leftNodeId"/>
-        <result column="right_node" property="rightNodeId"/>
+        <result column="is_left" property="isLeft"/>
         <result column="level" property="level"/>
         <result column="parent_id" property="parentId"/>
     </resultMap>
