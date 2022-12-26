@@ -1,9 +1,14 @@
 package com.lonton.binarytree;
 import com.lonton.binarytree.mapper.TreeNodeMapper;
+import com.lonton.binarytree.tree.CountHeightVisitor;
+import com.lonton.binarytree.tree.NodeNumVisitor;
+import com.lonton.binarytree.tree.PrintVisitor;
+import com.lonton.binarytree.tree.SearchVisitor;
 import com.lonton.binarytree.tree.impl.*;
 import com.lonton.binarytree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,18 +50,19 @@ public class BinaryTreeTest {
     @Test
     public void pre() {
         PreTraverser preTraverser = new PreTraverser();
-
         List<String> list = new ArrayList<>();
-        List<String> target = preTraverser.traverser(BuildTree(), new Visitor());
-        list.add("小明");
-        list.add("小绿");
-        list.add("小黄");
-        list.add("小红");
-        list.add("小吴");
-        list.add("小哈");
-        list.add("小黑");
+        PrintVisitor visitor = new PrintVisitor();
+        preTraverser.doVisitor(BuildTree(), visitor);
+        List<String> res = visitor.getRes();
+        list.add("水果");
+        list.add("柑橘类");
+        list.add("橙子");
+        list.add("沃柑");
+        list.add("瓜果类");
+        list.add("西瓜");
+        list.add("哈密瓜");
         log.info("前序遍历打印二叉树:{}",list);
-        // assert target.equals(list);
+        Assertions.assertEquals(res,list,"前序遍历打印二叉树于失败");
     }
 
     /**
@@ -65,17 +71,19 @@ public class BinaryTreeTest {
     @Test
     public void mid() {
         MidTraverser midTraverser = new MidTraverser();
-        List<String> target = midTraverser.traverser(BuildTree(), new Visitor());
+        PrintVisitor visitor = new PrintVisitor();
+        midTraverser.doVisitor(BuildTree(), visitor);
+        List<String> res = visitor.getRes();
         List<String> list = new ArrayList<>();
-        list.add("小绿");
-        list.add("小黄");
-        list.add("小明");
-        list.add("小哈");
-        list.add("小吴");
-        list.add("小黑");
-        list.add("小红");
+        list.add("橙子");
+        list.add("柑橘类");
+        list.add("沃柑");
+        list.add("水果");
+        list.add("西瓜");
+        list.add("瓜果类");
+        list.add("哈密瓜");
         log.info("中序遍历打印二叉树:{}",list);
-        assert target.equals(list);
+        Assertions.assertEquals(res,list,"中序遍历打印二叉树于失败");
 
     }
 
@@ -85,55 +93,80 @@ public class BinaryTreeTest {
     @Test
     public void post() {
         PostTraverser postTraverser = new PostTraverser();
-        List<String> target = postTraverser.traverser(BuildTree(), new Visitor());
+        PrintVisitor visitor = new PrintVisitor();
+        List<String> res = visitor.getRes();
+        postTraverser.doVisitor(BuildTree(), visitor);
         List<String> list = new ArrayList<>();
-        list.add("小黄");
-        list.add("小绿");
-        list.add("小哈");
-        list.add("小黑");
-        list.add("小吴");
-        list.add("小红");
-        list.add("小明");
+        list.add("橙子");
+        list.add("沃柑");
+        list.add("柑橘类");
+        list.add("西瓜");
+        list.add("哈密瓜");
+        list.add("瓜果类");
+        list.add("水果");
         log.info("后序遍历打印二叉树:{}",list);
-        assert target.equals(list);
+        Assertions.assertEquals(res,list,"后序遍历打印二叉树于失败");
     }
 
     /**
-     * 前序遍历查找节点
+     * 根据id，前序遍历查找节点
      */
     @Test
     public void preOrderTraversalSearch() {
         int id = 1;
-        BinaryTree.TreeNode target = new PreTraverser().search(id, BuildTree().getRoot(), new Visitor());
-        String expected = "小明";
+        SearchVisitor visitor = new SearchVisitor();
+        visitor.setId(id);
+        new PreTraverser().doVisitor(BuildTree(), visitor,id);
+        String target = visitor.getFoundNode().getData();
         log.info("前序遍历查找节点:{}",target);
-       // assert target.equals(expected);
+        Assertions.assertEquals("水果", target,"根据id，前序遍历查找节点失败");
     }
 
     /**
-     * 中序遍历查找节点
+     * 根据id，中序遍历查找节点
      */
     @Test
     public void midOrderTraversalSearch() {
         int id = 2;
-        BinaryTree.TreeNode treeNode = new MidTraverser().search(id, BuildTree().getRoot(), new Visitor());
-        String target = treeNode.getData();
-        String expected = "柑橘类";
+        SearchVisitor visitor = new SearchVisitor();
+        visitor.setId(id);
+        new MidTraverser().doVisitor(BuildTree(), visitor,id);
+        String target = visitor.getFoundNode().getData();
         log.info("中序遍历查找节点:{}",target);
-        assert target.equals(expected);
+        Assertions.assertEquals("柑橘类", target,"根据id，前序遍历查找节点失败");
     }
 
     /**
-     * 后序遍历查找节点
+     * 根据id，后序遍历查找节点
      */
     @Test
     public void postOrderTraversalSearch() {
         int id = 3;
-        BinaryTree.TreeNode treeNode = new PostTraverser().search(id, BuildTree().getRoot(), new Visitor());
-        String target = treeNode.getData();
-        String expected = "小吴";
+        SearchVisitor visitor = new SearchVisitor();
+        visitor.setId(id);
+        new PostTraverser().doVisitor(BuildTree(), visitor, id);
+        String target = visitor.getFoundNode().getData();
         log.info("后序遍历查找节点:{}",target);
-        assert target.equals(expected);
+        Assertions.assertEquals("瓜果类", target,"根据id，前序遍历查找节点失败");
+    }
 
+    /**
+     * 计算树的高度
+     */
+    @Test
+    public void countHeight(){
+        CountHeightVisitor visitor = new CountHeightVisitor();
+        new PostTraverser().doVisitor(BuildTree(),visitor);
+        Assertions.assertEquals(3,visitor.getHeight(),"计算树的高度失败。");
+    }
+
+    /**
+     * 计算树的节点个数
+     */
+    @Test
+    public  void  nodeNum(){
+        NodeNumVisitor visitor = new NodeNumVisitor();
+        new PreTraverser().doVisitor(BuildTree(),visitor);
+       Assertions.assertEquals(7,visitor.getCount(),"计算树的节点个数失败。");
     }
 }
