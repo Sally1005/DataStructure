@@ -21,7 +21,17 @@ public class TreeNodeListItemVO {
     private String data;
 
     /**
-     * 权重
+     * 父节点id
      */
-    private int weight;
+    Integer parentId;
+
+    /**
+     * 是否为左子节点 1 为左 0为右
+     */
+    private Integer isLeft;
+
+    /**
+     * 当前节点层级
+     */
+    private Integer level;
 }
