@@ -13,7 +13,7 @@ import java.util.List;
 public interface ITraverser {
 
     /**
-     * 访问树
+     * 访问树 (在抽象类中实现）
      * @param binaryTree 二叉树
      * @param visitor 访问visitor
      * @param param 可变参数
@@ -22,7 +22,7 @@ public interface ITraverser {
     Object doVisitor(BinaryTree binaryTree, IVisitor visitor, Object... param);
 
     /**
-     * 遍历树
+     * 遍历树 (在具体的实现类中实现）
      * @param tree 二叉树
      * @param visitor 访问visitor
      * @param param 可变参数
