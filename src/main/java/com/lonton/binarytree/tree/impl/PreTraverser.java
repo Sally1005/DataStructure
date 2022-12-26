@@ -1,113 +1,73 @@
 package com.lonton.binarytree.tree.impl;
 
-import com.lonton.binarytree.tree.ATraverser;
+import com.lonton.binarytree.ATraverser;
 import com.lonton.binarytree.tree.IVisitor;
 import com.lonton.binarytree.tree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 /**
- *前序遍历
- * 　<p/>
+ * 前序遍历
+ * <p/>
  * @author 张利红
  */
 @Slf4j
 public class PreTraverser extends ATraverser {
-
     /**
-     * 递归遍历
-     */
-    private class Recursive implements IVisitor{
-
-        @Override
-        public void visit(BinaryTree.TreeNode root, List<Object> list) {
-             // 添加当前节点
-            list.add(root.getData());
-             // 左子节点是否存在
-            if(root.getLeft() != null){
-                visit(root.getLeft(), list);
-            }
-             // 右子节点是否存在
-            if(root.getRight() != null){
-                visit(root.getRight(), list);
-            }
-        }
-    }
-
-    /**
-     * 非递归遍历
-     */
-    private class NotRecursive implements IVisitor{
-
-        @Override
-        public void visit(BinaryTree.TreeNode root, List<Object> list) {
-             // 创建一个栈对象
-            Stack<BinaryTree.TreeNode> stack = new Stack<>();
-             // 将当前节点放入栈中
-            stack.push(root);
-            while (!stack.isEmpty()) {
-                BinaryTree.TreeNode temp = stack.pop();
-                 // 栈不为空时，弹出栈中元素
-                list.add(temp.getData());
-                 // 如果当前节点存在右子树，则将右子树入栈
-                if (temp.getRight() != null) {
-                    stack.push(temp.getRight());
-                }
-                 // 如果当前节点存在左子树，则将左子树入栈
-                if (temp.getLeft() != null) {
-                    stack.push(temp.getLeft());
-                }
-            }
-        }
-    }
-
-    public PreTraverser() {
-        this(true);
-    }
-
-    /**
-     * 判断前序访问顺序是否为递归遍历
-     * @param recursive  递归遍历
-     */
-    public PreTraverser(boolean recursive) {
-        if(recursive){
-            setVisitor(new Recursive());
-        }else{
-            setVisitor(new NotRecursive());
-        }
-    }
-
-    /**
-     * 查找
-     *
-     * @param root
-     * @param id
+     * 访问树
+     * @param tree 二叉树
+     * @param visitor 访问visitor
+     * @param param 可变参数
+     * @return
      */
     @Override
-    public BinaryTree.TreeNode search(BinaryTree.TreeNode root, int id) {
-        BinaryTree.TreeNode resultNode;
-         // 查询结果为空
-        if (root == null) {
-            return null;
+    public Object traverser(BinaryTree tree, IVisitor visitor, Object... param) {
+        recursive(tree.getRoot(),visitor);
+        return tree;
+    }
+
+    /**
+     * 递归前序遍历
+     * @param root 根节点
+     * @param visitor visitor具体实现类
+     */
+    private void recursive(BinaryTree.TreeNode root, IVisitor visitor) {
+        visitor.visit(root);
+        // 左子节点是否存在
+        if (root.getLeftNode() != null) {
+            recursive(root.getLeftNode(), visitor);
         }
-        if (root.getId() == id) {
-            return root;
+        // 当前节点
+        if (root.getRightNode() != null) {
+            recursive(root.getRightNode(), visitor);
         }
-        if (root.getLeft() != null) {
-             // 如果左子节点不为空，向左递归遍历查询
-            resultNode = search(root.getLeft(), id);
-            if (resultNode != null) { // 查询结果不为空，则已查到该节点
-                return resultNode;
+    }
+
+    /**
+     * 非递归前序遍历
+     * @param root 根节点
+     * @param visitor visitor具体实现类
+     */
+    private void notRecursive(BinaryTree.TreeNode root, IVisitor visitor) {
+        // 创建一个栈对象
+        Stack<BinaryTree.TreeNode> stack = new Stack<>();
+        // 将当前节点放入栈中
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            BinaryTree.TreeNode temp = stack.pop();
+            // 栈不为空时，弹出栈中元素
+            visitor.visit(temp);
+            // 如果当前节点存在右子树，则将右子树入栈
+            if (temp.getRightNode() != null) {
+                stack.push(temp.getRightNode());
+            }
+            // 如果当前节点存在左子树，则将左子树入栈
+            if (temp.getLeftNode() != null) {
+                stack.push(temp.getLeftNode());
             }
         }
-         // 如果右子节点不为空，向右递归遍历查询
-        if (root.getRight() != null) {
-            resultNode = search(root.getRight(), id);
-            // 查询结果不为空，则已查到该节点
-            return resultNode;
-        }
-        return null;
     }
 }
