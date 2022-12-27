@@ -24,7 +24,7 @@ public class PreTraverser extends ATraverser {
      * @return
      */
     @Override
-    public Object traverser(BinaryTree tree, IVisitor visitor, Object... param) {
+    public Object traverse(BinaryTree tree, IVisitor visitor, Object... param) {
         recursive(tree.getRoot(),visitor);
         return tree;
     }
