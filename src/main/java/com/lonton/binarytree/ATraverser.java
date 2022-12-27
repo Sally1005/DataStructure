@@ -1,7 +1,6 @@
 package com.lonton.binarytree;
 
-import com.lonton.binarytree.tree.IVisitor;
-import com.lonton.binarytree.tree.pojo.BinaryTree;
+import com.lonton.binarytree.pojo.BinaryTree;
 /**
  * 遍历抽象类
  * <p/>

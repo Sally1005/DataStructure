@@ -1,5 +1,5 @@
-package com.lonton.binarytree.tree.pojo;
-import com.lonton.binarytree.tree.pojo.vo.TreeNodeListItemVO;
+package com.lonton.binarytree.pojo;
+import com.lonton.binarytree.pojo.vo.TreeNodeListItemVO;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
@@ -14,6 +14,7 @@ import java.util.*;
 @Slf4j
 @Data
 public class BinaryTree<T> {
+
 
     /**
      * 根节点
@@ -34,7 +35,7 @@ public class BinaryTree<T> {
      // 以节点id为key 生成映射表 在查找左右子节点时提高效率
     HashMap<Integer, TreeNode> map = new HashMap<>();
      // 先找到根节点 组装二叉树
-    TreeNodeListItemVO vo = nodes.get(0);
+        TreeNodeListItemVO vo = nodes.get(0);
     TreeNode top = new TreeNode<String>();
     top.setId(vo.getId());
     top.setData(vo.getData());

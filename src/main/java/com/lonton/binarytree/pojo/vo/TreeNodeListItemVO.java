@@ -1,4 +1,4 @@
-package com.lonton.binarytree.tree.pojo.vo;
+package com.lonton.binarytree.pojo.vo;
 
 
 import lombok.Data;

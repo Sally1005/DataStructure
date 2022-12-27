@@ -1,6 +1,7 @@
-package com.lonton.binarytree.tree;
+package com.lonton.binarytree.impl;
 
-import com.lonton.binarytree.tree.pojo.BinaryTree;
+import com.lonton.binarytree.pojo.BinaryTree;
+import com.lonton.binarytree.IVisitor;
 
 import java.util.ArrayList;
 import java.util.List;

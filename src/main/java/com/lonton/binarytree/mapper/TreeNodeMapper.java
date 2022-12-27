@@ -1,6 +1,6 @@
 package com.lonton.binarytree.mapper;
 
-import com.lonton.binarytree.tree.pojo.BinaryTree;
+import com.lonton.binarytree.pojo.BinaryTree;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

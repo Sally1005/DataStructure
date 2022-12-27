@@ -1,9 +1,6 @@
 package com.lonton.binarytree;
 
-import com.lonton.binarytree.tree.IVisitor;
-import com.lonton.binarytree.tree.pojo.BinaryTree;
-
-import java.util.List;
+import com.lonton.binarytree.pojo.BinaryTree;
 
 /**
  * 遍历接口
