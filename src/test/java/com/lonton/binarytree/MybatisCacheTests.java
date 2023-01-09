@@ -1,12 +1,13 @@
-package com.lonton.binarytree;
+package binarytree;
 
 import com.lonton.binarytree.mapper.TreeNodeMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import javax.annotation.Resource;
 
 /**
  * Mybatis单元测试
@@ -17,7 +18,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 public class MybatisCacheTests {
 
-    @Autowired
+    @Resource // 先找type,再找name,减少Spring耦合度
     SqlSessionFactory sqlSessionFactory;
 
     @Test

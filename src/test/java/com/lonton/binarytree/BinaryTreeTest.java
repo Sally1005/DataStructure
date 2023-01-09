@@ -1,4 +1,6 @@
-package com.lonton.binarytree;
+package binarytree;
+
+import com.lonton.binarytree.TreeApplication;
 import com.lonton.binarytree.impl.MidTraverser;
 import com.lonton.binarytree.impl.PostTraverser;
 import com.lonton.binarytree.impl.PreTraverser;
@@ -169,6 +171,27 @@ public class BinaryTreeTest {
     public  void  nodeNum(){
         NodeNumVisitor visitor = new NodeNumVisitor();
         new PreTraverser().doVisitor(BuildTree(),visitor);
-       Assertions.assertEquals(7,visitor.getCount(),"计算树的节点个数失败。");
+        Assertions.assertEquals(7,visitor.getCount(),"计算树的节点个数失败。");
     }
+
+    /**
+     * 前序打印二叉树
+     */
+    @Test
+    public  void prePrint(){
+        PrintVisitor visitor = new PrintVisitor();
+        new PreTraverser().doVisitor(BuildTree(),visitor);
+        List<String> list = new ArrayList<>();
+        List<String> res = visitor.getRes();
+        list.add("水果");
+        list.add("柑橘类");
+        list.add("橙子");
+        list.add("沃柑");
+        list.add("瓜果类");
+        list.add("西瓜");
+        list.add("哈密瓜");
+        log.info("前序遍历打印二叉树:{}",list);
+        Assertions.assertEquals(list,visitor.getRes(),"前序遍历打印二叉树于失败");
+    }
+
 }
