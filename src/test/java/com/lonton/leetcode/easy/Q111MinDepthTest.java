@@ -1,5 +1,6 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.easy;
 
+import com.lonton.leetcode.easy.Q111MinDepth;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

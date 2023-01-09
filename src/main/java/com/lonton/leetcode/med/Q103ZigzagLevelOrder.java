@@ -1,4 +1,4 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.med;
 
 import java.util.*;
 

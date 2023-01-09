@@ -1,4 +1,4 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.easy;
 /**
  * 110. 给定一个二叉树，判断它是否是高度平衡的二叉树。<p/>
  * 一棵高度平衡二叉树定义为：<p/>

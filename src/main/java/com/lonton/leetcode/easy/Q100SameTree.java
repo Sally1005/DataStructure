@@ -1,4 +1,4 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.easy;
 
 import lombok.extern.slf4j.Slf4j;
 

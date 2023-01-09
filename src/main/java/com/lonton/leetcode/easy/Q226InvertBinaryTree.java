@@ -1,4 +1,4 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.easy;
 
 
 import com.lonton.binarytree.pojo.BinaryTree;

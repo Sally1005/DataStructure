@@ -1,4 +1,4 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.easy;
 
 /**
  * 101. 对称的树 <p/>

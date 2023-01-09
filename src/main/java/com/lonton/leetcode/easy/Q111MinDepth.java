@@ -1,4 +1,4 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.easy;
 /**
  * 111. 二叉树的最小深度<p/>
  * 二叉树的深度为根节点到最近叶子节点的最长路径上的节点数。<p/>

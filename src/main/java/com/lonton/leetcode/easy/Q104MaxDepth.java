@@ -1,4 +1,4 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.easy;
 /**
  * 104. 二叉树的最大深度 ~~ 求树的高度 <p/>
  * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。<p/>

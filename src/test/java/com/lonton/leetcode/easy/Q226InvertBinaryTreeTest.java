@@ -1,8 +1,9 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.easy;
 
+import com.lonton.leetcode.easy.Q226InvertBinaryTree;
 import org.junit.Test;
 
-import static com.lonton.leetcode.Q226InvertBinaryTree.invertTree;
+import static com.lonton.leetcode.easy.Q226InvertBinaryTree.invertTree;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 

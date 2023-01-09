@@ -1,5 +1,6 @@
-package com.lonton.leetcode;
+package com.lonton.leetcode.med;
 
+import com.lonton.leetcode.med.Q103ZigzagLevelOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
