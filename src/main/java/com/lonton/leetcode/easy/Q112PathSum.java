@@ -11,8 +11,7 @@ package com.lonton.leetcode.easy;
  * @author 张利红
  */
 public class Q112PathSum {
-    // flag[0] = 0 路径总和不等  =1 有路径总和相等
-    public static int[] flag = {0};
+
     /**
      * 判断是否有路径总和
      * @param root 根节点
@@ -21,6 +20,8 @@ public class Q112PathSum {
      */
     public static boolean hasPathSum(TreeNode root, int targetSum) {
 
+        // flag[0] = 0 路径总和不等  =1 有路径总和相等
+        int[] flag = {0};
         recurve(root, 0, targetSum, flag);
         return flag[0] == 1;
     }
