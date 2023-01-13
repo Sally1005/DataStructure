@@ -29,23 +29,23 @@ public class Q112PathSum {
 
     /**
      * 递归计算
-     * @param root  当前递归到的节点
+     * @param treeNode  当前递归到的节点
      * @param preSum  递归到当前节点之前的所有父节点之和
      * @param targetSum 目标和
      * @param flag  结果值
      */
-    static void recurve(TreeNode root, Integer preSum, int targetSum, int[] flag) {
-        // flag[0] == 1 或根节点为空，直接跳出方法
-        if (flag[0] == 1 || root == null) {
+    static void recurve(TreeNode treeNode, Integer preSum, int targetSum, int[] flag) {
+        // flag[0] == 1 或当前递归到的节点为空，直接跳出方法
+        if (flag[0] == 1 || treeNode == null) {
             return;
         }
-        preSum += root.val;
+        preSum += treeNode.val;
         // 左递归路径值
-        recurve(root.left, preSum, targetSum, flag);
+        recurve(treeNode.left, preSum, targetSum, flag);
         // 右递归路径值
-        recurve(root.right, preSum, targetSum, flag);
+        recurve(treeNode.right, preSum, targetSum, flag);
         // 判断是否找到等于目标和的路径 (叶子节点)
-        if (root.left == null && root.right == null) {
+        if (treeNode.left == null && treeNode.right == null) {
             if (preSum == targetSum) {
                 flag[0] = 1;
             }
