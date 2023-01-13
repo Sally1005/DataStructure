@@ -14,6 +14,7 @@ import org.junit.Test;
 public class Q112PathSumTest {
     @Test
     public void test() {
+        // 构建二叉树
         Q112PathSum.TreeNode root = new Q112PathSum.TreeNode(5,
                 new Q112PathSum.TreeNode(4,
                         new Q112PathSum.TreeNode(11,
@@ -29,6 +30,6 @@ public class Q112PathSumTest {
 
         );
 
-        Assert.assertEquals(true,Q112PathSum.hasPathSum(root, 22));
+        Assert.assertEquals("符合条件的路径总和不存在",true,Q112PathSum.hasPathSum(root, 22));
     }
 }
