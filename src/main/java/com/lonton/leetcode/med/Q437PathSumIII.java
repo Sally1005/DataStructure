@@ -32,7 +32,7 @@ public class Q437PathSumIII {
      * @param treeNode 任意起点节点
      * @param sum 节点值之和
      */
-    public static void recurve(TreeNode treeNode, int sum){
+    public static void recurve(TreeNode treeNode, long sum){
         if(treeNode == null){
             return;
         }
