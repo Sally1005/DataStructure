@@ -1,4 +1,4 @@
-package binarytree;
+package com.lonton.binarytree;
 
 import com.lonton.binarytree.mapper.TreeNodeMapper;
 import lombok.extern.slf4j.Slf4j;
