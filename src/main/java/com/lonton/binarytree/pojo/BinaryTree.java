@@ -1,5 +1,8 @@
 package com.lonton.binarytree.pojo;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -64,6 +67,9 @@ public  class BinaryTree<T> {
 }
 
         @Data
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @EqualsAndHashCode // 用于后期去重
         public static class TreeNode<T>  {
 
             /**
@@ -100,6 +106,13 @@ public  class BinaryTree<T> {
              */
             private Integer level;
 
+            public TreeNode(Integer id, String data, Integer parentId, Integer isLeft, Integer level) {
+                this.id = id;
+                this.data = data;
+                this.parentId = parentId;
+                this.isLeft = isLeft;
+                this.level = level;
+            }
         }
     }
 
