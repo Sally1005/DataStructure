@@ -11,7 +11,7 @@ import com.lonton.binarytree.IVisitor;
 public class SearchVisitor implements IVisitor {
 
     /**
-     * 查寻id
+     * 查询id
      */
     private int id;
 
@@ -28,7 +28,7 @@ public class SearchVisitor implements IVisitor {
      */
     @Override
     public Object visit(BinaryTree.TreeNode node, Object... param) {
-        // 若节点id值刚好的等于所搜寻的id，则返回当前节点
+        // 若节点id值刚好的等于所查询的id，则返回当前节点
         if (node.getId() == id) {
             this.foundNode = node;
         }
