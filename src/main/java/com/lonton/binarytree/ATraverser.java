@@ -14,9 +14,7 @@ public abstract class ATraverser implements ITraverser {
      * @param param 可变参数
      * @return 任意类型
      */
-    public Object traverse(BinaryTree tree, IVisitor visitor,Object... param){
-        return traverse(tree,visitor,param);
-    }
+    public abstract Object traverse(BinaryTree tree, IVisitor visitor,Object... param);
 
     /**
      * 访问树

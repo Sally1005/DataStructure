@@ -13,7 +13,7 @@ import java.util.Stack;
  * @author 张利红
  */
 @Slf4j
-public class MidTraverser extends ATraverser {
+public abstract class MidTraverser extends ATraverser {
     /**
      * 访问树
      * @param tree 二叉树
@@ -21,18 +21,15 @@ public class MidTraverser extends ATraverser {
      * @param param 可变参数
      * @return
      */
-    @Override
-    public Object traverse(BinaryTree tree, IVisitor visitor, Object... param) {
-        recursive(tree.getRoot(),visitor);
-        return tree;
-    }
+
+    public abstract Object traverse(BinaryTree tree, IVisitor visitor, Object... param);
 
     /**
      * 递归中序遍历
      * @param root  根节点
      * @param visitor  visitor具体实现类
      */
-    private void recursive(BinaryTree.TreeNode root, IVisitor visitor) {
+    protected void recursive(BinaryTree.TreeNode root, IVisitor visitor) {
         // 左子节点是否存在
         if (root.getLeftNode() != null) {
             recursive(root.getLeftNode(), visitor);
