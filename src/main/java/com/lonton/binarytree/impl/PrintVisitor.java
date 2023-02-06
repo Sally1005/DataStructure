@@ -35,6 +35,11 @@ public class PrintVisitor implements IVisitor {
         return null;
     }
 
+    @Override
+    public BinaryTree.TreeNode getFoundNode() {
+        return null;
+    }
+
     /**
      * 获取树中数据
      * @return 树中数据

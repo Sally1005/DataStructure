@@ -155,7 +155,7 @@ public class BinaryTreeTest {
      */
     @Test
     public void midOrderTraversalSearch() {
-        int id = 5;
+        int id = 3;
         SearchVisitor visitor = new SearchVisitor();
         visitor.setId(id);
         new MidTraverser() {
@@ -166,13 +166,15 @@ public class BinaryTreeTest {
             }
 
         }.doVisitor(BuildTree(), visitor,id);
+        for (BinaryTree.TreeNode treeNode : visitor.getFilterNode()) {
+            log.debug("id大于等于2的节点:{}",treeNode.getData());
+        }
         String target = visitor.getFoundNode().getData();
         log.info("中序遍历查找节点:{}",target);
-        Assertions.assertEquals("沃柑", target,"根据id，前序遍历查找节点失败。");
 
-        for (BinaryTree.TreeNode treeNode : visitor.getFilterNode()) {
-            log.debug("id大于等于6的节点:{}",treeNode.getData());
-        }
+        Assertions.assertEquals("瓜果类", target,"根据id，中序遍历查找节点失败。");
+
+
     }
 
     /**
@@ -192,7 +194,7 @@ public class BinaryTreeTest {
         }.doVisitor(BuildTree(), visitor, id);
         String target = visitor.getFoundNode().getData();
         log.info("后序遍历查找节点:{}",target);
-        Assertions.assertEquals("瓜果类", target,"根据id，前序遍历查找节点失败。");
+        Assertions.assertEquals("瓜果类", target,"根据id，后序遍历查找节点失败。");
     }
 
     /**

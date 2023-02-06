@@ -34,6 +34,11 @@ public class NodeNumVisitor implements IVisitor {
         return null;
     }
 
+    @Override
+    public BinaryTree.TreeNode getFoundNode() {
+        return null;
+    }
+
     public int getCount() {
         return count;
     }

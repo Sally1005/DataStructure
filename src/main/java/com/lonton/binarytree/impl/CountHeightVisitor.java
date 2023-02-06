@@ -40,6 +40,11 @@ public class CountHeightVisitor implements IVisitor {
         return null;
     }
 
+    @Override
+    public BinaryTree.TreeNode getFoundNode() {
+        return null;
+    }
+
     /**
      * 获取树高
      * @return  树高

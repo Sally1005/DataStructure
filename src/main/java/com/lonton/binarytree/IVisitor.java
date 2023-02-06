@@ -27,5 +27,11 @@ public interface IVisitor {
      * @return 任意类型
      */
     Object visit(BinaryTree.TreeNode node, Predicate<BinaryTree.TreeNode> predicate);
+
+    /**
+     * 查找节点
+     * @return 已查找到的节点
+     */
+    public BinaryTree.TreeNode getFoundNode();
 }
 
