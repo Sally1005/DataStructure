@@ -19,6 +19,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 
 /**
@@ -153,7 +155,7 @@ public class BinaryTreeTest {
      */
     @Test
     public void midOrderTraversalSearch() {
-        int id = 2;
+        int id = 5;
         SearchVisitor visitor = new SearchVisitor();
         visitor.setId(id);
         new MidTraverser() {
@@ -162,10 +164,15 @@ public class BinaryTreeTest {
                 recursive(tree.getRoot(),visitor);
                 return tree;
             }
+
         }.doVisitor(BuildTree(), visitor,id);
         String target = visitor.getFoundNode().getData();
         log.info("中序遍历查找节点:{}",target);
-        Assertions.assertEquals("柑橘类", target,"根据id，前序遍历查找节点失败。");
+        Assertions.assertEquals("沃柑", target,"根据id，前序遍历查找节点失败。");
+
+        for (BinaryTree.TreeNode treeNode : visitor.getFilterNode()) {
+            log.debug("id大于等于6的节点:{}",treeNode.getData());
+        }
     }
 
     /**
@@ -276,5 +283,10 @@ public class BinaryTreeTest {
 
     }
 
+    @Test
+    public void testFilter() {
 
+       // Arrays.asList("1","2","3","4").stream().filter()
+
+    }
 }
