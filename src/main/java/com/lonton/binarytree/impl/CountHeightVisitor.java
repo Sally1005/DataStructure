@@ -4,6 +4,8 @@ import com.lonton.binarytree.pojo.BinaryTree;
 import com.lonton.binarytree.IVisitor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.function.Predicate;
+
 
 /**
  * 计算树高
@@ -31,6 +33,11 @@ public class CountHeightVisitor implements IVisitor {
             height = node.getLevel();
         }
         return node;
+    }
+
+    @Override
+    public Object visit(BinaryTree.TreeNode node, Predicate<BinaryTree.TreeNode> predicate) {
+        return null;
     }
 
     /**

@@ -3,6 +3,8 @@ package com.lonton.binarytree.impl;
 import com.lonton.binarytree.pojo.BinaryTree;
 import com.lonton.binarytree.IVisitor;
 
+import java.util.function.Predicate;
+
 /**
  * 计算节点个数
  * <p/>
@@ -25,6 +27,11 @@ public class NodeNumVisitor implements IVisitor {
     public Object visit(BinaryTree.TreeNode node, Object... param) {
         count++;
         return count;
+    }
+
+    @Override
+    public Object visit(BinaryTree.TreeNode node, Predicate<BinaryTree.TreeNode> predicate) {
+        return null;
     }
 
     public int getCount() {

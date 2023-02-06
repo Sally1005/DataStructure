@@ -5,6 +5,7 @@ import com.lonton.binarytree.IVisitor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * 打印
@@ -27,6 +28,11 @@ public class PrintVisitor implements IVisitor {
     public Object visit(BinaryTree.TreeNode node, Object... param) {
         res.add(node.getData());
         return node;
+    }
+
+    @Override
+    public Object visit(BinaryTree.TreeNode node, Predicate<BinaryTree.TreeNode> predicate) {
+        return null;
     }
 
     /**
