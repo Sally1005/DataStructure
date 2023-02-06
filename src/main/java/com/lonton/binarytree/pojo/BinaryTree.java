@@ -106,6 +106,11 @@ public  class BinaryTree<T> {
              */
             private Integer level;
 
+            /**
+             * 标记是否需要查找,初始值为true
+             */
+            private boolean loop = true;
+
             public TreeNode(Integer id, String data, Integer parentId, Integer isLeft, Integer level) {
                 this.id = id;
                 this.data = data;
