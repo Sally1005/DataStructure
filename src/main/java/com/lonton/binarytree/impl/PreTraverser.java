@@ -31,12 +31,13 @@ public abstract class PreTraverser extends ATraverser {
      * @param visitor visitor具体实现类
      */
     protected void recursive(BinaryTree.TreeNode root, IVisitor visitor) {
+        // 根节点
         visitor.visit(root);
         // 左子节点是否存在
         if (root.getLeftNode() != null) {
             recursive(root.getLeftNode(), visitor);
         }
-        // 当前节点
+        // 右子节点是否存在
         if (root.getRightNode() != null) {
             recursive(root.getRightNode(), visitor);
         }
