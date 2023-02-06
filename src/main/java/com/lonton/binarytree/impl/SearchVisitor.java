@@ -3,6 +3,10 @@ package com.lonton.binarytree.impl;
 import com.lonton.binarytree.pojo.BinaryTree;
 import com.lonton.binarytree.IVisitor;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
 /**
  * 根据id查找节点
  * <p/>
@@ -21,6 +25,11 @@ public class SearchVisitor implements IVisitor {
     private BinaryTree.TreeNode foundNode;
 
     /**
+     * 已过滤完符合条件的数据集合
+     */
+    private List<BinaryTree.TreeNode> filterNode = new ArrayList<>();
+
+    /**
      * 根据id查找节点
      * @param node 节点
      * @param param 可变参数
@@ -31,6 +40,29 @@ public class SearchVisitor implements IVisitor {
         // 若节点id值刚好的等于所查询的id，则返回当前节点
         if (node.getId() == id) {
             this.foundNode = node;
+            // 若找到目标id,则停止查找,跳出循环
+            this.foundNode.setLoop(false);
+        }
+        return node;
+    }
+
+    /**
+     * 根据id查找节点<重载></重载>
+     * @param node 节点
+     * @param predicate 预测(过滤输入内容是否符合条件)
+     * @return 所找节点
+     */
+    @Override
+    public Object visit(BinaryTree.TreeNode node, Predicate<BinaryTree.TreeNode> predicate) {
+        // 若节点id值刚好的等于所查询的id，则返回当前节点
+        if (node.getId() == id) {
+            this.foundNode = node;
+            // 找到目标节点后,将loop重新赋值为false
+            this.foundNode.setLoop(false);
+        }
+        // 若为true,则将节点信息加入符合条件的数据集合中
+        if (predicate.test(node)){
+            filterNode.add(node);
         }
         return node;
     }
@@ -76,4 +108,8 @@ public class SearchVisitor implements IVisitor {
 //        return search(id, curNode.getRightNode());
 //    }
 
+
+    public List<BinaryTree.TreeNode> getFilterNode() {
+        return filterNode;
+    }
 }
