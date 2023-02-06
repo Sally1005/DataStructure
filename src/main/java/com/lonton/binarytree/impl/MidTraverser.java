@@ -6,7 +6,7 @@ import com.lonton.binarytree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Stack;
-import java.util.function.Predicate;
+
 
 /**
  * 中序遍历
@@ -34,24 +34,35 @@ public abstract class MidTraverser extends ATraverser {
         // 左子节点是否存在
         if (root.getLeftNode() != null) {
             recursive(root.getLeftNode(), visitor);
-        }
-        // 当前节点
-        BinaryTree.TreeNode visit = (BinaryTree.TreeNode) visitor.visit(root, new Predicate<BinaryTree.TreeNode>() {
-            @Override
-            public boolean test(BinaryTree.TreeNode treeNode) {
-                return treeNode.getId()>=6;
+            if (visitor.getFoundNode() !=null){
+                return ;
             }
-        });
-        // 添加逻辑,如果为true,则停止递归查找
-        if (!visit.isLoop()) {
-            System.out.println("return ---------------------");
-            log.debug("目标搜索节点:{}",visit.getId());
-            return;
         }
+
+        // 当前节点
+        visitor.visit(root, treeNode -> treeNode.getId()>2);
+        if (visitor.getFoundNode() !=null){
+            return  ;
+        }
+
+//        List<BinaryTree.TreeNode> list =  TreeNodeMapper.list();
+//        Predicate<BinaryTree.TreeNode> predicate = new Predicate<BinaryTree.TreeNode>() {
+//
+//            @Override
+//            public boolean test(BinaryTree.TreeNode treeNode) {
+//                return treeNode.getId() > 2;
+//            }
+//        };
+//        list.stream()
+//                .filter(predicate).forEach((n) -> System.out.println("this is:" + n));
+//
+        // 访问的id若与已找到的id,则停止查找
+
         // 右子节点是否存在
         if (root.getRightNode() != null) {
             recursive(root.getRightNode(), visitor);
         }
+
     }
 
     /**

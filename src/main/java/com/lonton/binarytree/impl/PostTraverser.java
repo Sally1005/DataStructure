@@ -31,15 +31,29 @@ public abstract class PostTraverser extends ATraverser {
      * @param visitor visitor具体实现类
      */
     protected void recursive(BinaryTree.TreeNode root, IVisitor visitor) {
+
+
         // 左子节点是否存在
-        if (root.getLeftNode() != null) {
-            recursive(root.getLeftNode(), visitor);
-        }
-        // 当前节点
+            if (root.getLeftNode() != null ) {
+                recursive(root.getLeftNode(), visitor);
+                if (visitor.getFoundNode() != null){
+                    return;
+                }
+            }
+
+        // 右子节点是否存在
         if (root.getRightNode() != null) {
             recursive(root.getRightNode(), visitor);
+            if (visitor.getFoundNode() != null){
+                return;
+            }
         }
-        visitor.visit(root);
+
+        // 当前节点
+         visitor.visit(root);
+
+
+
     }
 
     /**

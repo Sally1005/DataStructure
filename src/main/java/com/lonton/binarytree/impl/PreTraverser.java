@@ -32,14 +32,17 @@ public abstract class PreTraverser extends ATraverser {
      */
     protected void recursive(BinaryTree.TreeNode root, IVisitor visitor) {
         // 根节点
-        BinaryTree.TreeNode visit = (BinaryTree.TreeNode) visitor.visit(root);
-       // 访问的id若与已找到的id,则停止查找
-        if (root.getId() ==  visit.getId()){
-            return;
-        }
+         visitor.visit(root);
+         if (visitor.getFoundNode()!= null){
+             return;
+         }
+
         // 左子节点是否存在
         if (root.getLeftNode() != null) {
             recursive(root.getLeftNode(), visitor);
+            if (visitor.getFoundNode()!= null){
+                return;
+            }
         }
         // 右子节点是否存在
         if (root.getRightNode() != null) {
