@@ -2,6 +2,7 @@ package com.lonton.binarytree.impl;
 
 import com.lonton.binarytree.pojo.BinaryTree;
 import com.lonton.binarytree.IVisitor;
+import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import java.util.function.Predicate;
  * <p/>
  * @author 张利红
  */
+@Data
 public class SearchVisitor implements IVisitor {
 
     /**
@@ -40,8 +42,6 @@ public class SearchVisitor implements IVisitor {
         // 若节点id值刚好的等于所查询的id，则返回当前节点
         if (node.getId() == id) {
             this.foundNode = node;
-            // 若找到目标id,则停止查找,跳出循环
-            this.foundNode.setLoop(false);
         }
         return node;
     }
@@ -57,8 +57,6 @@ public class SearchVisitor implements IVisitor {
         // 若节点id值刚好的等于所查询的id，则返回当前节点
         if (node.getId() == id) {
             this.foundNode = node;
-            // 找到目标节点后,将loop重新赋值为false
-            this.foundNode.setLoop(false);
         }
         // 若为true,则将节点信息加入符合条件的数据集合中
         if (predicate.test(node)){
@@ -79,6 +77,7 @@ public class SearchVisitor implements IVisitor {
      * 获取已找到的节点
      * @return 已找到的节点
      */
+    @Override
     public BinaryTree.TreeNode getFoundNode() {
         return foundNode;
     }
@@ -112,4 +111,5 @@ public class SearchVisitor implements IVisitor {
     public List<BinaryTree.TreeNode> getFilterNode() {
         return filterNode;
     }
+
 }
