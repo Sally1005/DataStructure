@@ -6,6 +6,7 @@ import com.lonton.binarytree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Stack;
+import java.util.function.Predicate;
 
 /**
  * 中序遍历
@@ -35,7 +36,19 @@ public abstract class MidTraverser extends ATraverser {
             recursive(root.getLeftNode(), visitor);
         }
         // 当前节点
-        visitor.visit(root);
+        BinaryTree.TreeNode visit = (BinaryTree.TreeNode) visitor.visit(root, new Predicate<BinaryTree.TreeNode>() {
+            @Override
+            public boolean test(BinaryTree.TreeNode treeNode) {
+                return treeNode.getId()>=6;
+            }
+        });
+        // 添加逻辑,如果为true,则停止递归查找
+        if (!visit.isLoop()) {
+            System.out.println("return ---------------------");
+            log.debug("目标搜索节点:{}",visit.getId());
+            return;
+        }
+        // 右子节点是否存在
         if (root.getRightNode() != null) {
             recursive(root.getRightNode(), visitor);
         }
