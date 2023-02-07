@@ -32,6 +32,15 @@ public interface IVisitor {
      * 查找节点
      * @return 已查找到的节点
      */
-    public BinaryTree.TreeNode getFoundNode();
+     BinaryTree.TreeNode getFoundNode();
+
+
+    /**
+     * 设置默认值为true
+     * @return
+     */
+    default Predicate<BinaryTree.TreeNode> predicate(){
+        return s->true;
+    }
 }
 
