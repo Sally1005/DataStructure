@@ -31,6 +31,31 @@ public class SearchVisitor implements IVisitor {
      */
     private List<BinaryTree.TreeNode> filterNode = new ArrayList<>();
 
+
+    /**
+     * 判断符合条件参数
+     */
+    private Predicate<BinaryTree.TreeNode> predicate;
+
+    /**
+     * 根据id查找节点<重载>
+     * @param node 节点
+     * @param predicate 预测(过滤输入内容是否符合条件)
+     * @return 所找节点
+     */
+    @Override
+    public Object visit(BinaryTree.TreeNode node, Predicate<BinaryTree.TreeNode> predicate) {
+        // 若节点id值刚好的等于所查询的id，则返回当前节点
+        if (node.getId() == id ) {
+            this.foundNode = node;
+        }
+        // 若为true,则将节点信息加入符合条件的数据集合中
+        if (predicate.test(node)){
+            filterNode.add(node);
+        }
+        return node;
+    }
+
     /**
      * 根据id查找节点
      * @param node 节点
@@ -46,24 +71,6 @@ public class SearchVisitor implements IVisitor {
         return node;
     }
 
-    /**
-     * 根据id查找节点<重载></重载>
-     * @param node 节点
-     * @param predicate 预测(过滤输入内容是否符合条件)
-     * @return 所找节点
-     */
-    @Override
-    public Object visit(BinaryTree.TreeNode node, Predicate<BinaryTree.TreeNode> predicate) {
-        // 若节点id值刚好的等于所查询的id，则返回当前节点
-        if (node.getId() == id) {
-            this.foundNode = node;
-        }
-        // 若为true,则将节点信息加入符合条件的数据集合中
-        if (predicate.test(node)){
-            filterNode.add(node);
-        }
-        return node;
-    }
 
     /**
      * 设置 id
@@ -82,34 +89,16 @@ public class SearchVisitor implements IVisitor {
         return foundNode;
     }
 
-    //    /**
-//     * 根据id搜索节点
-//     * @param id id
-//     * @param curNode 当前节点
-//     * @return 具体搜索到的节点值
-//     */
-//    private BinaryTree.TreeNode search(int id, BinaryTree.TreeNode  curNode) {
-//        // 当前节点为空，返回null
-//        if (curNode == null) {
-//            return null;
-//        }
-//        // 当前节点id和所查询的id相同时，则返回当前节点值
-//        if (curNode.getId() == id) {
-//            return curNode;
-//        }
-//        // 递归查询左子节点id值
-//        BinaryTree.TreeNode  node = search(id, curNode.getLeftNode());
-//        // 查出节点值非空，返回查出节点
-//        if (node != null) {
-//            return node;
-//        }
-//        // 递归查询右子节点id值
-//        return search(id, curNode.getRightNode());
-//    }
-
 
     public List<BinaryTree.TreeNode> getFilterNode() {
         return filterNode;
     }
 
+    /**
+     * 如果条件为空，则无过滤条件
+     */
+    @Override
+    public Predicate<BinaryTree.TreeNode> predicate() {
+        return predicate == null?(s-> true) :(predicate);
+    }
 }
