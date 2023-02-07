@@ -1,6 +1,6 @@
 package com.lonton.binarytree.impl;
 
-import com.lonton.binarytree.ATraverser;
+import com.lonton.binarytree.ITraverser;
 import com.lonton.binarytree.IVisitor;
 import com.lonton.binarytree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +14,7 @@ import java.util.Stack;
  * @author 张利红
  */
 @Slf4j
-public abstract class MidTraverser extends ATraverser {
+public  class MidTraverser implements ITraverser {
     /**
      * 访问树
      * @param tree 二叉树
@@ -22,8 +22,10 @@ public abstract class MidTraverser extends ATraverser {
      * @param param 可变参数
      * @return
      */
-
-    public abstract Object traverse(BinaryTree tree, IVisitor visitor, Object... param);
+    public  Object traverse(BinaryTree tree, IVisitor visitor, Object... param){
+        recursive(tree.getRoot(),visitor);
+        return tree;
+    }
 
     /**
      * 递归中序遍历
@@ -39,24 +41,11 @@ public abstract class MidTraverser extends ATraverser {
             }
         }
 
-        // 当前节点
-        visitor.visit(root, treeNode -> treeNode.getId()>2);
+        //当前节点
+        visitor.visit(root, visitor.predicate());
         if (visitor.getFoundNode() !=null){
             return  ;
         }
-
-//        List<BinaryTree.TreeNode> list =  TreeNodeMapper.list();
-//        Predicate<BinaryTree.TreeNode> predicate = new Predicate<BinaryTree.TreeNode>() {
-//
-//            @Override
-//            public boolean test(BinaryTree.TreeNode treeNode) {
-//                return treeNode.getId() > 2;
-//            }
-//        };
-//        list.stream()
-//                .filter(predicate).forEach((n) -> System.out.println("this is:" + n));
-//
-        // 访问的id若与已找到的id,则停止查找
 
         // 右子节点是否存在
         if (root.getRightNode() != null) {
@@ -64,6 +53,7 @@ public abstract class MidTraverser extends ATraverser {
         }
 
     }
+
 
     /**
      * 非递归中序遍历

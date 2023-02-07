@@ -1,6 +1,6 @@
 package com.lonton.binarytree.impl;
 
-import com.lonton.binarytree.ATraverser;
+import com.lonton.binarytree.ITraverser;
 import com.lonton.binarytree.IVisitor;
 import com.lonton.binarytree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +15,7 @@ import java.util.Stack;
 
 @Slf4j
 
-public abstract class PostTraverser extends ATraverser {
+public  class PostTraverser implements ITraverser{
     /**
      * 访问树
      * @param tree 二叉树
@@ -23,7 +23,11 @@ public abstract class PostTraverser extends ATraverser {
      * @param param 可变参数
      * @return
      */
-    public abstract Object traverse(BinaryTree tree, IVisitor visitor, Object... param);
+    public  Object traverse(BinaryTree tree, IVisitor visitor, Object... param){
+        recursive(tree.getRoot(),visitor);
+        return tree;
+    }
+
 
     /**
      * 递归后序遍历
