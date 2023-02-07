@@ -1,5 +1,6 @@
 package com.lonton.binarytree.impl;
 
+import com.lonton.binarytree.ITraverser;
 import com.lonton.binarytree.pojo.BinaryTree;
 import com.lonton.binarytree.IVisitor;
 
@@ -12,7 +13,7 @@ import java.util.function.Predicate;
  * <p/>
  * @author 张利红
  */
-public class PrintVisitor implements IVisitor {
+public class PrintVisitor implements IVisitor, ITraverser {
     /**
      * 树中数据集合
      */
@@ -40,11 +41,26 @@ public class PrintVisitor implements IVisitor {
         return null;
     }
 
+    @Override
+    public Predicate<BinaryTree.TreeNode> predicate() {
+        return IVisitor.super.predicate();
+    }
+
     /**
      * 获取树中数据
      * @return 树中数据
      */
     public List<String> getRes() {
         return res;
+    }
+
+    @Override
+    public Object traverse(BinaryTree tree, IVisitor visitor, Object... param) {
+        return null;
+    }
+
+    @Override
+    public Object doVisitor(BinaryTree binaryTree, IVisitor visitor, Object... param) {
+        return ITraverser.super.doVisitor(binaryTree, visitor, param);
     }
 }

@@ -39,6 +39,11 @@ public class NodeNumVisitor implements IVisitor {
         return null;
     }
 
+    @Override
+    public Predicate<BinaryTree.TreeNode> predicate() {
+        return IVisitor.super.predicate();
+    }
+
     public int getCount() {
         return count;
     }
