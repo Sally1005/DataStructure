@@ -14,8 +14,3 @@ spring:
     # 连接数据库的密码
     password: root
 
-# 日志
-logging:
-  # 日志的显示级别
-  level:
-   com.lonton.binarytree: trace
