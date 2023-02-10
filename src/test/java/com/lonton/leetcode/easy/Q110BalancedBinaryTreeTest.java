@@ -17,6 +17,6 @@ public class Q110BalancedBinaryTreeTest {
         Integer[] root = new Integer[]{3, 9, 20, null, null, 15, 7};
         boolean result = new Q110BalancedBinaryTree().isBalanced(BinaryTree.arrayToTree(root));
 
-        Assertions.assertTrue(result, "NotTrue!");
+        Assertions.assertTrue(result, "NotTrue---该树不是高度平衡的二叉树。");
     }
 }
