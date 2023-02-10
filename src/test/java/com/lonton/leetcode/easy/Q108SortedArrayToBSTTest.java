@@ -25,7 +25,7 @@ public class Q108SortedArrayToBSTTest {
         Integer[] result = new Integer[]{0, -10, 5, null, -3, null, 9};
         TreeNode expected = BinaryTree.arrayToTree(result);
 
-        Assertions.assertTrue(isSameTree(expected, actual), "有序数组转换为二叉搜索树失败!");
+        Assertions.assertTrue(isSameTree(expected, actual), "NotTrue---有序数组转换为二叉搜索树失败。");
 
     }
 
