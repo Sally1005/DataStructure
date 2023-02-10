@@ -35,7 +35,7 @@ public class SearchVisitor implements IVisitor {
     /**
      * 判断符合条件参数
      */
-    private Predicate<BinaryTree.TreeNode> predicate;
+    private Predicate<BinaryTree.TreeNode> filter;
 
     /**
      * 根据id查找节点<重载>
@@ -99,6 +99,6 @@ public class SearchVisitor implements IVisitor {
      */
     @Override
     public Predicate<BinaryTree.TreeNode> predicate() {
-        return predicate == null?(s-> true) :(predicate);
+        return filter == null?(s-> true) :(filter);
     }
 }
