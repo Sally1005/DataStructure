@@ -1,37 +1,27 @@
 package com.lonton.leetcode.med;
 
-import com.lonton.leetcode.easy.Q104MaxDepth;
-import org.junit.Test;
+import com.lonton.leetcode.common.BinaryTree;
+import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * 测试路径数目 <p/>
- * 示例：<p/>
- * 输入：root = [10,5,-3,3,2,null,11,3,-2,null,1], targetSum = 8 <p/>
- * 输出：3 <p/>
- * 解释：和等于 8 的路径有 3 条。
+ * 将数组  [10,5,-3,3,2,null,11,3,-2,null,1],构建成二叉树,
+ * 并判断该树中是否存在 根节点到叶子节点 的路径 和为 t1 = 8, 共3条。
+ *
  * @author 张利红
  */
 public class Q437PathSumIIITest {
 
     @Test
     public void test() {
+
         // 构建二叉树
-        Q437PathSumIII.TreeNode root = new Q437PathSumIII.TreeNode(10,
-                new Q437PathSumIII.TreeNode(5,
-                        new Q437PathSumIII.TreeNode(3,
-                                new Q437PathSumIII.TreeNode(3),
-                                new Q437PathSumIII.TreeNode(-2)),
-                        new Q437PathSumIII.TreeNode(2,
-                                null,
-                                new Q437PathSumIII.TreeNode(1))),
-                new Q437PathSumIII.TreeNode(-3,
-                        null,
-                        new Q437PathSumIII.TreeNode(11))
+        Integer[] nums = new Integer[]{10, 5, -3, 3, 2, null, 11, 3, -2, null, 1};
+        TreeNode root = BinaryTree.arrayToTree(nums);
 
-        );
-
-        Assertions.assertSame(3, Q437PathSumIII.pathSum(root,8),"路径数目计算错误。");
-
+        // 断言
+        Assertions.assertEquals(3, Q437PathSumIII.pathSum(root, 8), "NotEquals---路径数目计算错误。");
     }
 }
