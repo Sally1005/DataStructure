@@ -1,31 +1,22 @@
 package com.lonton.leetcode.easy;
 
-import com.lonton.leetcode.easy.Q110BalancedBinaryTree;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import com.lonton.leetcode.common.BinaryTree;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * 测试判断二叉树是否是高度平衡的二叉树 <p/>
- * 输入：root = [3,9,20,null,null,15,7]
- * 输出：[[3],[20,9],[15,7]]
+ * 将数组 [3,9,20,null,null,15,7] 构建成树，并判断该树是否为高度平衡的二叉树
+ * 输出：true
+ *
  * @author 张利红
  */
-@Slf4j
 public class Q110BalancedBinaryTreeTest {
     @Test
     public void test() {
-        // 构建二叉树
-        Q110BalancedBinaryTree.TreeNode root= new Q110BalancedBinaryTree.TreeNode(3,
-                new Q110BalancedBinaryTree.TreeNode(9),
-                new Q110BalancedBinaryTree.TreeNode(20, new Q110BalancedBinaryTree.TreeNode(15), new Q110BalancedBinaryTree.TreeNode(7))
-        );
+        Integer[] root = new Integer[]{3, 9, 20, null, null, 15, 7};
+        boolean result = new Q110BalancedBinaryTree().isBalanced(BinaryTree.arrayToTree(root));
 
-        boolean result = new Q110BalancedBinaryTree().isBalanced(root);
-        Assertions.assertEquals(true,result,"该二叉树不是高度平衡的二叉树");
-
-
-
+        Assertions.assertTrue(result, "NotTrue!");
     }
-
 }
