@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
  * @author 张利红
  */
 public class Q437PathSumIIITest {
-
     @Test
     public void test() {
 
@@ -22,6 +21,7 @@ public class Q437PathSumIIITest {
         TreeNode root = BinaryTree.arrayToTree(nums);
 
         // 断言
-        Assertions.assertEquals(3, Q437PathSumIII.pathSum(root, 8), "NotEquals---路径数目计算错误。");
+        Assertions.assertEquals(3, Q437PathSumIII.pathSum(root, 8),
+                "NotEquals---路径数目计算错误，实际得到的结果与预期结果不相等。");
     }
 }
