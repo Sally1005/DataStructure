@@ -1,46 +1,31 @@
 package com.lonton.leetcode.easy;
 
 
-import com.lonton.leetcode.easy.Q144BinaryTreePreorderTraversal;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
+import com.lonton.leetcode.common.BinaryTree;
+import com.lonton.leetcode.common.TreeNode;
 
+import org.junit.jupiter.api.Test;
 import java.util.Arrays;
-import java.util.Collection;
+
+
+import static com.lonton.leetcode.common.BinaryTree.assertCollectionsAreEquals;
 
 /**
  * 测试二叉树前序遍历 <p/>
- *      1     <p/>
- *     / \    <p/>
- * null   2   <p/>
- *         \  <p/>
- *          3 <p/>
+ * 将数组 nums = [1,null,2,3] 构建成二叉树，并判断输出的值是否为预期的[1,2,3]。
+ *
  * @author 张利红
  */
-@Slf4j
 public class Q144BinaryTreePreorderTraversalTest {
     @Test
     public void test() {
         // 构建二叉树
-        Q144BinaryTreePreorderTraversal.TreeNode treeNode = new Q144BinaryTreePreorderTraversal.TreeNode(1,
-                null,
-                new Q144BinaryTreePreorderTraversal.TreeNode(2,
-                        new Q144BinaryTreePreorderTraversal.TreeNode(3),
-                        null));
+        Integer[] nums = new Integer[]{1, null, 2, 3};
+        TreeNode root = BinaryTree.arrayToTree(nums);
 
-        assertCollectionsAreEquals( Arrays.asList(1,2,3),
-                Q144BinaryTreePreorderTraversal.preorderTraversal(treeNode),
-               "NotEquals");
+        assertCollectionsAreEquals(Arrays.asList(1, 2, 3),
+                Q144BinaryTreePreorderTraversal.preorderTraversal(root),
+                "NotEquals---二叉树前序遍历实际得到的结果与预期结果不相等。");
     }
-    /**
-     * 断言检查两个集合是否相同
-     * @param expected 预期值
-     * @param actual 实际值
-     * @param message 报错信息
-     * @param <T> 集合泛型
-     */
-    public static <T> void assertCollectionsAreEquals (Collection<T> expected, Collection<T> actual, String message) {
-        Assertions.assertEquals(expected, actual, message);
-    }
+
 }
