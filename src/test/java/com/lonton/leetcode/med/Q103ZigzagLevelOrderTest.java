@@ -1,9 +1,9 @@
 package com.lonton.leetcode.med;
 
-import com.lonton.leetcode.med.Q103ZigzagLevelOrder;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import com.lonton.leetcode.common.BinaryTree;
+import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,29 +12,22 @@ import java.util.List;
 
 /**
  * 测试二叉树的锯齿形层级遍历 <p/>
- * 输入：root = [3,9,20,null,null,15,7]
- * 输出：[[3],[20,9],[15,7]]
+ * 将数组 nums = [3,9,20,null,null,15,7] 构建成二叉树，并判断输出的值是否为预期的[[3],[20,9],[15,7]]。
+ *
  * @author 张利红
  */
-@Slf4j
 public class Q103ZigzagLevelOrderTest {
     @Test
     public void test() {
         // 构建二叉树
-        Q103ZigzagLevelOrder.TreeNode treeNode = new Q103ZigzagLevelOrder.TreeNode(3,
-                new Q103ZigzagLevelOrder.TreeNode(9),
-                new Q103ZigzagLevelOrder.TreeNode(20, new Q103ZigzagLevelOrder.TreeNode(15), new Q103ZigzagLevelOrder.TreeNode(7))
-        );
-        List<List<Integer>> actual = new Q103ZigzagLevelOrder().zigzagLevelOrder(treeNode);
-        log.info("actual:{}",actual);
+        Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
+        TreeNode root = BinaryTree.arrayToTree(nums);
 
         List<List<Integer>> expected = new ArrayList<>(
                 Arrays.asList(Arrays.asList(3), Arrays.asList(20, 9), Arrays.asList(15, 7)));
-        log.info("expected:{}",expected);
 
-        Assertions.assertEquals(expected,actual,"NotEquals");
-
-
+        Assertions.assertEquals(expected, new Q103ZigzagLevelOrder().zigzagLevelOrder(root),
+                "NotEquals---二叉树的锯齿形层级遍历实际得到的结果与预期结果不相等。");
     }
 
 }
