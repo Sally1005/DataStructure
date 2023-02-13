@@ -31,17 +31,17 @@ public class Q226InvertBinaryTreeTest {
         invertTree(root2);
 
         // 断言
-        Assertions.assertEquals(2, root1.getRight().getVal(), "NotEquals---翻转后树的节点与预期不符。");
-        Assertions.assertEquals(1, root1.getRight().getRight().getVal(), "NotEquals---翻转后树的节点与预期不符。");
-        Assertions.assertEquals(3, root1.getRight().getLeft().getVal(), "NotEquals---翻转后树的节点与预期不符。");
-        Assertions.assertEquals(4, root1.getVal(), "NotEquals---翻转后树的节点与预期不符。");
-        Assertions.assertEquals(7, root1.getLeft().getVal(), "NotEquals---翻转后树的节点与预期不符。");
-        Assertions.assertEquals(9, root1.getLeft().getLeft().getVal(), "NotEquals---翻转后树的节点与预期不符。");
-        Assertions.assertEquals(6, root1.getLeft().getRight().getVal(), "NotEquals---翻转后树的节点与预期不符。");
+        Assertions.assertEquals(2, root1.getRight().getVal(), "NotEquals---翻转后树的节点与预期不相等。");
+        Assertions.assertEquals(1, root1.getRight().getRight().getVal(), "NotEquals---翻转后树的节点与预期不相等。");
+        Assertions.assertEquals(3, root1.getRight().getLeft().getVal(), "NotEquals---翻转后树的节点与预期不相等。");
+        Assertions.assertEquals(4, root1.getVal(), "NotEquals---翻转后树的节点与预期不相等。");
+        Assertions.assertEquals(7, root1.getLeft().getVal(), "NotEquals---翻转后树的节点与预期不相等。");
+        Assertions.assertEquals(9, root1.getLeft().getLeft().getVal(), "NotEquals---翻转后树的节点与预期不相等。");
+        Assertions.assertEquals(6, root1.getLeft().getRight().getVal(), "NotEquals---翻转后树的节点与预期不相等。");
 
-        Assertions.assertEquals(2, root2.getRight().getVal(), "NotEquals---翻转后树的节点与预期不符。");
-        Assertions.assertEquals(1, root2.getRight().getRight().getVal(), "NotEquals---翻转后树的节点与预期不符。");
-        Assertions.assertEquals(4, root2.getVal(), "NotEquals---翻转后树的节点与预期不符。");
-        Assertions.assertEquals(7, root2.getLeft().getVal(), "NotEquals---翻转后树的节点与预期不符。");
+        Assertions.assertEquals(2, root2.getRight().getVal(), "NotEquals---翻转后树的节点与预期不相等。");
+        Assertions.assertEquals(1, root2.getRight().getRight().getVal(), "NotEquals---翻转后树的节点与预期不相等。");
+        Assertions.assertEquals(4, root2.getVal(), "NotEquals---翻转后树的节点与预期不相等。");
+        Assertions.assertEquals(7, root2.getLeft().getVal(), "NotEquals---翻转后树的节点与预期不相等。");
     }
 }
