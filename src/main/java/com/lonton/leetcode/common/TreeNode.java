@@ -1,7 +1,5 @@
 package com.lonton.leetcode.common;
 
-
-
 import lombok.Data;
 
 
