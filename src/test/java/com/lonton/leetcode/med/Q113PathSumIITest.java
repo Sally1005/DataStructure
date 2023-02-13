@@ -24,7 +24,6 @@ import java.util.List;
  */
 @Slf4j
 public class Q113PathSumIITest {
-
     @Test
     public void test() {
         // 构建二叉树
@@ -36,7 +35,8 @@ public class Q113PathSumIITest {
                 Arrays.asList(Arrays.asList(5, 4, 11, 2)));
 
         // 断言
-        Assertions.assertEquals(expected, actual, "NotEquals---符合条件的路径总和不存在。");
+        Assertions.assertEquals(expected, actual,
+                "NotEquals---符合条件的路径总和不存在，实际得到的结果与预期结果不相等。");
     }
 
 }
