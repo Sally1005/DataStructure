@@ -3,11 +3,12 @@ package com.lonton.leetcode.easy;
 
 import com.lonton.leetcode.common.BinaryTree;
 import com.lonton.leetcode.common.TreeNode;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
-import java.util.Collection;
+
+
+import static com.lonton.leetcode.common.BinaryTree.assertCollectionsAreEquals;
 
 /**
  * 测试二叉树中序遍历 <p/>
@@ -27,15 +28,4 @@ public class Q94BinaryTreeInOrderTraversalTest {
                 "NotEquals---二叉树中序遍历实际得到的结果与预期结果不相等。");
     }
 
-    /**
-     * 断言检查两个集合是否相同
-     *
-     * @param expected 预期值
-     * @param actual   实际值
-     * @param message  报错信息
-     * @param <T>      集合泛型
-     */
-    public static <T> void assertCollectionsAreEquals(Collection<T> expected, Collection<T> actual, String message) {
-        Assertions.assertEquals(expected, actual, message);
-    }
 }
