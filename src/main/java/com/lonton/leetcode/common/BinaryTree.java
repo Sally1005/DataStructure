@@ -1,10 +1,9 @@
 package com.lonton.leetcode.common;
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import org.junit.jupiter.api.Assertions;
+
+import java.util.*;
 
 /**
  * 二叉树类
@@ -88,6 +87,17 @@ public class BinaryTree {
             }
         }
         return list.toArray(new Integer[0]);
+    }
+    /**
+     * 断言检查两个集合是否相同
+     *
+     * @param expected 预期值
+     * @param actual   实际值
+     * @param message  报错信息
+     * @param <T>      集合泛型
+     */
+    public static <T> void assertCollectionsAreEquals(Collection<T> expected, Collection<T> actual, String message) {
+        Assertions.assertEquals(expected, actual, message);
     }
 
 }
