@@ -1,27 +1,26 @@
 package com.lonton.leetcode.easy;
 
 
-import com.lonton.leetcode.easy.Q100SameTree;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
+import com.lonton.leetcode.common.BinaryTree;
+import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
- *  输入：p = [1,2], q = [1,null,2],检验p,q是否为相同的树 <p/>
- *  输出：false
+ * 测试是否为相同的树<p/>
+ * 将数组 p = [1,2], q = [1,null,2] 构建成二叉树，并检验 p,q是否为相同的树，预期值为false。 <p/>
+ *
  * @author 张利红
  */
-@Slf4j
 public class Q100SameTreeTest {
     @Test
     public void test() {
+        Integer[] p = new Integer[]{1, 2};
+        Integer[] q = new Integer[]{1, null, 2};
+        TreeNode treeNode1 = BinaryTree.arrayToTree(p);
+        TreeNode treeNode2 = BinaryTree.arrayToTree(q);
 
-        // 构建二叉树
-        Q100SameTree.TreeNode treeNode1 = new Q100SameTree.TreeNode(1, new Q100SameTree.TreeNode(2), null);
-        Q100SameTree.TreeNode treeNode2 = new Q100SameTree.TreeNode(1, null,new Q100SameTree.TreeNode(2));
-        // 断言判断证明没错
-        Assertions.assertSame(false,
-                Q100SameTree.isSameTree(treeNode1, treeNode2),"treeNode1和treeNode2不是相同的树");
-
+        Assertions.assertFalse(Q100SameTree.isSameTree(treeNode1, treeNode2),
+                "True---实际测试中的树结构是相同的树。");
     }
 }
