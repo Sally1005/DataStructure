@@ -1,7 +1,6 @@
 package com.lonton.leetcode.med;
 
 
-import com.lonton.leetcode.common.BinaryTree;
 import com.lonton.leetcode.common.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -28,7 +27,7 @@ public class Q113PathSumIITest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1};
-        TreeNode root = BinaryTree.arrayToTree(nums);
+        TreeNode root = TreeNode.arrayToTree(nums);
 
         List<List<Integer>> actual = Q113PathSumII.pathSum(root, 22);
         List<List<Integer>> expected = new ArrayList<>(
@@ -36,7 +35,7 @@ public class Q113PathSumIITest {
 
         // 断言
         Assertions.assertEquals(expected, actual,
-                "NotEquals---符合条件的路径总和不存在，实际得到的结果与预期结果不相等。");
+                " 符合条件的路径总和不存在。");
     }
 
 }

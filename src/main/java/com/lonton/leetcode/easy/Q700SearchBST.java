@@ -19,9 +19,9 @@ public class Q700SearchBST extends TreeNode {
      */
     public static TreeNode searchBST(TreeNode root, int val) {
         if (root == null) return null;
-        if (root.getVal() == val) return root;
+        if ((Integer)root.getVal() == val) return root;
         // 整数值小于根节点数值，递归往左找
-        if (root.getVal() > val) {
+        if ((Integer)root.getVal() > val) {
             return searchBST(root.getLeft(), val);
         }
         // 整数值大于根节点数值，递归往右找

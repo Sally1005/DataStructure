@@ -37,7 +37,7 @@ public class Q107LevelOrderBottom extends TreeNode {
             // 遍历level
             for (TreeNode node : level) {
                 // 非空 根
-                values.add(node.getVal());
+                values.add((Integer) node.getVal());
                 if (node.getLeft() != null) {
                     nextLevel.add(node.getLeft());
                 }

@@ -44,7 +44,7 @@ public class Q102LevelOrder extends TreeNode {
                 TreeNode cur = queue.poll();
                 if (cur != null) {
                     // 就将cur里的元素放进list里
-                    list.add(cur.getVal());
+                    list.add((Integer) cur.getVal());
                     if (cur.getLeft() != null) {
                         // 将cur.left入队列
                         queue.offer(cur.getLeft());

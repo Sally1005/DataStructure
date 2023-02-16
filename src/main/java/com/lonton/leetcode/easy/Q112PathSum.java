@@ -42,7 +42,7 @@ public class Q112PathSum extends TreeNode {
         if (flag[0] == 1 || treeNode == null) {
             return;
         }
-        preSum += treeNode.getVal();
+        preSum += (Integer)treeNode.getVal();
         // 左递归路径值
         recurve(treeNode.getLeft(), preSum, targetSum, flag);
         // 右递归路径值

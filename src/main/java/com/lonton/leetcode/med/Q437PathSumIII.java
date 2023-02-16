@@ -41,10 +41,10 @@ public class Q437PathSumIII extends TreeNode {
         if (treeNode == null) {
             return;
         }
-        if (treeNode.getVal() == sum) {
+        if ((Integer)treeNode.getVal() == sum) {
             res++;
         }
-        recurve(treeNode.getLeft(), sum - treeNode.getVal());
-        recurve(treeNode.getRight(), sum - treeNode.getVal());
+        recurve(treeNode.getLeft(), sum - (Integer)treeNode.getVal());
+        recurve(treeNode.getRight(), sum - (Integer)treeNode.getVal());
     }
 }

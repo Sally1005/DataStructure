@@ -41,7 +41,7 @@ public class Q144BinaryTreePreorderTraversal extends TreeNode {
             return;
         }
         // 判断根节点存在
-        val.add(root.getVal());
+        val.add((Integer) root.getVal());
         // 判断是否有左节点
         if (root.getLeft() != null) {
             preorder(root.getLeft(), val);

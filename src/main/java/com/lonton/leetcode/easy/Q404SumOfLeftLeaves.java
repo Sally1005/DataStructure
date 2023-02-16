@@ -20,7 +20,7 @@ public class Q404SumOfLeftLeaves extends TreeNode {
         if (root == null) return 0;
         // 叶子节点
         if (root.getLeft() != null && root.getLeft().getLeft() == null && root.getLeft().getRight() == null) {
-            return root.getLeft().getVal() + sumOfLeftLeaves(root.getRight());
+            return (Integer)root.getLeft().getVal() + (Integer)sumOfLeftLeaves(root.getRight());
         }
         return sumOfLeftLeaves(root.getLeft()) + sumOfLeftLeaves(root.getRight());
     }

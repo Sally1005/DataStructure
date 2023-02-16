@@ -48,6 +48,6 @@ public class Q145BinaryTreePostorderTraversal extends TreeNode {
             postorder(root.getRight(), val);
         }
         // 判断根节点存在
-        val.add(root.getVal());
+        val.add((Integer) root.getVal());
     }
 }

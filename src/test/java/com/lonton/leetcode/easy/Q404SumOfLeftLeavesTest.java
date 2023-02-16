@@ -1,6 +1,5 @@
 package com.lonton.leetcode.easy;
 
-import com.lonton.leetcode.common.BinaryTree;
 import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,10 +15,10 @@ public class Q404SumOfLeftLeavesTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode root = BinaryTree.arrayToTree(nums);
+        TreeNode root = TreeNode.arrayToTree(nums);
 
         Assertions.assertEquals(24, new Q404SumOfLeftLeaves().sumOfLeftLeaves(root),
-                "NotEquals---左叶子之和计算错误，实际结果与预期值不相等。");
+                " 左叶子之和计算错误。");
     }
 
 }

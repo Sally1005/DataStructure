@@ -1,6 +1,6 @@
 package com.lonton.leetcode.easy;
 
-import com.lonton.leetcode.common.BinaryTree;
+import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -14,8 +14,8 @@ public class Q110BalancedBinaryTreeTest {
     @Test
     public void test() {
         Integer[] root = new Integer[]{3, 9, 20, null, null, 15, 7};
-        boolean result = new Q110BalancedBinaryTree().isBalanced(BinaryTree.arrayToTree(root));
+        boolean result = new Q110BalancedBinaryTree().isBalanced(TreeNode.arrayToTree(root));
 
-        Assertions.assertTrue(result, "NotTrue---该树不是高度平衡的二叉树，实际得到的结果与预期结果不符。");
+        Assertions.assertTrue(result, "该树不是高度平衡的二叉树。");
     }
 }

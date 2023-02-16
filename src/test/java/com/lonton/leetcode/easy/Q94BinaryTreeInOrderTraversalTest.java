@@ -1,14 +1,9 @@
 package com.lonton.leetcode.easy;
 
 
-import com.lonton.leetcode.common.BinaryTree;
 import com.lonton.leetcode.common.TreeNode;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-
-
-import static com.lonton.leetcode.common.BinaryTree.assertCollectionsAreEquals;
 
 /**
  * 测试二叉树中序遍历 <p/>
@@ -21,11 +16,11 @@ public class Q94BinaryTreeInOrderTraversalTest {
     @Test
     public void test() {
         Integer[] nums = new Integer[]{1, null, 2, 3};
-        TreeNode root = BinaryTree.arrayToTree(nums);
+        TreeNode root = TreeNode.arrayToTree(nums);
 
-        assertCollectionsAreEquals(Arrays.asList(1, 3, 2),
-                Q94BinaryTreeInOrderTraversal.inorderTraversal(root),
-                "NotEquals---二叉树中序遍历实际得到的结果与预期结果不相等。");
+        Assertions.assertArrayEquals(new Integer[]{1, 3, 2},
+                Q94BinaryTreeInOrderTraversal.inorderTraversal(root).toArray(),
+                "比对失败，二叉树中序遍历出的数组有问题。");
     }
 
 }

@@ -40,7 +40,7 @@ public class Q94BinaryTreeInOrderTraversal extends TreeNode {
             inorder(root.getLeft(), val);
         }
         // 判断当前左节点是否遍历完或者说是左节点根本不存在
-        val.add(root.getVal());
+        val.add((Integer) root.getVal());
         // 判断是否有右节点
         if (root.getRight() != null) {
             inorder(root.getRight(), val);

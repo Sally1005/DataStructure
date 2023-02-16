@@ -1,6 +1,5 @@
 package com.lonton.leetcode.easy;
 
-import com.lonton.leetcode.common.BinaryTree;
 import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -19,22 +18,22 @@ public class Q111MinDepthTest {
     public void test() {
         // 构建二叉树
         Integer[] nums1 = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode tree1 = BinaryTree.arrayToTree(nums1);
+        TreeNode tree1 = TreeNode.arrayToTree(nums1);
 
         Assertions.assertEquals(2, new Q111MinDepth().minDepth(tree1),
-                "NotEquals---最小深度计算错误，实际计算值与预期不符。");
+                " 比对失败，最小深度计算错误错误。");
 
         Integer[] nums2 = new Integer[]{2, null, 3, null, 4, null, 5, null, 6};
-        TreeNode tree2 = BinaryTree.arrayToTree(nums2);
+        TreeNode tree2 = TreeNode.arrayToTree(nums2);
 
         Assertions.assertEquals(5, new Q111MinDepth().minDepth(tree2),
-                "NotEquals---最小深度计算错误，实际计算值与预期不符。");
+                "比对失败，最小深度计算错误错误。");
 
         Integer[] nums3 = new Integer[]{2, null, 3, null, 4, 1, 5, null, 7};
-        TreeNode tree3 = BinaryTree.arrayToTree(nums3);
+        TreeNode tree3 = TreeNode.arrayToTree(nums3);
 
         Assertions.assertEquals(4, new Q111MinDepth().minDepth(tree3),
-                "NotEquals---最小深度计算错误，实际计算值与预期不符。");
+                "比对失败，最小深度计算错误错误。");
     }
 
 }

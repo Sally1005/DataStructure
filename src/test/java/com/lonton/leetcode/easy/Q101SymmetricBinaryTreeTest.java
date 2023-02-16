@@ -1,6 +1,5 @@
 package com.lonton.leetcode.easy;
 
-import com.lonton.leetcode.common.BinaryTree;
 import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -18,9 +17,9 @@ public class Q101SymmetricBinaryTreeTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{1, 2, 2, 3, 4, 4, 3};
-        TreeNode root = BinaryTree.arrayToTree(nums);
+        TreeNode root = TreeNode.arrayToTree(nums);
 
         Assertions.assertTrue(isSymmetric(root),
-                "False---实际测试中的树结构不是镜像树。");
+                "该树不是镜像树。");
     }
 }

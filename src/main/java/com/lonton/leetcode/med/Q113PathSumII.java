@@ -49,8 +49,8 @@ public class Q113PathSumII extends TreeNode {
         if (treeNode == null) {
             return;
         }
-        path.add(treeNode.getVal());
-        preSum += treeNode.getVal();
+        path.add((Integer) treeNode.getVal());
+        preSum += (Integer)treeNode.getVal();
 
         // 左递归路径值
         recurve(treeNode.getLeft(), path, preSum, targetSum, result);
@@ -62,13 +62,13 @@ public class Q113PathSumII extends TreeNode {
             result.add(new ArrayList<Integer>(path));
             // 回溯 减少递归 降低内存
             path.remove(path.size() - 1);
-            preSum -= treeNode.getVal();
+            preSum -= (Integer)treeNode.getVal();
             return;
         }
 
         // 回溯
         path.remove(path.size() - 1);
-        preSum -= treeNode.getVal();
+        preSum -= (Integer)treeNode.getVal();
     }
 
 }

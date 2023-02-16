@@ -1,6 +1,5 @@
 package com.lonton.leetcode.med;
 
-import com.lonton.leetcode.common.BinaryTree;
 import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -18,10 +17,10 @@ public class Q437PathSumIIITest {
 
         // 构建二叉树
         Integer[] nums = new Integer[]{10, 5, -3, 3, 2, null, 11, 3, -2, null, 1};
-        TreeNode root = BinaryTree.arrayToTree(nums);
+        TreeNode root = TreeNode.arrayToTree(nums);
 
         // 断言
         Assertions.assertEquals(3, Q437PathSumIII.pathSum(root, 8),
-                "NotEquals---路径数目计算错误，实际得到的结果与预期结果不相等。");
+                " 路径数目计算错误。");
     }
 }

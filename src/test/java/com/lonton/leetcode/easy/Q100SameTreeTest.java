@@ -1,7 +1,6 @@
 package com.lonton.leetcode.easy;
 
 
-import com.lonton.leetcode.common.BinaryTree;
 import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -17,10 +16,10 @@ public class Q100SameTreeTest {
     public void test() {
         Integer[] p = new Integer[]{1, 2};
         Integer[] q = new Integer[]{1, null, 2};
-        TreeNode treeNode1 = BinaryTree.arrayToTree(p);
-        TreeNode treeNode2 = BinaryTree.arrayToTree(q);
+        TreeNode treeNode1 = TreeNode.arrayToTree(p);
+        TreeNode treeNode2 = TreeNode.arrayToTree(q);
 
         Assertions.assertFalse(Q100SameTree.isSameTree(treeNode1, treeNode2),
-                "True---实际测试中的树结构是相同的树。");
+                "两棵树是相同的树。");
     }
 }

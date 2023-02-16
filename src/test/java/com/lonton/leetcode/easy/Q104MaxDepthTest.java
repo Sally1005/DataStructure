@@ -1,8 +1,6 @@
 package com.lonton.leetcode.easy;
 
-import com.lonton.leetcode.common.BinaryTree;
 import com.lonton.leetcode.common.TreeNode;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -16,9 +14,9 @@ public class Q104MaxDepthTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode root = BinaryTree.arrayToTree(nums);
+        TreeNode root = TreeNode.arrayToTree(nums);
 
         Assertions.assertEquals(3, new Q104MaxDepth().maxDepth(root),
-                "NotEquals---最大深度计算错误错误，实际计算值与预期不符。");
+                "比对失败，最大深度计算错误错误。");
     }
 }
