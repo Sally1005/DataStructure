@@ -9,60 +9,61 @@ import java.util.Stack;
 
 /**
  * 后序遍历
- * <p/>　
+ * <p/>
+ *
  * @author 张利红
  */
 
 @Slf4j
 
-public  class PostTraverser implements ITraverser{
+public class PostTraverser implements ITraverser {
     /**
      * 访问树
-     * @param tree 二叉树
+     *
+     * @param tree    二叉树
      * @param visitor 访问visitor
-     * @param param 可变参数
-     * @return
+     * @param param   可变参数
+     * @return 节点
      */
-    public  Object traverse(BinaryTree tree, IVisitor visitor, Object... param){
-        recursive(tree.getRoot(),visitor);
-        return tree;
+    public BinaryTree.TreeNode traverse(BinaryTree tree, IVisitor visitor, Object... param) {
+        recursive(tree.getRoot(), visitor);
+        return tree.getRoot();
     }
 
 
     /**
      * 递归后序遍历
-     * @param root 根节点
+     *
+     * @param root    根节点
      * @param visitor visitor具体实现类
      */
     protected void recursive(BinaryTree.TreeNode root, IVisitor visitor) {
 
-
         // 左子节点是否存在
-            if (root.getLeftNode() != null ) {
-                recursive(root.getLeftNode(), visitor);
-                if (visitor.getFoundNode() != null){
-                    return;
-                }
+        if (root.getLeftNode() != null) {
+            recursive(root.getLeftNode(), visitor);
+            if (visitor.getFoundNode() != null) {
+                return;
             }
+        }
 
         // 右子节点是否存在
         if (root.getRightNode() != null) {
             recursive(root.getRightNode(), visitor);
-            if (visitor.getFoundNode() != null){
+            if (visitor.getFoundNode() != null) {
                 return;
             }
         }
 
         // 当前节点
-         visitor.visit(root);
-
-
+        visitor.visit(root, visitor.predicates());
 
     }
 
     /**
      * 非递归后序遍历
-     * @param root 根节点
+     *
+     * @param root    根节点
      * @param visitor visitor具体实现类
      */
     private void notRecursive(BinaryTree.TreeNode root, IVisitor visitor) {

@@ -10,40 +10,41 @@ import java.util.Stack;
 /**
  * 前序遍历
  * <p/>
+ *
  * @author 张利红
  */
 @Slf4j
-public  class PreTraverser implements ITraverser {
+public class PreTraverser implements ITraverser {
     /**
      * 访问树
+     *
      * @param tree    二叉树
      * @param visitor 访问visitor
      * @param param   可变参数
-     * @return
+     * @return 节点
      */
-
-    public Object traverse(BinaryTree tree, IVisitor visitor, Object... param) {
-        recursive(tree.getRoot(),visitor);
-        return tree;
+    public BinaryTree.TreeNode traverse(BinaryTree tree, IVisitor visitor, Object... param) {
+        recursive(tree.getRoot(), visitor);
+        return tree.getRoot();
     }
-
 
     /**
      * 递归前序遍历
-     * @param root 根节点
+     *
+     * @param root    根节点
      * @param visitor visitor具体实现类
      */
     protected void recursive(BinaryTree.TreeNode root, IVisitor visitor) {
         // 根节点
-         visitor.visit(root,visitor);
-         if (visitor.getFoundNode()!= null){
-             return;
-         }
+        visitor.visit(root, visitor.predicates());
+        if (visitor.getFoundNode() != null) {
+            return;
+        }
 
         // 左子节点是否存在
         if (root.getLeftNode() != null) {
             recursive(root.getLeftNode(), visitor);
-            if (visitor.getFoundNode()!= null){
+            if (visitor.getFoundNode() != null) {
                 return;
             }
         }
@@ -55,7 +56,8 @@ public  class PreTraverser implements ITraverser {
 
     /**
      * 非递归前序遍历
-     * @param root 根节点
+     *
+     * @param root    根节点
      * @param visitor visitor具体实现类
      */
     private void notRecursive(BinaryTree.TreeNode root, IVisitor visitor) {
