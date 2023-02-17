@@ -13,6 +13,7 @@ import java.util.Arrays;
  * 示例1：将数组 nums1 = [1]，nums2 = [1,2] 构建成二叉树，并判断输出的值是否为预期的[2，2]。
  * 示例2：(半子节点) 将数组 nums3 = [1,3,2,5]，nums4 = [2,1,3,null,4,null,7] 构建成二叉树，并判断输出的值是否为预期的[3,4,5,5,4,null,7]。
  * 示例3：(满子节点) 将数组 nums5 = [1,3,2,5]，nums6 = [4,2,7,1,3,6,9] 构建成二叉树，并判断输出的值是否为预期的[5,5,9,6,3,6,9]。
+ * 示例4：(根节点为null) 将数组 nums7 = [4,2,7,1,3,6,9]，nums8 = [ ] 构建成二叉树，并判断输出的值是否为预期的[4,2,7,1,3,6,9]。
  *
  * @author 张利红
  */
@@ -72,6 +73,24 @@ public class Q617MergingTreesTest {
         Integer[] nullFilteredArr3 = Arrays.copyOf(array3, idx3 + 1);
 
         Assertions.assertArrayEquals(new Integer[]{5, 5, 9, 6, 3, 6, 9}, nullFilteredArr3,
+                " 合并二叉树失败，两数组不相等。");
+
+        // 示例4
+        Integer[] nums7 = new Integer[]{4,2,7,1,3,6,9};
+        TreeNode root7 = TreeNode.arrayToTree(nums7);
+        Integer[] nums8 = new Integer[0];
+        TreeNode root8 = TreeNode.arrayToTree(nums8);
+
+        TreeNode node4 = Q617MergingTrees.mergeTrees(root7, root8);
+        Integer[] array4 = TreeNode.treeToArray(node4);
+        // 因为数组后面的null不影响数据，为了方便测试，将数组后面的null值都去掉
+        int idx4 = array4.length - 1;
+        while (array4[idx4] == null) {
+            idx4--;
+        }
+        Integer[] nullFilteredArr4 = Arrays.copyOf(array4, idx4 + 1);
+
+        Assertions.assertArrayEquals(new Integer[]{4,2,7,1,3,6,9}, nullFilteredArr4,
                 " 合并二叉树失败，两数组不相等。");
 
     }
