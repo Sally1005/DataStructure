@@ -49,8 +49,8 @@ public class Q106ConstructBinaryTreeFromInorderAndPostorderTraversal {
     /**
      * 构建二叉树
      *
-     * @param left  左节点
-     * @param right 右节点
+     * @param left  最左下标
+     * @param right 最右下标
      * @return 二叉树
      */
     private static TreeNode getTreeNode(int left, int right) {
