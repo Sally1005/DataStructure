@@ -72,11 +72,26 @@ public class SearchVisitor implements IVisitor {
         // 若为true,则将节点信息加入符合条件的数据集合中
         if (predicate != null) {
             for (Predicate<BinaryTree.TreeNode> treeNodePredicate : predicate) {
-                if (treeNodePredicate.test(node)) {
-                    filterNode.add(node);
+                if (treeNodePredicate.test(node)==false) {
+                    return null;
                 }
             }
+            if (true){
+                filterNode.add(node);
+            }
         }
+//        boolean found = true;
+//        if (predicate != null) {
+//            for (Predicate<BinaryTree.TreeNode> treeNodePredicate : predicate) {
+//                if (treeNodePredicate.test(node)) {
+//                    continue;
+//                }
+//                found = false;
+//            }
+//        }
+//        if (found){
+//            filterNode.add(node) ;
+//        }
         return node;
     }
 
