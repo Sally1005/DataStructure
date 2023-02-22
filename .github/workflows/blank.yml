@@ -12,7 +12,7 @@ on:
 
 # 一个workflow可以由多个job组成，可以并行或者分离运行
 jobs:
-  build:
+  run_tests:
     # 运行在最新版本的ubuntu镜像
     runs-on: ubuntu-latest
     steps:
@@ -32,7 +32,7 @@ jobs:
           java-version: 8
       # 使用Maven
       - name: Build with Maven
-        run: mvn -B test --file /pom.xml
+        run: mvn -B test --file pom.xml
       # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
       - uses: ashley-taylor/junit-report-annotations-action@master
         with:
