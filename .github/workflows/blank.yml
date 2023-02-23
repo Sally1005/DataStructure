@@ -39,3 +39,17 @@ jobs:
         with:
           access-token: ${{ secrets.GITHUB_TOKEN }}
         if: always()
+        # mysql
+        mysql:
+          image: mysql:8.0.19
+          volumes:
+            - ./mysql_data:/var/lib/mysql
+
+          env:
+
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: tree
+
+          ports:
+
+            - 3306:3306
