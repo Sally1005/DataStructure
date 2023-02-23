@@ -15,6 +15,17 @@ jobs:
   run_tests:
     # 运行在最新版本的ubuntu镜像
     runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0.19
+        volumes:
+          - ${DATA_PATH_HOST}/mysql:/var/lib/mysql
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: tree
+        ports:
+          - 3306:3306
     steps:
       # 将你的job指向你的文件目录$GITHUB_WORKSPACE，用来运行你的脚本
       - name: Checkout the repository
@@ -40,16 +51,5 @@ jobs:
           access-token: ${{ secrets.GITHUB_TOKEN }}
         if: always()
         # mysql
-        mysql:
-          image: mysql:8.0.19
-          volumes:
-            - ./mysql_data:/var/lib/mysql
 
-          env:
 
-            MYSQL_ROOT_PASSWORD: root
-            MYSQL_DATABASE: tree
-
-          ports:
-
-            - 3306:3306
