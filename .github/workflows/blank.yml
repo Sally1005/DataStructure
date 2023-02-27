@@ -2,10 +2,8 @@ name: Junit
 
 # on用来控制何时运行这个workflow
 on:
-  # 在push或者pull_request时触发这个事件workflow
+  # 在push时触发这个事件workflow
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
   # 允许你手动在Github网页上执行该workflow
   workflow_dispatch:
@@ -15,11 +13,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-  env:
-    MYSQL_USER: root
-    MYSQL_DB: tree
-    MYSQL_PASSWORD: ${{ secrets.TEST_DB_PASSWORD }}
-    MYSQL_ROOT_PASSWORD: ${{ secrets.TEST_DB_ROOT_PASSWORD }}
+    env:
+     MYSQL_USER: root
+     MYSQL_DB: tree
+     MYSQL_PASSWORD: ${{ secrets.TEST_DB_PASSWORD }}
+     MYSQL_ROOT_PASSWORD: ${{ secrets.TEST_DB_ROOT_PASSWORD }}
+
     services:
       mysql:
         image: mysql:5.1.37
