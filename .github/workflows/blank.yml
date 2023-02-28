@@ -22,10 +22,6 @@ jobs:
         - 3306:3306
       options: >-
         --health-cmd="mysqladmin ping"
-        --health-interval=100
-        --health-timeout=50
-        --health-retries=30
-
     steps:
         - name: Build Maven
           uses: actions/cache@v1
