@@ -26,7 +26,7 @@ jobs:
         --health-timeout=5s
         --health-retries=3s
 
-      steps:
+    steps:
         - name: Build Maven
           uses: actions/cache@v1
           with:
