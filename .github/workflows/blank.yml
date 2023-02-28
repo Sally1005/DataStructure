@@ -9,52 +9,51 @@ on:
       branches: [ main ]
 
 jobs:
-    Run-npm-on-Ubuntu:
-      name: Run npm on Ubuntu
-      runs-on: ubuntu-latest
-      steps:
-        - uses: actions/checkout@v3
-        - uses: actions/setup-node@v3
-          with:
-            node-version: '14'
-        - run: npm help
-
-    services:
-         mysql-service:
-          image: mysql:latest
-          env:
-            DB_DATABASE: ${{secrets.DB_DATABASE}}
-            DB_USER: ${{secrets.DB_USER}}
-            DB_PASSWORD: ${{secrets.DB_PASSWORD}}
-          ports:
-            - 33306:3306
-          options: >-
-            --health-cmd="mysqladmin ping"
-            --health-interval=10s
-            --health-timeout=5s
-            --health-retries=3
-
+  Run-npm-on-Ubuntu:
+    name: Run npm on Ubuntu
+    runs-on: ubuntu-latest
     steps:
-         # 是否缓存Maven目录，其实就是缓存依赖项
-        - uses: actions/cache@v1
-          with:
-             path: ~/.m2/repository
-             key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-             restore-keys: |
-              ${{ runner.os }}-maven-
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm help
+
+  services:
+    mysql-service:
+      image: mysql:latest
+      env:
+        DB_DATABASE: ${{secrets.DB_DATABASE}}
+        DB_USER: ${{secrets.DB_USER}}
+        DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+      ports:
+        - 33306:3306
+      options: >-
+        --health-cmd="mysqladmin ping"
+        --health-interval=10s
+        --health-timeout=5s
+        --health-retries=3
+      steps:
+        - uses: actions/checkout@v2
+        - name: Set timezone to Shanghai
+          run: |
+            sudo rm /etc/localtime
+            sudo ln -s /usr/share/zoneinfo//Asia/Shanghai/etc/localtime
+
         # Start Mysql
         # https://ovirium.com/blog/how-to-make-mysql-work-in-your-github-actions/
         - name: Start Mysql
           run: |
-              sudo systemctl start mysql
-              mysql -e "use mysql; FLUSH PRIVILEGES; ALTER USER '${{ secrets.DB_USER }}'@'localhost' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';" -uroot -proot
-              mysql -e 'CREATE DATABASE tree;' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+            sudo systemctl start mysql
+            mysql -e "use mysql; FLUSH PRIVILEGES; ALTER USER '${{ secrets.DB_USER }}'@'localhost' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';" -uroot -proot
+            mysql -e 'CREATE DATABASE tree;' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
 
         # Set up JDK 1.8
         - name: Set up JDK 1.8
           uses: actions/setup-java@v1
           with:
             java-version: 1.8
+
        # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
         - uses: ashley-taylor/junit-report-annotations-action@master
           with:
