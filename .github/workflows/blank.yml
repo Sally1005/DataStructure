@@ -27,7 +27,7 @@ jobs:
         # https://ovirium.com/blog/how-to-make-mysql-work-in-your-github-actions/
         - name: Start Mysql
           run: |
-           mysql  --host=127.0.0.1 --user=${{ env.MYSQL_USER }} --password=${{ env.MYSQL_PASSWORD }} ${{ env.MYSQL_DB }} <<MY_QUERY
+           mysql  --host=127.0.0.1 --user=${{ env.DB_USER }} --password=${{ env.DB_PASSWORD }} ${{ env.DB_DATABASE }} <<MY_QUERY
            SHOW GRANTS;
            MY_QUERY
 
