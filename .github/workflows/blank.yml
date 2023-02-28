@@ -35,7 +35,6 @@ jobs:
             --health-retries=3
 
     steps:
-        - uses: actions/checkout@v2
          # 是否缓存Maven目录，其实就是缓存依赖项
         - uses: actions/cache@v1
           with:
