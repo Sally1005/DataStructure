@@ -39,7 +39,7 @@ jobs:
        # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
         - uses: ashley-taylor/junit-report-annotations-action@master
           with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
+           access-token: ${{ secrets.GITHUB_TOKEN }}
           if: always()
 
 
