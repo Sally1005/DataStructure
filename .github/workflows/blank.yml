@@ -23,6 +23,13 @@ jobs:
 
     steps:
         - uses: actions/checkout@v2
+         # 是否缓存Maven目录，其实就是缓存依赖项
+        - uses: actions/cache@v1
+          with:
+             path: ~/.m2/repository
+             key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+             restore-keys: |
+              ${{ runner.os }}-maven-
         # Start Mysql
         # https://ovirium.com/blog/how-to-make-mysql-work-in-your-github-actions/
         - name: Start Mysql
@@ -39,7 +46,7 @@ jobs:
        # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
         - uses: ashley-taylor/junit-report-annotations-action@master
           with:
-           access-token: ${{ secrets.GITHUB_TOKEN }}
+            access-token: ${{ secrets.GITHUB_TOKEN }}
           if: always()
 
 
