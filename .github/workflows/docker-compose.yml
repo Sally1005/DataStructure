@@ -1,8 +1,0 @@
-services:
-  mysql-development:
-    image: mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: tree
-    ports:
-      - "3306:3306"
