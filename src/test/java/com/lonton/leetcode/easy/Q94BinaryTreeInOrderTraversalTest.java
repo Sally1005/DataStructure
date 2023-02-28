@@ -16,7 +16,7 @@ public class Q94BinaryTreeInOrderTraversalTest {
     @Test
     public void test() {
         Integer[] nums = new Integer[]{1, null, 2, 3};
-        TreeNode root = TreeNode.arrayToTree(nums);
+         TreeNode root = TreeNode.arrayToTree(nums);
 
         Assertions.assertArrayEquals(new Integer[]{1, 3, 2},
                 Q94BinaryTreeInOrderTraversal.inorderTraversal(root).toArray(),
