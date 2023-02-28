@@ -34,8 +34,8 @@ jobs:
              key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
              restore-keys: |
               ${{ runner.os }}-maven-
+        - uses: actions/checkout@v2
         - name: Set timezone to Shanghai
-          uses: actions/checkout@v2
           run: |
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
