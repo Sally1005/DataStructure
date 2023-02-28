@@ -4,22 +4,35 @@ name: Junit
 on:
   # 在push时触发这个事件workflow
   push:
-    branches:
-      - main
-  # 允许你手动在Github网页上执行该workflow
-  workflow_dispatch:
+    branches: [ main ]
+    pull_request:
+      branches: [ main ]
 
-# 一个workflow可以由多个job组成，可以并行或者分离运行
-jobs:
-  build:
-    runs-on: ubuntu-latest
+  jobs:
+    Run-npm-on-Ubuntu:
+      name: Run npm on Ubuntu
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-node@v3
+          with:
+            node-version: '14'
+        - run: npm help
+
     services:
-      mysql:
-        image: mysql:latest
-    env:
-      DB_DATABASE: ${{secrets.DB_DATABASE}}
-      DB_USER: ${{secrets.DB_USER}}
-      DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+         mysql-service:
+          image: mysql:latest
+          env:
+            DB_DATABASE: ${{secrets.DB_DATABASE}}
+            DB_USER: ${{secrets.DB_USER}}
+            DB_PASSWORD: ${{secrets.DB_PASSWORD}}
+          ports:
+            - 33306:3306
+          options: >-
+            --health-cmd="mysqladmin ping"
+            --health-interval=10s
+            --health-timeout=5s
+            --health-retries=3
 
     steps:
         - uses: actions/checkout@v2
