@@ -36,7 +36,7 @@ jobs:
              pwd
            # mysql -e 'CREATE DATABASE `${{env.DB_DATABASE}}`;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
            # mysql -e 'SHOW DATABASES;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
-           mysql -e 'CREATE DATABASE tree;' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+           mysql -e 'CREATE DATABASE tree;' -uroot -proot
            mysql -e "use mysql; FLUSH PRIVILEGES; ALTER USER 'root'@'%' IDENTIFIED BY 'root';" -uroot -proot
            # alter user '${{env.DB_USER}}'@'%' identified with mysql_native_password by '${{env.DB_PASSWORD}}';
           #  CREATE DATABASE `tree` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
