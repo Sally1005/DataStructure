@@ -32,13 +32,18 @@ jobs:
         - name: Start Mysql
           run: |
            sudo /etc/init.d/mysql start
-           mysql -e "use mysql; FLUSH PRIVILEGES; ALTER USER 'root'@'%' IDENTIFIED BY 'root';" -uroot -proot
-           mysql -e 'CREATE DATABASE tree;' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+             mysql -uroot -proot
+             pwd
+           # mysql -e 'CREATE DATABASE `${{env.DB_DATABASE}}`;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
+           # mysql -e 'SHOW DATABASES;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
+
+           # mysql -e "use mysql; FLUSH PRIVILEGES; ALTER USER 'root'@'%' IDENTIFIED BY 'root';" -uroot -proot
+           # mysql -e 'CREATE DATABASE tree;' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
            # alter user '${{env.DB_USER}}'@'%' identified with mysql_native_password by '${{env.DB_PASSWORD}}';
-           #  CREATE DATABASE `tree` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+           # CREATE DATABASE `tree` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
            # grant all privileges on tree.* to ${{env.DB_USER}}@'%';
            # flush privileges;
-            mysql -uroot -p"root" tree < /assets/database/fruit.sql
+           # mysql -uroot -p"root" tree < /assets/database/fruit.sql
            # mysql -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
            # mysql -e 'CREATE DATABASE `${{env.DB_DATABASE}}`;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
            # mysql -e 'SHOW DATABASES;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
