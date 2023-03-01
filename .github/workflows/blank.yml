@@ -40,9 +40,9 @@ jobs:
         # https://ovirium.com/blog/how-to-make-mysql-work-in-your-github-actions/
         - name: Start Mysql
           run: |
-           mysql --host=127.0.0.1 --user=${{ env.DB_USER }} --password=${{ env.DB_PASSWORD }} ${{ env.DB_DATABASE }} <<MY_QUERY
-           SHOW GRANTS;
-           MY_QUERY
+           sudo /etc/init.d/mysql start
+           mysql -e 'CREATE DATABASE `${{env.DB_DATABASE}}`;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
+           mysql -e 'SHOW DATABASES;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
 
         # Set up JDK 1.8
         - name: Set up JDK 1.8
