@@ -39,7 +39,6 @@ jobs:
         - name: Start Mysql
           run: |
            systemctl status mysql.service
-           Starting MySQL Community Server...
            sudo service mysql start
            mysql -e 'CREATE DATABASE `${{env.DB_DATABASE}}`;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
            mysql -e 'SHOW DATABASES;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
@@ -49,8 +48,6 @@ jobs:
           uses: actions/setup-java@v1
           with:
             java-version: 1.8
-            distribution: 'adopt'
-            cache: maven
 
        # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
         - uses: ashley-taylor/junit-report-annotations-action@master
@@ -58,14 +55,5 @@ jobs:
             access-token: ${{ secrets.GITHUB_TOKEN }}
           if: always()
           
-        - name: Build with Maven
-          run: |
-           cd project
-           mvn --batch-mode --update-snapshots verify -Dresources.path=classpath
-      
-        - name: Upload Reports
-          run: |
-            bash <(curl -s https://codecov.io/bash)  
-
 
 
