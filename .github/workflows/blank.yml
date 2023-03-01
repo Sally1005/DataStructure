@@ -33,12 +33,11 @@ jobs:
           run: |
            sudo /etc/init.d/mysql start
              pwd
-            mysql -e "use mysql;grant all privileges on tree.* to root@'localhost'; FLUSH PRIVILEGES; ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED BY '${{ env.DB_PASSWORD }}';" -uroot -proot
+            mysql -e "use mysql;grant all privileges on tree.* to root@'localhost';skip-grant-tables;FLUSH PRIVILEGES; ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED BY '${{ env.DB_PASSWORD }}';" -uroot -proot
             mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
         - name: Modify MySQL Connection Variables
           run: |
            sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
-           skip-grant-tables
           # sed -i 's/TEST_MYSQL_PORT=3306/TEST_MYSQL_PORT=3306/g' ${GITHUB_WORKSPACE}/.env
         - name: Run Unit Tests
           run: mvn test -B -e -X 
