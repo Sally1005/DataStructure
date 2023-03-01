@@ -41,7 +41,13 @@ jobs:
           # sed -i 's/TEST_MYSQL_PORT=3306/TEST_MYSQL_PORT=3306/g' ${GITHUB_WORKSPACE}/.env
         - name: Run Unit Tests
           run: mvn test -B -e -X 
-           # mysql -uroot -proot tree < /assets/database/fruit.sql
+        - name: Prepare Intergration Tests
+          run: |
+           sudo apt-get -y install libargon2-0
+           mvn -Pdocker validate
+        - name: Run Intergration Tests
+          run: |
+           mvn verify -DskipUTs=true -DmongoDocker -B
 
         # Set up JDK 1.8
         - name: Set up JDK 1.8
