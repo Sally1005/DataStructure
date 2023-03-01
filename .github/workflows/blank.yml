@@ -38,8 +38,8 @@ jobs:
         - name: Start Mysql
           run: |
            sudo /etc/init.d/mysql start
-           -uroot -proot
-            mysql -e "use mysql;create user 'Tom'@'localhost' identified by 'root';grant all privileges on tree.* to 'Tom'@'localhost';FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';" 
+           
+            mysql -e "use mysql;create user 'Tom'@'localhost' identified by 'root';grant all privileges on tree.* to 'Tom'@'localhost';FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';"-uroot -proot 
             mysql -e 'DROP TABLE IF EXISTS `fruit`;CREATE DATABASE tree;CREATE TABLE `fruit` (
                          `id` INT(11) NOT NULL AUTO_INCREMENT,
                          `data` VARCHAR(20) DEFAULT NULL COMMENT '当前节点',
