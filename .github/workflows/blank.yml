@@ -9,17 +9,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    services:
-     mysql-service:
-      image: mysql:latest
-      env:
-        DB_DATABASE: ${{secrets.DB_DATABASE}}
-        DB_USER: ${{secrets.DB_USER}}
-        MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
-      ports:
-        - 3306:3306
-      options: >-
-        --health-cmd="mysqladmin ping"
+    env:
+      DB_DATABASE: ${{secrets.DB_DATABASE}}
+      DB_USER: ${{secrets.DB_USER}}
+      MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
     steps:
         - name: Build Maven
           uses: actions/cache@v1
@@ -38,11 +31,7 @@ jobs:
         # https://ovirium.com/blog/how-to-make-mysql-work-in-your-github-actions/
         - name: Start Mysql
           run: |
-           systemctl status mysqld
-           mysqld --initialize --console
-           chown -R mysql:mysql /var/lib/mysql/
-           systemctl start mysqld
-           systemctl status mysqld
+           sudo /etc/init.d/mysql start
            mysql -e 'CREATE DATABASE `${{env.DB_DATABASE}}`;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
            mysql -e 'SHOW DATABASES;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
 
