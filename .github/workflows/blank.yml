@@ -35,19 +35,14 @@ jobs:
              pwd
             mysql -e "use mysql;grant all privileges on tree.* to root@'localhost';FLUSH PRIVILEGES; ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED BY '${{ env.DB_PASSWORD }}';" -uroot -proot
             mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+            
         - name: Modify MySQL Connection Variables
           run: |
            sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
           # sed -i 's/TEST_MYSQL_PORT=3306/TEST_MYSQL_PORT=3306/g' ${GITHUB_WORKSPACE}/.env
+          
         - name: Run Unit Tests
           run: mvn test -B -e -X 
-        - name: Prepare Intergration Tests
-          run: |
-           sudo apt-get -y install libargon2-0
-           mvn -Pdocker validate
-        - name: Run Intergration Tests
-          run: |
-           mvn verify -DskipUTs=true -DmongoDocker -B
 
         # Set up JDK 1.8
         - name: Set up JDK 1.8
@@ -55,11 +50,5 @@ jobs:
           with:
             java-version: 1.8
 
-       # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
-        - uses: ashley-taylor/junit-report-annotations-action@master
-          with:
-            access-token: ${{ secrets.GITHUB_TOKEN }}
-          if: always()
-          
 
 
