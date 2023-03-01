@@ -32,7 +32,7 @@ jobs:
         - name: Start Mysql
           run: |
            sudo /etc/init.d/mysql start
-           mysql -uroot -proot
+           mysql -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
            # mysql -e 'CREATE DATABASE `${{env.DB_DATABASE}}`;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
            # mysql -e 'SHOW DATABASES;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
 
