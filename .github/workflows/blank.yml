@@ -38,8 +38,11 @@ jobs:
         # https://ovirium.com/blog/how-to-make-mysql-work-in-your-github-actions/
         - name: Start Mysql
           run: |
-           systemctl status mysql.service
-           sudo service mysql start
+           systemctl status mysqld
+           mysqld --initialize --console
+           chown -R mysql:mysql /var/lib/mysql/
+           systemctl start mysqld
+           systemctl status mysqld
            mysql -e 'CREATE DATABASE `${{env.DB_DATABASE}}`;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
            mysql -e 'SHOW DATABASES;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
 
