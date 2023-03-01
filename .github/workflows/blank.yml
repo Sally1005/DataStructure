@@ -33,7 +33,7 @@ jobs:
           run: |
            sudo /etc/init.d/mysql start
              pwd
-            mysql -e "use mysql;grant all privileges on tree.* to root@'localhost';skip-grant-tables;FLUSH PRIVILEGES; ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED BY '${{ env.DB_PASSWORD }}';" -uroot -proot
+            mysql -e "use mysql;grant all privileges on tree.* to root@'localhost';FLUSH PRIVILEGES; ALTER USER '${{ env.DB_USER }}'@'localhost' IDENTIFIED BY '${{ env.DB_PASSWORD }}';" -uroot -proot
             mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
         - name: Modify MySQL Connection Variables
           run: |
