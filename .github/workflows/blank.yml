@@ -32,7 +32,7 @@ jobs:
         - name: Start Mysql
           run: |
            sudo /etc/init.d/mysql start
-           mysql -e "use mysql; FLUSH PRIVILEGES; ALTER USER '${{ secrets.DB_USER }}'@'%' IDENTIFIED BY '${{ secrets.DB_PASSWORD }}';" -uroot -proot
+           mysql -e "use mysql; FLUSH PRIVILEGES; ALTER USER 'root'@'%' IDENTIFIED BY 'root';" -uroot -proot
            mysql -e 'CREATE DATABASE tree;' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
            # alter user '${{env.DB_USER}}'@'%' identified with mysql_native_password by '${{env.DB_PASSWORD}}';
            #  CREATE DATABASE `tree` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
