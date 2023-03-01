@@ -5,9 +5,7 @@ on:
   # 在push时触发这个事件workflow
   push:
     branches: [ main ]
-    pull_request:
-      branches: [ main ]
-
+    
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -41,7 +39,7 @@ jobs:
         - name: Start Mysql
           run: |
            systemctl status mysql.service
-           Started MySQL Community Server
+           Starting MySQL Community Server...
            sudo service mysql start
            mysql -e 'CREATE DATABASE `${{env.DB_DATABASE}}`;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
            mysql -e 'SHOW DATABASES;' -u${{env.DB_USER}} -p${{env.DB_PASSWORD}}
