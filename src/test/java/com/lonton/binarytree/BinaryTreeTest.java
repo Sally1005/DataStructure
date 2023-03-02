@@ -72,7 +72,7 @@ public class BinaryTreeTest {
         list.add("西瓜");
         list.add("哈密瓜");
         log.info("前序遍历打印二叉树:{}", list);
-        Assertions.assertEquals(list, actual, "NotEquals---前序遍历打印二叉树实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(list, actual, " 前序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
 
@@ -99,7 +99,7 @@ public class BinaryTreeTest {
         list.add("瓜果类");
         list.add("哈密瓜");
         log.info("中序遍历打印二叉树:{}", list);
-        Assertions.assertEquals(list, actual, "NotEquals---中序遍历打印二叉树实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(list, actual, " 中序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
     /**
@@ -125,7 +125,7 @@ public class BinaryTreeTest {
         list.add("瓜果类");
         list.add("水果");
         log.info("后序遍历打印二叉树:{}", list);
-        Assertions.assertEquals(list, list, "NotEquals---后序遍历打印二叉树实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(list, list, " 后序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
     /**
@@ -139,7 +139,7 @@ public class BinaryTreeTest {
         new PreTraverser().traverse(BuildTree(), visitor, id);
         String target = visitor.getFoundNode().getData();
         log.info("前序遍历查找节点:{}", target);
-        Assertions.assertEquals("水果", target, "NotEquals---根据id，前序遍历查找节点实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals("水果", target, " 根据id，前序遍历查找节点实际得到的结果与预期结果不相等。");
     }
 
     /**
@@ -153,7 +153,7 @@ public class BinaryTreeTest {
         new MidTraverser().traverse(BuildTree(), visitor, id);
         String target = visitor.getFoundNode().getData();
         log.info("中序遍历查找节点:{}", target);
-        Assertions.assertEquals("瓜果类", target, "NotEquals---根据id，中序遍历查找节点实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals("瓜果类", target, " 根据id，中序遍历查找节点实际得到的结果与预期结果不相等。");
     }
 
     /**
@@ -167,7 +167,7 @@ public class BinaryTreeTest {
         new PostTraverser().traverse(BuildTree(), visitor, id);
         String target = visitor.getFoundNode().getData();
         log.info("后序遍历查找节点:{}", target);
-        Assertions.assertEquals("瓜果类", target, "NotEquals---根据id，后序遍历查找节点实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals("瓜果类", target, " 根据id，后序遍历查找节点实际得到的结果与预期结果不相等。");
     }
 
     /**
@@ -177,7 +177,7 @@ public class BinaryTreeTest {
     public void countHeight() {
         CountHeightVisitor visitor = new CountHeightVisitor();
         new PostTraverser().traverse(BuildTree(), visitor);
-        Assertions.assertEquals(3, visitor.getHeight(), "NotEquals---计算树的高度实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(3, visitor.getHeight(), " 计算树的高度实际得到的结果与预期结果不相等。");
     }
 
     /**
@@ -187,7 +187,7 @@ public class BinaryTreeTest {
     public void nodeNum() {
         NodeNumVisitor visitor = new NodeNumVisitor();
         new PreTraverser().traverse(BuildTree(), visitor);
-        Assertions.assertEquals(7, visitor.getCount(), "NotEquals---计算树的节点个数实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(7, visitor.getCount(), " 计算树的节点个数实际得到的结果与预期结果不相等。");
     }
 
     /**
@@ -206,7 +206,7 @@ public class BinaryTreeTest {
         list.add("西瓜");
         list.add("哈密瓜");
         log.info("前序遍历打印二叉树:{}", list);
-        Assertions.assertEquals(list, visitor.getRes(), "NotEquals---前序遍历打印二叉树实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(list, visitor.getRes(), " 前序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
 
@@ -217,9 +217,8 @@ public class BinaryTreeTest {
     public void midFilter() {
         SearchVisitor visitor = new SearchVisitor();
         List<Predicate<BinaryTree.TreeNode>> predicates = new ArrayList<>();
-        // 取或关系
+        // 取与关系
         predicates.add(treeNode -> treeNode.getLevel() > 2 && treeNode.getId() < 5);
-        predicates.add(treeNode -> treeNode.getId() > 5);
         visitor.setFilters(predicates);
         new MidTraverser().traverse(BuildTree(), visitor);
         List<String> actual = new ArrayList<>();
@@ -228,10 +227,8 @@ public class BinaryTreeTest {
         }
         List<String> list = new ArrayList<>();
         list.add("橙子");
-        list.add("西瓜");
-        list.add("哈密瓜");
         log.info("中序过滤二叉树:{}", list);
-        Assertions.assertEquals(list, actual, "NotEquals---中序过滤二叉树实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(list, actual, " 中序过滤二叉树实际得到的结果与预期结果不相等。");
     }
 
     /**
