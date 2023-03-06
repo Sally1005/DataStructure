@@ -28,7 +28,7 @@ jobs:
              restore-keys: |
               ${{ runner.os }}-maven-
         
-        - if: ${{steps.cache-maven.outputs.cache-hit != 'true'}}
+        - if: steps.cache-maven.outputs.cache-hit != 'true'
           name: List the state of maven modules
           continue-on-error: true
           run: mvn dependency
