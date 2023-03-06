@@ -37,6 +37,11 @@
 ```
 
 
+# Github Actions 
+
+[![Junit](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml/badge.svg?event=push)](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml)
+
+
 
 
 
