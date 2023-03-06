@@ -9,32 +9,30 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     env:
       DB_DATABASE: ${{secrets.DB_DATABASE}}
       DB_USER: ${{secrets.DB_USER}}
-      MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
-      
-   steps:
+      MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}      
+    steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
          distribution: 'temurin'
          java-version: '17'
          cache: 'maven'
-     - name: Build with Maven
+      - name: Build with Maven
         run: mvn -B package --file pom.xml
-        - name: Set timezone to Shanghai
-          run: |
-            sudo rm /etc/localtime
-            sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
+      - name: Set timezone to Shanghai
+        run: |
+          sudo rm /etc/localtime
+          sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
             
         # Start Mysql
         # https://ovirium.com/blog/how-to-make-mysql-work-in-your-github-actions/
-        - name: Start Mysql
-          run: |
+      - name: Start Mysql
+        run: |
            sudo /etc/init.d/mysql start
-           
+       
             mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';grant all privileges on tree.fruit to 'Tom'@'localhost';FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';create database tree;" 
             mysql -uroot -proot -Dtree -e "DROP TABLE IF EXISTS fruit;CREATE TABLE fruit (
                 id INT(11) NOT NULL AUTO_INCREMENT,
@@ -53,14 +51,14 @@ jobs:
                INSERT INTO fruit VALUES (7, '哈密瓜', 0, 3, 3);
                 "    
      
-        - name: Run Unit Tests
-          run: mvn test -B -e -X 
+      - name: Run Unit Tests
+        run: mvn test -B -e -X 
           
        # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
-        - uses: ashley-taylor/junit-report-annotations-action@master
-          with:
+      - uses: ashley-taylor/junit-report-annotations-action@master
+        with:
             access-token: ${{ secrets.GITHUB_TOKEN }}
-          if: always()
+        if: always()
 
 
 
