@@ -15,7 +15,7 @@ jobs:
       DB_USER: ${{secrets.DB_USER}}
       MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
       
-    steps:
+  steps:
         - name: Check out the codes
         - uses: actions/checkout@v3
         
@@ -27,9 +27,21 @@ jobs:
              key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
              restore-keys: |
               ${{ runner.os }}-maven-
+            
+        - if: steps.cache-maven.outputs.cache-hit != 'true'
+          name: List the state of maven modules
+          continue-on-error: true
+          run: mvn dependency
+
+        - name: Install dependencies
+          run: mvn install
+
+        - name: Build
+          run: mvn package
+
+        - name: Test
+          run: mvn test
         
-       
-       
         - name: Set up JDK 1.8
           uses: actions/setup-java@v1
           with:
