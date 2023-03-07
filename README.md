@@ -35,9 +35,9 @@
 └─ pom.xml                                  Maven配置
 
 ```
+![example workflow](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml/badge.svg)
 
-
-# Github Actions 
+# GitHub Actions 
 
 [![Junit](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml/badge.svg?event=push)](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml)
 
