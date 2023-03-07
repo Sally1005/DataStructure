@@ -26,20 +26,6 @@ jobs:
              key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
              restore-keys: |
               ${{ runner.os }}-maven-
-            
-        - if: steps.cache-maven.outputs.cache-hit != 'true'
-          name: List the state of maven modules
-          continue-on-error: true
-          run: mvn dependency
-
-        - name: Install dependencies
-          run: mvn install
-
-        - name: Build
-          run: mvn package
-
-        - name: Test
-          run: mvn test
         
         - name: Set up JDK 1.8
           uses: actions/setup-java@v1
@@ -56,9 +42,10 @@ jobs:
           run: |
            sudo /etc/init.d/mysql start
            
-            mysql -uroot -proot -e "create user 'Tom'@'192.168.3.180' identified by 'root';
-              grant all privileges on tree.fruit to 'Tom'@'192.168.3.180';
-              FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';
+            mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
+              grant all privileges on tree.fruit to 'Tom'@'localhost';
+              FLUSH PRIVILEGES;
+              ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';
               create database tree;" 
             mysql -uroot -proot -Dtree -e "DROP TABLE IF EXISTS fruit;
               CREATE TABLE fruit (
