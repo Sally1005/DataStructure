@@ -56,8 +56,12 @@ jobs:
           run: |
            sudo /etc/init.d/mysql start
            
-            mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';grant all privileges on tree.fruit to 'Tom'@'localhost';FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';create database tree;" 
-            mysql -uroot -proot -Dtree -e "DROP TABLE IF EXISTS fruit;CREATE TABLE fruit (
+            mysql -uroot -proot -e "create user 'Tom'@'192.168.3.180' identified by 'root';
+              grant all privileges on tree.fruit to 'Tom'@'192.168.3.180';
+              FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';
+              create database tree;" 
+            mysql -uroot -proot -Dtree -e "DROP TABLE IF EXISTS fruit;
+              CREATE TABLE fruit (
                 id INT(11) NOT NULL AUTO_INCREMENT,
                 data varchar(20) DEFAULT NULL COMMENT '当前节点',
                 is_left INT(11)  DEFAULT 1 COMMENT '左子节点',
