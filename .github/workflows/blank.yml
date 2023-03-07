@@ -44,7 +44,8 @@ jobs:
            
             mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
               grant all privileges on tree.fruit to 'Tom'@'localhost';
-              FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';
+              FLUSH PRIVILEGES;
+              ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';
               create database tree;" 
             mysql -uroot -proot -Dtree -e "DROP TABLE IF EXISTS fruit;
               CREATE TABLE fruit (
