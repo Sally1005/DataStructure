@@ -1,3 +1,8 @@
+
+# data-structure [![Junit](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml/badge.svg?event=push)](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml)
+
+
+
 # 项目介绍
 
 该工程是一个springboot工程项目。主要是练习数据结构中的树。包括二叉树的递归遍历和非递归遍历，以及查找树、打印树、计算树高、计算节点等。<br/>
@@ -19,11 +24,11 @@
 │  │  │          │  ├─hard
 │  │  │          │  └─med
 │  │  │          └─binaryTree
-│  │  │                  ├─impl             持久层
+│  │  │                  ├─impl             实现类
 │  │  │                  ├─mapper           mapper
 │  │  │                  ├─pojo             实体类
 │  │  │                  ├─utils            工具包
-│  │  │                  ├─ATraverser       遍历抽象类
+│  │  │                  ├─AVistitor        访问抽象类
 │  │  │                  ├─ITraverser       遍历接口     
 │  │  │                  ├─IVisitor         二叉树访问数据接口
 │  │  │                  └─TreeApplication  启动项                                      
@@ -35,13 +40,6 @@
 └─ pom.xml                                  Maven配置
 
 ```
-![example workflow](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml/badge.svg)
-
-# GitHub Actions 
-
-[![Junit](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml/badge.svg?event=push)](https://github.com/Sally1005/data-structure/actions/workflows/blank.yml)
-
-
 
 
 
