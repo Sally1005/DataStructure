@@ -15,24 +15,39 @@ import org.junit.jupiter.api.Test;
 public class Q222CountCompleteTreeNodesTest {
 
     @Test
-    public void test() {
+    public void test1() {
         // 构建完全二叉树
         Integer[] nums = new Integer[]{1, 2, 3, 4, 5, 6};
         TreeNode root = TreeNode.arrayToTree(nums);
 
-        Integer[] nums2 = new Integer[]{1, 2, 3, 4, 5, 6, 7};
-        TreeNode root2 = TreeNode.arrayToTree(nums2);
-
-        Integer[] nums3 = new Integer[0];
-        TreeNode root3 = TreeNode.arrayToTree(nums3);
-
         int result = new Q222CountCompleteTreeNodes().countNodes(root);
-        int result2 = new Q222CountCompleteTreeNodes().countNodes(root2);
-        int result3 = new Q222CountCompleteTreeNodes().countNodes(root3);
 
         // 断言
         Assertions.assertEquals(6, result, "完全二叉树的节点个数计算错误。");
+    }
+
+    @Test
+    public void test2() {
+        // 构建完全二叉树
+        Integer[] nums2 = new Integer[]{1, 2, 3, 4, 5, 6, 7};
+        TreeNode root2 = TreeNode.arrayToTree(nums2);
+
+        int result2 = new Q222CountCompleteTreeNodes().countNodes(root2);
+
+        // 断言
         Assertions.assertEquals(7, result2, "完全二叉树的节点个数计算错误。");
+
+    }
+
+    @Test
+    public void test3() {
+        // 构建完全二叉树
+        Integer[] nums3 = new Integer[0];
+        TreeNode root3 = TreeNode.arrayToTree(nums3);
+
+        int result3 = new Q222CountCompleteTreeNodes().countNodes(root3);
+
+        // 断言
         Assertions.assertEquals(0, result3, "完全二叉树的节点个数计算错误。");
     }
 }
