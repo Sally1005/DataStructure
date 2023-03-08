@@ -1,0 +1,10 @@
+language: java
+script:
+  # do stuff with open Java 8
+  - jdk_switcher use openjdk8
+before_script:
+  # installs dependencies:
+  mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  # builds your project with Maven 3
+  mvn test -B
+
