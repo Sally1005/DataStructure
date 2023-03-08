@@ -26,10 +26,9 @@ jobs:
              restore-keys: |
               ${{ runner.os }}-maven-
         
-        - name: Set up JDK 1.8
+        - name: Cache local JDK
           id: cache-jdk
           uses: actions/cache@v3
-           echo $JAVA_HOME
           with:
            path: ~/usr/lib/jvm #linux安装后jdk默认路径
            key:
