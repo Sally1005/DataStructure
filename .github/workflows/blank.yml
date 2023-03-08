@@ -1,8 +1,6 @@
 name: Junit
 
-# on用来控制何时运行这个workflow
 on:
-  # 在push时触发这个事件workflow
   push:
     branches: [ main ]
     
@@ -31,6 +29,7 @@ jobs:
         - name: Set up JDK 1.8
           id: cache-jdk
           uses: actions/cache@v3
+           echo $JAVA_HOME
           with:
            path: ~/usr/lib/jvm #linux安装后jdk默认路径
            key:
