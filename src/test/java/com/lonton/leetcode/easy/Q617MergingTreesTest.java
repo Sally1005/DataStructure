@@ -3,8 +3,8 @@ package com.lonton.leetcode.easy;
 
 import com.lonton.leetcode.common.TreeNode;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
@@ -19,9 +19,10 @@ import java.util.Arrays;
  */
 @Slf4j
 public class Q617MergingTreesTest {
+    // 示例1
     @Test
-    public void test() {
-        // 示例1
+    public void test1() {
+
         Integer[] nums1 = new Integer[]{1};
         TreeNode root1 = TreeNode.arrayToTree(nums1);
         Integer[] nums2 = new Integer[]{1, 2};
@@ -39,7 +40,12 @@ public class Q617MergingTreesTest {
         Assertions.assertArrayEquals(new Integer[]{2, 2}, nullFilteredArr,
                 " 合并二叉树失败，两数组不相等。");
 
-        // 示例2
+    }
+
+    // 示例2
+    @Test
+    public void test2(){
+
         Integer[] nums3 = new Integer[]{1, 3, 2, 5};
         TreeNode root3 = TreeNode.arrayToTree(nums3);
         Integer[] nums4 = new Integer[]{2, 1, 3, null, 4, null, 7};
@@ -57,7 +63,12 @@ public class Q617MergingTreesTest {
         Assertions.assertArrayEquals(new Integer[]{3, 4, 5, 5, 4, null, 7}, nullFilteredArr2,
                 " 合并二叉树失败，两数组不相等。");
 
-        // 示例3
+    }
+
+    // 示例3
+    @Test
+    public  void test3(){
+
         Integer[] nums5 = new Integer[]{1, 3, 2, 5};
         TreeNode root5 = TreeNode.arrayToTree(nums5);
         Integer[] nums6 = new Integer[]{4, 2, 7, 1, 3, 6, 9};
@@ -75,7 +86,12 @@ public class Q617MergingTreesTest {
         Assertions.assertArrayEquals(new Integer[]{5, 5, 9, 6, 3, 6, 9}, nullFilteredArr3,
                 " 合并二叉树失败，两数组不相等。");
 
-        // 示例4
+    }
+
+    // 示例4
+    @Test
+    public  void test4(){
+
         Integer[] nums7 = new Integer[]{4,2,7,1,3,6,9};
         TreeNode root7 = TreeNode.arrayToTree(nums7);
         Integer[] nums8 = new Integer[0];
