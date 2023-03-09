@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
+import java.util.List;
 
 /**
  * 617. 测试合并二叉树
@@ -19,7 +19,7 @@ import java.util.Arrays;
  */
 @Slf4j
 public class Q617MergingTreesTest {
-    // 示例1
+
     @Test
     public void test1() {
 
@@ -29,22 +29,15 @@ public class Q617MergingTreesTest {
         TreeNode root2 = TreeNode.arrayToTree(nums2);
 
         TreeNode node = Q617MergingTrees.mergeTrees(root1, root2);
-        Integer[] array = TreeNode.treeToArray(node);
-        // 因为数组后面的null不影响数据，为了方便测试，将数组后面的null值都去掉
-        int idx = array.length - 1;
-        while (array[idx] == null) {
-            idx--;
-        }
-        Integer[] nullFilteredArr = Arrays.copyOf(array, idx + 1);
+        List<Integer> array = TreeNode.treeToArray(node);
 
-        Assertions.assertArrayEquals(new Integer[]{2, 2}, nullFilteredArr,
+        Assertions.assertArrayEquals(new Integer[]{2, 2}, array.toArray(),
                 " 合并二叉树失败，两数组不相等。");
 
     }
 
-    // 示例2
     @Test
-    public void test2(){
+    public void test2() {
 
         Integer[] nums3 = new Integer[]{1, 3, 2, 5};
         TreeNode root3 = TreeNode.arrayToTree(nums3);
@@ -52,22 +45,15 @@ public class Q617MergingTreesTest {
         TreeNode root4 = TreeNode.arrayToTree(nums4);
 
         TreeNode node2 = Q617MergingTrees.mergeTrees(root3, root4);
-        Integer[] array2 = TreeNode.treeToArray(node2);
-        // 因为数组后面的null不影响数据，为了方便测试，将数组后面的null值都去掉
-        int idx2 = array2.length - 1;
-        while (array2[idx2] == null) {
-            idx2--;
-        }
-        Integer[] nullFilteredArr2 = Arrays.copyOf(array2, idx2 + 1);
+        List<Integer> array = TreeNode.treeToArray(node2);
 
-        Assertions.assertArrayEquals(new Integer[]{3, 4, 5, 5, 4, null, 7}, nullFilteredArr2,
+        Assertions.assertArrayEquals(new Integer[]{3, 4, 5, 5, 4, null, 7}, array.toArray(),
                 " 合并二叉树失败，两数组不相等。");
 
     }
 
-    // 示例3
     @Test
-    public  void test3(){
+    public void test3() {
 
         Integer[] nums5 = new Integer[]{1, 3, 2, 5};
         TreeNode root5 = TreeNode.arrayToTree(nums5);
@@ -75,38 +61,26 @@ public class Q617MergingTreesTest {
         TreeNode root6 = TreeNode.arrayToTree(nums6);
 
         TreeNode node3 = Q617MergingTrees.mergeTrees(root5, root6);
-        Integer[] array3 = TreeNode.treeToArray(node3);
-        // 因为数组后面的null不影响数据，为了方便测试，将数组后面的null值都去掉
-        int idx3 = array3.length - 1;
-        while (array3[idx3] == null) {
-            idx3--;
-        }
-        Integer[] nullFilteredArr3 = Arrays.copyOf(array3, idx3 + 1);
+        List<Integer> array = TreeNode.treeToArray(node3);
 
-        Assertions.assertArrayEquals(new Integer[]{5, 5, 9, 6, 3, 6, 9}, nullFilteredArr3,
+        Assertions.assertArrayEquals(new Integer[]{5, 5, 9, 6, 3, 6, 9}, array.toArray(),
                 " 合并二叉树失败，两数组不相等。");
 
     }
 
-    // 示例4
     @Test
-    public  void test4(){
+    public void test4() {
 
-        Integer[] nums7 = new Integer[]{4,2,7,1,3,6,9};
+        Integer[] nums7 = new Integer[]{4, 2, 7, 1, 3, 6, 9};
         TreeNode root7 = TreeNode.arrayToTree(nums7);
         Integer[] nums8 = new Integer[0];
         TreeNode root8 = TreeNode.arrayToTree(nums8);
 
         TreeNode node4 = Q617MergingTrees.mergeTrees(root7, root8);
-        Integer[] array4 = TreeNode.treeToArray(node4);
-        // 因为数组后面的null不影响数据，为了方便测试，将数组后面的null值都去掉
-        int idx4 = array4.length - 1;
-        while (array4[idx4] == null) {
-            idx4--;
-        }
-        Integer[] nullFilteredArr4 = Arrays.copyOf(array4, idx4 + 1);
+        List<Integer> array = TreeNode.treeToArray(node4);
 
-        Assertions.assertArrayEquals(new Integer[]{4,2,7,1,3,6,9}, nullFilteredArr4,
+
+        Assertions.assertArrayEquals(new Integer[]{4, 2, 7, 1, 3, 6, 9}, array.toArray(),
                 " 合并二叉树失败，两数组不相等。");
 
     }
