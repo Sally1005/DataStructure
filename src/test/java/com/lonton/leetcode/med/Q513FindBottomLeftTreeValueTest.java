@@ -16,24 +16,24 @@ public class Q513FindBottomLeftTreeValueTest {
     @Test
     public void test1() {
         // 构建二叉树
-        Integer[] nums = new Integer[]{1,2,3,4,null,5,6,null,null,7};
+        Integer[] nums = new Integer[]{1, 2, 3, 4, null, 5, 6, null, null, 7};
         TreeNode root = TreeNode.arrayToTree(nums);
 
         int result = new Q513FindBottomLeftTreeValue().findBottomLeftValue(root);
 
         // 断言
-        Assertions.assertEquals(7, result, "树左下角的值计算错误。");
+        Assertions.assertEquals(7, result, "当树左下角的值为最低端、最左边、为左子树节点的情况时计算错误。");
     }
 
     @Test
     public void test2() {
         // 构建二叉树
-        Integer[] nums2 = new Integer[]{1,2,3,null,null,null,4,null,5};
+        Integer[] nums2 = new Integer[]{1, 2, 3, null, null, null, 4, null, 5};
         TreeNode root2 = TreeNode.arrayToTree(nums2);
 
         int result2 = new Q513FindBottomLeftTreeValue().findBottomLeftValue(root2);
 
         // 断言
-        Assertions.assertEquals(5, result2, "树左下角的值计算错误。");
+        Assertions.assertEquals(5, result2, "当树左下角的值为最低端、最左边、为右子树节点的情况时计算错误。");
     }
 }
