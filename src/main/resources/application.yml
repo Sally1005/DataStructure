@@ -56,7 +56,7 @@ spring:
     # 设置获取连接出错时的自动重连次数
     connection-error-retry-attempts: 1
     # 设置获取连接时的重试次数，-1为不重试
-    not-full-fimeout-retry-count: 2
+    not-full-timeout-retry-count: 2
     # 重连间隔时间 单位毫秒
     acquire-retry-delay: 10000
     # 设置获取连接出错时是否马上返回错误，true为马上返回
