@@ -11,7 +11,6 @@ services:
     container_name: mysql
     volumes:
       - "./db:/var/lib/mysql"
-      - "./conf/my.cnf:/etc/my.cnf"
       - "./docker-compose/fruit.sql:/docker-entrypoint-initdb.d/fruit.sql"
     ports:
       - "3306:3306"
