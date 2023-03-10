@@ -71,8 +71,7 @@ jobs:
        #tree is the name of database
         - name: load database
           run:  |
-           docker exec -i mysql
-           docker start mysql
+           docker exec -i mysql  start mysql
            mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
             
       
