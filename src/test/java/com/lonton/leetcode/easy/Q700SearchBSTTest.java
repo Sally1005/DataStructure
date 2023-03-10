@@ -4,7 +4,7 @@ import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
+
 
 /**
  * 测试二叉搜索树中的搜索<p/>
@@ -19,9 +19,9 @@ public class Q700SearchBSTTest {
         TreeNode root = TreeNode.arrayToTree(nums);
 
         TreeNode node = Q700SearchBST.searchBST(root, 2);
-        List<Integer> array = TreeNode.treeToArray(node);
+        Integer[] array = TreeNode.treeToArray(node);
 
-        Assertions.assertArrayEquals(new Integer[]{2, 1, 3}, array.toArray(),
+        Assertions.assertArrayEquals(new Integer[]{2, 1, 3}, array,
                 " 二叉搜索树搜索整数值失败，两数组不相等。");
     }
 }

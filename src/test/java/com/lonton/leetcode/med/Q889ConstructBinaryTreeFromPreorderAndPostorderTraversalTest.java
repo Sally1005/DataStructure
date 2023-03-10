@@ -4,7 +4,6 @@ import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 
 /**
  * 测试根据前序和后序遍历构造二叉树 <p/>
@@ -20,9 +19,9 @@ public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversalTest {
 
         TreeNode tree = new Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal().buildTree(
                 new int[]{1, 2, 4, 5, 3, 6, 7}, new int[]{4, 5, 2, 6, 7, 3, 1});
-        List<Integer> array = TreeNode.treeToArray(tree);
+        Integer[] array = TreeNode.treeToArray(tree);
 
-        Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7}, array.toArray(),
+        Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7}, array,
                 "比对失败，前序数组和后序数组构成的二叉搜索树与与实际预期不相等。");
     }
 
@@ -31,8 +30,8 @@ public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversalTest {
 
         TreeNode tree2 = new Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal().buildTree(
                 new int[0], new int[0]);
-        List<Integer> array = TreeNode.treeToArray(tree2);
-        Assertions.assertArrayEquals(new Integer[0], array.toArray(),
+        Integer[] array = TreeNode.treeToArray(tree2);
+        Assertions.assertArrayEquals(new Integer[0], array,
                 "比对失败，前序数组和后序数组构成的二叉搜索树与与实际预期不相等。");
     }
 }

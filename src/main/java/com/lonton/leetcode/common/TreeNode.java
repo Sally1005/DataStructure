@@ -2,7 +2,10 @@ package com.lonton.leetcode.common;
 
 import lombok.Data;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 
 /**
@@ -79,9 +82,9 @@ public class TreeNode<T> {
      * @param root 根节点
      * @return 数组
      */
-    public static List<Integer> treeToArray(TreeNode root) {
+    public static Integer[] treeToArray(TreeNode root) {
         // 根节点为空，返回一个空数组
-        if (root == null) return new ArrayList<>();
+        if (root == null) return new Integer[0];
         // 由于不知道数组长度，先将元素存入list中
         List<Integer> list = new ArrayList<>();
         // 需要向队列中添加null,ArrayDequeue不能添加null
@@ -102,15 +105,12 @@ public class TreeNode<T> {
                 queue.offer(node.right);
             }
         }
-        int size = list.size();
-        // 去掉多余的null
-        for (int i = size - 1; i >= 0; i--) {
-            if (list.get(i) == null) {
-                list.remove(i);
-            } else {
-                break;
-            }
+        // 去掉数组后多余的null
+        int idx= list.size()-1;
+        while ( idx >0 && list.get( idx) == null ) {
+            idx--;
         }
-        return list;
+        // 截取目标数组指定范围
+        return list.subList(0, idx+1).toArray(new Integer[0]);
     }
 }

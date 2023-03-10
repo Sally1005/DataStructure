@@ -23,7 +23,7 @@ public class Q108SortedArrayToBSTTest {
         Integer[] expected = new Integer[]{0, -10, 5, null, -3, null, 9};
 
         // 断言
-        Assertions.assertArrayEquals(expected, TreeNode.treeToArray(actual).toArray(),
+        Assertions.assertArrayEquals(expected, TreeNode.treeToArray(actual),
                 "比对失败，两个有序数组没有构为相同的二叉搜索树");
     }
 }
