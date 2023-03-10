@@ -60,7 +60,15 @@ jobs:
           run: docker-compose build
           
         - name: up mysql and apache container runs
-          run: docker-compose up -d
+          run: |
+            docker-compose up -d
+            cd /home/runner/work/data-structure/data-structure/conf/my.cnf
+            ls
+            rm -rf my.cnf/
+            touch my.cnf
+            ls
+            docker-compose up -d
+            
         
 
         #I am using codeIgniter4
