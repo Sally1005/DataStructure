@@ -61,7 +61,6 @@ jobs:
           
         - name: up mysql and apache container runs
           run: |
-            docker-compose up 
             cd /home/runner/work/data-structure/data-structure/conf/my.cnf
             ls
             rm -rf my.cnf/
