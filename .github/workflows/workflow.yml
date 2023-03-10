@@ -63,15 +63,16 @@ jobs:
           run: |
             docker-compose up -d     
  
-        - name: buffering time for db container
-          uses: jakejarvis/wait-action@master
-          with:
-           time: '30s'
+       # - name: buffering time for db container
+        #  uses: jakejarvis/wait-action@master
+         # with:
+          # time: '30s'
 
        #tree is the name of database
         - name: load database
           run:  |
-           docker exec -i mysql  start mysql
+           docker start mysql
+           docker exec -i mysql  
            mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
             
       
