@@ -71,6 +71,12 @@ jobs:
        #tree is the name of database
         - name: load database
           run:  |
+           sudo /etc/init.d/mysql start     
+              mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
+              grant all privileges on tree.fruit to 'Tom'@'localhost';
+              flush privileges;
+              alter user 'Tom'@'localhost' identified by 'root';
+              create database tree;" 
              docker exec -i mysql mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
       
        # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
