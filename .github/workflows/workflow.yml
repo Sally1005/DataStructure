@@ -72,9 +72,7 @@ jobs:
         - name: load database
           run:  |
            docker start mysql
-           docker exec -i mysql  
-           mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
-            
+           docker exec -i mysql mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
       
        # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
         - uses: ashley-taylor/junit-report-annotations-action@master
