@@ -10,7 +10,7 @@ services:
     restart: always
     container_name: mysql
     volumes:
-      - "./db:/var/lib/mysql"
+      - "./docker-compose/mysql/var/lib/mysql:/var/lib/mysql"
       - "./docker-compose/fruit.sql:/docker-entrypoint-initdb.d/fruit.sql"
     ports:
       - "3306:3306"
