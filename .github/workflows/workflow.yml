@@ -56,23 +56,34 @@ jobs:
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
             
-        - name: Cache mysql
-          id: cache-mysql
-          uses: actions/cache@v3
-          with:
-            path: $HOME/BYOND
-            key: ${{ runner.os }}-byond
-
-       #tree is the name of database
-        - name: setup database
+        - name: Build the Docker image
+          run: docker-compose build
+          
+        - name: up mysql and apache container runs
           run: |
-           sudo systemctl start mysql    
-           mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
-           grant all privileges on tree.fruit to 'Tom'@'localhost';
-           flush privileges;
-           alter user 'Tom'@'localhost' identified by 'root';
-           create database tree;" 
-           mysql -uroot -proot < $GITHUB_WORKSPACE/assets/database/fruits.sql
+            docker-compose up -d   
+        
+         #tree is the name of database
+        - name: load database
+          run:  |
+             docker exec -i mysql bash mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
+            
+        #- name: Cache mysql
+          #id: cache-mysql
+          #uses: actions/cache@v3
+          #with:
+          #  path: $HOME/BYOND
+         #   key: ${{ runner.os }}-byond
+
+        #- name: setup database
+          #run: |
+           #sudo systemctl start mysql    
+           #mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
+           #grant all privileges on tree.fruit to 'Tom'@'localhost';
+           #flush privileges;
+           #alter user 'Tom'@'localhost' identified by 'root';
+          # create database tree;" 
+          # mysql -uroot -proot < $GITHUB_WORKSPACE/assets/database/fruits.sql
                           
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
@@ -89,6 +100,11 @@ jobs:
           with:
           # ci出现bug，是否继续跑
             fall_ci_if_error: true
+        
+
+
+
+
 
 
 
