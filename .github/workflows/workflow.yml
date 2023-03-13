@@ -66,6 +66,7 @@ jobs:
          #tree is the name of database
         - name: load database
           run:  |
+             apt-get install libaio1 libaio-dev
              docker exec -i mysql bash mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
             
         #- name: Cache mysql
