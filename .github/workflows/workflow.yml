@@ -12,7 +12,7 @@ jobs:
       DB_DATABASE: ${{secrets.DB_DATABASE}}
       DB_USER: ${{secrets.DB_USER}}
       MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
-      JAVA_HOME_17_X64: 'C:\hostedtoolcache\windows\Java_Microsoft_jdk\17.0.3\x64'
+      JAVA_HOME_17_X64: ${{secrets.JAVA_HOME_17_X64}} 
          
     steps:
         - name: check out code
@@ -55,28 +55,24 @@ jobs:
           run: |
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
-        
-        - name: Build the Docker image
-          run: docker-compose build
-          
-        - name: up mysql and apache container runs
-          run: |
-            docker-compose up -d     
- 
-       # - name: buffering time for db container
-        #  uses: jakejarvis/wait-action@master
-         # with:
-          # time: '30s'
+            
+        - name: Cache mysql
+          id: cache-mysql
+          uses: actions/cache@v3
+          with:
+            path: $HOME/BYOND
+            key: ${{ runner.os }}-byond
 
        #tree is the name of database
-        - name: load database
-          run:  |
-           sudo /etc/init.d/mysql start     
-              mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
-              grant all privileges on tree.fruit to 'Tom'@'localhost';
-              flush privileges;
-              alter user 'Tom'@'localhost' identified by 'root';
-              create database tree;" 
+        - name: setup database
+          run: |
+           sudo systemctl start mysql    
+           mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
+           grant all privileges on tree.fruit to 'Tom'@'localhost';
+           flush privileges;
+           alter user 'Tom'@'localhost' identified by 'root';
+           create database tree;" 
+           mysql -uroot -proot -Dtree -e "${{github.workspace}}/assets/database/fruits.sql"
                           
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
