@@ -12,7 +12,7 @@ jobs:
       DB_DATABASE: ${{secrets.DB_DATABASE}}
       DB_USER: ${{secrets.DB_USER}}
       MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
-      JAVA_HOME_17_X64: 'C:\hostedtoolcache\windows\Java_Microsoft_jdk\17.0.3\x64'
+      JAVA_HOME_17_X64: ${{secrets.JAVA_HOME_17_X64}} 
          
     steps:
         - name: check out code
@@ -55,35 +55,43 @@ jobs:
           run: |
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
-        
+            
         - name: Build the Docker image
           run: docker-compose build
           
         - name: up mysql and apache container runs
           run: |
-            cd /home/runner/work/data-structure/data-structure/conf/my.cnf
-            ls
-            rm -rf my.cnf/
-            touch my.cnf
-            ls
-            docker-compose up -d
-            
-        #I am using codeIgniter4
-        - name: install dependencies
-          run: docker exec  CI4_1 php composer.phar install
- 
-        - name: buffering time for db container
-          uses: jakejarvis/wait-action@master
-          with:
-           time: '30s'
-
-       #db_1 is the name of database
+            docker-compose up -d   
+        
+         #tree is the name of database
         - name: load database
-          run: docker exec -i mysql_1  mysql -uroot  -proot  tree< ./fruit.sql
-          
-        - name: unit test
-          run: docker exec  CI4_1  ./vendor/bin/phpunit
+          run:  |
+             sudo passwd root
+             root1
+             root1
+
+             apt-get install libaio1 libaio-dev
+             docker exec -i mysql bash mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
             
+        #- name: Cache mysql
+          #id: cache-mysql
+          #uses: actions/cache@v3
+          #with:
+          #  path: $HOME/BYOND
+         #   key: ${{ runner.os }}-byond
+
+        #- name: setup database
+          #run: |
+           #sudo systemctl start mysql    
+           #mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
+           #grant all privileges on tree.fruit to 'Tom'@'localhost';
+           #flush privileges;
+           #alter user 'Tom'@'localhost' identified by 'root';
+          # create database tree;" 
+          # mysql -uroot -proot < $GITHUB_WORKSPACE/assets/database/fruits.sql
+                          
+        - name: Run Unit Tests
+          run:  mvn -B test --file pom.xml
       
        # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
         - uses: ashley-taylor/junit-report-annotations-action@master
@@ -97,6 +105,11 @@ jobs:
           with:
           # ci出现bug，是否继续跑
             fall_ci_if_error: true
+        
+
+
+
+
 
 
 
