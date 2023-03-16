@@ -86,7 +86,7 @@ jobs:
       #  - name: load database
        #   run:  |
       #      mysqld --user=mysql
-       #      docker exec -i mysql bash mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
+       #      docker exec -i mysql bash mysql -uroot  -proot tree< ${{github.workspace}} assets/database/fruit.sql
             
         #- name: Cache mysql
           #id: cache-mysql
@@ -107,7 +107,7 @@ jobs:
            
         - name: setup database
           run: |
-         
+           sudo systemctl start mysql    
            docker exec mysqldb sh -c 'mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
            grant all privileges on tree.fruit to 'Tom'@'localhost';
            flush privileges;
