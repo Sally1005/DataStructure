@@ -115,7 +115,7 @@ jobs:
            create database tree;"'
            docker exec -i mysqldb sh -c 'exec mysql -u root -proot tree' < ${{github.workspace}}/assets/database/fruit.sql
            
-           #mysql -uroot -proot -Dtree<${{github.workspace}}/assets/database/fruits.sql
+           # mysql -uroot -proot -Dtree<${{github.workspace}}/assets/database/fruits.sql
                           
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
