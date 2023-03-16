@@ -107,8 +107,8 @@ jobs:
            
         - name: setup database
           run: |
-           sudo systemctl start mysql    
-            docker exec mysqldb sh -c 'mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
+         
+           docker exec mysqldb sh -c 'mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
            grant all privileges on tree.fruit to 'Tom'@'localhost';
            flush privileges;
            alter user 'Tom'@'localhost' identified by 'root';
