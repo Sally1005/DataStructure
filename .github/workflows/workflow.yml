@@ -103,7 +103,8 @@ jobs:
            flush privileges;
            alter user 'Tom'@'localhost' identified by 'root';
            create database tree;" 
-           mysql -uroot -proot -Dtree<${{github.workspace}}/assets/database/fruits.sql
+           docker exec -i mysqldb sh -c 'exec mysql -u root -proot tree' < ${{github.workspace}}/assets/database/fruits.sql
+           #mysql -uroot -proot -Dtree<${{github.workspace}}/assets/database/fruits.sql
                           
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
