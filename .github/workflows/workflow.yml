@@ -68,7 +68,8 @@ jobs:
        
         - name: Check installed/cached Java version
           run: java -version
-            
+         
+         # 设立时区
         - name: Set timezone to Shanghai
           run: |
             sudo rm /etc/localtime
@@ -84,11 +85,6 @@ jobs:
          #tree is the name of database
         - name: load database
           run:  |
-             sudo passwd root
-             root1
-             root1
-
-             apt-get install libaio1 libaio-dev
              docker exec -i mysql bash mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
             
         #- name: Cache mysql
