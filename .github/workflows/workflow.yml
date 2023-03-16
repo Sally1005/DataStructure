@@ -103,12 +103,12 @@ jobs:
            flush privileges;
            alter user 'Tom'@'localhost' identified by 'root';
            create database tree;" 
-           mysql -uroot -proot -Dtree< $GITHUB_WORKSPACE/assets/database/fruits.sql
+           mysql -uroot -proot -Dtree<${{github.workspace}}/assets/database/fruits.sql
                           
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
       
-       # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
+       # 使用Github Action市场提供的Junit流程来执行单元e测试，并且输出报告
         - uses: ashley-taylor/junit-report-annotations-action@master
           with:
             access-token: ${{ secrets.GITHUB_TOKEN }}
