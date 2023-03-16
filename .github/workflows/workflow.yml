@@ -85,8 +85,8 @@ jobs:
          #tree is the name of database
         - name: load database
           run:  |
-             cd /usr/bin/mysql
-             bin/mysqld --help
+             cd /usr/local/mysql/bin/ 
+             ls -lh mysqld
              docker exec -i mysql bash mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
             
         #- name: Cache mysql
