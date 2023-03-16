@@ -28,7 +28,7 @@ public class Q617MergingTreesTest {
         TreeNode root2 = TreeNode.arrayToTree(nums2);
 
         TreeNode node = Q617MergingTrees.mergeTrees(root1, root2);
-        Integer[] array = TreeNode.treeToArray(node);
+        Integer[] array = (Integer[]) TreeNode.treeToArray(node);
 
         Assertions.assertArrayEquals(new Integer[]{2, 2}, array,
                 " 合并二叉树失败，两数组不相等。");
@@ -44,7 +44,7 @@ public class Q617MergingTreesTest {
         TreeNode root4 = TreeNode.arrayToTree(nums4);
 
         TreeNode node2 = Q617MergingTrees.mergeTrees(root3, root4);
-        Integer[] array = TreeNode.treeToArray(node2);
+        Integer[] array = (Integer[]) TreeNode.treeToArray(node2);
 
         Assertions.assertArrayEquals(new Integer[]{3, 4, 5, 5, 4, null, 7}, array,
                 " 合并二叉树失败，两数组不相等。");
@@ -60,7 +60,7 @@ public class Q617MergingTreesTest {
         TreeNode root6 = TreeNode.arrayToTree(nums6);
 
         TreeNode node3 = Q617MergingTrees.mergeTrees(root5, root6);
-        Integer[] array = TreeNode.treeToArray(node3);
+        Integer[] array = (Integer[]) TreeNode.treeToArray(node3);
 
         Assertions.assertArrayEquals(new Integer[]{5, 5, 9, 6, 3, 6, 9}, array,
                 " 合并二叉树失败，两数组不相等。");
@@ -76,7 +76,7 @@ public class Q617MergingTreesTest {
         TreeNode root8 = TreeNode.arrayToTree(nums8);
 
         TreeNode node4 = Q617MergingTrees.mergeTrees(root7, root8);
-        Integer[] array = TreeNode.treeToArray(node4);
+        Integer[] array = (Integer[]) TreeNode.treeToArray(node4);
 
 
         Assertions.assertArrayEquals(new Integer[]{4, 2, 7, 1, 3, 6, 9}, array,

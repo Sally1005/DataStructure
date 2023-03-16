@@ -2,10 +2,7 @@ package com.lonton.leetcode.common;
 
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 
 /**
@@ -16,8 +13,8 @@ import java.util.Queue;
 @Data
 public class TreeNode<T> {
     T val;
-    TreeNode left;
-    TreeNode right;
+    TreeNode<T> left;
+    TreeNode<T> right;
 
 
     public TreeNode() {
@@ -28,10 +25,36 @@ public class TreeNode<T> {
         this.val = val;
     }
 
-    public TreeNode(T val, TreeNode left, TreeNode right) {
+    public TreeNode(T val, TreeNode<T> left, TreeNode<T> right) {
         this.val = val;
         this.left = left;
         this.right = right;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(val, left, right);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (obj == null) {
+            return false;
+        }
+
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+
+        TreeNode treeNode = (TreeNode) obj;
+
+        return Objects.equals(val, treeNode.val)
+                && Objects.equals(left, treeNode.left)
+                && Objects.equals(right, treeNode.right);
     }
 
 
@@ -77,40 +100,58 @@ public class TreeNode<T> {
     }
 
     /**
-     * 树转为数组
+     * 二叉树转为数组
      *
-     * @param root 根节点
+     * @param root 二叉树根节点
+     * @param <T>  二叉树元素类型
      * @return 数组
      */
-    public static Integer[] treeToArray(TreeNode root) {
+    public static <T extends Comparable<T>> T[] treeToArray(TreeNode<T> root) {
         // 根节点为空，返回一个空数组
-        if (root == null) return new Integer[0];
+        if (root == null) return null;
         // 由于不知道数组长度，先将元素存入list中
         List<Integer> list = new ArrayList<>();
         // 需要向队列中添加null,ArrayDequeue不能添加null
         Queue<TreeNode> queue = new LinkedList<>();
         // 加入根节点
         queue.offer(root);
+        int idx = 0;
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
                 TreeNode node = queue.poll();
                 if (node != null)
                     list.add((Integer) node.val);
-                else
-                    list.add(null);
+                else list.add(null);
+                // 当前节点为null或者队列为空时，左右节点为null
                 if (node == null || (queue.isEmpty() && node.left == null && node.right == null))
                     continue;
+
                 queue.offer(node.left);
                 queue.offer(node.right);
+                // 标记list集合中最后一个为非null元素的位置
+                if (!list.isEmpty() && list.get(list.size() - 1) != null) {
+                    idx = list.size() - 1;
+                }
             }
         }
-        // 去掉数组后多余的null
-        int idx= list.size()-1;
-        while ( idx >0 && list.get( idx) == null ) {
-            idx--;
-        }
-        // 截取目标数组指定范围
-        return list.subList(0, idx+1).toArray(new Integer[0]);
+//        // ①最后一个元素(循环可以移除，提高效率)
+//        int idx = list.size() - 1;
+//        while (idx > 0 && list.get(idx) == null) {
+//            idx--;
+//        }
+
+//        // ②去除多余的null(不建议使用list.remove()方法，效率低下)
+//        for (int i = list.size() - 1; i >= 0; i--) {
+//            if (list.get(i) == null) {
+//                list.remove(i);
+//            } else {
+//                // 遇到另外一个非Null的值后退出循环
+//                break;
+//            }
+//            return list;
+//        }
+
+        return (T[]) list.subList(0, idx + 1).toArray(new Integer[0]);
     }
 }
