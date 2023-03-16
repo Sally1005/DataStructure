@@ -94,6 +94,10 @@ jobs:
           #with:
           #  path: $HOME/BYOND
          #   key: ${{ runner.os }}-byond
+      
+          # 关闭 Ubuntu 默认的 MySQL
+        - name: Shutdown Ubuntu MySQL (SUDO)
+          run: sudo service mysql stop 
 
         - name: Start docker mysql
           run: |
@@ -104,12 +108,13 @@ jobs:
         - name: setup database
           run: |
            sudo systemctl start mysql    
-           mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
+            docker exec mysqldb sh -c 'mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
            grant all privileges on tree.fruit to 'Tom'@'localhost';
            flush privileges;
            alter user 'Tom'@'localhost' identified by 'root';
-           create database tree;" 
+           create database tree;"'
            docker exec -i mysqldb sh -c 'exec mysql -u root -proot tree' < ${{github.workspace}}/assets/database/fruit.sql
+           
            #mysql -uroot -proot -Dtree<${{github.workspace}}/assets/database/fruits.sql
                           
         - name: Run Unit Tests
