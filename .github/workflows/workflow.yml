@@ -78,12 +78,8 @@ jobs:
          # 模拟连接数据库
         - name: Modify MySQL Connection Variables
           run: |
-           sudo /etc/init.d/mysql start
-           
            sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
-         
-      
-                          
+                        
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
       
