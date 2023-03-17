@@ -1,23 +1,40 @@
+#/**
+# * workflow.yml (工作流-GitHub Actions 自动托管代码,代码每次从本地 push到仓库时都会自动执行测试用例)
+# *
+# * @author 张利红
+# */
+
+# workflow 的名称，会在 GitHub Action 页面上显示的名称
 name: Junit
 
+# 代码只有在 push到 main 分支上才会此 workflow
 on:
   push:
     branches: [ main ]
     
+# 创建一个job  
 jobs:
+  # 将此 job 的名称设定为 'build'
   build:
+    # 执行在最新版本的 ubuntu runner 上
     runs-on: ubuntu-latest
-    
+    # 设定系统上的环境变量，包含连接数据库的设定 (例如 MySQL)
+    # 较为私密的信息可以存放在 GitHub Action 的 secrets
+    # 在 yml 文档中可以使用 ${{ secrets.SECRET_NAME }} 取得 secrets 中存放的值
     env:
       DB_DATABASE: ${{secrets.DB_DATABASE}}
       DB_USER: ${{secrets.DB_USER}}
       MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
       JAVA_HOME_17_X64: ${{secrets.JAVA_HOME_17_X64}} 
-         
+    
+    # 执行步骤
     steps:
+        # 使用 actions/checkout@v3 这个官方的 action
+        # 可以查看 workflow 的执行状况，并对 workflow 的虚拟环境进行指令操作（例如测试环境）
         - name: check out code
           uses: actions/checkout@v3
         
+        # 缓存 Maven，以便在下次重启 workflow 时，加快 workflow 的执行速度
         - name: Cache local Maven repository
           id: cache-maven
           uses: actions/cache@v3
@@ -26,7 +43,8 @@ jobs:
              key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
              restore-keys: |
               ${{ runner.os }}-maven-
-              
+         
+         # 缓存 JDK，以便在下次重启 workflow 时，加快 workflow 的执行速度
         - name: Cache JDK
           id: cache-jdk
           uses: actions/cache@v3
@@ -50,50 +68,26 @@ jobs:
        
         - name: Check installed/cached Java version
           run: java -version
-            
+         
+         # 设立时区
         - name: Set timezone to Shanghai
           run: |
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
             
-        - name: Build the Docker image
-          run: docker-compose build
-          
-        - name: up mysql and apache container runs
+        - name: Modify MySQL Connection Variables
           run: |
-            docker-compose up -d   
-        
-         #tree is the name of database
-        - name: load database
-          run:  |
-             sudo passwd root
-             root1
-             root1
-
-             apt-get install libaio1 libaio-dev
-             docker exec -i mysql bash mysql -uroot  -proot  tree< ${{github.workspace}} assets/database/fruit.sql
-            
-        #- name: Cache mysql
-          #id: cache-mysql
-          #uses: actions/cache@v3
-          #with:
-          #  path: $HOME/BYOND
-         #   key: ${{ runner.os }}-byond
-
-        #- name: setup database
-          #run: |
-           #sudo systemctl start mysql    
-           #mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
-           #grant all privileges on tree.fruit to 'Tom'@'localhost';
-           #flush privileges;
-           #alter user 'Tom'@'localhost' identified by 'root';
-          # create database tree;" 
-          # mysql -uroot -proot < $GITHUB_WORKSPACE/assets/database/fruits.sql
+           sudo /etc/init.d/mysql start
+           
+           mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';grant all privileges on tree.fruit to 'Tom'@'localhost';FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';create database tree;" 
+           sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
+         
+      
                           
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
       
-       # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
+       # 使用Github Action市场提供的Junit流程来执行单元e测试，并且输出报告
         - uses: ashley-taylor/junit-report-annotations-action@master
           with:
             access-token: ${{ secrets.GITHUB_TOKEN }}
