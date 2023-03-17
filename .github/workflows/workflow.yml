@@ -90,11 +90,14 @@ jobs:
           if: always()
           
        # 安装插件codecov
-        - name: Upload coverage to Codecov
-          uses: codecov/codecov-action@v3
-          with:
+       # - name: Upload coverage to Codecov
+       #   uses: codecov/codecov-action@v3
+       #   with:
           # ci出现bug，是否继续跑
-            fall_ci_if_error: true
+        #    fall_ci_if_error: true
+        
+        - name: Upload coverage reports to Codecov
+          uses: codecov/codecov-action@v3
         
 
 
