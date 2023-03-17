@@ -11,7 +11,11 @@ name: Junit
 on:
   push:
     branches: [ main ]
-    
+    # 仅在以下文件修改时才触发，减少每次细微修改 push 后在运行器上的周期浪费
+    paths: [ '**.java', '.github/workflows/build.yml', 'pom.xml' ]
+  # 人工触发  
+  workflow_dispatch:
+  
 # 创建一个job  
 jobs:
   # 将此 job 的名称设定为 'build'
@@ -98,6 +102,12 @@ jobs:
         
         - name: Upload coverage reports to Codecov
           uses: codecov/codecov-action@v3
+          
+        - name: Checkout badges branch to a badges directory nested inside first checkout
+          uses: actions/checkout@v3
+          with:
+           ref: badges
+           path: badges
         
 
 
