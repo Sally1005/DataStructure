@@ -77,8 +77,10 @@ jobs:
             
         - name: Modify MySQL Connection Variables
           run: |
+           sudo /etc/init.d/mysql start
+           
+           mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';grant all privileges on tree.fruit to 'Tom'@'localhost';FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';create database tree;" 
            sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
-         # sed -i "s/TEST_MYSQL_PORT=3306/TEST_MYSQL_PORT=8081/g" ${GITHUB_WORKSPACE}/.env
          
       
                           
