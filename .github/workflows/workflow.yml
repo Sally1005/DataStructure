@@ -11,7 +11,11 @@ name: Junit
 on:
   push:
     branches: [ main ]
-    
+    # 仅在以下文件修改时才触发，减少每次细微修改 push 后在运行器上的周期浪费
+  #  paths: [ '**.java', '.github/workflows/build.yml', 'pom.xml' ]
+  # 人工触发  
+  workflow_dispatch:
+  
 # 创建一个job  
 jobs:
   # 将此 job 的名称设定为 'build'
@@ -75,15 +79,11 @@ jobs:
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
             
+         # 模拟连接数据库
         - name: Modify MySQL Connection Variables
           run: |
-           sudo /etc/init.d/mysql start
-           
-           mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';grant all privileges on tree.fruit to 'Tom'@'localhost';FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';create database tree;" 
            sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
-         
-      
-                          
+                        
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
       
@@ -94,11 +94,20 @@ jobs:
           if: always()
           
        # 安装插件codecov
-        - name: Upload coverage to Codecov
-          uses: codecov/codecov-action@v3
-          with:
+       # - name: Upload coverage to Codecov
+       #   uses: codecov/codecov-action@v3
+       #   with:
           # ci出现bug，是否继续跑
-            fall_ci_if_error: true
+        #    fall_ci_if_error: true
+        
+        - name: Upload coverage reports to Codecov
+          uses: codecov/codecov-action@v3
+          
+        - name: Checkout badges branch to a badges directory nested inside first checkout
+          uses: actions/checkout@v3
+          with:
+           ref: badges
+           path: badges
         
 
 
