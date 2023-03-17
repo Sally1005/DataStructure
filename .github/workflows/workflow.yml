@@ -75,47 +75,12 @@ jobs:
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
             
-       # - name: Build the Docker image
-        #  run: docker-compose build
-          
-        #- name: up mysql and apache container runs
-        #  run: |
-        #    docker-compose up -d   
-        
-         #tree is the name of database
-      #  - name: load database
-       #   run:  |
-      #      mysqld --user=mysql
-       #      docker exec -i mysql bash mysql -uroot  -proot tree< ${{github.workspace}} assets/database/fruit.sql
-            
-        #- name: Cache mysql
-          #id: cache-mysql
-          #uses: actions/cache@v3
-          #with:
-          #  path: $HOME/BYOND
-         #   key: ${{ runner.os }}-byond
+        - name: Modify MySQL Connection Variables
+          run: |
+           sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
+         # sed -i "s/TEST_MYSQL_PORT=3306/TEST_MYSQL_PORT=8081/g" ${GITHUB_WORKSPACE}/.env
+         
       
-          # 关闭 Ubuntu 默认的 MySQL
-        - name: Shutdown Ubuntu MySQL (SUDO)
-          run: sudo service mysql stop 
-
-        - name: Start docker mysql
-          run: |
-           sudo docker pull mysql
-           sudo docker run --name mysqldb -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -d mysql:5.6
-           sudo docker start mysqldb
-           
-        - name: setup database
-          run: |
-           sudo systemctl start mysql    
-           docker exec mysqldb sh -c 'mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';
-           grant all privileges on tree.fruit to 'Tom'@'localhost';
-           flush privileges;
-           alter user 'Tom'@'localhost' identified by 'root';
-           create database tree;"'
-           docker exec -i mysqldb sh -c 'exec mysql -u root -proot tree' < ${{github.workspace}}/assets/database/fruit.sql
-           
-          
                           
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
