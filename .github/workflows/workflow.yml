@@ -108,7 +108,21 @@ jobs:
           with:
            ref: badges
            path: badges
-        
+           
+        - name: Activate the coverage profile
+          run: mvn test -Pcoverage
+          
+        - name: Generate JaCoCo badge
+          id: jacoco
+          uses: sally/jacoco-badge-generator@v2
+          with:
+           badges-directory: badges
+           generate-branches-badge: true
+           generate-summary: true
+
+
+
+
 
 
 
