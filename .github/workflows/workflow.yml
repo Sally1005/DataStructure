@@ -106,23 +106,14 @@ jobs:
            token: ${{ secrets.CODECOV_TOKEN }}
            
         - name: Activate the coverage profile
-          run: mvn test -Pcoverage
+          run: mvn test -P coverage
           
-        - name: Generate a coverage value
-          id: coverage
-         # Generates a GitHub Workflow output named `lines`
-          run: |
-           COVERAGE="$( parse-coverage-report )"
-           echo "##[set-output name=lines;]${COVERAGE}%"
-
-            # Use the output from the `coverage` step
-        - name: Generate the badge SVG image
-          uses: emibcn/badge-action@v1
+        - uses: codecov/codecov-action@v3
           with:
-           label: 'Test coverage'
-           status: ${{ steps.coverage.outputs.lines }}
-           color: 'blue,555,daf'
-           path: badge.svg
+           file: ./**/target/site/jacoco/jacoco.xml
+           name: codecov
+          
+
 
 
 
