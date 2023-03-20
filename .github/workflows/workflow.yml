@@ -102,13 +102,21 @@ jobs:
         
         - name: Upload coverage reports to Codecov
           uses: codecov/codecov-action@v3
-          
-        - name: Checkout badges branch to a badges directory nested inside first checkout
-          uses: actions/checkout@v3
           with:
-           ref: badges
-           path: badges
-        
+           token: ${{ secrets.CODECOV_TOKEN }}
+           
+        - name: Activate the coverage profile
+          run: mvn test -P coverage
+          
+        - uses: codecov/codecov-action@v3
+          with:
+           file: ./**/target/site/jacoco/jacoco.xml
+           name: codecov
+          
+
+
+
+
 
 
 
