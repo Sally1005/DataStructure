@@ -104,14 +104,11 @@ jobs:
           uses: codecov/codecov-action@v3
           with:
            token: ${{ secrets.CODECOV_TOKEN }}
+           file: ./${GITHUB_WORKSPACE}/target/report.xml
            
         - name: Activate the coverage profile
           run: mvn test -P coverage
           
-        - uses: codecov/codecov-action@v3
-          with:
-           file: ./**/target/site/jacoco/jacoco.xml
-           name: codecov
           
 
 
