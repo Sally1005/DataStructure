@@ -82,10 +82,7 @@ jobs:
            key: mysql-cache
            restore-keys: mysql-cache
            
-        - name: db-init
-          run: |
-           mysql -h localhost -u${{secrets.DB_USER}} -p${{secrets.DB_PASSWORD}} ${{secrets.DB_DATABASE}} <  ${GITHUB_WORKSPACE}/assets/database/fruit.sql > result.txt
-         
+      
          # 设立时区
         - name: Set timezone to Shanghai
           run: |
@@ -95,7 +92,7 @@ jobs:
          # 模拟连接数据库
         - name: Modify MySQL Connection Variables
           run: |
-           sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
+           sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql > result.txt
                         
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
