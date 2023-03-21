@@ -84,6 +84,10 @@ jobs:
            restore-keys: |
             ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ hashFiles('**/src/main/resources/*.yml') }}
             ${{ runner.os }}-maven-
+        - name: Download result
+          uses: actions/download-artifact@v2
+          with:
+            name: result
            
           # 模拟连接数据库
         - name: Modify MySQL Connection Variables
