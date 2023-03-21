@@ -82,6 +82,18 @@ jobs:
            key: mysql-cache
            restore-keys: mysql-cache
            
+          # 模拟连接数据库
+        - name: Modify MySQL Connection Variables
+          run: |
+           sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql > result.txt
+           
+        - name: check-result
+          run: |
+           if [[ -s result.txt ]]; then
+            exit 0
+           else
+           exit 1
+           fi 
       
          # 设立时区
         - name: Set timezone to Shanghai
@@ -89,10 +101,7 @@ jobs:
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
             
-         # 模拟连接数据库
-        - name: Modify MySQL Connection Variables
-          run: |
-           sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql > result.txt
+
                         
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
