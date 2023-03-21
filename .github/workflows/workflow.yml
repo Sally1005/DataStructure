@@ -76,19 +76,23 @@ jobs:
           
           # 缓存  MySQL，以便在下次重启 workflow 时，加快 workflow 的执行速度
         - name: Cache MySQL
-          id: MySQL-cache
+          id: cache-key
+          run: echo "::set-output name=key::$(checksum mysql-*.jar)"
+        
+        - name: Cache MySQL dependencies
           uses: actions/cache@v2
           with:
-           path: ~/.m2/repository
-           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ hashFiles('**/src/main/resources/*.yml') }}-${{ env.GITHUB_SHA }}
+           path: ~/.m2
+           key: ${{ steps.cache-key.outputs.key }}
            restore-keys: |
-            ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ hashFiles('**/src/main/resources/*.yml') }}
-            ${{ runner.os }}-maven-
-        - name: Download result
-          uses: actions/download-artifact@v2
+             ${{ runner.os }}-mysql-
+             
+        - name: MySQL dependency
+          if: needs.install-maven.result == 'success'
+          uses: shurshun/actions-mysql@v1.0.0
           with:
-            name: result
-           
+           args: -Dmaven.repo.local=~/.m2/repository install
+            
           # 模拟连接数据库
         - name: Modify MySQL Connection Variables
           run: |
