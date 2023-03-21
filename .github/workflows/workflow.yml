@@ -30,7 +30,7 @@ jobs:
       DB_USER: ${{secrets.DB_USER}}
       MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
       JAVA_HOME_17_X64: ${{secrets.JAVA_HOME_17_X64}} 
-      MYSQL_VERSION: mysql-latest
+      MYSQL_VERSION: 5.7
     
     # 执行步骤
     steps:
@@ -80,8 +80,8 @@ jobs:
           uses: actions/cache@v2
           with:
            path: /root/.m2/repository/mysql/
-           key: mysql-cache
-           restore-keys: mysql-cache
+           key: ${{ runner.os }}-mysql-5.7
+           restore-keys: ${{ runner.os }}-mysql-
            
           # 模拟连接数据库
         - name: Modify MySQL Connection Variables
@@ -90,18 +90,7 @@ jobs:
            
 
            
-        - name: Cache build-deps and MySQL
-          uses: actions/cache@v2
-          with:
-           path: |
-            /root/.m2
-            /root/.gradle  
-            /var/lib/mysql/
-           key: ${{ runner.os }}-build-${{ hashFiles('**/**') }}-${{ env.MYSQL_VERSION }}-${{ env.DB_USER }}-${{ env.MYSQL_ROOT_PASSWORD }}-${{ env.DB_DATABASE }}
-           restore-keys: |
-            ${{ runner.os }}-build-${{ hashFiles('**/**') }}-${{ env.MYSQL_VERSION }}-${{ env.DB_USER }}-${{ env.MYSQL_ROOT_PASSWORD }}-${{ env.DB_DATABASE }}
-            ${{ runner.os }}-build-${{ hashFiles('**/**') }}-${{ env.MYSQL_VERSION }}-${{ env.DB_USER }}-${{ env.MYSQL_ROOT_PASSWORD }}
-            ${{ runner.os }}-build-${{ hashFiles('**/**') }}-${{ env.MYSQL_VERSION }}
+      
        
          # 设立时区
         - name: Set timezone to Shanghai
