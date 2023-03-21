@@ -74,7 +74,8 @@ jobs:
           run: java -version
           
           # 缓存  MySQL，以便在下次重启 workflow 时，加快 workflow 的执行速度
-        - name: MySQL-cache
+        - name: Cache MySQL
+          id: MySQL-cache
           uses: actions/cache@v2
           with:
            path: /root/.m2/repository/mysql/
