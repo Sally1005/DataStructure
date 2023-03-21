@@ -75,23 +75,22 @@ jobs:
           run: java -version
           
           # 缓存  MySQL，以便在下次重启 workflow 时，加快 workflow 的执行速度
-        - name: Cache MySQL
-          id: cache-key
-          run: echo "::set-output name=key::$(checksum mysql-*.jar)"
-        
-        - name: Cache MySQL dependencies
+        - name: Download and cache MySQL connector jar
           uses: actions/cache@v2
           with:
-           path: ~/.m2
-           key: ${{ steps.cache-key.outputs.key }}
+           path: ~/.m2/repository/mysql/
+           key: ${{ runner.os }}-mysql-${{ hashFiles('mysql-connector-java-8.0.19.jar') }}
            restore-keys: |
-             ${{ runner.os }}-mysql-
-             
-        - name: MySQL dependency
-          if: needs.install-maven.result == 'success'
-          uses: shurshun/actions-mysql@v1.0.0
-          with:
-           args: -Dmaven.repo.local=~/.m2/repository install
+            ${{ runner.os }}-mysql-
+
+          
+        
+        - name: Build with Maven
+          run: |
+           curl -L https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.19.tar.gz | tar xz
+           mv mysql-connector-java-8.0.19/mysql-connector-java-8.0.19.jar mysql-connector-java-8.0.19.jar
+           cp mysql-connector-java-8.0.19.jar ~/.m2/repository/mysql/
+           mvn clean package
             
           # 模拟连接数据库
         - name: Modify MySQL Connection Variables
