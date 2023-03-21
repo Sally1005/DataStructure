@@ -1,5 +1,5 @@
 
-# data-structure [![Junit](https://github.com/Sally1005/data-structure/actions/workflows/workflow.yml/badge.svg?event=push)](https://github.com/Sally1005/data-structure/actions/workflows/workflow.yml)  [![codecov](https://codecov.io/gh/Sally1005/data-structure/branch/master/graph/badge.svg)](https://codecov.io/gh/Sally1005/data-structure)
+# data-structure [![Junit](https://github.com/Sally1005/data-structure/actions/workflows/workflow.yml/badge.svg?event=push)](https://github.com/Sally1005/data-structure/actions/workflows/workflow.yml)  [![codecov](https://codecov.io/gh/Sally1005/data-structure/branch/main/graph/badge.svg)](https://codecov.io/gh/Sally1005/data-structure/branch/main)
 
 
 
