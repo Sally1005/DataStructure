@@ -81,6 +81,10 @@ jobs:
            path: /root/.m2/repository/mysql/
            key: mysql-cache
            restore-keys: mysql-cache
+           
+        - name: db-init
+          run: |
+           mysql -h localhost -u${{secrets.DB_USER}} -p${{secrets.DB_PASSWORD}} ${{secrets.DB_DATABASE}} <  ${GITHUB_WORKSPACE}/assets/database/fruit.sql > result.txt
          
          # 设立时区
         - name: Set timezone to Shanghai
