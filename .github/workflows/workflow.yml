@@ -30,6 +30,7 @@ jobs:
       DB_USER: ${{secrets.DB_USER}}
       MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
       JAVA_HOME_17_X64: ${{secrets.JAVA_HOME_17_X64}} 
+      MYSQL_VERSION: 5.7
     
     # 执行步骤
     steps:
@@ -72,17 +73,37 @@ jobs:
        
         - name: Check installed/cached Java version
           run: java -version
-         
+          
+          # 缓存  MySQL，以便在下次重启 workflow 时，加快 workflow 的执行速度
+        - name: Download and cache MySQL connector jar
+          uses: actions/cache@v2
+          with:
+           path: ~/.m2/repository/mysql/
+           key: ${{ runner.os }}-mysql-${{ hashFiles('mysql-connector-java-8.0.19.jar') }}
+           restore-keys: |
+            ${{ runner.os }}-mysql-
+
+          
+        
+        - name: Build with Maven
+          run: |
+           curl -L https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-8.0.19.tar.gz | tar xz
+           mv mysql-connector-java-8.0.19/mysql-connector-java-8.0.19.jar mysql-connector-java-8.0.19.jar
+           cp mysql-connector-java-8.0.19.jar ~/.m2/repository/mysql/
+           mvn clean package
+            
+          # 模拟连接数据库
+        - name: Modify MySQL Connection Variables
+          run: |
+           sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql > result.txt
+       
          # 设立时区
         - name: Set timezone to Shanghai
           run: |
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
             
-         # 模拟连接数据库
-        - name: Modify MySQL Connection Variables
-          run: |
-           sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
+
                         
         - name: Run Unit Tests
           run:  mvn -B test --file pom.xml
@@ -100,11 +121,16 @@ jobs:
           # ci出现bug，是否继续跑
         #    fall_ci_if_error: true
         
+        - name: Download Jacoco Report
+          run: |
+            curl -LJO "https://raw.githubusercontent.com/${{ github.repository }}/main/target/site/jacoco/jacoco.xml"
+        
         - name: Upload coverage reports to Codecov
           uses: codecov/codecov-action@v3
           with:
            token: ${{ secrets.CODECOV_TOKEN }}
-           file: ./${GITHUB_WORKSPACE}/target/report.xml
+           files: ./target/site/jacoco/jacoco.xml
+           
            
         - name: Activate the coverage profile
           run: mvn test -P coverage
