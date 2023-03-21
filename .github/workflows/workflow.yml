@@ -80,8 +80,10 @@ jobs:
           uses: actions/cache@v2
           with:
            path: /root/.m2/repository/mysql/
-           key: ${{ runner.os }}-mysql-5.7
-           restore-keys: ${{ runner.os }}-mysql-
+           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ hashFiles('**/src/main/resources/*.yml') }}-${{ env.GITHUB_SHA }}
+           restore-keys: |
+            ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-${{ hashFiles('**/src/main/resources/*.yml') }}
+            ${{ runner.os }}-maven-
            
           # 模拟连接数据库
         - name: Modify MySQL Connection Variables
