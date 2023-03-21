@@ -92,7 +92,7 @@ jobs:
            if [[ -s result.txt ]]; then
             exit 0
            else
-           exit 1
+            exit 1
            fi 
       
          # 设立时区
