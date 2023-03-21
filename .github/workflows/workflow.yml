@@ -129,7 +129,7 @@ jobs:
           uses: codecov/codecov-action@v3
           with:
            token: ${{ secrets.CODECOV_TOKEN }}
-           file: ${{ github.repository }}/main/target/report.xml
+           file: https://raw.githubusercontent.com/${{ github.repository }}/main/target/report.xml
            
            
         - name: Activate the coverage profile
