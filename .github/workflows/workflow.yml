@@ -96,13 +96,9 @@ jobs:
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
 
-      
-       # 使用Github Action市场提供的Junit流程来执行单元e测试，并且输出报告
-        - uses: ashley-taylor/junit-report-annotations-action@master
-          with:
-            access-token: ${{ secrets.GITHUB_TOKEN }}
-          if: always()
-          
+                        
+        - name: Run Unit Tests
+          run:  mvn -B test --file pom.xml
 
         
         - name: Download Jacoco Report
