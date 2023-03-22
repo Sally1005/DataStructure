@@ -82,6 +82,7 @@ jobs:
            key: ${{ runner.os }}-mysql-${{ hashFiles('**/*.sql') }}
            restore-keys: |
             ${{ runner.os }}-mysql-
+            Linux-mysql-
 
             
           # 模拟连接数据库
