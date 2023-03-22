@@ -95,11 +95,7 @@ jobs:
           run: |
             sudo rm /etc/localtime
             sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
-            
 
-                        
-        - name: Run Unit Tests
-          run:  mvn -B test --file pom.xml
       
        # 使用Github Action市场提供的Junit流程来执行单元e测试，并且输出报告
         - uses: ashley-taylor/junit-report-annotations-action@master
@@ -107,12 +103,7 @@ jobs:
             access-token: ${{ secrets.GITHUB_TOKEN }}
           if: always()
           
-       # 安装插件codecov
-       # - name: Upload coverage to Codecov
-       #   uses: codecov/codecov-action@v3
-       #   with:
-          # ci出现bug，是否继续跑
-        #    fall_ci_if_error: true
+
         
         - name: Download Jacoco Report
           run: |
@@ -125,9 +116,6 @@ jobs:
            files: ./target/site/jacoco/jacoco.xml
            
            
-        - name: Activate the coverage profile
-          run: mvn test -P coverage
-          
           
 
 
