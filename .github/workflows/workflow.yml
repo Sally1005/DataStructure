@@ -41,7 +41,7 @@ jobs:
       - name: Run MySQL initialization script
         run: |
           # Replace with your MySQL initialization script command
-          mysql -u root -p < fruit.sql > init-result.txt
+          mysql -u root -p < ${GITHUB_WORKSPACE}/assets/database/fruit.sql > init-result.txt
 
       - name: Cache Maven, MySQL, JDK8 and initialization result
         uses: actions/cache@v2
