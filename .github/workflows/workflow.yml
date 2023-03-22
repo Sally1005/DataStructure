@@ -39,9 +39,12 @@ jobs:
           sudo apt-get install -y mysql-server
 
       - name: Build with Maven
+         ls
         env:
           MAVEN_OPTS: "-Dmaven.repo.local=$HOME/.m2/repository"
-        run: mvn clean package
+        run: |
+          mvn clean install
+          mvn clean package
 
       - name: Run MySQL initialization script
         run: |
