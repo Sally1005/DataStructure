@@ -10,8 +10,9 @@ import com.lonton.binarytree.impl.PrintVisitor;
 import com.lonton.binarytree.impl.SearchVisitor;
 import com.lonton.binarytree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
 
 
@@ -34,7 +34,7 @@ import java.util.function.Predicate;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = TreeApplication.class)
 @MapperScan({"com.lonton.binarytree.mapper.TreeNodeMapper"})
-public class BinaryTreeTest {
+public class TreeApplicationTest {
     @Autowired
     TreeNodeMapper treeNodeMapper;
 
@@ -54,15 +54,8 @@ public class BinaryTreeTest {
      */
     @Test
     public void pre() {
-        SearchVisitor visitor = new SearchVisitor();
-        List<Predicate<BinaryTree.TreeNode>> predicates = new ArrayList<>();
-        predicates.add(Objects::nonNull);
-        visitor.setFilters(predicates);
+        PrintVisitor visitor = new PrintVisitor();
         new PreTraverser().traverse(BuildTree(), visitor);
-        List<String> actual = new ArrayList<>();
-        for (BinaryTree.TreeNode treeNode : visitor.getFilterNode()) {
-            actual.add(treeNode.getData());
-        }
         List<String> list = new ArrayList<>();
         list.add("水果");
         list.add("柑橘类");
@@ -72,7 +65,7 @@ public class BinaryTreeTest {
         list.add("西瓜");
         list.add("哈密瓜");
         log.info("前序遍历打印二叉树:{}", list);
-        Assertions.assertEquals(list, actual, " 前序遍历打印二叉树实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(list,visitor.getRes(), " 前序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
 
@@ -81,15 +74,8 @@ public class BinaryTreeTest {
      */
     @Test
     public void mid() {
-        SearchVisitor visitor = new SearchVisitor();
-        List<Predicate<BinaryTree.TreeNode>> predicates = new ArrayList<>();
-        predicates.add(Objects::nonNull);
-        visitor.setFilters(predicates);
+        PrintVisitor visitor = new PrintVisitor();
         new MidTraverser().traverse(BuildTree(), visitor);
-        List<String> actual = new ArrayList<>();
-        for (BinaryTree.TreeNode treeNode : visitor.getFilterNode()) {
-            actual.add(treeNode.getData());
-        }
         List<String> list = new ArrayList<>();
         list.add("橙子");
         list.add("柑橘类");
@@ -99,7 +85,7 @@ public class BinaryTreeTest {
         list.add("瓜果类");
         list.add("哈密瓜");
         log.info("中序遍历打印二叉树:{}", list);
-        Assertions.assertEquals(list, actual, " 中序遍历打印二叉树实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(list, visitor.getRes(), " 中序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
     /**
@@ -107,15 +93,8 @@ public class BinaryTreeTest {
      */
     @Test
     public void post() {
-        SearchVisitor visitor = new SearchVisitor();
-        List<Predicate<BinaryTree.TreeNode>> predicates = new ArrayList<>();
-        predicates.add(Objects::nonNull);
-        visitor.setFilters(predicates);
+        PrintVisitor visitor = new PrintVisitor();
         new PostTraverser().traverse(BuildTree(), visitor);
-        List<String> actual = new ArrayList<>();
-        for (BinaryTree.TreeNode treeNode : visitor.getFilterNode()) {
-            actual.add(treeNode.getData());
-        }
         List<String> list = new ArrayList<>();
         list.add("橙子");
         list.add("沃柑");
@@ -125,7 +104,7 @@ public class BinaryTreeTest {
         list.add("瓜果类");
         list.add("水果");
         log.info("后序遍历打印二叉树:{}", list);
-        Assertions.assertEquals(list, list, " 后序遍历打印二叉树实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(list, visitor.getRes(), " 后序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
     /**
