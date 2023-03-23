@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Q102LevelOrder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-structure</a> &gt; <a href="index.source.html" class="el_package">com.lonton.leetcode.med</a> &gt; <span class="el_source">Q102LevelOrder.java</span></div><h1>Q102LevelOrder.java</h1><pre class="source lang-java linenums">package com.lonton.leetcode.med;
+
+import com.lonton.leetcode.common.TreeNode;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+/**
+ * 102. 二叉树的层序遍历 &lt;p/&gt;
+ * 给你二叉树的根节点 root ，返回其节点值的 层序遍历 。 （即逐层地，从左到右访问所有节点）。&lt;p/&gt;
+ * 思路：&lt;p/&gt;
+ * 与之前写的递归遍历二叉树深度搜索和返回值为一维数组不同，&lt;p/&gt;
+ * 层序遍历为广度优先搜索，且示例的返回值为二维数组，&lt;p/&gt;
+ * 参考可以使用队列进行计数，大 list 里面 包含几个小 list (树有几层就有几个小 list )
+ *
+ * @author 张利红
+ */
+<span class="fc" id="L20">public class Q102LevelOrder extends TreeNode {</span>
+    /**
+     * 层序遍历
+     *
+     * @param root 根节点
+     * @return list
+     */
+    public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) {
+        // 大 list
+<span class="fc" id="L29">        List&lt;List&lt;Integer&gt;&gt; bList = new LinkedList&lt;&gt;();</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        if (root == null) {</span>
+<span class="nc" id="L31">            return bList;</span>
+        }
+        // 创建一个队列，并将根结点加入队列
+<span class="fc" id="L34">        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L35">        queue.offer(root);</span>
+        // 当队列为空时，结束循环
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+            // 求队列当前的大小
+<span class="fc" id="L39">            int size = queue.size();</span>
+<span class="fc" id="L40">            List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span>
+            // 每一层的数据个数
+<span class="fc bfc" id="L42" title="All 2 branches covered.">            while (size &gt; 0) {</span>
+                // 当队列里有元素时，就将该队列的首元素出队列
+<span class="fc" id="L44">                TreeNode cur = queue.poll();</span>
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">                if (cur != null) {</span>
+                    // 就将cur里的元素放进list里
+<span class="fc" id="L47">                    list.add((Integer) cur.getVal());</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">                    if (cur.getLeft() != null) {</span>
+                        // 将cur.left入队列
+<span class="fc" id="L50">                        queue.offer(cur.getLeft());</span>
+                    }
+<span class="fc bfc" id="L52" title="All 2 branches covered.">                    if (cur.getRight() != null) {</span>
+<span class="fc" id="L53">                        queue.offer(cur.getRight());</span>
+                    }
+                }
+                // 小 list 中元素自减
+<span class="fc" id="L57">                size--;</span>
+<span class="fc" id="L58">            }</span>
+            // 将list里的元素放入大 list
+<span class="fc" id="L60">            bList.add(list);</span>
+<span class="fc" id="L61">        }</span>
+<span class="fc" id="L62">        return bList;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

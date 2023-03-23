@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TreeNode.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-structure</a> &gt; <a href="index.source.html" class="el_package">com.lonton.leetcode.common</a> &gt; <span class="el_source">TreeNode.java</span></div><h1>TreeNode.java</h1><pre class="source lang-java linenums">package com.lonton.leetcode.common;
+
+import lombok.Data;
+
+import java.util.*;
+
+
+/**
+ * 定义树（题目给出条件）
+ *
+ * @author 张利红
+ */
+<span class="pc" id="L13">@Data</span>
+public class TreeNode&lt;T&gt; {
+<span class="fc" id="L15">    T val;</span>
+<span class="fc" id="L16">    TreeNode&lt;T&gt; left;</span>
+<span class="fc" id="L17">    TreeNode&lt;T&gt; right;</span>
+
+
+<span class="fc" id="L20">    public TreeNode() {</span>
+<span class="fc" id="L21">        this.val = val;</span>
+<span class="fc" id="L22">    }</span>
+
+<span class="fc" id="L24">    public TreeNode(T val) {</span>
+<span class="fc" id="L25">        this.val = val;</span>
+<span class="fc" id="L26">    }</span>
+
+<span class="fc" id="L28">    public TreeNode(T val, TreeNode&lt;T&gt; left, TreeNode&lt;T&gt; right) {</span>
+<span class="fc" id="L29">        this.val = val;</span>
+<span class="fc" id="L30">        this.left = left;</span>
+<span class="fc" id="L31">        this.right = right;</span>
+<span class="fc" id="L32">    }</span>
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L36">        return Objects.hash(val, left, right);</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L41" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L42">            return true;</span>
+        }
+
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if (obj == null) {</span>
+<span class="nc" id="L46">            return false;</span>
+        }
+
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">        if (getClass() != obj.getClass()) {</span>
+<span class="nc" id="L50">            return false;</span>
+        }
+
+<span class="fc" id="L53">        TreeNode treeNode = (TreeNode) obj;</span>
+
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">        return Objects.equals(val, treeNode.val)</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">                &amp;&amp; Objects.equals(left, treeNode.left)</span>
+<span class="pc bpc" id="L57" title="1 of 2 branches missed.">                &amp;&amp; Objects.equals(right, treeNode.right);</span>
+    }
+
+
+    /**
+     * 数组转为树
+     *
+     * @param array int数组
+     * @return treeNode
+     */
+    public static TreeNode arrayToTree(Integer[] array) {
+        // 构建一棵二叉树
+<span class="fc" id="L69">        TreeNode tree = new TreeNode();</span>
+        // 如果数组为空，则返回空数组
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (array.length == 0) return null;</span>
+        // 数组第一个为根节点
+<span class="fc" id="L73">        tree.val = new TreeNode(array[0]);</span>
+        // 初始化树的下标
+<span class="fc" id="L75">        int treeIdx = 0;</span>
+<span class="fc" id="L76">        int dataIdx = 0;</span>
+        // 创建一个集合存放数组
+<span class="fc" id="L78">        ArrayList&lt;TreeNode&gt; treeNodes = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L79">        treeNodes.add((TreeNode) tree.val);</span>
+        // 循环遍历数组
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        for (dataIdx = 1; dataIdx &lt; array.length; dataIdx += 2) {</span>
+            // 放置左节点
+<span class="fc bfc" id="L83" title="All 2 branches covered.">            if (array[dataIdx] != null) {</span>
+<span class="fc" id="L84">                TreeNode left = new TreeNode(array[dataIdx]);</span>
+                // 挂树
+<span class="fc" id="L86">                treeNodes.get(treeIdx).setLeft(left);</span>
+                // 加到集合中
+<span class="fc" id="L88">                treeNodes.add(left);</span>
+            }
+            // 放置右节点
+<span class="fc bfc" id="L91" title="All 4 branches covered.">            if (dataIdx + 1 &lt; array.length &amp;&amp; array[dataIdx + 1] != null) {</span>
+<span class="fc" id="L92">                TreeNode right = new TreeNode(array[dataIdx + 1]);</span>
+<span class="fc" id="L93">                treeNodes.get(treeIdx).setRight(right);</span>
+<span class="fc" id="L94">                treeNodes.add(right);</span>
+            }
+<span class="fc" id="L96">            treeIdx++;</span>
+        }
+<span class="fc" id="L98">        return (TreeNode) tree.val;</span>
+
+    }
+
+    /**
+     * 二叉树转为数组
+     *
+     * @param root 二叉树根节点
+     * @param &lt;T&gt;  二叉树元素类型
+     * @return 数组
+     */
+    public static &lt;T extends Comparable&lt;T&gt;&gt; T[] treeToArray(TreeNode&lt;T&gt; root) {
+        // 根节点为空，返回一个空数组
+<span class="fc bfc" id="L111" title="All 2 branches covered.">        if (root == null) return null;</span>
+        // 由于不知道数组长度，先将元素存入list中
+<span class="fc" id="L113">        List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span>
+        // 需要向队列中添加null,ArrayDequeue不能添加null
+<span class="fc" id="L115">        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span>
+        // 加入根节点
+<span class="fc" id="L117">        queue.offer(root);</span>
+<span class="fc" id="L118">        int idx = 0;</span>
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L120">            int size = queue.size();</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">            for (int i = 0; i &lt; size; i++) {</span>
+<span class="fc" id="L122">                TreeNode node = queue.poll();</span>
+<span class="fc bfc" id="L123" title="All 2 branches covered.">                if (node != null)</span>
+<span class="fc" id="L124">                    list.add((Integer) node.val);</span>
+<span class="fc" id="L125">                else list.add(null);</span>
+                // 当前节点为null或者队列为空时，左右节点为null
+<span class="pc bpc" id="L127" title="3 of 8 branches missed.">                if (node == null || (queue.isEmpty() &amp;&amp; node.left == null &amp;&amp; node.right == null))</span>
+<span class="nc" id="L128">                    continue;</span>
+
+<span class="fc" id="L130">                queue.offer(node.left);</span>
+<span class="fc" id="L131">                queue.offer(node.right);</span>
+                // 标记list集合中最后一个为非null元素的位置
+<span class="pc bpc" id="L133" title="2 of 4 branches missed.">                if (!list.isEmpty() &amp;&amp; list.get(list.size() - 1) != null) {</span>
+<span class="fc" id="L134">                    idx = list.size() - 1;</span>
+                }
+            }
+<span class="fc" id="L137">        }</span>
+//        // ①最后一个元素(循环可以移除，提高效率)
+//        int idx = list.size() - 1;
+//        while (idx &gt; 0 &amp;&amp; list.get(idx) == null) {
+//            idx--;
+//        }
+
+//        // ②去除多余的null(不建议使用list.remove()方法，效率低下)
+//        for (int i = list.size() - 1; i &gt;= 0; i--) {
+//            if (list.get(i) == null) {
+//                list.remove(i);
+//            } else {
+//                // 遇到另外一个非Null的值后退出循环
+//                break;
+//            }
+//            return list;
+//        }
+
+<span class="fc" id="L155">        return (T[]) list.subList(0, idx + 1).toArray(new Integer[0]);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

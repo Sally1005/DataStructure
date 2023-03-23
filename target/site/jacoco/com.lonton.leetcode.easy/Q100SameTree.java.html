@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Q100SameTree.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-structure</a> &gt; <a href="index.source.html" class="el_package">com.lonton.leetcode.easy</a> &gt; <span class="el_source">Q100SameTree.java</span></div><h1>Q100SameTree.java</h1><pre class="source lang-java linenums">package com.lonton.leetcode.easy;
+
+import com.lonton.leetcode.common.TreeNode;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+/**
+ * 100. 相同的树 &lt;p/&gt;
+ * 给你两棵二叉树的根节点 p 和 q ，编写一个函数来检验这两棵树是否相同。&lt;p/&gt;
+ * 如果两个树在结构上相同，并且节点具有相同的值，则认为它们是相同的。&lt;p/&gt;
+ *
+ * @author 张利红
+ */
+<span class="nc" id="L15">public class Q100SameTree extends TreeNode {</span>
+    /**
+     * 判断是否为相同的树
+     * &lt;br/&gt;
+     *
+     * @return boolean
+     */
+    public static boolean isSameTree(TreeNode p, TreeNode q) {
+        /**
+         * 法一：递归
+         */
+//        // 如果两棵树的根节点都为空，那么它们为相同的树
+//        if (p == null &amp;&amp; q == null) {
+//            return true;
+//        }
+//        // 如果两棵树要么一棵树根节点为空，要么另一棵树根节点不为空，不是相同的树（上面已对都为空的情况进行判断）
+//        if (p == null || q == null) {
+//            return false;
+//        }
+//        // 排除不相等的情况，再讨论两棵树相同情况下的条件
+//        return (p.getVal() == q.getVal() &amp;&amp; isSameTree(p.getLeft(), q.getLeft()) &amp;&amp; isSameTree(p.getRight(), q.getRight()));
+
+
+        /**
+         * 法二： 迭代（荐）
+         */
+        // 如果两棵树的根节点都为空，那么它们为相同的树
+<span class="pc bpc" id="L42" title="3 of 4 branches missed.">        if (p == null &amp;&amp; q == null) return true;</span>
+        // 如果两棵树的任何一个根节点为空，那么它们不相同
+<span class="pc bpc" id="L44" title="2 of 4 branches missed.">        if (p == null || q == null) return false;</span>
+        // 创建一个队列，两两比较节点，相同的则弹出
+<span class="fc" id="L46">        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;TreeNode&gt;();</span>
+        // 根节点入队,队列先进先出
+<span class="fc" id="L48">        queue.add(p);</span>
+<span class="fc" id="L49">        queue.add(q);</span>
+        // 当队列为空时，结束循环
+<span class="pc bpc" id="L51" title="1 of 2 branches missed.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L52">            TreeNode left = queue.poll();</span>
+<span class="fc" id="L53">            TreeNode right = queue.poll();</span>
+            // 防止空指针异常
+<span class="pc bpc" id="L55" title="3 of 4 branches missed.">            if (left == null &amp;&amp; right == null) continue;</span>
+
+<span class="pc bpc" id="L57" title="1 of 4 branches missed.">            if (left == null || right == null) return false;</span>
+<span class="pc bpc" id="L58" title="1 of 2 branches missed.">            if (left.getVal() != right.getVal()) return false;</span>
+<span class="fc" id="L59">            queue.add(left.getLeft());</span>
+<span class="fc" id="L60">            queue.add(right.getLeft());</span>
+<span class="fc" id="L61">            queue.add(left.getRight());</span>
+<span class="fc" id="L62">            queue.add(right.getRight());</span>
+<span class="fc" id="L63">        }</span>
+<span class="nc" id="L64">        return true;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

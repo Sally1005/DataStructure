@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Q108SortedArrayToBST.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-structure</a> &gt; <a href="index.source.html" class="el_package">com.lonton.leetcode.easy</a> &gt; <span class="el_source">Q108SortedArrayToBST.java</span></div><h1>Q108SortedArrayToBST.java</h1><pre class="source lang-java linenums">package com.lonton.leetcode.easy;
+
+import com.lonton.leetcode.common.TreeNode;
+
+/**
+ * 108. 将有序数组转换为二叉搜索树&lt;p/&gt;
+ * 给你一个整数数组 nums ，其中元素已经按 升序 排列，请你将其转换为一棵 高度平衡 二叉搜索树。
+ * 高度平衡 二叉树是一棵满足「每个节点的左右两个子树的高度差的绝对值不超过 1 」的二叉树。&lt;p/&gt;
+ * 思路：&lt;p/&gt;
+ * 元素已排好序，就类似于二分查找图书，从中间值开始，向左向右将树构建好。
+ * 二分法查找,也称为折半法，是一种在有序数组中查找特定元素的搜索算法。&lt;p/&gt;
+ * 公式：&lt;p/&gt;
+ * let mid = left + (right - left) / 2(如果 left 和 right 都很大，有的编程语言会有整数溢出的情况（例如 C++，Java）)
+ *
+ * @author 张利红
+ */
+<span class="fc" id="L17">public class Q108SortedArrayToBST extends TreeNode {</span>
+    /**
+     * 将有序数组转换为二叉搜索树
+     *
+     * @param nums 整数数组
+     * @return TreeNode
+     */
+    public TreeNode sortedArrayToBST(int[] nums) {
+<span class="fc" id="L25">        return sortedArraysToBST(nums, 0, nums.length - 1);</span>
+    }
+
+    /**
+     * 二分组装树
+     *
+     * @param nums 整数数组 nums
+     * @param l    左边界值 index
+     * @param r    右边界值 index
+     * @return TreeNode
+     */
+    private TreeNode sortedArraysToBST(int[] nums, int l, int r) {
+        // 左下标比右下标大，栈溢出
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if (l &gt; r) {</span>
+<span class="fc" id="L39">            return null;</span>
+        }
+        // 计算中间值
+<span class="fc" id="L42">        int mid = l + (r - l) / 2;</span>
+        // 赋值当前节点
+<span class="fc" id="L44">        TreeNode treeNode = new TreeNode(nums[mid]);</span>
+        // 递归左节点
+<span class="fc" id="L46">        treeNode.setLeft(sortedArraysToBST(nums, l, mid - 1));</span>
+        // 递归右节点
+<span class="fc" id="L48">        treeNode.setRight(sortedArraysToBST(nums, mid + 1, r));</span>
+<span class="fc" id="L49">        return treeNode;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
