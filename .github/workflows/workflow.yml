@@ -107,6 +107,14 @@ jobs:
           access-token: ${{ secrets.GITHUB_TOKEN }}
         if: always()
       
+      - name: Clear Codecov Cache
+        uses: codecov/codecov-action@v1
+        with:
+         flags: clear
+         token: ${{ secrets.CODECOV_TOKEN }}
+ 
+
+      
       # 下载jacoco测试覆盖率报告
       - name: Download Jacoco Report
         run: |
