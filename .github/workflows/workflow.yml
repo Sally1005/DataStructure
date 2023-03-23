@@ -110,7 +110,7 @@ jobs:
       # 下载jacoco测试覆盖率报告
       - name: Download Jacoco Report
         run: |
-          curl -LJO "https://raw.githubusercontent.com/${{ github.repository }}/main/target/site/jacoco/jacoco.xml"
+          curl -LJO "https://raw.githubusercontent.com/${{ github.repository }}/target/site/jacoco/jacoco.xml"
       
       # 将报告上传至Codecov
       - name: Upload coverage reports to Codecov
