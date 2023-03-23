@@ -79,12 +79,12 @@ jobs:
         with:
           host: localhost
           username: root
-          password: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+          password: root
           script: |
-           mysql -hlocalhost -uroot -p${{secrets.DB_PASSWORD}} ${GITHUB_WORKSPACE}/assets/database/fruit.sql
-           mysql -hlocalhost -uroot -p${{secrets.DB_PASSWORD}} -e "CREATE USER 'Tom'@'localhost' IDENTIFIED BY 'root';"
-           mysql -hlocalhost -uroot -p${{secrets.DB_PASSWORD}} -e "CREATE DATABASE tree;"
-           mysql -hlocalhost -uroot -p${{secrets.DB_PASSWORD}} -e "GRANT ALL ON tree.* TO 'Tom'@'localhost';"   
+           mysql -hlocalhost -uroot -proot ${GITHUB_WORKSPACE}/assets/database/fruit.sql
+           mysql -hlocalhost -uroot -proot -e "CREATE USER 'Tom'@'localhost' IDENTIFIED BY 'root';"
+           mysql -hlocalhost -uroot -proot -e "CREATE DATABASE tree;"
+           mysql -hlocalhost -uroot -proot -e "GRANT ALL ON tree.* TO 'Tom'@'localhost';"   
         
        
       
