@@ -74,19 +74,13 @@ jobs:
             ${{ runner.os }}-mysql-scripts-
             Linux-mysql-scripts-
             
-      - name: Execute SQL script
-        uses: appleboy/ssh-action@master
-        with:
-          host: localhost
-          username: root
-          password: root
-          script: |
-           mysql -hlocalhost -uroot -proot ${GITHUB_WORKSPACE}/assets/database/fruit.sql
-           mysql -hlocalhost -uroot -proot -e "CREATE USER 'Tom'@'localhost' IDENTIFIED BY 'root';"
-           mysql -hlocalhost -uroot -proot -e "CREATE DATABASE tree;"
-           mysql -hlocalhost -uroot -proot -e "GRANT ALL ON tree.* TO 'Tom'@'localhost';"   
-        
-       
+        # 模拟连接数据库
+      - name: Modify MySQL Connection Variables
+        run: |
+           sudo /etc/init.d/mysql start           
+            mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';grant all privileges on tree.fruit to 'Tom'@'localhost';FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';create database tree;" 
+            mysql -uroot -proot -Dtree -e "${GITHUB_WORKSPACE}/assets/database/fruit.sql
+                "    
       
       # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
       - name: Run Unit Tests
@@ -96,13 +90,6 @@ jobs:
           access-token: ${{ secrets.GITHUB_TOKEN }}
         if: always()
       
-      - name: Clear Codecov Cache
-        uses: codecov/codecov-action@v1
-        with:
-         flags: clear
-         token: ${{ secrets.CODECOV_TOKEN }}
- 
-
       
       # 下载jacoco测试覆盖率报告
       - name: Download Jacoco Report
