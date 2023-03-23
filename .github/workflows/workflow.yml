@@ -13,10 +13,10 @@ on:
     branches: [ main ]
     # 仅在以下文件修改时才触发，减少每次细微修改 push 后在运行器上的周期浪费
   #  paths: [ '**.java', '.github/workflows/build.yml', 'pom.xml' ]
-  # 人工触发  
+  # 人工触发
   workflow_dispatch:
-  
-# 创建一个job  
+
+# 创建一个job
 jobs:
   # 将此 job 的名称设定为 'build'
   build:
@@ -29,114 +29,74 @@ jobs:
       DB_DATABASE: ${{secrets.DB_DATABASE}}
       DB_USER: ${{secrets.DB_USER}}
       MYSQL_ROOT_PASSWORD: ${{secrets.DB_PASSWORD}}
-      JAVA_HOME_17_X64: ${{secrets.JAVA_HOME_17_X64}} 
-      MYSQL_VERSION: 5.7
-    
+      JAVA_HOME_17_X64: ${{secrets.JAVA_HOME_17_X64}}
+
     # 执行步骤
     steps:
-        # 使用 actions/checkout@v3 这个官方的 action
-        # 可以查看 workflow 的执行状况，并对 workflow 的虚拟环境进行指令操作（例如测试环境）
-        - name: check out code
-          uses: actions/checkout@v3
-        
-        # 缓存 Maven，以便在下次重启 workflow 时，加快 workflow 的执行速度
-        - name: Cache local Maven repository
-          id: cache-maven
-          uses: actions/cache@v3
-          with:
-             path: ~/.m2/repository
-             key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-             restore-keys: |
-              ${{ runner.os }}-maven-
-         
-         # 缓存 JDK，以便在下次重启 workflow 时，加快 workflow 的执行速度
-        - name: Cache JDK
-          id: cache-jdk
-          uses: actions/cache@v3
-          with:
-            path: ${{ env.JAVA_HOME_17_X64 }}
-            key: ${{ runner.os }}-jdk-17
-            restore-keys: ${{ runner.os }}-jdk-
-            
-        - name: Install Java
-          if: ${{ steps.cache-jdk.outputs.cache-hit != 'true' }}
-          uses: actions/setup-java@v3
-          with:
-            distribution: 'microsoft'
-            java-version: '17'
-            
-        - name: Check default Java version
-          run: java -version
-        
-        - name: Set installed/cached Java path [${{ env.JAVA_HOME_17_X64 }}]
-          run: echo "${{ env.JAVA_HOME_17_X64 }}\bin" 
-       
-        - name: Check installed/cached Java version
-          run: java -version
-          
-          # 缓存  MySQL，以便在下次重启 workflow 时，加快 workflow 的执行速度
-        - name: Cache MySQL and SQL scripts
-          uses: actions/cache@v2
-          with:
-           path: /usr/local/mysql/data
-           key: ${{ runner.os }}-mysql-${{ hashFiles('**/*.sql') }}
-           restore-keys: |
-            ${{ runner.os }}-mysql-
-            Linux-mysql-
-
-            
-          # 模拟连接数据库
-        - name: Modify MySQL Connection Variables
-          run: |
-           sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql > result.txt
-       
-         # 设立时区
-        - name: Set timezone to Shanghai
-          run: |
-            sudo rm /etc/localtime
-            sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
-            
-
-                        
-        - name: Run Unit Tests
-          run:  mvn -B test --file pom.xml
+      # 使用 actions/checkout@v3 这个官方的 action
+      # 可以查看 workflow 的执行状况，并对 workflow 的虚拟环境进行指令操作（例如测试环境）
+      - name: check out code
+        uses: actions/checkout@v3
       
-       # 使用Github Action市场提供的Junit流程来执行单元e测试，并且输出报告
-        - uses: ashley-taylor/junit-report-annotations-action@master
-          with:
-            access-token: ${{ secrets.GITHUB_TOKEN }}
-          if: always()
-          
-       # 安装插件codecov
-       # - name: Upload coverage to Codecov
-       #   uses: codecov/codecov-action@v3
-       #   with:
-          # ci出现bug，是否继续跑
-        #    fall_ci_if_error: true
+      # 设立时区
+      - name: Set timezone to Shanghai
+        run: |
+          sudo rm /etc/localtime
+          sudo ln -s /usr/share/zoneinfo/Asia/Shanghai/etc/localtime
+      
+      # 缓存 Maven，以便在下次重启 workflow 时，加快 workflow 的执行速度
+      - name: Cache local Maven repository
+        id: cache-maven
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      
+      # 缓存 JDK，以便在下次重启 workflow 时，加快 workflow 的执行速度
+      - name: Cache JDK
+        id: cache-jdk
+        uses: actions/cache@v3
+        with:
+          path: ${{ env.JAVA_HOME_17_X64 }}
+          key: ${{ runner.os }}-jdk-17
+          restore-keys: ${{ runner.os }}-jdk-
         
-        - name: Download Jacoco Report
-          run: |
-            curl -LJO "https://raw.githubusercontent.com/${{ github.repository }}/main/target/site/jacoco/jacoco.xml"
+        # 缓存  MySQL及 脚本，以便在下次重启 workflow 时，加快 workflow 的执行速度
+      - name: Cache MySQL and SQL scripts
+        id: cache-mysql-scripts
+        uses: actions/cache@v2
+        with:
+          path: /usr/local/mysql/data
+          key: ${{ runner.os }}-mysql-scripts-${{ hashFiles('**/*.sql') }}
+          restore-keys: |
+            ${{ runner.os }}-mysql-scripts-
+            Linux-mysql-scripts-
         
-        - name: Upload coverage reports to Codecov
-          uses: codecov/codecov-action@v3
-          with:
-           token: ${{ secrets.CODECOV_TOKEN }}
-           files: ./target/site/jacoco/jacoco.xml
-           
-           
-        - name: Activate the coverage profile
-          run: mvn test -P coverage
-          
-          
-
-
-
-
-
-
-
-
-
+        # 模拟连接数据库
+      - name: Modify MySQL Connection Variables
+        run: |
+          sed -i "s/'@'localhost'/'@'%'/g" ${GITHUB_WORKSPACE}/assets/database/fruit.sql
+      
+      # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
+      - name: Run Unit Tests
+        run: mvn -B test --file pom.xml
+      - uses: ashley-taylor/junit-report-annotations-action@master
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+        if: always()
+      
+      # 下载jacoco测试覆盖率报告
+      - name: Download Jacoco Report
+        run: |
+          curl -LJO "https://raw.githubusercontent.com/${{ github.repository }}/main/target/site/jacoco/jacoco.xml"
+      
+      # 将报告上传至Codecov
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./target/site/jacoco/jacoco.xml
 
 
