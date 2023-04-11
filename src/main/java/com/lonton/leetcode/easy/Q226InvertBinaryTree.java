@@ -18,7 +18,7 @@ public class Q226InvertBinaryTree extends TreeNode {
      * @param root 根节点
      * @return 根节点
      */
-    public static TreeNode invertTree(TreeNode root) {
+    public  TreeNode invertTree(TreeNode root) {
         if (root != null) {
             swap(root);
             invertTree(root.getLeft());
@@ -33,7 +33,7 @@ public class Q226InvertBinaryTree extends TreeNode {
      * @param root 根节点
      * @return 节点
      */
-    private static TreeNode swap(TreeNode root) {
+    private TreeNode swap(TreeNode root) {
         // 临时存储左(右)节点值
         TreeNode temp = root.getLeft();
         root.setLeft(root.getRight());

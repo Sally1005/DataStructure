@@ -25,7 +25,7 @@ public class Q113PathSumII extends TreeNode {
      * @param targetSum 目标和
      * @return 符合条件的路径集合
      */
-    public static List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         // 符合条件的路径集合
         List<List<Integer>> result = new ArrayList<>();
         // 到当前节点之前的所有父节点的路径
@@ -44,7 +44,7 @@ public class Q113PathSumII extends TreeNode {
      * @param targetSum 目标和
      * @param result    符合条件的路径集合
      */
-    public static void recurve(TreeNode treeNode, List<Integer> path, int preSum, int targetSum, List<List<Integer>> result) {
+    public void recurve(TreeNode treeNode, List<Integer> path, int preSum, int targetSum, List<List<Integer>> result) {
         // 当前递归到的节点为空，直接跳出方法
         if (treeNode == null) {
             return;

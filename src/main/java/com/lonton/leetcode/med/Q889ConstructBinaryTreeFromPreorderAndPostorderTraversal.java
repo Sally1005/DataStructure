@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal {
     // 存储后序遍历节点信息
-    private static Map<Integer, Integer> map = new HashMap<>();
+    private Map<Integer, Integer> map = new HashMap<>();
     // 前序遍历数组
     private int[] preorder;
 

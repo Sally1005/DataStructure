@@ -17,7 +17,7 @@ public class Q700SearchBST extends TreeNode {
      * @param val  整数值 val
      * @return 返回以节点值等于 val为根的子树
      */
-    public static TreeNode searchBST(TreeNode root, int val) {
+    public TreeNode searchBST(TreeNode root, int val) {
         if (root == null) return null;
         if ((Integer)root.getVal() == val) return root;
         // 整数值小于根节点数值，递归往左找

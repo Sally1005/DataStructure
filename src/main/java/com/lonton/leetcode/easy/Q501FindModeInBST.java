@@ -27,19 +27,19 @@ public class Q501FindModeInBST {
     /**
      * 当前节点出现的次数
      */
-    static int curCount = 0;
+    private int curCount = 0;
     /**
      * 出现次数最多的众数的出现次数
      */
-    static int maxCount = 0;
+    private int maxCount = 0;
     /**
      * 上一个节点
      */
-    static int pre = Integer.MIN_VALUE;
+    private int pre = Integer.MIN_VALUE;
     /**
      * 众数集合
      */
-    static List<Integer> modes = new ArrayList<>();
+    private List<Integer> modes = new ArrayList<>();
 
     /**
      * 求 BST的众数
@@ -47,7 +47,7 @@ public class Q501FindModeInBST {
      * @param root 根节点
      * @return 众数数组
      */
-    public static int[] findMode(TreeNode root) {
+    public int[] findMode(TreeNode root) {
         if (root == null) return new int[0];
         inOrder(root);
         int[] res = new int[modes.size()];
@@ -62,7 +62,7 @@ public class Q501FindModeInBST {
      *
      * @param node 当前节点
      */
-    private static void inOrder(TreeNode node) {
+    private  void inOrder(TreeNode node) {
         // 递归左子树
         if (node.getLeft() != null) {
             inOrder(node.getLeft());

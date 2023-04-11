@@ -17,7 +17,7 @@ public class Q094BinaryTreeInOrderTraversal extends TreeNode {
      * @param root 根节点
      * @return 返回存储对象
      */
-    public static List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal(TreeNode root) {
         // 定义list集合，存储返回对象
         List<Integer> val = new ArrayList<>();
         if (root == null) {
@@ -34,7 +34,7 @@ public class Q094BinaryTreeInOrderTraversal extends TreeNode {
      * @param root 根节点 <br/>
      * @param val  list集合容器
      */
-    public static void inorder(TreeNode root, List<Integer> val) {
+    public  void inorder(TreeNode root, List<Integer> val) {
         // 判断是否有左节点
         if (root.getLeft() != null) {
             inorder(root.getLeft(), val);

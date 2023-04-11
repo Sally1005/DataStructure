@@ -5,8 +5,6 @@ import com.lonton.leetcode.common.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.lonton.leetcode.easy.Q94BinaryTreeInOrderTraversal.inorder;
-
 /**
  * 本题 求 530. 二叉搜索树的最小绝对差 同 783. 二叉搜索树节点最小距离 <p/>
  * 给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。<p/>
@@ -26,11 +24,11 @@ public class Q530MinimumAbsoluteDifferenceInBST {
      * @param root 根节点
      * @return 最小绝对差
      */
-    public static int minDiffInBST(TreeNode root) {
+    public int minDiffInBST(TreeNode root) {
         int minDiff = Integer.MAX_VALUE;
         List<Integer> val = new ArrayList<>();
         // 中序遍历
-        inorder(root, val);
+        new Q094BinaryTreeInOrderTraversal().inorder(root, val);
         // 找最小绝对差
         for (int i = 0; i < val.size() - 1; i++) {
             minDiff = Math.min(val.get(i + 1) - val.get(i), minDiff);

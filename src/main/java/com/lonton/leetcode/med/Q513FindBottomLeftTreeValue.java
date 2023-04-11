@@ -16,16 +16,16 @@ import java.util.Queue;
  *
  * @author 张利红
  */
-public class Q513FindBottomLeftTreeValue {
+public class Q513FindBottomLeftTreeValue<T> {
     /**
      * 求树左下角的值
      *
      * @param root 根节点
      * @return 树左下角的值
      */
-    public int findBottomLeftValue(TreeNode root) {
+    public T findBottomLeftValue(TreeNode<T> root) {
         // 先创建一个队列
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode<T> > queue = new LinkedList<>();
         // 将根节点加入队列中
         queue.offer(root);
         // 定义循环条件(踩坑：null是指对象本身没分配内存，isEmpty是指这个对象指象的内在单元中没有数据)
@@ -40,6 +40,6 @@ public class Q513FindBottomLeftTreeValue {
                 queue.offer(root.getLeft());
             }
         }
-      return (int)root.getVal();
+      return root.getVal();
     }
 }

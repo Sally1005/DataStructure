@@ -16,7 +16,7 @@ import com.lonton.leetcode.common.TreeNode;
  * @author 张利红
  */
 public class Q538ConvertBSTToGreaterTree {
-    int sum = 0;
+   private int sum = 0;
 
     /**
      * 将二叉树转换成累加树

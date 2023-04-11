@@ -19,7 +19,7 @@ public class Q100SameTree extends TreeNode {
      *
      * @return boolean
      */
-    public static boolean isSameTree(TreeNode p, TreeNode q) {
+    public  boolean isSameTree(TreeNode p, TreeNode q) {
         /**
          * 法一：递归
          */

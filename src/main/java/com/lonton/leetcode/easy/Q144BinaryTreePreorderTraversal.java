@@ -18,7 +18,7 @@ public class Q144BinaryTreePreorderTraversal extends TreeNode {
      * @param root 根节点
      * @return 返回存储对象
      */
-    public static List<Integer> preorderTraversal(TreeNode root) {
+    public  List<Integer> preorderTraversal(TreeNode root) {
         // 定义list集合，存储返回对象
         List<Integer> val = new ArrayList<>();
         if (root == null) {
@@ -36,7 +36,7 @@ public class Q144BinaryTreePreorderTraversal extends TreeNode {
      * @param root 根节点 <br/>
      * @param val  list集合容器
      */
-    public static void preorder(TreeNode root, List<Integer> val) {
+    public  void preorder(TreeNode root, List<Integer> val) {
         if (root == null) {
             return;
         }

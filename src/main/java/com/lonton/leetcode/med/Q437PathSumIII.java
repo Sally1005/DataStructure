@@ -13,7 +13,7 @@ import com.lonton.leetcode.common.TreeNode;
  */
 public class Q437PathSumIII extends TreeNode {
     // 路径数目
-    static int res = 0;
+    private int res = 0;
 
     /**
      * 求路径数目
@@ -22,7 +22,7 @@ public class Q437PathSumIII extends TreeNode {
      * @param targetSum 节点目标和
      * @return 路径数目
      */
-    public static int pathSum(TreeNode root, int targetSum) {
+    public int pathSum(TreeNode root, int targetSum) {
         if (root != null) {
             recurve(root, targetSum);
             pathSum(root.getLeft(), targetSum);
@@ -37,7 +37,7 @@ public class Q437PathSumIII extends TreeNode {
      * @param treeNode 任意起点节点
      * @param sum      节点值之和
      */
-    public static void recurve(TreeNode treeNode, long sum) {
+    public void recurve(TreeNode treeNode, long sum) {
         if (treeNode == null) {
             return;
         }

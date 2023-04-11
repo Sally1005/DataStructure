@@ -16,7 +16,7 @@ public class Q404SumOfLeftLeaves extends TreeNode {
      * @param root 根节点
      * @return 所有左叶子之和
      */
-    public static int sumOfLeftLeaves(TreeNode root) {
+    public int sumOfLeftLeaves(TreeNode root) {
         if (root == null) return 0;
         // 叶子节点
         if (root.getLeft() != null && root.getLeft().getLeft() == null && root.getLeft().getRight() == null) {

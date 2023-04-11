@@ -19,13 +19,13 @@ import java.util.Map;
  */
 public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversal {
     // 存储中序遍历节点信息
-    private static Map<Integer, Integer> map = new HashMap<>();
+    private Map<Integer, Integer> map = new HashMap<>();
     // 前序遍历索引
-    private static int preIndex = 0;
+    private int preIndex = 0;
     // 中序遍历数组
-    private static int[] inorder;
+    private int[] inorder;
     // 前序遍历数组
-    private static int[] preorder;
+    private int[] preorder;
 
     /**
      * 从中序与后序遍历序列构造二叉树
@@ -52,7 +52,7 @@ public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversal {
      * @param right 右
      * @return 二叉树
      */
-    private static TreeNode getTreeNode(int left, int right, int[] preorder) {
+    private TreeNode getTreeNode(int left, int right, int[] preorder) {
         // 上一个节点是叶子节点
         if (left > right) {
             return null;

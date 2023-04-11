@@ -21,7 +21,7 @@ public class Q617MergingTrees extends TreeNode {
      * @param root2 树2
      * @return 新树
      */
-    public static TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+    public  TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
         // roo1、root2 均非空,将两个节点的值在root1上相加并赋值
         if (root1 != null && root2 != null) {
             root1.setVal((Integer)root1.getVal() + (Integer)root2.getVal());

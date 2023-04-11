@@ -22,7 +22,7 @@ public class Q112PathSum extends TreeNode {
      * @param targetSum 目标和
      * @return boolean
      */
-    public static boolean hasPathSum(TreeNode root, int targetSum) {
+    public  boolean hasPathSum(TreeNode root, int targetSum) {
         // flag[0] = 0 路径总和不等  = 1 有路径总和相等
         int[] flag = {0};
         recurve(root, 0, targetSum, flag);
