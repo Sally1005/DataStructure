@@ -2,7 +2,11 @@ package com.lonton.leetcode.common;
 
 import lombok.Data;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Queue;
 
 
 /**
@@ -12,10 +16,9 @@ import java.util.*;
  */
 @Data
 public class TreeNode<T> {
-    T val;
-    TreeNode<T> left;
-    TreeNode<T> right;
-
+   private T val;
+   private TreeNode<T> left;
+   private TreeNode<T> right;
 
     public TreeNode() {
         this.val = val;
@@ -50,38 +53,37 @@ public class TreeNode<T> {
             return false;
         }
 
-        TreeNode treeNode = (TreeNode) obj;
+        TreeNode<T> treeNode = (TreeNode<T>) obj;
 
         return Objects.equals(val, treeNode.val)
                 && Objects.equals(left, treeNode.left)
                 && Objects.equals(right, treeNode.right);
     }
 
-
     /**
      * 数组转为树
      *
-     * @param array int数组
+     * @param array 数组
      * @return treeNode
      */
-    public static TreeNode arrayToTree(Integer[] array) {
+    public TreeNode<T> arrayToTree(T[] array){
         // 构建一棵二叉树
-        TreeNode tree = new TreeNode();
+        TreeNode<T> tree = new TreeNode<T>();
         // 如果数组为空，则返回空数组
         if (array.length == 0) return null;
         // 数组第一个为根节点
-        tree.val = new TreeNode(array[0]);
+        tree.val = (T) new TreeNode<>(array[0]);
         // 初始化树的下标
         int treeIdx = 0;
         int dataIdx = 0;
         // 创建一个集合存放数组
-        ArrayList<TreeNode> treeNodes = new ArrayList<>();
-        treeNodes.add((TreeNode) tree.val);
+        ArrayList<TreeNode<T>> treeNodes = new ArrayList<>();
+        treeNodes.add((TreeNode<T>) tree.val);
         // 循环遍历数组
         for (dataIdx = 1; dataIdx < array.length; dataIdx += 2) {
             // 放置左节点
             if (array[dataIdx] != null) {
-                TreeNode left = new TreeNode(array[dataIdx]);
+                TreeNode<T> left = new TreeNode<T>(array[dataIdx]);
                 // 挂树
                 treeNodes.get(treeIdx).setLeft(left);
                 // 加到集合中
@@ -89,13 +91,13 @@ public class TreeNode<T> {
             }
             // 放置右节点
             if (dataIdx + 1 < array.length && array[dataIdx + 1] != null) {
-                TreeNode right = new TreeNode(array[dataIdx + 1]);
+                TreeNode<T> right = new TreeNode<T>(array[dataIdx + 1]);
                 treeNodes.get(treeIdx).setRight(right);
                 treeNodes.add(right);
             }
             treeIdx++;
         }
-        return (TreeNode) tree.val;
+        return (TreeNode<T>) tree.val;
 
     }
 
@@ -103,30 +105,28 @@ public class TreeNode<T> {
      * 二叉树转为数组
      *
      * @param root 二叉树根节点
-     * @param <T>  二叉树元素类型
      * @return 数组
      */
-    public static <T extends Comparable<T>> T[] treeToArray(TreeNode<T> root) {
+    public T[] treeToArray(TreeNode<T> root) {
         // 根节点为空，返回一个空数组
         if (root == null) return null;
         // 由于不知道数组长度，先将元素存入list中
         List<Integer> list = new ArrayList<>();
         // 需要向队列中添加null,ArrayDequeue不能添加null
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode<T>> queue = new LinkedList<>();
         // 加入根节点
         queue.offer(root);
         int idx = 0;
         while (!queue.isEmpty()) {
             int size = queue.size();
             for (int i = 0; i < size; i++) {
-                TreeNode node = queue.poll();
+                TreeNode<T> node = queue.poll();
                 if (node != null)
                     list.add((Integer) node.val);
                 else list.add(null);
                 // 当前节点为null或者队列为空时，左右节点为null
                 if (node == null || (queue.isEmpty() && node.left == null && node.right == null))
                     continue;
-
                 queue.offer(node.left);
                 queue.offer(node.right);
                 // 标记list集合中最后一个为非null元素的位置
@@ -135,23 +135,7 @@ public class TreeNode<T> {
                 }
             }
         }
-//        // ①最后一个元素(循环可以移除，提高效率)
-//        int idx = list.size() - 1;
-//        while (idx > 0 && list.get(idx) == null) {
-//            idx--;
-//        }
-
-//        // ②去除多余的null(不建议使用list.remove()方法，效率低下)
-//        for (int i = list.size() - 1; i >= 0; i--) {
-//            if (list.get(i) == null) {
-//                list.remove(i);
-//            } else {
-//                // 遇到另外一个非Null的值后退出循环
-//                break;
-//            }
-//            return list;
-//        }
-
-        return (T[]) list.subList(0, idx + 1).toArray(new Integer[0]);
+        return  list.subList(0, idx+1).toArray((T[]) new Object[idx]);
+        //return (T[]) list.subList(0, idx + 1).toArray(new Integer[0]);
     }
 }

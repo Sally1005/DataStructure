@@ -8,18 +8,18 @@ import lombok.Data;
  * @author 张利红
  */
 @Data
-public class ListNode {
-    int val;
-    ListNode next;
+public class ListNode<T> {
+    private T val;
+    private ListNode<T> next;
 
     public ListNode() {
     }
 
-    ListNode(int val) {
+    public ListNode(T val) {
         this.val = val;
     }
 
-    ListNode(int val, ListNode next) {
+    public ListNode(T val, ListNode next) {
         this.val = val;
         this.next = next;
     }
@@ -30,14 +30,14 @@ public class ListNode {
      * @param arr 数组
      * @return 链表
      */
-    public static ListNode arrayToList(Integer[] arr) {
+    public ListNode<T> arrayToList(T[] arr) {
         if (arr.length == 0) {
             return null;
         }
-        ListNode head = new ListNode(arr[0]);
-        ListNode tail = head;
+        ListNode<T> head = new ListNode<T>(arr[0]);
+        ListNode<T> tail = head;
         for (int i = 1; i < arr.length; i++) {
-            tail.next = new ListNode(arr[i]);
+            tail.next = new ListNode<T>(arr[i]);
             tail = tail.next;
         }
         return head;
