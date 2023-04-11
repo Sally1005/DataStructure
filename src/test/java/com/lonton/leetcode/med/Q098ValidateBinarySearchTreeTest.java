@@ -5,29 +5,31 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * 测试验证二叉搜索树 <p/>
- * 将数组 nums = [5,1,4,null,null,3,6] 构建成二叉树，验证是否为二叉搜索树,并判断输出的值是否为预期的 false。
- * 将数组 nums2 = [2,1,3] 构建成二叉树，验证是否为二叉搜索树,并判断输出的值是否为预期的 true。
+ * 098. 测试验证二叉搜索树 <p/>
+ * <ol>
+ * <li> 将数组 nums = [5,1,4,null,null,3,6] 构建成二叉树，验证是否为二叉搜索树,并判断输出的值是否为预期的 false。
+ * <li> 将数组 nums2 = [2,1,3] 构建成二叉树，验证是否为二叉搜索树,并判断输出的值是否为预期的 true。
+ * </ol>
  *
  * @author 张利红
  */
 public class Q098ValidateBinarySearchTreeTest {
 
     @Test
-    public void test() {
+    public void testFalse() {
         // 构建二叉树
         Integer[] nums = new Integer[]{5, 1, 4, null, null, 3, 6};
-        TreeNode root = TreeNode.arrayToTree(nums);
+        TreeNode root = new TreeNode<>().arrayToTree(nums);
 
         Assertions.assertEquals(false, new Q098ValidateBinarySearchTree().isValidBST(root),
                 "比对失败，验证二叉搜索树错误。");
     }
 
     @Test
-    public void test2() {
+    public void testTrue() {
         // 构建二叉树
         Integer[] nums2 = new Integer[]{2, 1, 3};
-        TreeNode root2 = TreeNode.arrayToTree(nums2);
+        TreeNode root2 = new TreeNode<>().arrayToTree(nums2);
 
         Assertions.assertEquals(true, new Q098ValidateBinarySearchTree().isValidBST(root2),
                 "比对失败，验证二叉搜索树错误。");

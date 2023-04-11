@@ -5,21 +5,22 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * 测试求完全二叉树的节点个数  <p/>
- * 示例1(不满完全二叉树）：将数组 [1,2,3,4,5,6],构建成一棵完全二叉树,并判断完全二叉树的节点个数为 6；
- * 示例2(满完全二叉树）：将数组 [1,2,3,4,5,6,7],构建成一棵完全二叉树,并判断完全二叉树的节点个数为 7；
- * 示例3(空完全二叉树）：将数组 [],构建成一棵完全二叉树,并判断完全二叉树的节点个数为 0。
- * 示例4(完全二叉树为null）：判断完全二叉树的节点个数为 0。
+ * 222. 测试求完全二叉树的节点个数
+ * <ol>
+ * <li> (不满完全二叉树）：将数组 [1,2,3,4,5,6],构建成一棵完全二叉树,并判断完全二叉树的节点个数为 6；
+ * <li> (满完全二叉树）：将数组 [1,2,3,4,5,6,7],构建成一棵完全二叉树,并判断完全二叉树的节点个数为 7；
+ * <li> (空完全二叉树）：将数组 [],构建成一棵完全二叉树,并判断完全二叉树的节点个数为 0。
+ * <li> (完全二叉树为null）：判断完全二叉树的节点个数为 0。
+ * </ol>
  *
  * @author 张利红
  */
 public class Q222CountCompleteTreeNodesTest {
-
     @Test
-    public void test1() {
+    public void testNotFUllBinaryTree() {
         // 构建完全二叉树
         Integer[] nums = new Integer[]{1, 2, 3, 4, 5, 6};
-        TreeNode root = TreeNode.arrayToTree(nums);
+        TreeNode root = new TreeNode<>().arrayToTree(nums);
 
         int result = new Q222CountCompleteTreeNodes().countNodes(root);
 
@@ -28,10 +29,10 @@ public class Q222CountCompleteTreeNodesTest {
     }
 
     @Test
-    public void test2() {
+    public void testFUllBinaryTree() {
         // 构建完全二叉树
         Integer[] nums2 = new Integer[]{1, 2, 3, 4, 5, 6, 7};
-        TreeNode root2 = TreeNode.arrayToTree(nums2);
+        TreeNode root2 = new TreeNode<>().arrayToTree(nums2);
 
         int result2 = new Q222CountCompleteTreeNodes().countNodes(root2);
 
@@ -41,10 +42,10 @@ public class Q222CountCompleteTreeNodesTest {
     }
 
     @Test
-    public void test3() {
+    public void testEmpty() {
         // 构建完全二叉树
         Integer[] nums3 = new Integer[0];
-        TreeNode root3 = TreeNode.arrayToTree(nums3);
+        TreeNode root3 = new TreeNode<>().arrayToTree(nums3);
 
         int result3 = new Q222CountCompleteTreeNodes().countNodes(root3);
 
@@ -53,7 +54,7 @@ public class Q222CountCompleteTreeNodesTest {
     }
 
     @Test
-    public void test4() {
+    public void testNull() {
 
         int result4 = new Q222CountCompleteTreeNodes().countNodes(null);
 

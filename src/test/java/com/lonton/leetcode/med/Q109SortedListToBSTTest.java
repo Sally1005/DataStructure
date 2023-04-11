@@ -9,20 +9,26 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * 测试 将有序链表转换为二叉搜索树<p/>
- * 示例1：输入： head = [-10,-3,0,5,9],判断翻转后二叉树节点是否符合预期 result1= [0,-3,9,-10,null,5]
- * 示例2：输入：head2 = [],(链表为空)，判断翻转后二叉树节点是否符合预期 result2=[null]
+ * 109.  测试 将有序链表转换为二叉搜索树
+ * <ol>
+ * <li> 输入： head = [-10,-3,0,5,9],判断翻转后二叉树节点是否符合预期 result1= [0,-3,9,-10,null,5]。
+ * <li> 输入：head2 = [],(链表为空)，判断翻转后二叉树节点是否符合预期 result2=[null]。
+ * </ol>
  *
  * @author 张利红
  */
 public class Q109SortedListToBSTTest {
 
     @Test
-    public void test1() {
+    public void test() {
         // 构建链表
-        ListNode head = ListNode.arrayToList(new Integer[]{-10, -3, 0, 5, 9});
+        ListNode head = new ListNode().arrayToList(new Integer[]{-10, -3, 0, 5, 9});
         TreeNode tree1 = new Q109SortedListToBST().sortedListToBST(head);
-        Integer[] array = (Integer[]) TreeNode.treeToArray(tree1);
+        Object[] objects = new TreeNode().treeToArray(tree1);
+        Integer[] array = new Integer[objects.length];
+        for(int i = 0;i<objects.length;i++) {
+            array[i] = (Integer)objects[i];
+        }
 
         // 断言
         Assertions.assertArrayEquals(new Integer[]{0, -3, 9, -10, null, 5}, array,
@@ -30,9 +36,9 @@ public class Q109SortedListToBSTTest {
     }
 
     @Test
-    public void test2() {
+    public void testEmpty() {
         // 构建链表
-        ListNode head2 = ListNode.arrayToList(new Integer[0]);
+        ListNode head2 = new ListNode().arrayToList(new Integer[0]);
         TreeNode tree2 = new Q109SortedListToBST().sortedListToBST(head2);
 
         // 断言

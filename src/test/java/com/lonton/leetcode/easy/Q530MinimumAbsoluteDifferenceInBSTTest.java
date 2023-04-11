@@ -5,31 +5,33 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * 测试 求 二叉搜索树的最小绝对差，即 求 二叉搜索树节点最小距离<p/>
- * 示例1：将数组 nums = [4,2,6,1,3] 构建成二叉树，并判断输出的值是否为预期值 1。
- * 示例2：将数组 nums2 = [1,0,48,null,null,12,49] 构建成二叉树，并判断输出的值是否为预期值 1。
+ * 530. 测试 求 二叉搜索树的最小绝对差，即 求 二叉搜索树节点最小距离
+ * <ol>
+ * <li> 将数组 nums = [4,2,6,1,3] 构建成二叉树，并判断输出的值是否为预期值 1。
+ * <li> 将数组 nums2 = [1,0,48,null,null,12,49] 构建成二叉树，并判断输出的值是否为预期值 1。
+ * </ol>
  *
  * @author 张利红
  */
 public class Q530MinimumAbsoluteDifferenceInBSTTest {
 
     @Test
-    public void test() {
+    public void testLeftBST() {
         Integer[] nums = new Integer[]{4, 2, 6, 1, 3};
-        TreeNode root = TreeNode.arrayToTree(nums);
+        TreeNode root = new TreeNode<>().arrayToTree(nums);
 
         Assertions.assertEquals(1,
-                Q530MinimumAbsoluteDifferenceInBST.minDiffInBST(root),
+                new Q530MinimumAbsoluteDifferenceInBST().minDiffInBST(root),
                 "比对失败，二叉搜索树的最小绝对差求取值有误。");
     }
 
     @Test
-    public void test2() {
+    public void testRightBst() {
         Integer[] nums = new Integer[]{1, 0, 48, null, null, 12, 49};
-        TreeNode root = TreeNode.arrayToTree(nums);
+        TreeNode root = new TreeNode<>().arrayToTree(nums);
 
         Assertions.assertEquals(1,
-                Q530MinimumAbsoluteDifferenceInBST.minDiffInBST(root),
+               new Q530MinimumAbsoluteDifferenceInBST().minDiffInBST(root),
                 "比对失败，二叉搜索树的最小绝对差求取值有误。");
     }
 }

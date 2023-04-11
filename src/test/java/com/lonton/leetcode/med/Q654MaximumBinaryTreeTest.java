@@ -29,7 +29,7 @@ public class Q654MaximumBinaryTreeTest {
     }
     @Test
     public void testWithSingleNumber() {
-        TreeNode root = TreeNode.arrayToTree(new Integer[]{1});
+        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{1});
         Assertions.assertEquals(
                 root,
                 new Q654MaximumBinaryTree().constructMaximumBinaryTree(new int[]{1}),
@@ -39,7 +39,7 @@ public class Q654MaximumBinaryTreeTest {
 
     @Test
     public void testLeftSubtreeWithLeftBranch() {
-        TreeNode root = TreeNode.arrayToTree(new Integer[]{5,4,null,2,3});
+        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{5,4,null,2,3});
         Assertions.assertEquals(
                 root,
                 new Q654MaximumBinaryTree().constructMaximumBinaryTree(new int[]{2, 4, 3, 5}),
@@ -49,7 +49,7 @@ public class Q654MaximumBinaryTreeTest {
 
     @Test
     public void testRightSubtreeWithRightBranch() {
-        TreeNode root = TreeNode.arrayToTree(new Integer[]{3,null,2,null,1});
+        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{3,null,2,null,1});
         Assertions.assertEquals(
                 root,
                 new Q654MaximumBinaryTree().constructMaximumBinaryTree(new int[]{3, 2, 1}),
@@ -59,7 +59,7 @@ public class Q654MaximumBinaryTreeTest {
 
     @Test
     public void testRightSubtreeWithLeftBranch() {
-        TreeNode root = TreeNode.arrayToTree(new Integer[]{5,null,4,3,2});
+        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{5,null,4,3,null,2});
         Assertions.assertEquals(
                 root,
                 new Q654MaximumBinaryTree().constructMaximumBinaryTree(new int[]{5, 2, 3, 4}),
@@ -69,7 +69,7 @@ public class Q654MaximumBinaryTreeTest {
 
     @Test
     public void testLeftSubtreeWithRightBranch() {
-        TreeNode root = TreeNode.arrayToTree(new Integer[]{6,5,null,null,4,null,2});
+        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{6,5,null,null,4,null,2});
         Assertions.assertEquals(
                 root,
                 new Q654MaximumBinaryTree().constructMaximumBinaryTree(new int[]{5, 4, 2, 6}),
@@ -79,7 +79,7 @@ public class Q654MaximumBinaryTreeTest {
 
     @Test
     public void testLeftSubtreeWithRightSubtree() {
-        TreeNode root = TreeNode.arrayToTree(new Integer[]{6,3,null,null,5,null,2,0,null,null,1});
+        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{6,3,5,null,2,0,null,null,1});
         Assertions.assertEquals(
                 root,
                 new Q654MaximumBinaryTree().constructMaximumBinaryTree(new int[]{3, 2, 1, 6, 0, 5}),

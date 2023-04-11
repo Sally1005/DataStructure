@@ -6,30 +6,35 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * 测试从前序与中序遍历序列构造二叉树 <p/>
- * 示例1：将数组 preorder = [3,9,20,15,7], inorder = [9,3,15,20,7] 构建成二叉树，并判断输出的值是否为预期的[3,9,20,null,null,15,7]。
- * 示例2：将数组 preorder2 = [], inorder2 = [] 构建成二叉树，并判断输出的值是否为预期的[null]。
+ * 105. 测试从前序与中序遍历序列构造二叉树 <p/>
+ * <ol>
+ * <li> 将数组 preorder = [3,9,20,15,7], inorder = [9,3,15,20,7] 构建成二叉树，并判断输出的值是否为预期的[3,9,20,null,null,15,7]。
+ * <li> 将数组 preorder2 = [], inorder2 = [] 构建成二叉树，并判断输出的值是否为预期的[null]。
+ * </ol>
  *
  * @author 张利红
  */
 public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversalTest {
     @Test
-    public void test1() {
+    public void test() {
 
         TreeNode tree = new Q105ConstructBinaryTreeFromPreorderAndInorderTraversal().buildTree(
                 new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
-        Integer[] array = (Integer[]) TreeNode.treeToArray(tree);
-
+        Object[] objects = new TreeNode().treeToArray(tree);
+        Integer[] array = new Integer[objects.length];
+        for(int i = 0;i<objects.length;i++) {
+            array[i] = (Integer)objects[i];
+        }
         Assertions.assertArrayEquals(new Integer[]{3, 9, 20, null, null, 15, 7}, array,
                 "比对失败，前序数组和中序数组构成的二叉搜索树与与实际预期不相等。");
 
     }
 
     @Test
-    public void test2() {
+    public void testEmpty() {
         TreeNode tree2 = new Q105ConstructBinaryTreeFromPreorderAndInorderTraversal().buildTree(
                 new int[0], new int[0]);
-        Integer[] array = (Integer[]) TreeNode.treeToArray(tree2);
+        Integer[] array = (Integer[])new TreeNode().treeToArray(tree2);
         Assertions.assertArrayEquals(null, array,
                 "比对失败，前序数组和中序数组构成的二叉搜索树与与实际预期不相等。");
     }

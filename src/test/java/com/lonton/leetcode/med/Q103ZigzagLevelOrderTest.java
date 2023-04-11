@@ -10,8 +10,10 @@ import java.util.List;
 
 
 /**
- * 测试二叉树的锯齿形层级遍历 <p/>
- * 将数组 nums = [3,9,20,null,null,15,7] 构建成二叉树，并判断输出的值是否为预期的[[3],[20,9],[15,7]]。
+ * 103. 测试二叉树的锯齿形层级遍历
+ * <ul>
+ * <li> 将数组 nums = [3,9,20,null,null,15,7] 构建成二叉树，并判断输出的值是否为预期的[[3],[20,9],[15,7]]。
+ * </ul>
  *
  * @author 张利红
  */
@@ -20,7 +22,7 @@ public class Q103ZigzagLevelOrderTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode root = TreeNode.arrayToTree(nums);
+        TreeNode root = new TreeNode<>().arrayToTree(nums);
 
         List<List<Integer>> expected = new ArrayList<>(
                 Arrays.asList(Arrays.asList(3), Arrays.asList(20, 9), Arrays.asList(15, 7)));
