@@ -15,7 +15,7 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q98ValidateBinarySearchTree {
+public class Q098ValidateBinarySearchTree {
     /**
      * 验证二叉搜索树
      *

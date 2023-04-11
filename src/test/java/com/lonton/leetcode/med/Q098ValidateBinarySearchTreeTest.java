@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author 张利红
  */
-public class Q98ValidateBinarySearchTreeTest {
+public class Q098ValidateBinarySearchTreeTest {
 
     @Test
     public void test() {
@@ -19,7 +19,7 @@ public class Q98ValidateBinarySearchTreeTest {
         Integer[] nums = new Integer[]{5, 1, 4, null, null, 3, 6};
         TreeNode root = TreeNode.arrayToTree(nums);
 
-        Assertions.assertEquals(false, new Q98ValidateBinarySearchTree().isValidBST(root),
+        Assertions.assertEquals(false, new Q098ValidateBinarySearchTree().isValidBST(root),
                 "比对失败，验证二叉搜索树错误。");
     }
 
@@ -29,7 +29,7 @@ public class Q98ValidateBinarySearchTreeTest {
         Integer[] nums2 = new Integer[]{2, 1, 3};
         TreeNode root2 = TreeNode.arrayToTree(nums2);
 
-        Assertions.assertEquals(true, new Q98ValidateBinarySearchTree().isValidBST(root2),
+        Assertions.assertEquals(true, new Q098ValidateBinarySearchTree().isValidBST(root2),
                 "比对失败，验证二叉搜索树错误。");
     }
 }

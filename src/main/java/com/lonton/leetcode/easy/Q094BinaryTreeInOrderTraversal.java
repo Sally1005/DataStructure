@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author 张利红
  */
-public class Q94BinaryTreeInOrderTraversal extends TreeNode {
+public class Q094BinaryTreeInOrderTraversal extends TreeNode {
     /**
      * 中序遍历
      *
