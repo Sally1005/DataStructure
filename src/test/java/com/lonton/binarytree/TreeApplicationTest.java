@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -31,7 +30,6 @@ import java.util.function.Predicate;
  * @author 张利红
  */
 @Slf4j
-@RunWith(SpringRunner.class)
 @SpringBootTest(classes = TreeApplication.class)
 @MapperScan({"com.lonton.binarytree.mapper.TreeNodeMapper"})
 public class TreeApplicationTest {
