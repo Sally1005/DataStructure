@@ -24,11 +24,7 @@ public class Q109SortedListToBSTTest {
         // 构建链表
         ListNode head = new ListNode().arrayToList(new Integer[]{-10, -3, 0, 5, 9});
         TreeNode tree1 = new Q109SortedListToBST().sortedListToBST(head);
-        Object[] objects = new TreeNode().treeToArray(tree1);
-        Integer[] array = new Integer[objects.length];
-        for(int i = 0;i<objects.length;i++) {
-            array[i] = (Integer)objects[i];
-        }
+        Integer[] array =  new TreeNode<Integer>().treeToArray(tree1);
 
         // 断言
         Assertions.assertArrayEquals(new Integer[]{0, -3, 9, -10, null, 5}, array,

@@ -21,11 +21,7 @@ public class Q106ConstructBinaryTreeFromInorderAndPostorderTraversalTest {
 
         TreeNode tree = new Q106ConstructBinaryTreeFromInorderAndPostorderTraversal().buildTree(
                 new int[]{9, 3, 15, 20, 7}, new int[]{9, 15, 7, 20, 3});
-        Object[] objects = new TreeNode().treeToArray(tree);
-        Integer[] array = new Integer[objects.length];
-        for(int i = 0;i<objects.length;i++) {
-            array[i] = (Integer)objects[i];
-        }
+        Integer[] array =  new TreeNode<Integer>().treeToArray(tree);
 
         Assertions.assertArrayEquals(new Integer[]{3, 9, 20, null, null, 15, 7}, array,
                 "比对失败，中序数组和后序数组构成的二叉搜索树与与实际预期不相等。");
@@ -36,7 +32,7 @@ public class Q106ConstructBinaryTreeFromInorderAndPostorderTraversalTest {
 
         TreeNode tree2 = new Q106ConstructBinaryTreeFromInorderAndPostorderTraversal().buildTree(
                 new int[0], new int[0]);
-        Integer[] array = (Integer[]) new TreeNode().treeToArray(tree2);
+        Integer[] array =  new TreeNode<Integer>().treeToArray(tree2);
         Assertions.assertArrayEquals(null, array,
                 "比对失败，中序数组和后序数组构成的二叉搜索树与与实际预期不相等。");
     }

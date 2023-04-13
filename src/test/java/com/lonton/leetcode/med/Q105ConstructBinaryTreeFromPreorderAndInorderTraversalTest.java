@@ -4,6 +4,8 @@ import com.lonton.leetcode.common.TreeNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+
 
 /**
  * 105. 测试从前序与中序遍历序列构造二叉树 <p/>
@@ -18,13 +20,9 @@ public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversalTest {
     @Test
     public void test() {
 
-        TreeNode tree = new Q105ConstructBinaryTreeFromPreorderAndInorderTraversal().buildTree(
+        TreeNode<Integer> tree = new Q105ConstructBinaryTreeFromPreorderAndInorderTraversal().buildTree(
                 new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
-        Object[] objects = new TreeNode().treeToArray(tree);
-        Integer[] array = new Integer[objects.length];
-        for(int i = 0;i<objects.length;i++) {
-            array[i] = (Integer)objects[i];
-        }
+        Integer[] array = new TreeNode<Integer>().treeToArray(tree);
         Assertions.assertArrayEquals(new Integer[]{3, 9, 20, null, null, 15, 7}, array,
                 "比对失败，前序数组和中序数组构成的二叉搜索树与与实际预期不相等。");
 
@@ -34,7 +32,7 @@ public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversalTest {
     public void testEmpty() {
         TreeNode tree2 = new Q105ConstructBinaryTreeFromPreorderAndInorderTraversal().buildTree(
                 new int[0], new int[0]);
-        Integer[] array = (Integer[])new TreeNode().treeToArray(tree2);
+        Integer[] array = new TreeNode<Integer>().treeToArray(tree2);
         Assertions.assertArrayEquals(null, array,
                 "比对失败，前序数组和中序数组构成的二叉搜索树与与实际预期不相等。");
     }

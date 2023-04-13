@@ -21,12 +21,7 @@ public class Q700SearchBSTTest {
         TreeNode root = new TreeNode<>().arrayToTree(nums);
 
         TreeNode node = new Q700SearchBST().searchBST(root, 2);
-        Object[] objects = new TreeNode().treeToArray(node);
-        Integer[] array = new Integer[objects.length];
-        for(int i = 0;i<objects.length;i++) {
-            array[i] = (Integer)objects[i];
-        }
-       //Integer[] arr = (Integer[]) new TreeNode().treeToArray(node);
+       Integer[] array = new TreeNode<Integer>().treeToArray(node);
         Assertions.assertArrayEquals(new Integer[]{2, 1, 3}, array,
                 " 二叉搜索树搜索整数值失败，两数组不相等。");
     }

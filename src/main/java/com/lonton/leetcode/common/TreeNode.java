@@ -2,6 +2,7 @@ package com.lonton.leetcode.common;
 
 import lombok.Data;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,9 +17,9 @@ import java.util.Queue;
  */
 @Data
 public class TreeNode<T> {
-   private T val;
-   private TreeNode<T> left;
-   private TreeNode<T> right;
+    private T val;
+    private TreeNode<T> left;
+    private TreeNode<T> right;
 
     public TreeNode() {
         this.val = val;
@@ -66,7 +67,7 @@ public class TreeNode<T> {
      * @param array 数组
      * @return treeNode
      */
-    public TreeNode<T> arrayToTree(T[] array){
+    public TreeNode<T> arrayToTree(T[] array) {
         // 构建一棵二叉树
         TreeNode<T> tree = new TreeNode<T>();
         // 如果数组为空，则返回空数组
@@ -111,7 +112,7 @@ public class TreeNode<T> {
         // 根节点为空，返回一个空数组
         if (root == null) return null;
         // 由于不知道数组长度，先将元素存入list中
-        List<Integer> list = new ArrayList<>();
+        List<Object> list = new ArrayList<>();
         // 需要向队列中添加null,ArrayDequeue不能添加null
         Queue<TreeNode<T>> queue = new LinkedList<>();
         // 加入根节点
@@ -122,7 +123,7 @@ public class TreeNode<T> {
             for (int i = 0; i < size; i++) {
                 TreeNode<T> node = queue.poll();
                 if (node != null)
-                    list.add((Integer) node.val);
+                    list.add(node.val);
                 else list.add(null);
                 // 当前节点为null或者队列为空时，左右节点为null
                 if (node == null || (queue.isEmpty() && node.left == null && node.right == null))
@@ -134,8 +135,10 @@ public class TreeNode<T> {
                     idx = list.size() - 1;
                 }
             }
+            // return  list.subList(0, idx+1).toArray((T[]) new Object[idx]);
+            //return (T[]) list.subList(0, idx + 1).toArray(new Integer[0]);
+
         }
-        return  list.subList(0, idx+1).toArray((T[]) new Object[idx]);
-        //return (T[]) list.subList(0, idx + 1).toArray(new Integer[0]);
+        return list.subList(0, idx + 1).toArray((T[]) Array.newInstance(root.val.getClass(), list.subList(0, idx + 1).size()));
     }
 }

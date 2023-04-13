@@ -21,11 +21,7 @@ public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversalTest {
 
         TreeNode tree = new Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal().buildTree(
                 new int[]{1, 2, 4, 5, 3, 6, 7}, new int[]{4, 5, 2, 6, 7, 3, 1});
-        Object[] objects = new TreeNode().treeToArray(tree);
-        Integer[] array = new Integer[objects.length];
-        for(int i = 0;i<objects.length;i++) {
-            array[i] = (Integer)objects[i];
-        }
+        Integer[] array =  new TreeNode<Integer>().treeToArray(tree);
 
         Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7}, array,
                 "比对失败，前序数组和后序数组构成的二叉搜索树与与实际预期不相等。");
@@ -36,7 +32,7 @@ public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversalTest {
 
         TreeNode tree2 = new Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal().buildTree(
                 new int[0], new int[0]);
-        Integer[] array = (Integer[]) new TreeNode().treeToArray(tree2);
+        Integer[] array =  new TreeNode<Integer>().treeToArray(tree2);
         Assertions.assertArrayEquals(null, array,
                 "比对失败，前序数组和后序数组构成的二叉搜索树与与实际预期不相等。");
     }

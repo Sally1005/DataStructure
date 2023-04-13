@@ -44,7 +44,7 @@ public class TreeNodeTest {
 
     @Test
     public void testEmpty2() {
-        TreeNode<Integer>[] array = new TreeNode<TreeNode<Integer>>().treeToArray(null);
+        TreeNode<Integer>[] array =  new TreeNode<TreeNode<Integer>>().treeToArray(null);
         Assertions.assertNull(array);
     }
 }

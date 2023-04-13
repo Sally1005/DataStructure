@@ -1,6 +1,5 @@
 package com.lonton.leetcode.easy;
 
-
 import com.lonton.leetcode.common.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -30,11 +29,7 @@ public class Q617MergingTreesTest {
         TreeNode root2 = new TreeNode<>().arrayToTree(nums2);
 
         TreeNode node = new Q617MergingTrees().mergeTrees(root1, root2);
-        Object[] objects = new TreeNode().treeToArray(node);
-        Integer[] array = new Integer[objects.length];
-        for(int i = 0;i<objects.length;i++) {
-            array[i] = (Integer)objects[i];
-        }
+        Integer[] array =  new TreeNode<Integer>().treeToArray(node);
 
         Assertions.assertArrayEquals(new Integer[]{2, 2}, array,
                 " 合并二叉树失败，两数组不相等。");
@@ -45,16 +40,12 @@ public class Q617MergingTreesTest {
     public void testHalfChildNode() {
 
         Integer[] nums3 = new Integer[]{1, 3, 2, 5};
-        TreeNode root3 =new TreeNode<>().arrayToTree(nums3);
+        TreeNode root3 = new TreeNode<>().arrayToTree(nums3);
         Integer[] nums4 = new Integer[]{2, 1, 3, null, 4, null, 7};
         TreeNode root4 = new TreeNode<>().arrayToTree(nums4);
 
         TreeNode node2 = new Q617MergingTrees().mergeTrees(root3, root4);
-        Object[] objects = new TreeNode().treeToArray(node2);
-        Integer[] array = new Integer[objects.length];
-        for(int i = 0;i<objects.length;i++) {
-            array[i] = (Integer)objects[i];
-        }
+        Integer[] array = new TreeNode<Integer>().treeToArray(node2);
 
         Assertions.assertArrayEquals(new Integer[]{3, 4, 5, 5, 4, null, 7}, array,
                 " 合并二叉树失败，两数组不相等。");
@@ -70,11 +61,7 @@ public class Q617MergingTreesTest {
         TreeNode root6 = new TreeNode<>().arrayToTree(nums6);
 
         TreeNode node3 = new Q617MergingTrees().mergeTrees(root5, root6);
-        Object[] objects = new TreeNode().treeToArray(node3);
-        Integer[] array = new Integer[objects.length];
-        for(int i = 0;i<objects.length;i++) {
-            array[i] = (Integer)objects[i];
-        }
+        Integer[] array = new TreeNode<Integer>().treeToArray(node3);
 
         Assertions.assertArrayEquals(new Integer[]{5, 5, 9, 6, 3, 6, 9}, array,
                 " 合并二叉树失败，两数组不相等。");
@@ -90,14 +77,11 @@ public class Q617MergingTreesTest {
         TreeNode root8 = new TreeNode<>().arrayToTree(nums8);
 
         TreeNode node4 = new Q617MergingTrees().mergeTrees(root7, root8);
-        Object[] objects = new TreeNode().treeToArray(node4);
-        Integer[] array = new Integer[objects.length];
-        for(int i = 0;i<objects.length;i++) {
-            array[i] = (Integer)objects[i];
-        }
+        Integer[] array = new TreeNode<Integer>().treeToArray(node4);
 
         Assertions.assertArrayEquals(new Integer[]{4, 2, 7, 1, 3, 6, 9}, array,
                 " 合并二叉树失败，两数组不相等。");
 
     }
+
 }
