@@ -1,4 +1,7 @@
 # Project exclude paths
-.idea/
+### IntelliJ IDEA ###
+.idea
+*.iml
+
 #target/
 
