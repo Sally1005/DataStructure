@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Q530MinimumAbsoluteDifferenceInBST.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-structure</a> &gt; <a href="index.source.html" class="el_package">com.lonton.leetcode.easy</a> &gt; <span class="el_source">Q530MinimumAbsoluteDifferenceInBST.java</span></div><h1>Q530MinimumAbsoluteDifferenceInBST.java</h1><pre class="source lang-java linenums">package com.lonton.leetcode.easy;
+
+import com.lonton.leetcode.common.TreeNode;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 本题 求 530. 二叉搜索树的最小绝对差 同 783. 二叉搜索树节点最小距离 &lt;p/&gt;
+ * 给你一个二叉搜索树的根节点 root ，返回 树中任意两不同节点值之间的最小差值 。&lt;p/&gt;
+ * 差值是一个正数，其数值等于两值之差的绝对值。&lt;p/&gt;
+ * 思路：&lt;p/&gt;
+ * 递归 &lt;p/&gt;
+ * !!! 看清题目，指的是“任意两不同节点值”,而不是相邻的两个节点的值。看错后再递归，总会有十几个测试案例无法通过。&lt;p/&gt;
+ * 根据BST的特性，中序遍历后的树，即为一个有序的升序数组。&lt;p/&gt;
+ * 在此基础上只需遍历集合，比较数组中前后两个数的大小再和前一次的最小绝对差比较即可。&lt;p/&gt;
+ *
+ * @author 张利红
+ */
+<span class="fc" id="L20">public class Q530MinimumAbsoluteDifferenceInBST {</span>
+    /**
+     * 求BST最小绝对差
+     *
+     * @param root 根节点
+     * @return 最小绝对差
+     */
+    public int minDiffInBST(TreeNode root) {
+<span class="fc" id="L28">        int minDiff = Integer.MAX_VALUE;</span>
+<span class="fc" id="L29">        List&lt;Integer&gt; val = new ArrayList&lt;&gt;();</span>
+        // 中序遍历
+<span class="fc" id="L31">        new Q094BinaryTreeInOrderTraversal().inorder(root, val);</span>
+        // 找最小绝对差
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (int i = 0; i &lt; val.size() - 1; i++) {</span>
+<span class="fc" id="L34">            minDiff = Math.min(val.get(i + 1) - val.get(i), minDiff);</span>
+        }
+<span class="fc" id="L36">        return minDiff;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

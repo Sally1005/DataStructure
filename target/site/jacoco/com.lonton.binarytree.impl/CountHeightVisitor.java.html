@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CountHeightVisitor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-structure</a> &gt; <a href="index.source.html" class="el_package">com.lonton.binarytree.impl</a> &gt; <span class="el_source">CountHeightVisitor.java</span></div><h1>CountHeightVisitor.java</h1><pre class="source lang-java linenums">package com.lonton.binarytree.impl;
+
+import com.lonton.binarytree.pojo.BinaryTree;
+import com.lonton.binarytree.IVisitor;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+
+/**
+ * 计算树高
+ * &lt;p/&gt;
+ *
+ * @author 张利红
+ */
+<span class="fc" id="L18">@Slf4j</span>
+<span class="fc" id="L19">public class CountHeightVisitor implements IVisitor {</span>
+
+    /**
+     * 初始高度
+     */
+    private int height;
+
+    /**
+     * 已过滤完符合条件的数据集合
+     */
+<span class="fc" id="L29">    private List&lt;BinaryTree.TreeNode&gt; filterNode = new ArrayList&lt;&gt;();</span>
+
+    /**
+     * 计算树高
+     *
+     * @param node  节点
+     * @param param 可变参数
+     * @return 树高
+     */
+    @Override
+    public Object visit(BinaryTree.TreeNode node, Object... param) {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">        if (node.getLevel() &gt; height) {</span>
+<span class="nc" id="L41">            this.height = node.getLevel();</span>
+        }
+<span class="nc" id="L43">        return node;</span>
+    }
+
+    /**
+     * 计算树高 &lt;重载&gt;
+     *
+     * @param node      节点
+     * @param predicate 过滤条件
+     * @return 树高
+     */
+    @Override
+    public Object visit(BinaryTree.TreeNode node, List&lt;Predicate&lt;BinaryTree.TreeNode&gt;&gt; predicate) {
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (node.getLevel() &gt; height) {</span>
+<span class="fc" id="L56">            this.height = node.getLevel();</span>
+        }
+        // 若为true,则将节点信息加入符合条件的数据集合中
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">        if (predicate != null) {</span>
+<span class="pc bpc" id="L60" title="1 of 2 branches missed.">            for (Predicate&lt;BinaryTree.TreeNode&gt; treeNodePredicate : predicate) {</span>
+<span class="nc bnc" id="L61" title="All 2 branches missed.">                if (treeNodePredicate.test(node)) {</span>
+<span class="nc" id="L62">                    filterNode.add(node);</span>
+                }
+<span class="nc" id="L64">            }</span>
+        }
+<span class="fc" id="L66">        return node;</span>
+    }
+
+    /**
+     * 获取树高
+     *
+     * @return 树高
+     */
+    public int getHeight() {
+<span class="fc" id="L75">        return height;</span>
+    }
+
+    @Override
+    public BinaryTree.TreeNode getFoundNode() {
+<span class="fc" id="L80">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

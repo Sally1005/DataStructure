@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Q236LowestCommonAncestorOfBinaryTree.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-structure</a> &gt; <a href="index.source.html" class="el_package">com.lonton.leetcode.med</a> &gt; <span class="el_source">Q236LowestCommonAncestorOfBinaryTree.java</span></div><h1>Q236LowestCommonAncestorOfBinaryTree.java</h1><pre class="source lang-java linenums">package com.lonton.leetcode.med;
+
+import com.lonton.leetcode.common.TreeNode;
+
+/**
+ * 236. 二叉树的最近公共祖先&lt;p/&gt;
+ * 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+ * 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，
+ * 满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。” &lt;p/&gt;
+ * 思路：&lt;p/&gt;
+ * 递归 &lt;p/&gt;
+ * 1. 根节点为空或者根节点等于p 或者q，返回root；&lt;p/&gt;
+ * 2. 递归左右子树，查找左右子树中是否包含p、q；&lt;p/&gt;
+ * 1) 左右子树中包含p、q,则当前节点为其最近公共祖先；&lt;p/&gt;
+ * 2） 都在左子树中，左子节点即为其最近公共祖先；&lt;p/&gt;
+ * 3） 都在右子树中，右子节点即为其最近公共祖先；&lt;p/&gt;
+ * 4） 左右子树中均不包含p、q,则返回null。&lt;p/&gt;
+ *
+ * @author 张利红
+ */
+<span class="fc" id="L21">public class Q236LowestCommonAncestorOfBinaryTree {</span>
+
+    /**
+     * 求二叉树的最近公共祖先
+     *
+     * @param root 根节点
+     * @param p    节点 p
+     * @param q    节点 q
+     * @return 二叉树的最近公共祖先节点
+     */
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+<span class="fc bfc" id="L32" title="All 6 branches covered.">        if (root == null || p == root || q == root) {</span>
+<span class="fc" id="L33">            return root;</span>
+        }
+
+<span class="fc" id="L36">        TreeNode leftNode = lowestCommonAncestor(root.getLeft(), p, q);</span>
+<span class="fc" id="L37">        TreeNode rightNode = lowestCommonAncestor(root.getRight(), p, q);</span>
+
+<span class="fc bfc" id="L39" title="All 4 branches covered.">        if (leftNode != null &amp;&amp; rightNode != null) {</span>
+<span class="fc" id="L40">            return root;</span>
+        }
+
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if (leftNode != null) {</span>
+<span class="fc" id="L44">            return leftNode;</span>
+        }
+
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if (rightNode != null) {</span>
+<span class="fc" id="L48">            return rightNode;</span>
+        }
+
+<span class="fc" id="L51">        return null;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

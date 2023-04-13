@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Q617MergingTrees.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-structure</a> &gt; <a href="index.source.html" class="el_package">com.lonton.leetcode.easy</a> &gt; <span class="el_source">Q617MergingTrees.java</span></div><h1>Q617MergingTrees.java</h1><pre class="source lang-java linenums">package com.lonton.leetcode.easy;
+
+import com.lonton.leetcode.common.TreeNode;
+
+/**
+ * 617. 合并二叉树 &lt;p/&gt;
+ * 给你两棵二叉树：root1 和 root2。&lt;p/&gt;
+ * 你需要将这两棵树合并成一棵新二叉树。&lt;p/&gt;
+ * 合并的规则是：如果两个节点重叠，那么将这两个节点的值相加作为合并后节点的新值；&lt;p/&gt;
+ * 否则，不为 null 的节点将直接作为新二叉树的节点。&lt;p/&gt;
+ * 返回合并后的二叉树。&lt;p/&gt;
+ * 注意: 合并过程必须从两个树的根节点开始。&lt;p/&gt;
+ *
+ * @author 张利红
+ */
+<span class="fc" id="L16">public class Q617MergingTrees extends TreeNode {</span>
+    /**
+     * 合并二叉树
+     *
+     * @param root1 树1
+     * @param root2 树2
+     * @return 新树
+     */
+    public  TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        // roo1、root2 均非空,将两个节点的值在root1上相加并赋值
+<span class="fc bfc" id="L26" title="All 4 branches covered.">        if (root1 != null &amp;&amp; root2 != null) {</span>
+<span class="fc" id="L27">            root1.setVal((Integer)root1.getVal() + (Integer)root2.getVal());</span>
+<span class="fc" id="L28">            root1.setLeft(mergeTrees(root1.getLeft(), root2.getLeft()));</span>
+<span class="fc" id="L29">            root1.setRight(mergeTrees(root1.getRight(), root2.getRight()));</span>
+<span class="fc" id="L30">            return root1;</span>
+        } else { // roo1 为空，root2 非空 或  roo2 为空，root1 非空
+<span class="fc bfc" id="L32" title="All 2 branches covered.">            return root1 == null ? root2 : root1;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="zh"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BinaryTree.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">data-structure</a> &gt; <a href="index.source.html" class="el_package">com.lonton.binarytree.pojo</a> &gt; <span class="el_source">BinaryTree.java</span></div><h1>BinaryTree.java</h1><pre class="source lang-java linenums">package com.lonton.binarytree.pojo;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.HashMap;
+import java.util.List;
+
+
+/**
+ * 二叉树类
+ * &lt;p/&gt;
+ *
+ * @author 张利红
+ */
+
+<span class="fc" id="L20">@Slf4j</span>
+<span class="nc bnc" id="L21" title="All 16 branches missed.">@Data</span>
+public class BinaryTree&lt;T&gt; {
+
+    /**
+     * 根节点
+     */
+<span class="fc" id="L27">    private TreeNode&lt;T&gt; root;</span>
+
+    /**
+     * 节点数
+     */
+<span class="nc" id="L32">    private int nodeCount;</span>
+
+    /**
+     * 在构造函数中创建二叉树
+     *
+     * @param nodes 节点集
+     */
+<span class="fc" id="L39">    public BinaryTree(List&lt;TreeNode&gt; nodes) {</span>
+        // 以节点id为key 生成映射表 在查找左右子节点时提高效率
+<span class="fc" id="L41">        HashMap&lt;Integer, TreeNode&gt; map = new HashMap&lt;&gt;();</span>
+        // 先找到根节点 组装二叉树
+<span class="fc" id="L43">        BinaryTree.TreeNode vo = nodes.get(0);</span>
+<span class="fc" id="L44">        TreeNode top = new TreeNode&lt;String&gt;();</span>
+<span class="fc" id="L45">        top.setId(vo.getId());</span>
+<span class="fc" id="L46">        top.setData(vo.getData());</span>
+<span class="fc" id="L47">        top.setLevel(vo.getLevel());</span>
+<span class="fc" id="L48">        this.root = top;</span>
+<span class="fc" id="L49">        map.put(top.getId(), top);</span>
+        // 循环遍历树节点
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for (int i = 1; i &lt; nodes.size(); i++) {</span>
+<span class="fc" id="L52">            BinaryTree.TreeNode nodeVo = nodes.get(i);</span>
+<span class="fc" id="L53">            TreeNode node = new TreeNode&lt;String&gt;();</span>
+            // 节点id
+<span class="fc" id="L55">            Integer voId = nodeVo.getId();</span>
+<span class="fc" id="L56">            node.setId(voId);</span>
+<span class="fc" id="L57">            node.setData(nodeVo.getData());</span>
+<span class="fc" id="L58">            node.setLevel(nodeVo.getLevel());</span>
+<span class="fc" id="L59">            map.put(voId, node);</span>
+            // 构建父子节点关系
+<span class="fc" id="L61">            TreeNode parentNode = map.get(nodeVo.getParentId());</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">            if (nodeVo.getIsLeft() == 1) {</span>
+<span class="fc" id="L63">                parentNode.setLeftNode(node);</span>
+            } else {
+<span class="fc" id="L65">                parentNode.setRightNode(node);</span>
+            }
+        }
+        // 节点数量就等于map集合中元素的个数
+<span class="fc" id="L69">        nodeCount = nodes.size();</span>
+<span class="fc" id="L70">    }</span>
+
+<span class="pc" id="L72">    @Data</span>
+<span class="fc" id="L73">    @NoArgsConstructor</span>
+<span class="nc" id="L74">    @AllArgsConstructor</span>
+<span class="pc bpc" id="L75" title="55 of 62 branches missed.">    @EqualsAndHashCode // 用于后期去重</span>
+    public static class TreeNode&lt;T&gt; {
+
+        /**
+         * 左子节点
+         */
+<span class="fc" id="L81">        private TreeNode leftNode;</span>
+
+        /**
+         * 右子节点
+         */
+<span class="fc" id="L86">        private TreeNode rightNode;</span>
+        /**
+         * id
+         */
+<span class="fc" id="L90">        private Integer id;</span>
+
+        /**
+         * 当前节点
+         */
+<span class="fc" id="L95">        private String data;</span>
+
+        /**
+         * 父节点id
+         */
+<span class="fc" id="L100">        Integer parentId;</span>
+
+        /**
+         * 是否为左子节点 1 为左 0为右
+         */
+<span class="fc" id="L105">        private Integer isLeft;</span>
+
+        /**
+         * 当前节点层级
+         */
+<span class="fc" id="L110">        private Integer level;</span>
+
+<span class="nc" id="L112">        public TreeNode(Integer id, String data, Integer parentId, Integer isLeft, Integer level) {</span>
+<span class="nc" id="L113">            this.id = id;</span>
+<span class="nc" id="L114">            this.data = data;</span>
+<span class="nc" id="L115">            this.parentId = parentId;</span>
+<span class="nc" id="L116">            this.isLeft = isLeft;</span>
+<span class="nc" id="L117">            this.level = level;</span>
+<span class="nc" id="L118">        }</span>
+    }
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
