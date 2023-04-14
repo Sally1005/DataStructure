@@ -26,7 +26,7 @@ public class Q538ConvertBSTToGreaterTreeTest {
         Integer[] expected = new Integer[]{30, 36, 21, 36, 35, 26, 15, null, null, null, 33, null, null, null, 8};
 
         // 断言
-        Assertions.assertArrayEquals(expected,new TreeNode<Integer>().treeToArray(actual),
+        Assertions.assertArrayEquals(expected,new TreeNode<Integer>().treeToArray(actual,Integer.class),
                 "比对失败，将二叉搜索树转换为累加树有误");
     }
 
@@ -39,7 +39,7 @@ public class Q538ConvertBSTToGreaterTreeTest {
         Integer[] expected = new Integer[]{3, 3, 2};
 
         // 断言
-        Assertions.assertArrayEquals(expected,new TreeNode<Integer>().treeToArray(actual),
+        Assertions.assertArrayEquals(expected,new TreeNode<Integer>().treeToArray(actual,Integer.class),
                 "比对失败，将二叉搜索树转换为累加树有误");
     }
 
@@ -52,7 +52,7 @@ public class Q538ConvertBSTToGreaterTreeTest {
         Integer[] expected = new Integer[]{7, 9, 4, 10};
 
         // 断言
-        Assertions.assertArrayEquals(expected, new TreeNode<Integer>().treeToArray(actual),
+        Assertions.assertArrayEquals(expected, new TreeNode<Integer>().treeToArray(actual,Integer.class),
                 "比对失败，将二叉搜索树转换为累加树有误");
     }
 }

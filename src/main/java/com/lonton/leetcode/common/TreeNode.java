@@ -108,11 +108,11 @@ public class TreeNode<T> {
      * @param root 二叉树根节点
      * @return 数组
      */
-    public T[] treeToArray(TreeNode<T> root) {
+    public T[] treeToArray(TreeNode<T> root,Class<T> clazz) {
         // 根节点为空，返回一个空数组
-        if (root == null) return null;
+        if (root == null) return  (T[]) Array.newInstance(clazz,0);
         // 由于不知道数组长度，先将元素存入list中
-        List<Object> list = new ArrayList<>();
+        List<T> list = new ArrayList<>();
         // 需要向队列中添加null,ArrayDequeue不能添加null
         Queue<TreeNode<T>> queue = new LinkedList<>();
         // 加入根节点
@@ -137,8 +137,8 @@ public class TreeNode<T> {
             }
             // return  list.subList(0, idx+1).toArray((T[]) new Object[idx]);
             //return (T[]) list.subList(0, idx + 1).toArray(new Integer[0]);
-
         }
-        return list.subList(0, idx + 1).toArray((T[]) Array.newInstance(root.val.getClass(), list.subList(0, idx + 1).size()));
+        return list.subList(0, idx + 1).toArray((T[]) Array.newInstance(clazz, list.subList(0, idx + 1).size()));
     }
+
 }
