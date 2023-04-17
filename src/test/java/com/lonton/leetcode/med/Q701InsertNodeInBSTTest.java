@@ -19,7 +19,7 @@ public class Q701InsertNodeInBSTTest {
         TreeNode tree = new Q701InsertNodeInBST().insertIntoBST(root, 5);
 
         Assertions.assertArrayEquals(new Integer[]{4, 2, 7, 1, 3, 5}, tree.treeToArray(tree, Integer.class),
-                "比对失败，前序数组和后序数组构成的二叉搜索树与与实际预期不相等。");
+                "比对失败，插入二叉搜索树结果与实际预期不相等。");
     }
 
 }
