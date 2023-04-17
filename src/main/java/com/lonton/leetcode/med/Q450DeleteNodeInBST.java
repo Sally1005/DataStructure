@@ -18,6 +18,8 @@ import com.lonton.leetcode.common.TreeNode;
  */
 public class Q450DeleteNodeInBST {
     /**
+     * 删除二叉搜索树中的元素
+     *
      * @param root 根节点
      * @param key  目标删除元素
      * @return （更新后）根节点
