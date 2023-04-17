@@ -24,16 +24,16 @@ public class Q450DeleteNodeInBST {
      * @param key  目标删除元素
      * @return （更新后）根节点
      */
-    public TreeNode deleteNode(TreeNode root, int key) {
+    public TreeNode<Integer> deleteNode(TreeNode<Integer> root, int key) {
         // 根节点为空或者遍历完树还未找到要删除的目标元素
         if (root == null) {
             return null;
         }
         // 递归地向左子树删除元素
-        if (key < (int) root.getVal()) {
+        if (key < root.getVal()) {
             root.setLeft(deleteNode(root.getLeft(), key));
             // 递归地向右子树删除元素
-        } else if (key > (int) root.getVal()) {
+        } else if (key > root.getVal()) {
             root.setRight(deleteNode(root.getRight(), key));
         } else {
             // 找到要删除的节点 为叶子节点（左空 & 右空）
@@ -51,7 +51,7 @@ public class Q450DeleteNodeInBST {
             root.setVal(minValue(root.getRight()));
 
             // 删除右子树的最小节点
-            root.setRight(deleteNode(root.getRight(), (int) root.getVal()));
+            root.setRight(deleteNode(root.getRight(), root.getVal()));
         }
         return root;
     }
@@ -62,10 +62,10 @@ public class Q450DeleteNodeInBST {
      * @param root 根节点
      * @return 较小的节点值
      */
-    int minValue(TreeNode root) {
-        int minv = (int) root.getVal();
+    int minValue(TreeNode<Integer> root) {
+        int minv = root.getVal();
         while (root.getLeft() != null) {
-            minv = (int) root.getLeft().getVal();
+            minv = root.getLeft().getVal();
             root = root.getLeft();
         }
         return minv;
