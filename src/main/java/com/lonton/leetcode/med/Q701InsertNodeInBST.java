@@ -17,14 +17,14 @@ public class Q701InsertNodeInBST {
      * @param val  插入值
      * @return 根节点
      */
-    public TreeNode insertIntoBST(TreeNode root, int val) {
+    public TreeNode<Integer> insertIntoBST(TreeNode<Integer> root, int val) {
         if (root == null) {
             return new TreeNode(val);
         }
-        if ((int) root.getVal() > val) {
+        if (root.getVal() > val) {
             root.setLeft(insertIntoBST(root.getLeft(), val));
         }
-        if ((int) root.getVal() < val) {
+        if (root.getVal() < val) {
             root.setRight(insertIntoBST(root.getRight(), val));
         }
         return root;
