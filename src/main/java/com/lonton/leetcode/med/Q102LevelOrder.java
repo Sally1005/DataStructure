@@ -17,7 +17,7 @@ import java.util.Queue;
  *
  * @author 张利红
  */
-public class Q102LevelOrder extends TreeNode {
+public class Q102LevelOrder {
     /**
      * 层序遍历
      *

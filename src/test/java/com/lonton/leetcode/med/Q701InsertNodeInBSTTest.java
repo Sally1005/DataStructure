@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 public class Q701InsertNodeInBSTTest {
     @Test
     public void test() {
-        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{4, 2, 7, 1, 3});
-        TreeNode tree = new Q701InsertNodeInBST().insertIntoBST(root, 5);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{4, 2, 7, 1, 3});
+        TreeNode<Integer> tree = new Q701InsertNodeInBST().insertIntoBST(root, 5);
 
         Assertions.assertArrayEquals(new Integer[]{4, 2, 7, 1, 3, 5}, tree.treeToArray(tree, Integer.class),
                 "比对失败，插入二叉搜索树结果与实际预期不相等。");

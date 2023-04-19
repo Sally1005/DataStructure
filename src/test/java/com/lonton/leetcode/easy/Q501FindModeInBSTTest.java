@@ -18,7 +18,7 @@ public class Q501FindModeInBSTTest {
     @Test
     public void test() {
         Integer[] nums = new Integer[]{1, null, 2, 2};
-        TreeNode root = new TreeNode<>().arrayToTree(nums);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
 
         Assertions.assertArrayEquals(new int[]{2},
                 new Q501FindModeInBST().findMode(root),
@@ -28,7 +28,7 @@ public class Q501FindModeInBSTTest {
     @Test
     public void testEmpty() {
         Integer[] nums = new Integer[0];
-        TreeNode root = new TreeNode<>().arrayToTree(nums);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
 
         Assertions.assertArrayEquals(new int[0],
                 new Q501FindModeInBST().findMode(root),

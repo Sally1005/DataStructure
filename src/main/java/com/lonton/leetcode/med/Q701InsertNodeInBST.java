@@ -19,7 +19,7 @@ public class Q701InsertNodeInBST {
      */
     public TreeNode<Integer> insertIntoBST(TreeNode<Integer> root, int val) {
         if (root == null) {
-            return new TreeNode(val);
+            return new TreeNode<>(val);
         }
         if (root.getVal() > val) {
             root.setLeft(insertIntoBST(root.getLeft(), val));

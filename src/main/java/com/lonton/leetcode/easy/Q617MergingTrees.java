@@ -13,7 +13,7 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q617MergingTrees extends TreeNode {
+public class Q617MergingTrees {
     /**
      * 合并二叉树
      *
@@ -21,10 +21,10 @@ public class Q617MergingTrees extends TreeNode {
      * @param root2 树2
      * @return 新树
      */
-    public  TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+    public  TreeNode<Integer>  mergeTrees(TreeNode<Integer>  root1, TreeNode<Integer>  root2) {
         // roo1、root2 均非空,将两个节点的值在root1上相加并赋值
         if (root1 != null && root2 != null) {
-            root1.setVal((Integer)root1.getVal() + (Integer)root2.getVal());
+            root1.setVal(root1.getVal() + root2.getVal());
             root1.setLeft(mergeTrees(root1.getLeft(), root2.getLeft()));
             root1.setRight(mergeTrees(root1.getRight(), root2.getRight()));
             return root1;

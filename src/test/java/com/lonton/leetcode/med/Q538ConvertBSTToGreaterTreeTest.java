@@ -21,7 +21,7 @@ public class Q538ConvertBSTToGreaterTreeTest {
     public void test() {
         // 构树
         Integer[] nums = new Integer[]{4, 1, 6, 0, 2, 5, 7, null, null, null, 3, null, null, null, 8};
-        TreeNode actual = new Q538ConvertBSTToGreaterTree().convertBST(new TreeNode<>().arrayToTree(nums));
+        TreeNode<Integer> actual = new Q538ConvertBSTToGreaterTree().convertBST(new TreeNode<Integer>().arrayToTree(nums));
 
         Integer[] expected = new Integer[]{30, 36, 21, 36, 35, 26, 15, null, null, null, 33, null, null, null, 8};
 
@@ -34,7 +34,7 @@ public class Q538ConvertBSTToGreaterTreeTest {
     public void test2() {
         // 构树
         Integer[] nums = new Integer[]{1, 0, 2};
-        TreeNode actual = new Q538ConvertBSTToGreaterTree().convertBST(new TreeNode<>().arrayToTree(nums));
+        TreeNode<Integer> actual = new Q538ConvertBSTToGreaterTree().convertBST(new TreeNode<Integer>().arrayToTree(nums));
 
         Integer[] expected = new Integer[]{3, 3, 2};
 
@@ -47,7 +47,7 @@ public class Q538ConvertBSTToGreaterTreeTest {
     public void test3() {
         // 构树
         Integer[] nums = new Integer[]{3, 2, 4, 1};
-        TreeNode actual = new Q538ConvertBSTToGreaterTree().convertBST(new TreeNode<>().arrayToTree(nums));
+        TreeNode<Integer> actual = new Q538ConvertBSTToGreaterTree().convertBST(new TreeNode<Integer>().arrayToTree(nums));
 
         Integer[] expected = new Integer[]{7, 9, 4, 10};
 

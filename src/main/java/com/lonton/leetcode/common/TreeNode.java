@@ -22,7 +22,6 @@ public class TreeNode<T> {
     private TreeNode<T> right;
 
     public TreeNode() {
-        this.val = val;
     }
 
     public TreeNode(T val) {

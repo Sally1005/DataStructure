@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author 张利红
  */
-public class Q257AllPathsToBinaryTrees extends TreeNode {
+public class Q257AllPathsToBinaryTrees  {
 
     /**
      * 二叉树所有路径
@@ -21,7 +21,7 @@ public class Q257AllPathsToBinaryTrees extends TreeNode {
      * @param root 根节点
      * @return list集合
      */
-    public List<String> binaryTreePaths(TreeNode root) {
+    public List<String> binaryTreePaths(TreeNode<Integer>  root) {
         List<String> list = new ArrayList<>();
         StringBuffer sb = new StringBuffer();
         dfs(root, list, sb);
@@ -35,7 +35,7 @@ public class Q257AllPathsToBinaryTrees extends TreeNode {
      * @param list 集合
      * @param sb   字符串缓冲
      */
-    public void dfs(TreeNode root, List<String> list, StringBuffer sb) {
+    public void dfs(TreeNode<Integer> root, List<String> list, StringBuffer sb) {
         if (root == null) {
             return;
         }

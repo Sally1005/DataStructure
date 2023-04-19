@@ -20,8 +20,8 @@ public class Q669TrimBSTTest {
 
     @Test
     public void testEmpty() {
-        TreeNode root = new TreeNode<>().arrayToTree(new Integer[0]);
-        TreeNode tree = new Q669TrimBST().trimBST(root, 1, 2);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[0]);
+        TreeNode<Integer> tree = new Q669TrimBST().trimBST(root, 1, 2);
 
         Assertions.assertArrayEquals(new Integer[0], new TreeNode<Integer>().treeToArray(tree, Integer.class),
                 "当树为空时，修剪二叉搜索树的结果与实际预期不相等。");
@@ -29,8 +29,8 @@ public class Q669TrimBSTTest {
 
     @Test
     public void testOutOfRange() {
-        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{3, 0, 4, null, 2, null, null, 1});
-        TreeNode tree = new Q669TrimBST().trimBST(root, 1, 3);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{3, 0, 4, null, 2, null, null, 1});
+        TreeNode<Integer> tree = new Q669TrimBST().trimBST(root, 1, 3);
 
         Assertions.assertArrayEquals(new Integer[]{3, 2, null, 1}, new TreeNode<Integer>().treeToArray(tree, Integer.class),
                 "当根节点不在修剪的范围内时，修剪二叉搜索树的结果与实际预期不相等。");
@@ -39,8 +39,8 @@ public class Q669TrimBSTTest {
 
     @Test
     public void testInRange() {
-        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{3, 2, null, 1});
-        TreeNode tree = new Q669TrimBST().trimBST(root, 1, 3);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{3, 2, null, 1});
+        TreeNode<Integer> tree = new Q669TrimBST().trimBST(root, 1, 3);
 
         Assertions.assertArrayEquals(new Integer[]{3, 2, null, 1}, new TreeNode<Integer>().treeToArray(tree, Integer.class),
                 "当根节点在修剪的范围内时，修剪二叉搜索树的结果与实际预期不相等。");

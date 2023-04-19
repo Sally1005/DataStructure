@@ -13,7 +13,7 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q112PathSum extends TreeNode {
+public class Q112PathSum {
 
     /**
      * 判断是否有路径总和
@@ -22,7 +22,7 @@ public class Q112PathSum extends TreeNode {
      * @param targetSum 目标和
      * @return boolean
      */
-    public  boolean hasPathSum(TreeNode root, int targetSum) {
+    public  boolean hasPathSum(TreeNode<Integer>  root, int targetSum) {
         // flag[0] = 0 路径总和不等  = 1 有路径总和相等
         int[] flag = {0};
         recurve(root, 0, targetSum, flag);
@@ -37,12 +37,12 @@ public class Q112PathSum extends TreeNode {
      * @param targetSum 目标和
      * @param flag      结果值
      */
-    static void recurve(TreeNode treeNode, Integer preSum, int targetSum, int[] flag) {
+    static void recurve(TreeNode<Integer>  treeNode, Integer preSum, int targetSum, int[] flag) {
         // flag[0] == 1 或当前递归到的节点为空，直接跳出方法
         if (flag[0] == 1 || treeNode == null) {
             return;
         }
-        preSum += (Integer)treeNode.getVal();
+        preSum += treeNode.getVal();
         // 左递归路径值
         recurve(treeNode.getLeft(), preSum, targetSum, flag);
         // 右递归路径值

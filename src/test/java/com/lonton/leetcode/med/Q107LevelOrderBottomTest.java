@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -21,10 +22,10 @@ public class Q107LevelOrderBottomTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode node = new TreeNode<>().arrayToTree(nums);
+        TreeNode<Integer> node = new TreeNode<Integer>().arrayToTree(nums);
 
         List<List<Integer>> expected = new ArrayList<>(
-                Arrays.asList(Arrays.asList(15, 7), Arrays.asList(9, 20), Arrays.asList(3)));
+                Arrays.asList(Arrays.asList(15, 7), Arrays.asList(9, 20), Collections.singletonList(3)));
 
         Assertions.assertEquals(expected, new Q107LevelOrderBottom().levelOrderBottom(node),
                 " 比对失败，二叉树的层级遍历II遍历出的集合有问题。");

@@ -24,11 +24,11 @@ public class Q538ConvertBSTToGreaterTree {
      * @param root 根节点
      * @return 累加树
      */
-    public TreeNode convertBST(TreeNode root) {
+    public TreeNode<Integer> convertBST(TreeNode<Integer> root) {
         if (root != null) {
             // 右
             convertBST(root.getRight());
-            sum += (int) root.getVal();
+            sum += root.getVal();
             // 根
             root.setVal(sum);
             // 左

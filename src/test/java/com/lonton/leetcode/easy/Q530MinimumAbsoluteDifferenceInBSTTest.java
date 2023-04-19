@@ -18,7 +18,7 @@ public class Q530MinimumAbsoluteDifferenceInBSTTest {
     @Test
     public void testLeftBST() {
         Integer[] nums = new Integer[]{4, 2, 6, 1, 3};
-        TreeNode root = new TreeNode<>().arrayToTree(nums);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
 
         Assertions.assertEquals(1,
                 new Q530MinimumAbsoluteDifferenceInBST().minDiffInBST(root),
@@ -28,7 +28,7 @@ public class Q530MinimumAbsoluteDifferenceInBSTTest {
     @Test
     public void testRightBst() {
         Integer[] nums = new Integer[]{1, 0, 48, null, null, 12, 49};
-        TreeNode root = new TreeNode<>().arrayToTree(nums);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
 
         Assertions.assertEquals(1,
                new Q530MinimumAbsoluteDifferenceInBST().minDiffInBST(root),

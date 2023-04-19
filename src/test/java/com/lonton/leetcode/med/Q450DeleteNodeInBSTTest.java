@@ -20,8 +20,8 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testEmpty() {
-        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
-        TreeNode tree = new Q450DeleteNodeInBST().deleteNode(root, 0);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 0);
 
         Assertions.assertArrayEquals(new Integer[]{5, 3, 6, 2, 4, null, 7}, tree.treeToArray(tree, Integer.class),
                 "当未找到目标节点或根节点为空时，删除二叉搜索树结果与实际预期不相等。");
@@ -29,8 +29,8 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testLeafNode() {
-        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
-        TreeNode tree = new Q450DeleteNodeInBST().deleteNode(root, 2);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 2);
 
         Assertions.assertArrayEquals(new Integer[]{5, 3, 6, null, 4, null, 7}, tree.treeToArray(tree, Integer.class),
                 "当为叶子节点时，删除二叉搜索树结果与实际预期不相等。");
@@ -38,8 +38,8 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testLeftNull() {
-        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
-        TreeNode tree = new Q450DeleteNodeInBST().deleteNode(root, 6);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 6);
 
         Assertions.assertArrayEquals(new Integer[]{5, 3, 7, 2, 4}, tree.treeToArray(tree, Integer.class),
                 "当节点左空 & 右非空时，删除二叉搜索树结果与实际预期不相等。");
@@ -47,8 +47,8 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testRightNull() {
-        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
-        TreeNode tree = new Q450DeleteNodeInBST().deleteNode(root, 0);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 0);
 
         Assertions.assertArrayEquals(new Integer[]{5, 3, 6, 2, 4, null, 7}, tree.treeToArray(tree, Integer.class),
                 "当节点左非空 & 右空时，删除二叉搜索树结果与实际预期不相等。");
@@ -56,8 +56,8 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testNotNUll() {
-        TreeNode root = new TreeNode<>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
-        TreeNode tree = new Q450DeleteNodeInBST().deleteNode(root, 3);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 3);
 
         Assertions.assertArrayEquals(new Integer[]{5, 4, 6, 2, null, null, 7}, tree.treeToArray(tree, Integer.class),
                 "当节点左非空 & 右非空时，删除二叉搜索树结果与实际预期不相等。");

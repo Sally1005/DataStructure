@@ -24,11 +24,11 @@ public class Q222CountCompleteTreeNodes {
      * @param root 根节点
      * @return 完全二叉树的节点个数
      */
-    public int countNodes(TreeNode root) {
+    public int countNodes(TreeNode<Integer> root) {
         if (root == null) return 0;
 
-        TreeNode left = root.getLeft();
-        TreeNode right = root.getRight();
+        TreeNode<Integer> left = root.getLeft();
+        TreeNode<Integer> right = root.getRight();
         int leftHeight = 0;
         int rightHeight = 0;
         while (left != null) {

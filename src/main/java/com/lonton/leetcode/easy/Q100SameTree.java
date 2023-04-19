@@ -3,6 +3,7 @@ package com.lonton.leetcode.easy;
 import com.lonton.leetcode.common.TreeNode;
 
 import java.util.LinkedList;
+import java.util.Objects;
 import java.util.Queue;
 
 /**
@@ -12,17 +13,14 @@ import java.util.Queue;
  *
  * @author 张利红
  */
-public class Q100SameTree extends TreeNode {
+public class Q100SameTree {
     /**
      * 判断是否为相同的树
      * <br/>
      *
      * @return boolean
      */
-    public  boolean isSameTree(TreeNode p, TreeNode q) {
-        /**
-         * 法一：递归
-         */
+    public  boolean isSameTree(TreeNode<Integer> p, TreeNode<Integer> q) {
 //        // 如果两棵树的根节点都为空，那么它们为相同的树
 //        if (p == null && q == null) {
 //            return true;
@@ -35,27 +33,24 @@ public class Q100SameTree extends TreeNode {
 //        return (p.getVal() == q.getVal() && isSameTree(p.getLeft(), q.getLeft()) && isSameTree(p.getRight(), q.getRight()));
 
 
-        /**
-         * 法二： 迭代（荐）
-         */
         // 如果两棵树的根节点都为空，那么它们为相同的树
         if (p == null && q == null) return true;
         // 如果两棵树的任何一个根节点为空，那么它们不相同
         if (p == null || q == null) return false;
         // 创建一个队列，两两比较节点，相同的则弹出
-        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        Queue<TreeNode<Integer>> queue = new LinkedList<>();
         // 根节点入队,队列先进先出
         queue.add(p);
         queue.add(q);
         // 当队列为空时，结束循环
         while (!queue.isEmpty()) {
-            TreeNode left = queue.poll();
-            TreeNode right = queue.poll();
+            TreeNode<Integer> left = queue.poll();
+            TreeNode<Integer> right = queue.poll();
             // 防止空指针异常
             if (left == null && right == null) continue;
 
             if (left == null || right == null) return false;
-            if (left.getVal() != right.getVal()) return false;
+            if (!Objects.equals(left.getVal(), right.getVal())) return false;
             queue.add(left.getLeft());
             queue.add(right.getLeft());
             queue.add(left.getRight());

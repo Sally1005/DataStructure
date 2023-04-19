@@ -9,7 +9,7 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q700SearchBST extends TreeNode {
+public class Q700SearchBST {
     /**
      * 搜索二叉树中的整数值
      *
@@ -17,11 +17,11 @@ public class Q700SearchBST extends TreeNode {
      * @param val  整数值 val
      * @return 返回以节点值等于 val为根的子树
      */
-    public TreeNode searchBST(TreeNode root, int val) {
+    public TreeNode<Integer>  searchBST(TreeNode<Integer> root, int val) {
         if (root == null) return null;
-        if ((Integer)root.getVal() == val) return root;
+        if (root.getVal() == val) return root;
         // 整数值小于根节点数值，递归往左找
-        if ((Integer)root.getVal() > val) {
+        if (root.getVal() > val) {
             return searchBST(root.getLeft(), val);
         }
         // 整数值大于根节点数值，递归往右找

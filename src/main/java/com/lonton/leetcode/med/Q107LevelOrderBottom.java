@@ -3,7 +3,7 @@ package com.lonton.leetcode.med;
 import com.lonton.leetcode.common.TreeNode;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -18,26 +18,26 @@ import java.util.List;
  * @author 张利红
  */
 
-public class Q107LevelOrderBottom extends TreeNode {
+public class Q107LevelOrderBottom {
     /**
      * 层序遍历
      *
      * @param root 根节点
      * @return list
      */
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+    public List<List<Integer>> levelOrderBottom(TreeNode<Integer> root) {
         // root 为空，返回空数组
         if (root == null) return new ArrayList<>();
         List<List<Integer>> result = new ArrayList<>();
         // 第一层
-        ArrayList<TreeNode> level = new ArrayList<>(Arrays.asList(root));
+        ArrayList<TreeNode<Integer>> level = new ArrayList<>(Collections.singletonList(root));
         while (! level.isEmpty()) {
-            ArrayList<TreeNode> nextLevel = new ArrayList<>();
+            ArrayList<TreeNode<Integer>> nextLevel = new ArrayList<>();
             ArrayList<Integer> values = new ArrayList<>();
             // 遍历level
-            for (TreeNode node : level) {
+            for (TreeNode<Integer> node : level) {
                 // 非空 根
-                values.add((Integer) node.getVal());
+                values.add(node.getVal());
                 if (node.getLeft() != null) {
                     nextLevel.add(node.getLeft());
                 }
@@ -52,41 +52,6 @@ public class Q107LevelOrderBottom extends TreeNode {
         return result;
     }
     // 法二：list + Queue
-//    public List<List<Integer>> levelOrderBottom(TreeNode root) {
-//            // 大 list
-//            List<List<Integer>> bList = new LinkedList<>();
-//            if (root == null) {
-//                return bList;
-//            }
-//            // 创建一个队列，并将根结点加入队列
-//            Queue<TreeNode> queue = new LinkedList<>();
-//            queue.offer(root);
-//            // 当队列为空时，结束循环
-//            while (!queue.isEmpty()) {
-//                // 求队列当前的大小
-//                int size = queue.size();
-//                List<Integer> list = new ArrayList<>();
-//                // 每一层的数据个数
-//                while (size > 0) {
-//                    // 当队列里有元素时，就将该队列的首元素出队列
-//                    TreeNode cur = queue.poll();
-//                        // 就将cur里的元素放进list里
-//                        list.add(cur.getVal());
-//                        if (cur.getLeft() != null) {
-//                            // 将cur.left入队列
-//                            queue.offer(cur.getLeft());
-//                        }
-//                        if (cur.getRight() != null) {
-//                            queue.offer(cur.getRight());
-//                        }
-//                    // 小 list 中元素自减
-//                    size--;
-//                }
-//                // add（0，element）,将数据每次插入到最前面
-//                bList.add(0,list);
-//            }
-//            return bList;
-//        }
 
 }
 

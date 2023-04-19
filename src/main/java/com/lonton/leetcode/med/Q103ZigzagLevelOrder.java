@@ -18,21 +18,21 @@ import java.util.Queue;
  *
  * @author 张利红
  */
-public class Q103ZigzagLevelOrder extends TreeNode {
+public class Q103ZigzagLevelOrder {
     /**
      * 锯齿形层序遍历
      *
      * @param root 根节点
      * @return list
      */
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode<Integer>  root) {
         // 大 list
         List<List<Integer>> bList = new LinkedList<>();
         if (root == null) {
             return bList;
         }
         // 创建一个队列，并将根结点加入队列
-        Queue<TreeNode> queue = new LinkedList<>();
+        Queue<TreeNode<Integer> > queue = new LinkedList<>();
         queue.offer(root);
         boolean isFromLeft = true;
         // 当队列为空时，结束循环
@@ -43,10 +43,10 @@ public class Q103ZigzagLevelOrder extends TreeNode {
             // 每一层的数据个数
             while (size > 0) {
                 // 当队列里有元素时，就将该队列的首元素出队列
-                TreeNode cur = queue.poll();
+                TreeNode<Integer>  cur = queue.poll();
                 if (cur != null) {
                     // 就将cur里的元素放进list里
-                    list.add((Integer) cur.getVal());
+                    list.add(cur.getVal());
                     if (cur.getLeft() != null) {
                         // 将cur.left入队列
                         queue.offer(cur.getLeft());

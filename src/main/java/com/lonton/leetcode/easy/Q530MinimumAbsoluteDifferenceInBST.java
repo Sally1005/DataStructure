@@ -24,7 +24,7 @@ public class Q530MinimumAbsoluteDifferenceInBST {
      * @param root 根节点
      * @return 最小绝对差
      */
-    public int minDiffInBST(TreeNode root) {
+    public int minDiffInBST(TreeNode<Integer>  root) {
         int minDiff = Integer.MAX_VALUE;
         List<Integer> val = new ArrayList<>();
         // 中序遍历

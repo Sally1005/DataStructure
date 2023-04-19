@@ -21,23 +21,25 @@ public class Q109SortedListToBST {
      * @param head 头节点
      * @return 二叉搜索树
      */
-    public TreeNode sortedListToBST(ListNode head) {
+    public TreeNode<Integer> sortedListToBST(ListNode<Integer> head) {
         // 快慢指针找到链表的中点，中点作为根结点，两边作为左右子树
         if (head == null) return null;
-        if (head.getNext() == null) return new TreeNode(head.getVal());
+        if (head.getNext() == null) return new TreeNode<>(head.getVal());
 
         // slow是中点，pre是low的前一个结点，断开要置空
-        ListNode pre = null;
-        ListNode fast = head;
-        ListNode slow = head;
+        ListNode<Integer> pre = null;
+        ListNode<Integer> fast = head;
+        ListNode<Integer> slow = head;
         while (fast != null && fast.getNext() != null) {
             fast = fast.getNext().getNext();
             pre = slow;
             slow = slow.getNext();
         }
+        assert pre != null;
         pre.setNext(null);
         //  递归构建树
-        TreeNode root = new TreeNode(
+        // 返回本结点所在子树
+        return new TreeNode<>(
                 // 根
                 slow.getVal(),
                 // 左
@@ -45,7 +47,5 @@ public class Q109SortedListToBST {
                 // 右
                 sortedListToBST(slow.getNext())
         );
-        // 返回本结点所在子树
-        return root;
     }
 }

@@ -22,7 +22,7 @@ public class Q226InvertBinaryTreeTest {
 
         // 构建二叉树
         Integer[] nums = new Integer[]{4, 2, 7, 1, 3, 6, 9};
-        TreeNode root1 = new TreeNode().arrayToTree(nums);
+        TreeNode<Integer>  root1 = new TreeNode<Integer>().arrayToTree(nums);
 
         // 翻转树
         new Q226InvertBinaryTree().invertTree(root1);
@@ -41,7 +41,7 @@ public class Q226InvertBinaryTreeTest {
 
         // 构建二叉树
         Integer[] nums2 = new Integer[]{4, 2, 7, 1};
-        TreeNode root2 = new TreeNode().arrayToTree(nums2);
+        TreeNode<Integer>  root2 = new TreeNode<Integer>().arrayToTree(nums2);
 
         // 翻转树
         new Q226InvertBinaryTree().invertTree(root2);

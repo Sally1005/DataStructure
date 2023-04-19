@@ -10,14 +10,14 @@ import java.util.List;
  *
  * @author 张利红
  */
-public class Q094BinaryTreeInOrderTraversal extends TreeNode {
+public class Q094BinaryTreeInOrderTraversal {
     /**
      * 中序遍历
      *
      * @param root 根节点
      * @return 返回存储对象
      */
-    public List<Integer> inorderTraversal(TreeNode root) {
+    public List<Integer> inorderTraversal(TreeNode<Integer> root) {
         // 定义list集合，存储返回对象
         List<Integer> val = new ArrayList<>();
         if (root == null) {
@@ -34,13 +34,13 @@ public class Q094BinaryTreeInOrderTraversal extends TreeNode {
      * @param root 根节点 <br/>
      * @param val  list集合容器
      */
-    public  void inorder(TreeNode root, List<Integer> val) {
+    public  void inorder(TreeNode<Integer> root, List<Integer> val) {
         // 判断是否有左节点
         if (root.getLeft() != null) {
             inorder(root.getLeft(), val);
         }
         // 判断当前左节点是否遍历完或者说是左节点根本不存在
-        val.add((Integer) root.getVal());
+        val.add( root.getVal());
         // 判断是否有右节点
         if (root.getRight() != null) {
             inorder(root.getRight(), val);

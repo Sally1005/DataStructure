@@ -19,7 +19,7 @@ public class ListNode<T> {
         this.val = val;
     }
 
-    public ListNode(T val, ListNode next) {
+    public ListNode(T val, ListNode<T> next) {
         this.val = val;
         this.next = next;
     }
@@ -34,10 +34,10 @@ public class ListNode<T> {
         if (arr.length == 0) {
             return null;
         }
-        ListNode<T> head = new ListNode<T>(arr[0]);
+        ListNode<T> head = new ListNode<>(arr[0]);
         ListNode<T> tail = head;
         for (int i = 1; i < arr.length; i++) {
-            tail.next = new ListNode<T>(arr[i]);
+            tail.next = new ListNode<>(arr[i]);
             tail = tail.next;
         }
         return head;

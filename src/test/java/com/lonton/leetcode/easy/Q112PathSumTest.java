@@ -19,16 +19,12 @@ public class Q112PathSumTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1};
-        TreeNode root = new TreeNode<>().arrayToTree(nums);
+        TreeNode<Integer>  root = new TreeNode<Integer>().arrayToTree(nums);
 
         // 断言
-        Assertions.assertEquals(true, new Q112PathSum().hasPathSum(root, 22),
-                " 符合条件的路径总和不存在。");
-        Assertions.assertEquals(true, new Q112PathSum().hasPathSum(root, 27),
-                " 符合条件的路径总和不存在。");
-        Assertions.assertEquals(true, new Q112PathSum().hasPathSum(root, 18),
-                " 符合条件的路径总和不存在。");
-        Assertions.assertEquals(true, new Q112PathSum().hasPathSum(root, 26),
-                " 符合条件的路径总和不存在。");
+        Assertions.assertTrue(new Q112PathSum().hasPathSum(root, 22), " 符合条件的路径总和不存在。");
+        Assertions.assertTrue(new Q112PathSum().hasPathSum(root, 27), " 符合条件的路径总和不存在。");
+        Assertions.assertTrue(new Q112PathSum().hasPathSum(root, 18), " 符合条件的路径总和不存在。");
+        Assertions.assertTrue(new Q112PathSum().hasPathSum(root, 26), " 符合条件的路径总和不存在。");
     }
 }

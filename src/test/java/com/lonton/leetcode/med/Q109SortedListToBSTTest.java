@@ -22,8 +22,8 @@ public class Q109SortedListToBSTTest {
     @Test
     public void test() {
         // 构建链表
-        ListNode head = new ListNode().arrayToList(new Integer[]{-10, -3, 0, 5, 9});
-        TreeNode tree1 = new Q109SortedListToBST().sortedListToBST(head);
+        ListNode<Integer> head = new ListNode<Integer>().arrayToList(new Integer[]{-10, -3, 0, 5, 9});
+        TreeNode<Integer> tree1 = new Q109SortedListToBST().sortedListToBST(head);
         Integer[] array =  new TreeNode<Integer>().treeToArray(tree1,Integer.class);
 
         // 断言
@@ -34,12 +34,11 @@ public class Q109SortedListToBSTTest {
     @Test
     public void testEmpty() {
         // 构建链表
-        ListNode head2 = new ListNode().arrayToList(new Integer[0]);
-        TreeNode tree2 = new Q109SortedListToBST().sortedListToBST(head2);
+        ListNode<Integer> head2 = new ListNode<Integer>().arrayToList(new Integer[0]);
+        TreeNode<Integer> tree2 = new Q109SortedListToBST().sortedListToBST(head2);
 
         // 断言
-        Assertions.assertEquals(null, tree2,
-                "由有序链表构建的二叉搜索树的节点与预期不相等");
+        Assertions.assertNull(tree2, "由有序链表构建的二叉搜索树的节点与预期不相等");
 
     }
 }

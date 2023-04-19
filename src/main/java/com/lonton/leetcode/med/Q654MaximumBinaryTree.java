@@ -26,7 +26,7 @@ public class Q654MaximumBinaryTree {
      * @param nums 不重复的整数数组
      * @return 最大二叉树
      */
-    public TreeNode constructMaximumBinaryTree(int[] nums) {
+    public TreeNode<Integer> constructMaximumBinaryTree(int[] nums) {
         if (nums.length == 0) {
             return null;
         }
@@ -40,7 +40,7 @@ public class Q654MaximumBinaryTree {
             }
         }
         // 递归构建二叉树
-        TreeNode root = new TreeNode(maxValue);
+        TreeNode<Integer> root = new TreeNode<>(maxValue);
         // 复制数组，比较提交结果，可以看到运行时间会变长，内存减少了
         root.setLeft(constructMaximumBinaryTree(Arrays.copyOfRange(nums, 0, maxValueIndex)));
         root.setRight(constructMaximumBinaryTree(Arrays.copyOfRange(nums, maxValueIndex + 1, nums.length)));

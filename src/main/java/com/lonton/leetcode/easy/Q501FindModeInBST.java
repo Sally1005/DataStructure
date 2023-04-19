@@ -39,7 +39,7 @@ public class Q501FindModeInBST {
     /**
      * 众数集合
      */
-    private List<Integer> modes = new ArrayList<>();
+    private final List<Integer> modes = new ArrayList<>();
 
     /**
      * 求 BST的众数
@@ -47,7 +47,7 @@ public class Q501FindModeInBST {
      * @param root 根节点
      * @return 众数数组
      */
-    public int[] findMode(TreeNode root) {
+    public int[] findMode(TreeNode<Integer>  root) {
         if (root == null) return new int[0];
         inOrder(root);
         int[] res = new int[modes.size()];
@@ -62,30 +62,30 @@ public class Q501FindModeInBST {
      *
      * @param node 当前节点
      */
-    private  void inOrder(TreeNode node) {
+    private  void inOrder(TreeNode<Integer>  node) {
         // 递归左子树
         if (node.getLeft() != null) {
             inOrder(node.getLeft());
         }
 
         // 处理当前节点。当前节点与上一个值相等
-        if ((int) node.getVal() == pre) {
+        if ( node.getVal() == pre) {
             curCount++;
         } else {
             curCount = 1;
         }
         // 当前节点出现的次数 与 出现次数最多的众数的出现次数 相等
         if (curCount == maxCount) {
-            modes.add((Integer) node.getVal());
+            modes.add( node.getVal());
             // 当前节点出现的次数 大于 出现次数最多的众数的出现次数
         } else if (curCount > maxCount) {
             // 清除原众数集合
             modes.clear();
-            modes.add((Integer) node.getVal());
+            modes.add(node.getVal());
             maxCount = curCount;
         }
         // 接着处理下一条节点信息
-        pre = (int) node.getVal();
+        pre =  node.getVal();
 
         // 递归右子树
         if (node.getRight() != null) {

@@ -10,14 +10,14 @@ import java.util.List;
  *
  * @author 张利红
  */
-public class Q145BinaryTreePostorderTraversal extends TreeNode {
+public class Q145BinaryTreePostorderTraversal {
     /**
      * 后序遍历
      *
      * @param root 根节点
      * @return 返回存储对象
      */
-    public List<Integer> postorderTraversal(TreeNode root) {
+    public List<Integer> postorderTraversal(TreeNode<Integer>  root) {
         // 定义list集合，存储返回对象
         List<Integer> val = new ArrayList<>();
         if (root == null) {
@@ -35,7 +35,7 @@ public class Q145BinaryTreePostorderTraversal extends TreeNode {
      * @param root 根节点 <br/>
      * @param val  list集合容器
      */
-    public void postorder(TreeNode root, List<Integer> val) {
+    public void postorder(TreeNode<Integer>  root, List<Integer> val) {
         if (root == null) {
             return;
         }
@@ -48,6 +48,6 @@ public class Q145BinaryTreePostorderTraversal extends TreeNode {
             postorder(root.getRight(), val);
         }
         // 判断根节点存在
-        val.add((Integer) root.getVal());
+        val.add( root.getVal());
     }
 }

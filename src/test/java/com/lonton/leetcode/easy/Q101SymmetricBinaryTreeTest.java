@@ -19,7 +19,7 @@ public class Q101SymmetricBinaryTreeTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{1, 2, 2, 3, 4, 4, 3};
-        TreeNode root = new TreeNode<>().arrayToTree(nums);
+        TreeNode<Integer>  root = new TreeNode<Integer>().arrayToTree(nums);
 
         Assertions.assertTrue(new Q101SymmetricBinaryTree().isSymmetric(root),
                 "该树不是镜像树。");

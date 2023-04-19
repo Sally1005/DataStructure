@@ -29,7 +29,7 @@ public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversalTest {
 
     @Test
     public void testEmpty() {
-        TreeNode tree2 = new Q105ConstructBinaryTreeFromPreorderAndInorderTraversal().buildTree(
+        TreeNode<Integer> tree2 = new Q105ConstructBinaryTreeFromPreorderAndInorderTraversal().buildTree(
                 new int[0], new int[0]);
         Integer[] array = new TreeNode<Integer>().treeToArray(tree2,Integer.class);
 

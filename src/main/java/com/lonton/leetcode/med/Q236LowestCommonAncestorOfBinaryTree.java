@@ -28,13 +28,13 @@ public class Q236LowestCommonAncestorOfBinaryTree {
      * @param q    节点 q
      * @return 二叉树的最近公共祖先节点
      */
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode<Integer> lowestCommonAncestor(TreeNode<Integer> root, TreeNode<Integer> p, TreeNode<Integer> q) {
         if (root == null || p == root || q == root) {
             return root;
         }
 
-        TreeNode leftNode = lowestCommonAncestor(root.getLeft(), p, q);
-        TreeNode rightNode = lowestCommonAncestor(root.getRight(), p, q);
+        TreeNode<Integer> leftNode = lowestCommonAncestor(root.getLeft(), p, q);
+        TreeNode<Integer> rightNode = lowestCommonAncestor(root.getRight(), p, q);
 
         if (leftNode != null && rightNode != null) {
             return root;
@@ -44,10 +44,6 @@ public class Q236LowestCommonAncestorOfBinaryTree {
             return leftNode;
         }
 
-        if (rightNode != null) {
-            return rightNode;
-        }
-
-        return null;
+        return rightNode;
     }
 }

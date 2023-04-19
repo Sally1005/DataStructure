@@ -14,14 +14,14 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q108SortedArrayToBST extends TreeNode {
+public class Q108SortedArrayToBST {
     /**
      * 将有序数组转换为二叉搜索树
      *
      * @param nums 整数数组
      * @return TreeNode
      */
-    public TreeNode sortedArrayToBST(int[] nums) {
+    public TreeNode<Integer> sortedArrayToBST(int[] nums) {
         return sortedArraysToBST(nums, 0, nums.length - 1);
     }
 
@@ -33,7 +33,7 @@ public class Q108SortedArrayToBST extends TreeNode {
      * @param r    右边界值 index
      * @return TreeNode
      */
-    private TreeNode sortedArraysToBST(int[] nums, int l, int r) {
+    private TreeNode<Integer> sortedArraysToBST(int[] nums, int l, int r) {
         // 左下标比右下标大，栈溢出
         if (l > r) {
             return null;
@@ -41,7 +41,7 @@ public class Q108SortedArrayToBST extends TreeNode {
         // 计算中间值
         int mid = l + (r - l) / 2;
         // 赋值当前节点
-        TreeNode treeNode = new TreeNode(nums[mid]);
+        TreeNode<Integer> treeNode = new TreeNode<>(nums[mid]);
         // 递归左节点
         treeNode.setLeft(sortedArraysToBST(nums, l, mid - 1));
         // 递归右节点

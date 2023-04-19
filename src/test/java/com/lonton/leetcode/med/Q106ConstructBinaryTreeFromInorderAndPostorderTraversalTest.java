@@ -19,7 +19,7 @@ public class Q106ConstructBinaryTreeFromInorderAndPostorderTraversalTest {
     @Test
     public void test() {
 
-        TreeNode tree = new Q106ConstructBinaryTreeFromInorderAndPostorderTraversal().buildTree(
+        TreeNode<Integer> tree = new Q106ConstructBinaryTreeFromInorderAndPostorderTraversal().buildTree(
                 new int[]{9, 3, 15, 20, 7}, new int[]{9, 15, 7, 20, 3});
         Integer[] array =  new TreeNode<Integer>().treeToArray(tree,Integer.class);
 
@@ -30,7 +30,7 @@ public class Q106ConstructBinaryTreeFromInorderAndPostorderTraversalTest {
     @Test
     public void testEmpty() {
 
-        TreeNode tree2 = new Q106ConstructBinaryTreeFromInorderAndPostorderTraversal().buildTree(
+        TreeNode<Integer> tree2 = new Q106ConstructBinaryTreeFromInorderAndPostorderTraversal().buildTree(
                 new int[0], new int[0]);
         Integer[] array =  new TreeNode<Integer>().treeToArray(tree2,Integer.class);
         Assertions.assertArrayEquals(new Integer[0], array,

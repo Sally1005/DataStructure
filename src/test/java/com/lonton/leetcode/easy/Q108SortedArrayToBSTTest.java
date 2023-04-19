@@ -19,7 +19,7 @@ public class Q108SortedArrayToBSTTest {
     public void test() {
         // 构树
         int[] nums = new int[]{-10, -3, 0, 5, 9};
-        TreeNode actual = new Q108SortedArrayToBST().sortedArrayToBST(nums);
+        TreeNode<Integer>  actual = new Q108SortedArrayToBST().sortedArrayToBST(nums);
 
         Integer[] expected = new Integer[]{0, -10, 5, null, -3, null, 9};
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -22,10 +23,10 @@ public class Q103ZigzagLevelOrderTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode root = new TreeNode<>().arrayToTree(nums);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
 
         List<List<Integer>> expected = new ArrayList<>(
-                Arrays.asList(Arrays.asList(3), Arrays.asList(20, 9), Arrays.asList(15, 7)));
+                Arrays.asList(Collections.singletonList(3), Arrays.asList(20, 9), Arrays.asList(15, 7)));
 
         Assertions.assertEquals(expected, new Q103ZigzagLevelOrder().zigzagLevelOrder(root),
                 "比对失败，二叉树的锯齿形层级遍历出的集合有问题。");

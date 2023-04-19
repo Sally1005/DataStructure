@@ -34,7 +34,7 @@ public class Q106ConstructBinaryTreeFromInorderAndPostorderTraversal {
      * @param postorder 后序遍历数组
      * @return 二叉树
      */
-    public TreeNode buildTree(int[] inorder, int[] postorder) {
+    public TreeNode<Integer> buildTree(int[] inorder, int[] postorder) {
         // 初始化全局变量值
         this.inorder = inorder;
         this.postorder = postorder;
@@ -53,7 +53,7 @@ public class Q106ConstructBinaryTreeFromInorderAndPostorderTraversal {
      * @param right 最右下标
      * @return 二叉树
      */
-    private TreeNode getTreeNode(int left, int right) {
+    private TreeNode<Integer> getTreeNode(int left, int right) {
         // 上一个节点是叶子节点
         if (left > right) {
             return null;
@@ -63,7 +63,7 @@ public class Q106ConstructBinaryTreeFromInorderAndPostorderTraversal {
         //获取根节点在中序数组中的位置
         int index = map.get(val);
         //生成根节点
-        TreeNode root = new TreeNode(val);
+        TreeNode<Integer> root = new TreeNode<>(val);
         // 寻找根节点的左子树和右子树时公用的索引，用来标记下一个根节点的问题（右子树中的根节点or左子树中的根节点）
         posIndex--;
         // 从右子树先生成，因为posIndex索引是从后续数组中从后向前遍历的，而倒数第二个数据要么是根节点的右节点，

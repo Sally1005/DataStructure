@@ -34,7 +34,7 @@ public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversal {
      * @param preorder 前序遍历数组
      * @return 二叉树
      */
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
+    public TreeNode<Integer> buildTree(int[] preorder, int[] inorder) {
         // 初始化全局变量值
         this.inorder = inorder;
         this.preorder = preorder;
@@ -52,7 +52,7 @@ public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversal {
      * @param right 右
      * @return 二叉树
      */
-    private TreeNode getTreeNode(int left, int right, int[] preorder) {
+    private TreeNode<Integer> getTreeNode(int left, int right, int[] preorder) {
         // 上一个节点是叶子节点
         if (left > right) {
             return null;
@@ -62,7 +62,7 @@ public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversal {
         //获取根节点在中序数组中的位置
         int index = map.get(val);
         //生成根节点
-        TreeNode root = new TreeNode(val);
+        TreeNode<Integer> root = new TreeNode<>(val);
         // 寻找根节点的左子树和右子树时公用的索引
         preIndex++;
         // 从左子树先生成，因为preIndex索引是从后续数组中从前往后遍历的

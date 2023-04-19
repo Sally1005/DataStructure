@@ -12,16 +12,16 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q110BalancedBinaryTree extends TreeNode {
+public class Q110BalancedBinaryTree {
     /**
      * 判断它是否是高度平衡的二叉树
      *
      * @param root 根节点
      * @return 是否
      */
-    public boolean isBalanced(TreeNode root) {
+    public boolean isBalanced(TreeNode<Integer> root) {
         // flag[0] = 0 是平衡高度的二叉树  =1 非衡高度的二叉树
-        int flag[] = {0};
+        int[] flag = {0};
         maxDepth(root, flag);
         return flag[0] == 0;
     }
@@ -32,7 +32,7 @@ public class Q110BalancedBinaryTree extends TreeNode {
      * @param root 根节点
      * @return 二叉树的最大深度值
      */
-    public int maxDepth(TreeNode root, int[] flag) {
+    public int maxDepth(TreeNode<Integer> root, int[] flag) {
         // 根节点为null,空树
         if (root == null) {
             return 0;

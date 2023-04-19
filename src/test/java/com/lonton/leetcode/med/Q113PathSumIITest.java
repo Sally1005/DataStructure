@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -26,11 +27,11 @@ public class Q113PathSumIITest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1};
-        TreeNode root = new TreeNode<>().arrayToTree(nums);
+        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
 
         List<List<Integer>> actual = new  Q113PathSumII().pathSum(root, 22);
         List<List<Integer>> expected = new ArrayList<>(
-                Arrays.asList(Arrays.asList(5, 4, 11, 2)));
+                Collections.singletonList(Arrays.asList(5, 4, 11, 2)));
 
         // 断言
         Assertions.assertEquals(expected, actual,

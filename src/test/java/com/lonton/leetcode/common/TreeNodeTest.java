@@ -24,7 +24,7 @@ public class TreeNodeTest {
         Integer[] arr = {1, 2, 3, 4, 5, 6, 7};
         TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(arr);
         Assertions.assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7},
-                new TreeNode<Integer>().treeToArray(root,Integer.class), "当数组为一个非空数组时，数组转成树失败。");
+                new TreeNode<Integer>().treeToArray(root, Integer.class), "当数组为一个非空数组时，数组转成树失败。");
     }
 
     @Test
@@ -39,20 +39,18 @@ public class TreeNodeTest {
         Integer[] arr = {1, 3, 5, 7, 9};
         TreeNode<Integer> array = new TreeNode<Integer>().arrayToTree(arr);
         Assertions.assertArrayEquals(new Integer[]{1, 3, 5, 7, 9},
-                new TreeNode<Integer>().treeToArray(array,Integer.class), "当数组为一个非空数组时，树转成数组失败。");
+                new TreeNode<Integer>().treeToArray(array, Integer.class), "当数组为一个非空数组时，树转成数组失败。");
     }
 
     @Test
     public void testEmpty() {
-        TreeNode<Integer> root = null;
-        Integer[] result = new TreeNode<Integer>().treeToArray(root,Integer.class);
+        Integer[] result = new TreeNode<Integer>().treeToArray(null, Integer.class);
         Assertions.assertArrayEquals(new Integer[0], result, "当为空树时，数组转成树失败。");
     }
 
     @Test
     public void testNull() {
-        TreeNode<Integer> root = null;
-        Integer[] result = new TreeNode<Integer>().treeToArray(root,Integer.class);
+        Integer[] result = new TreeNode<Integer>().treeToArray(null, Integer.class);
         Assertions.assertArrayEquals(new Integer[0], result, "当根节点为null时，数组转成树失败。");
     }
 

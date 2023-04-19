@@ -8,14 +8,14 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q111MinDepth extends TreeNode {
+public class Q111MinDepth{
     /**
      * 求二叉树的最小深度
      *
      * @param root 根节点
      * @return 二叉树的最小深度值
      */
-    public int minDepth(TreeNode root) {
+    public int minDepth(TreeNode<Integer> root) {
         // 根节点为null,空树
         if (root == null) {
             return 0;

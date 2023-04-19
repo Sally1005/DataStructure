@@ -19,7 +19,7 @@ public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversalTest {
     @Test
     public void test() {
 
-        TreeNode tree = new Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal().buildTree(
+        TreeNode<Integer> tree = new Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal().buildTree(
                 new int[]{1, 2, 4, 5, 3, 6, 7}, new int[]{4, 5, 2, 6, 7, 3, 1});
         Integer[] array =  new TreeNode<Integer>().treeToArray(tree,Integer.class);
 
@@ -30,7 +30,7 @@ public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversalTest {
     @Test
     public void testEmpty() {
 
-        TreeNode tree2 = new Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal().buildTree(
+        TreeNode<Integer> tree2 = new Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal().buildTree(
                 new int[0], new int[0]);
         Integer[] array =  new TreeNode<Integer>().treeToArray(tree2,Integer.class);
         Assertions.assertArrayEquals(new Integer[0], array,

@@ -13,14 +13,14 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q104MaxDepth extends TreeNode {
+public class Q104MaxDepth  {
     /**
      * 求二叉树的最大深度
      *
      * @param root 根节点
      * @return 二叉树的最大深度值
      */
-    public int maxDepth(TreeNode root) {
+    public int maxDepth(TreeNode<Integer> root) {
         // 根节点为null,空树
         if (root == null) {
             return 0;

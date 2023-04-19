@@ -8,7 +8,7 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q404SumOfLeftLeaves extends TreeNode {
+public class Q404SumOfLeftLeaves {
 
     /**
      * 左叶子之和
@@ -16,11 +16,11 @@ public class Q404SumOfLeftLeaves extends TreeNode {
      * @param root 根节点
      * @return 所有左叶子之和
      */
-    public int sumOfLeftLeaves(TreeNode root) {
+    public int sumOfLeftLeaves(TreeNode<Integer>  root) {
         if (root == null) return 0;
         // 叶子节点
         if (root.getLeft() != null && root.getLeft().getLeft() == null && root.getLeft().getRight() == null) {
-            return (Integer)root.getLeft().getVal() + (Integer)sumOfLeftLeaves(root.getRight());
+            return root.getLeft().getVal() + (Integer)sumOfLeftLeaves(root.getRight());
         }
         return sumOfLeftLeaves(root.getLeft()) + sumOfLeftLeaves(root.getRight());
     }

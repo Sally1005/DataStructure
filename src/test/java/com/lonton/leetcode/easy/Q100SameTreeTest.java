@@ -18,8 +18,8 @@ public class Q100SameTreeTest {
     public void test() {
         Integer[] p = new Integer[]{1, 2};
         Integer[] q = new Integer[]{1, null, 2};
-        TreeNode treeNode1 = new TreeNode<>().arrayToTree(p);
-        TreeNode treeNode2 = new TreeNode<>().arrayToTree(q);
+        TreeNode<Integer>  treeNode1 = new TreeNode<Integer>().arrayToTree(p);
+        TreeNode<Integer>  treeNode2 = new TreeNode<Integer>().arrayToTree(q);
 
         Assertions.assertFalse(new Q100SameTree().isSameTree(treeNode1, treeNode2),
                 "两棵树是相同的树。");

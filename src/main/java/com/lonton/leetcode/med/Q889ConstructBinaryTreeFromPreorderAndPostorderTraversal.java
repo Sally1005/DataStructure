@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal {
     // 存储后序遍历节点信息
-    private Map<Integer, Integer> map = new HashMap<>();
+    private final Map<Integer, Integer> map = new HashMap<>();
     // 前序遍历数组
     private int[] preorder;
 
@@ -32,7 +32,7 @@ public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal {
      * @param preorder  前序遍历数组
      * @return 二叉树
      */
-    public TreeNode buildTree(int[] preorder, int[] postorder) {
+    public TreeNode<Integer> buildTree(int[] preorder, int[] postorder) {
         // 初始化全局变量值
         this.preorder = preorder;
         for (int i = 0; i < postorder.length; i++) {
@@ -50,24 +50,22 @@ public class Q889ConstructBinaryTreeFromPreorderAndPostorderTraversal {
      * @param postStart 后序遍历开始下标
      * @return 构建好的二叉树
      */
-    private TreeNode getTreeNode(int start, int end, int postStart) {
+    private TreeNode<Integer> getTreeNode(int start, int end, int postStart) {
         // 上一个节点是叶子节点
         if (start > end) {
             return null;
         }
         // 整棵树的根节点
-        TreeNode root = new TreeNode(preorder[start]);
+        TreeNode<Integer> root = new TreeNode<>(preorder[start]);
         if (start == end){
             return root;
         }
-        if (start < end) { // 防止下标越界异常
-            // 左子树的根节点下标
-            int lRootIndex = preorder[start + 1];
-            // 获取左子树的根节点在后序数组中的位置，并求出左子树的节点个数
-            int lSize = map.get(lRootIndex) - postStart + 1;
-            root.setLeft(getTreeNode(start + 1, start + lSize, postStart));
-            root.setRight(getTreeNode(start + lSize + 1, end, postStart + lSize));
-        }
+        // 左子树的根节点下标
+        int lRootIndex = preorder[start + 1];
+        // 获取左子树的根节点在后序数组中的位置，并求出左子树的节点个数
+        int lSize = map.get(lRootIndex) - postStart + 1;
+        root.setLeft(getTreeNode(start + 1, start + lSize, postStart));
+        root.setRight(getTreeNode(start + lSize + 1, end, postStart + lSize));
         return root;
     }
 }

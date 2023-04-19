@@ -11,33 +11,29 @@ import com.lonton.leetcode.common.TreeNode;
  *
  * @author 张利红
  */
-public class Q226InvertBinaryTree extends TreeNode {
+public class Q226InvertBinaryTree {
     /**
      * 翻转二叉树
      *
      * @param root 根节点
-     * @return 根节点
      */
-    public  TreeNode invertTree(TreeNode root) {
+    public void invertTree(TreeNode<Integer> root) {
         if (root != null) {
             swap(root);
             invertTree(root.getLeft());
             invertTree(root.getRight());
         }
-        return root;
     }
 
     /**
      * 节点交换
      *
      * @param root 根节点
-     * @return 节点
      */
-    private TreeNode swap(TreeNode root) {
+    private void swap(TreeNode<Integer>  root) {
         // 临时存储左(右)节点值
-        TreeNode temp = root.getLeft();
+        TreeNode<Integer>  temp = root.getLeft();
         root.setLeft(root.getRight());
         root.setRight(temp);
-        return root;
     }
 }

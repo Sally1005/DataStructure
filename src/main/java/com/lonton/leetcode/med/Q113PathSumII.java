@@ -17,7 +17,7 @@ import java.util.List;
  * @author 张利红
  */
 
-public class Q113PathSumII extends TreeNode {
+public class Q113PathSumII {
     /**
      * 求路径总和
      *
@@ -25,13 +25,12 @@ public class Q113PathSumII extends TreeNode {
      * @param targetSum 目标和
      * @return 符合条件的路径集合
      */
-    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+    public List<List<Integer>> pathSum(TreeNode<Integer> root, int targetSum) {
         // 符合条件的路径集合
         List<List<Integer>> result = new ArrayList<>();
         // 到当前节点之前的所有父节点的路径
         List<Integer> path = new ArrayList<>();
-        TreeNode treeNode = root;
-        recurve(treeNode, path, 0, targetSum, result);
+        recurve(root, path, 0, targetSum, result);
         return result;
     }
 
@@ -44,13 +43,13 @@ public class Q113PathSumII extends TreeNode {
      * @param targetSum 目标和
      * @param result    符合条件的路径集合
      */
-    public void recurve(TreeNode treeNode, List<Integer> path, int preSum, int targetSum, List<List<Integer>> result) {
+    public void recurve(TreeNode<Integer> treeNode, List<Integer> path, int preSum, int targetSum, List<List<Integer>> result) {
         // 当前递归到的节点为空，直接跳出方法
         if (treeNode == null) {
             return;
         }
-        path.add((Integer) treeNode.getVal());
-        preSum += (Integer)treeNode.getVal();
+        path.add(treeNode.getVal());
+        preSum += treeNode.getVal();
 
         // 左递归路径值
         recurve(treeNode.getLeft(), path, preSum, targetSum, result);
@@ -59,16 +58,14 @@ public class Q113PathSumII extends TreeNode {
 
         // 判断是否找到等于目标和的路径 (叶子节点)
         if (treeNode.getLeft() == null && treeNode.getRight() == null && preSum == targetSum) {
-            result.add(new ArrayList<Integer>(path));
+            result.add(new ArrayList<>(path));
             // 回溯 减少递归 降低内存
             path.remove(path.size() - 1);
-            preSum -= (Integer)treeNode.getVal();
             return;
         }
 
         // 回溯
         path.remove(path.size() - 1);
-        preSum -= (Integer)treeNode.getVal();
     }
 
 }
