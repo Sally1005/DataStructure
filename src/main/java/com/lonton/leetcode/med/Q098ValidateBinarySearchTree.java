@@ -22,7 +22,7 @@ public class Q098ValidateBinarySearchTree {
      * @param root 根节点
      * @return 是否为有效二叉搜索树
      */
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST(TreeNode<Integer> root) {
         return valid(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
@@ -32,15 +32,15 @@ public class Q098ValidateBinarySearchTree {
      * @param max  最大值
      * @return 验证是否为二叉搜索树
      */
-    public boolean valid(TreeNode node, Integer min, Integer max) {
+    public boolean valid(TreeNode<Integer> node, Integer min, Integer max) {
         if (node == null) {
             return true;
         }
         // 当前节点小于最小值 或 当前节点大于最大值
-        if ((Integer) node.getVal() <= min || (Integer) node.getVal() >= max) {
+        if (node.getVal() <= min || node.getVal() >= max) {
             return false;
         }
         // 递归判断左、右子树
-        return valid(node.getLeft(), min, (Integer) node.getVal()) && valid(node.getRight(), (Integer) node.getVal(), max);
+        return valid(node.getLeft(), min, node.getVal()) && valid(node.getRight(), node.getVal(), max);
     }
 }
