@@ -79,7 +79,7 @@ jobs:
         run: |
           sudo service mysql start       
           mysql -uroot -proot -e "create user 'Tom'@'localhost' identified by 'root';grant all privileges on tree.fruit to 'Tom'@'localhost';FLUSH PRIVILEGES; ALTER USER 'Tom'@'localhost' IDENTIFIED BY 'root';create database tree;"   
-          mysql -uroot -proot -Dtree < ${{GITHUB_WORKSPACE}}/assets/database/fruit.sql
+          mysql -uroot -proot -Dtree < ${GITHUB_WORKSPACE}/assets/database/fruit.sql
 
       # 使用Github Action市场提供的Junit流程来执行单元测试，并且输出报告
       - name: Run Unit Tests
@@ -108,7 +108,7 @@ jobs:
       
       # 切换到项目根目录
       - name: Change working directory
-        run: cd  ${{GITHUB_WORKSPACE}}
+        run: cd  ${GITHUB_WORKSPACE}
       
       # 运行 Checkstyle
       - name: Run Checkstyle
