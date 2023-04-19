@@ -108,11 +108,11 @@ public class TreeNode&lt;T&gt; {
      * @param root 二叉树根节点
      * @return 数组
      */
-    public T[] treeToArray(TreeNode&lt;T&gt; root) {
+    public T[] treeToArray(TreeNode&lt;T&gt; root,Class&lt;T&gt; clazz) {
         // 根节点为空，返回一个空数组
-<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (root == null) return null;</span>
+<span class="fc bfc" id="L113" title="All 2 branches covered.">        if (root == null) return  (T[]) Array.newInstance(clazz,0);</span>
         // 由于不知道数组长度，先将元素存入list中
-<span class="fc" id="L115">        List&lt;Object&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L115">        List&lt;T&gt; list = new ArrayList&lt;&gt;();</span>
         // 需要向队列中添加null,ArrayDequeue不能添加null
 <span class="fc" id="L117">        Queue&lt;TreeNode&lt;T&gt;&gt; queue = new LinkedList&lt;&gt;();</span>
         // 加入根节点
@@ -137,9 +137,9 @@ public class TreeNode&lt;T&gt; {
             }
             // return  list.subList(0, idx+1).toArray((T[]) new Object[idx]);
             //return (T[]) list.subList(0, idx + 1).toArray(new Integer[0]);
-
-<span class="fc" id="L141">        }</span>
-<span class="fc" id="L142">        return list.subList(0, idx + 1).toArray((T[]) Array.newInstance(root.val.getClass(), list.subList(0, idx + 1).size()));</span>
+<span class="fc" id="L140">        }</span>
+<span class="fc" id="L141">        return list.subList(0, idx + 1).toArray((T[]) Array.newInstance(clazz, list.subList(0, idx + 1).size()));</span>
     }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

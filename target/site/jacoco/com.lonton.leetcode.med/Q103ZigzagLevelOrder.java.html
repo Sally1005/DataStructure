@@ -2,7 +2,12 @@
 
 import com.lonton.leetcode.common.TreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
 
 /**
  * 103. 二叉树的锯齿形层序遍历 &lt;p/&gt;
@@ -13,7 +18,7 @@ import java.util.*;
  *
  * @author 张利红
  */
-<span class="fc" id="L16">public class Q103ZigzagLevelOrder extends TreeNode {</span>
+<span class="fc" id="L21">public class Q103ZigzagLevelOrder extends TreeNode {</span>
     /**
      * 锯齿形层序遍历
      *
@@ -22,45 +27,45 @@ import java.util.*;
      */
     public List&lt;List&lt;Integer&gt;&gt; zigzagLevelOrder(TreeNode root) {
         // 大 list
-<span class="fc" id="L25">        List&lt;List&lt;Integer&gt;&gt; bList = new LinkedList&lt;&gt;();</span>
-<span class="pc bpc" id="L26" title="1 of 2 branches missed.">        if (root == null) {</span>
-<span class="nc" id="L27">            return bList;</span>
+<span class="fc" id="L30">        List&lt;List&lt;Integer&gt;&gt; bList = new LinkedList&lt;&gt;();</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        if (root == null) {</span>
+<span class="nc" id="L32">            return bList;</span>
         }
         // 创建一个队列，并将根结点加入队列
-<span class="fc" id="L30">        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span>
-<span class="fc" id="L31">        queue.offer(root);</span>
-<span class="fc" id="L32">        boolean isFromLeft = true;</span>
+<span class="fc" id="L35">        Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span>
+<span class="fc" id="L36">        queue.offer(root);</span>
+<span class="fc" id="L37">        boolean isFromLeft = true;</span>
         // 当队列为空时，结束循环
-<span class="fc bfc" id="L34" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
             // 求队列当前的大小
-<span class="fc" id="L36">            int size = queue.size();</span>
-<span class="fc" id="L37">            List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L41">            int size = queue.size();</span>
+<span class="fc" id="L42">            List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span>
             // 每一层的数据个数
-<span class="fc bfc" id="L39" title="All 2 branches covered.">            while (size &gt; 0) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">            while (size &gt; 0) {</span>
                 // 当队列里有元素时，就将该队列的首元素出队列
-<span class="fc" id="L41">                TreeNode cur = queue.poll();</span>
-<span class="pc bpc" id="L42" title="1 of 2 branches missed.">                if (cur != null) {</span>
+<span class="fc" id="L46">                TreeNode cur = queue.poll();</span>
+<span class="pc bpc" id="L47" title="1 of 2 branches missed.">                if (cur != null) {</span>
                     // 就将cur里的元素放进list里
-<span class="fc" id="L44">                    list.add((Integer) cur.getVal());</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">                    if (cur.getLeft() != null) {</span>
+<span class="fc" id="L49">                    list.add((Integer) cur.getVal());</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">                    if (cur.getLeft() != null) {</span>
                         // 将cur.left入队列
-<span class="fc" id="L47">                        queue.offer(cur.getLeft());</span>
+<span class="fc" id="L52">                        queue.offer(cur.getLeft());</span>
                     }
-<span class="fc bfc" id="L49" title="All 2 branches covered.">                    if (cur.getRight() != null) {</span>
-<span class="fc" id="L50">                        queue.offer(cur.getRight());</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">                    if (cur.getRight() != null) {</span>
+<span class="fc" id="L55">                        queue.offer(cur.getRight());</span>
                     }
                 }
                 // 小 list 中元素自减
-<span class="fc" id="L54">                size--;</span>
-<span class="fc" id="L55">            }</span>
-<span class="fc bfc" id="L56" title="All 2 branches covered.">            if (!isFromLeft) {</span>
-<span class="fc" id="L57">                Collections.reverse(list);</span>
+<span class="fc" id="L59">                size--;</span>
+<span class="fc" id="L60">            }</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">            if (!isFromLeft) {</span>
+<span class="fc" id="L62">                Collections.reverse(list);</span>
             }
             // 将list里的元素放入大 list
-<span class="fc" id="L60">            bList.add(list);</span>
-<span class="fc bfc" id="L61" title="All 2 branches covered.">            isFromLeft = !isFromLeft;</span>
-<span class="fc" id="L62">        }</span>
-<span class="fc" id="L63">        return bList;</span>
+<span class="fc" id="L65">            bList.add(list);</span>
+<span class="fc bfc" id="L66" title="All 2 branches covered.">            isFromLeft = !isFromLeft;</span>
+<span class="fc" id="L67">        }</span>
+<span class="fc" id="L68">        return bList;</span>
     }
 
 }

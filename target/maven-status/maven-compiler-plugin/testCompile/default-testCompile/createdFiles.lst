@@ -27,9 +27,12 @@ com\lonton\leetcode\easy\Q094BinaryTreeInOrderTraversalTest.class
 com\lonton\leetcode\easy\Q617MergingTreesTest.class
 com\lonton\leetcode\easy\Q104MaxDepthTest.class
 com\lonton\leetcode\med\Q222CountCompleteTreeNodesTest.class
+com\lonton\leetcode\med\Q669TrimBSTTest.class
 com\lonton\leetcode\easy\Q101SymmetricBinaryTreeTest.class
 com\lonton\leetcode\med\Q098ValidateBinarySearchTreeTest.class
 com\lonton\leetcode\med\Q105ConstructBinaryTreeFromPreorderAndInorderTraversalTest.class
 com\lonton\leetcode\med\Q106ConstructBinaryTreeFromInorderAndPostorderTraversalTest.class
 com\lonton\leetcode\med\Q107LevelOrderBottomTest.class
+com\lonton\leetcode\med\Q450DeleteNodeInBSTTest.class
+com\lonton\leetcode\med\Q701InsertNodeInBSTTest.class
 com\lonton\leetcode\med\Q654MaximumBinaryTreeTest.class

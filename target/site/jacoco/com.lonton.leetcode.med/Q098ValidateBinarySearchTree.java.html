@@ -22,7 +22,7 @@ import com.lonton.leetcode.common.TreeNode;
      * @param root 根节点
      * @return 是否为有效二叉搜索树
      */
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST(TreeNode&lt;Integer&gt; root) {
 <span class="fc" id="L26">        return valid(root, Integer.MIN_VALUE, Integer.MAX_VALUE);</span>
     }
 
@@ -32,16 +32,16 @@ import com.lonton.leetcode.common.TreeNode;
      * @param max  最大值
      * @return 验证是否为二叉搜索树
      */
-    public boolean valid(TreeNode node, Integer min, Integer max) {
+    public boolean valid(TreeNode&lt;Integer&gt; node, Integer min, Integer max) {
 <span class="fc bfc" id="L36" title="All 2 branches covered.">        if (node == null) {</span>
 <span class="fc" id="L37">            return true;</span>
         }
         // 当前节点小于最小值 或 当前节点大于最大值
-<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        if ((Integer) node.getVal() &lt;= min || (Integer) node.getVal() &gt;= max) {</span>
+<span class="pc bpc" id="L40" title="1 of 4 branches missed.">        if (node.getVal() &lt;= min || node.getVal() &gt;= max) {</span>
 <span class="fc" id="L41">            return false;</span>
         }
         // 递归判断左、右子树
-<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        return valid(node.getLeft(), min, (Integer) node.getVal()) &amp;&amp; valid(node.getRight(), (Integer) node.getVal(), max);</span>
+<span class="pc bpc" id="L44" title="1 of 4 branches missed.">        return valid(node.getLeft(), min, node.getVal()) &amp;&amp; valid(node.getRight(), node.getVal(), max);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
