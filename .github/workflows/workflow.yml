@@ -108,11 +108,11 @@ jobs:
 
       # 运行 Checkstyle
       - name: Run Checkstyle
-        run: java -jar checkstyle-8.42-all.jar -c checkstyle.xml -f html -o checkstyle-report.html
+        run: java -jar checkstyle-8.42-all.jar -c checkstyle.xml -f xml -o checkstyle-report.xml
 
       # 上传 Checkstyle 测试报告
       - name: Upload Checkstyle report
         uses: actions/upload-artifact@v2
         with:
           name: checkstyle-report
-          path: checkstyle-report.html
+          path: checkstyle-report.xml
