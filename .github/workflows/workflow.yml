@@ -104,7 +104,7 @@ jobs:
 
       # 下载 Checkstyle
       - name: Download Checkstyle
-        run: wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.42/checkstyle-8.42-all.ja
+        run: wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.42/checkstyle-8.42-all.jar
       
       # 运行 Checkstyle 
       - name: Run Checkstyle
