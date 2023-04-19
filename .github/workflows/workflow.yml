@@ -105,14 +105,11 @@ jobs:
       # 下载 Checkstyle
       - name: Download Checkstyle
         run: wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.42/checkstyle-8.42-all.jar
-      
-      # 切换到项目根目录
-      - name: Change working directory
-        run: cd  ${GITHUB_WORKSPACE}
+    
       
       # 运行 Checkstyle
       - name: Run Checkstyle
-        run: java -jar checkstyle-8.42-all.jar -c checkstyle.xml -f xml -o checkstyle-report.xml src/*.java
+        run: java -jar checkstyle-8.42-all.jar -c checkstyle.xml -f xml -o checkstyle-report.xml ${GITHUB_WORKSPACE}/src/*.java
 
       # 上传 Checkstyle 测试报告
       - name: Upload Checkstyle report
