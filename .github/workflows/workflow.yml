@@ -107,9 +107,9 @@ jobs:
         run: wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.42/checkstyle-8.42-all.jar
     
       
-      # 运行 Checkstyle
+      # 运行 Checkstyle 
       - name: Run Checkstyle
-        run: java -jar checkstyle-8.42-all.jar -c checkstyle.xml -f xml -o checkstyle-report.xml ${GITHUB_WORKSPACE}/src/
+        run: java -jar checkstyle-8.42-all.jar -c ${GITHUB_WORKSPACE}/src/main/resources/checkstyle.xml -f xml -o checkstyle-report.xml ${GITHUB_WORKSPACE}/src/
 
       # 上传 Checkstyle 测试报告
       - name: Upload Checkstyle report
