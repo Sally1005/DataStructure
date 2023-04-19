@@ -108,7 +108,7 @@ jobs:
 
       # 运行 Checkstyle
       - name: Run Checkstyle
-        run: java -jar checkstyle-8.42-all.jar -c checkstyle.xml -f xml -o checkstyle-report.xml
+        run: java -jar checkstyle-8.42-all.jar -c checkstyle.xml -f xml -o checkstyle-report.xml src/*.java
 
       # 上传 Checkstyle 测试报告
       - name: Upload Checkstyle report
