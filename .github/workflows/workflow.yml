@@ -12,7 +12,7 @@ on:
   push:
     branches: [ main ]
     # 仅在以下文件修改时才触发，减少每次细微修改 push 后在运行器上的周期浪费
-  #  paths: [ '**.java', '.github/workflows/build.yml', 'pom.xml' ]
+  #  paths: [ '**.java', '.github/workflows/workflow.yml', 'pom.xml' ]
   # 人工触发
   workflow_dispatch:
 
@@ -105,14 +105,15 @@ jobs:
       # 下载 Checkstyle
       - name: Download Checkstyle
         run: wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.42/checkstyle-8.42-all.jar
-
-      # 运行 Checkstyle
+    
+      
+      # 运行 Checkstyle 
       - name: Run Checkstyle
-        run: java -jar checkstyle-8.42-all.jar -c checkstyle.xml -f html -o checkstyle-report.html
+        run: java -jar checkstyle-8.42-all.jar -c ${GITHUB_WORKSPACE}/src/main/resources/checkstyle.xml -f xml -o checkstyle-report.xml ${GITHUB_WORKSPACE}/src/
 
       # 上传 Checkstyle 测试报告
       - name: Upload Checkstyle report
         uses: actions/upload-artifact@v2
         with:
           name: checkstyle-report
-          path: checkstyle-report.html
+          path: checkstyle-report.xml
