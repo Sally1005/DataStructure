@@ -19,7 +19,7 @@ on:
 # 创建jobs
 jobs:
   # 将此 job 的名称设定为 'junit'
-  Junit:
+  junit:
     # 执行在最新版本的 ubuntu runner 上
     runs-on: ubuntu-latest
     # 设定系统上的环境变量，包含连接数据库的设定 (例如 MySQL)
@@ -100,6 +100,18 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./target/site/jacoco/jacoco.xml
+          
+  # 将此 job 的名称设定为 'checkstyle'
+  checkstyle:
+    # 执行在最新版本的 ubuntu runner 上
+    runs-on: ubuntu-latest 
+    
+    # 执行步骤
+    steps:
+      # 使用 actions/checkout@v3 这个官方的 action
+      # 可以查看 workflow 的执行状况，并对 workflow 的虚拟环境进行指令操作（例如测试环境）
+      - name: check out code
+        uses: actions/checkout@v3
         
       # 下载 Checkstyle
       - name: Download Checkstyle
