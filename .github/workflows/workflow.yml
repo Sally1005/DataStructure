@@ -108,6 +108,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 安装 shields.io
+      - name: Install shields.io
+        run: npm install -g shields.io-cli
+        
       # 使用 actions/checkout@v3 这个官方的 action
       # 可以查看 workflow 的执行状况，并对 workflow 的虚拟环境进行指令操作（例如测试环境）
       - name: check out code
@@ -128,12 +132,10 @@ jobs:
           name: checkstyle-report
           path: checkstyle-report.xml
           
-      # 上传Checkstyle徽章
+      # 生成 Checkstyle徽章
       - name: Checkstyle Badge
-        uses: badgen/checks-checkstyle@v1
-        with:
-           path: checkstyle-report.xml
-           format: svg
+        run: shields.io/badge/checkstyle-passing-brightgreen
         env:
-          BADGE_COLOR: ${{ job.status == 'success' && 'brightgreen' || 'red'}}
+          CI: true
+
 
