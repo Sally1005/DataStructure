@@ -127,4 +127,13 @@ jobs:
         with:
           name: checkstyle-report
           path: checkstyle-report.xml
+          
+      # 上传Checkstyle徽章
+      - name: Checkstyle Badge
+        uses: badgen/checks-checkstyle@v1
+        with:
+           path: checkstyle-report.xml
+           format: svg
+        env:
+          BADGE_COLOR: ${{ job.status == 'success' && 'brightgreen' || 'red'}}
 
