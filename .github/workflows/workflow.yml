@@ -108,6 +108,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 使用 actions/checkout@v3 这个官方的 action
+      # 可以查看 workflow 的执行状况，并对 workflow 的虚拟环境进行指令操作（例如测试环境）
+      - name: check out code
+        uses: actions/checkout@v3
+        
       # 下载 Checkstyle
       - name: Download Checkstyle
         run: wget https://github.com/checkstyle/checkstyle/releases/download/checkstyle-8.42/checkstyle-8.42-all.jar
