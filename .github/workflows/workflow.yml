@@ -15,7 +15,6 @@ on:
   #  paths: [ '**.java', '.github/workflows/workflow.yml', 'pom.xml' ]
   # 人工触发
   workflow_dispatch:
-  Checkstyle:
 
 # 创建jobs
 jobs:
@@ -107,9 +106,15 @@ jobs:
     name: Checkstyle
     # 执行在最新版本的 ubuntu runner 上
     runs-on: ubuntu-latest
-    if: ${{github.event_name == "Checkstyle" && job.status == "success"}}
 
     steps:
+      - name: Set status
+        if: ${{ always() }}
+        uses: badging/status-action@v1
+        with:
+         token: ${{ secrets.GITHUB_TOKEN }}
+         state: ${{ job.status }}
+         context: checkstyle
         
       # 使用 actions/checkout@v3 这个官方的 action
       # 可以查看 workflow 的执行状况，并对 workflow 的虚拟环境进行指令操作（例如测试环境）
