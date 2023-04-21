@@ -1,5 +1,5 @@
 
-# data-structure [![Junit](https://github.com/Sally1005/data-structure/actions/workflows/workflow.yml/badge.svg?event=push)](https://github.com/Sally1005/data-structure/actions/workflows/workflow.yml)  [![codecov](https://codecov.io/gh/Sally1005/data-structure/graph/badge.svg)](https://codecov.io/gh/Sally1005/data-structure) [![Checkstyle](https://img.shields.io/badge/Checkstyle-<status>-<color>)](https://github.com/Sally1005/data-structure/actions/workflows//workflow.yml)
+# data-structure [![Junit](https://github.com/Sally1005/data-structure/actions/workflows/workflow.yml/badge.svg?event=push)](https://github.com/Sally1005/data-structure/actions/workflows/workflow.yml)  [![codecov](https://codecov.io/gh/Sally1005/data-structure/graph/badge.svg)](https://codecov.io/gh/Sally1005/data-structure) [![Checkstyle](https://img.shields.io/badge/Checkstyle-passing-brightgreen)](https://github.com/Sally1005/data-structure/actions/workflows//workflow.yml)
 
 
 
