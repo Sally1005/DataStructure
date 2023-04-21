@@ -1,12 +1,12 @@
 package com.lonton.leetcode.common;
 
 import lombok.Data;
+import lombok.NonNull;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Queue;
 
 
@@ -17,6 +17,7 @@ import java.util.Queue;
  */
 @Data
 public class TreeNode<T> {
+    @NonNull
     private T val;
     private TreeNode<T> left;
     private TreeNode<T> right;
@@ -24,40 +25,14 @@ public class TreeNode<T> {
     public TreeNode() {
     }
 
-    public TreeNode(T val) {
+    public TreeNode(@NonNull T val) {
         this.val = val;
     }
 
-    public TreeNode(T val, TreeNode<T> left, TreeNode<T> right) {
+    public TreeNode(@NonNull T val, TreeNode<T> left, TreeNode<T> right) {
         this.val = val;
         this.left = left;
         this.right = right;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(val, left, right);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-
-        if (obj == null) {
-            return false;
-        }
-
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-
-        TreeNode<T> treeNode = (TreeNode<T>) obj;
-
-        return Objects.equals(val, treeNode.val)
-                && Objects.equals(left, treeNode.left)
-                && Objects.equals(right, treeNode.right);
     }
 
     /**
@@ -107,9 +82,7 @@ public class TreeNode<T> {
      * @param root 二叉树根节点
      * @return 数组
      */
-    public T[] treeToArray(TreeNode<T> root,Class<T> clazz) {
-        // 根节点为空，返回一个空数组
-        if (root == null) return  (T[]) Array.newInstance(clazz,0);
+    public T[] treeToArray(@NonNull TreeNode<T> root) {
         // 由于不知道数组长度，先将元素存入list中
         List<T> list = new ArrayList<>();
         // 需要向队列中添加null,ArrayDequeue不能添加null
@@ -134,10 +107,8 @@ public class TreeNode<T> {
                     idx = list.size() - 1;
                 }
             }
-            // return  list.subList(0, idx+1).toArray((T[]) new Object[idx]);
-            //return (T[]) list.subList(0, idx + 1).toArray(new Integer[0]);
         }
-        return list.subList(0, idx + 1).toArray((T[]) Array.newInstance(clazz, list.subList(0, idx + 1).size()));
+        return list.subList(0, idx + 1).toArray((T[]) Array.newInstance(root.val.getClass(), list.subList(0, idx + 1).size()));
     }
 
 }
