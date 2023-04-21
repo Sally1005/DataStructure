@@ -5,7 +5,7 @@
 # */
 
 # workflow 的名称，会在 GitHub Action 页面上显示的名称
-name: Junit and Checkstyle
+name: Junit 
 
 # 代码只有在 push到 main 分支上才会此 workflow
 on:
