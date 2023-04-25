@@ -17,9 +17,9 @@ public class Q566ReshapeTheMatrixTest {
     public void test() {
         Q566ReshapeTheMatrix matrix = new Q566ReshapeTheMatrix();
         int[][] arr = new int[][]{{1, 2}, {3, 4}};
-        matrix.matrixReshape(arr, 1, 4);
+        int[][] reshape = matrix.matrixReshape(arr, 1, 4);
         Assertions.assertArrayEquals(
-                new int[][]{{1, 2, 3, 4}}, arr,
+                new int[][]{{1, 2, 3, 4}}, reshape,
                 " 当矩阵重塑合理时，重塑矩阵失败。");
     }
 
