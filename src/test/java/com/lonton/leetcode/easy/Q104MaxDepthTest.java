@@ -17,7 +17,7 @@ public class Q104MaxDepthTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode<Integer>  root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer>  root = TreeNode.arrayToTree(nums);
 
         Assertions.assertEquals(3, new Q104MaxDepth().maxDepth(root),
                 "比对失败，最大深度计算错误错误。");

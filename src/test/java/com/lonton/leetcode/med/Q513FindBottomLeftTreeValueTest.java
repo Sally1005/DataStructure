@@ -19,7 +19,7 @@ public class Q513FindBottomLeftTreeValueTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{1, 2, 3, 4, null, 5, 6, null, null, 7};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
 
         int result = new Q513FindBottomLeftTreeValue().findBottomLeftValue(root);
 
@@ -31,7 +31,7 @@ public class Q513FindBottomLeftTreeValueTest {
     public void testTheLowestLeftInLeftSubtree() {
         // 构建二叉树
         Integer[] nums2 = new Integer[]{1, 2, 3, null, null, null, 4, null, 5};
-        TreeNode<Integer> root2 = new TreeNode<Integer>().arrayToTree(nums2);
+        TreeNode<Integer> root2 = TreeNode.arrayToTree(nums2);
 
         int result2 = new Q513FindBottomLeftTreeValue().findBottomLeftValue(root2);
 

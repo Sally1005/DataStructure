@@ -27,7 +27,7 @@ public class Q113PathSumIITest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{5, 4, 8, 11, null, 13, 4, 7, 2, null, null, null, 1};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
 
         List<List<Integer>> actual = new  Q113PathSumII().pathSum(root, 22);
         List<List<Integer>> expected = new ArrayList<>(

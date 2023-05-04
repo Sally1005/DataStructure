@@ -20,7 +20,7 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testEmpty() {
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> root = TreeNode.arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
         TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 0);
 
         Assertions.assertArrayEquals(new Integer[]{5, 3, 6, 2, 4, null, 7}, tree.treeToArray(tree),
@@ -29,7 +29,7 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testLeafNode() {
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> root = TreeNode.arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
         TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 2);
 
         Assertions.assertArrayEquals(new Integer[]{5, 3, 6, null, 4, null, 7}, tree.treeToArray(tree),
@@ -38,7 +38,7 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testLeftNull() {
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> root = TreeNode.arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
         TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 6);
 
         Assertions.assertArrayEquals(new Integer[]{5, 3, 7, 2, 4}, tree.treeToArray(tree),
@@ -47,7 +47,7 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testRightNull() {
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> root = TreeNode.arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
         TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 0);
 
         Assertions.assertArrayEquals(new Integer[]{5, 3, 6, 2, 4, null, 7}, tree.treeToArray(tree),
@@ -56,7 +56,7 @@ public class Q450DeleteNodeInBSTTest {
 
     @Test
     public void testNotNUll() {
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
+        TreeNode<Integer> root = TreeNode.arrayToTree(new Integer[]{5, 3, 6, 2, 4, null, 7});
         TreeNode<Integer> tree = new Q450DeleteNodeInBST().deleteNode(root, 3);
 
         Assertions.assertArrayEquals(new Integer[]{5, 4, 6, 2, null, null, 7}, tree.treeToArray(tree),

@@ -19,19 +19,19 @@ public class Q111MinDepthTest {
     public void test() {
         // 构建二叉树
         Integer[] nums1 = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode<Integer> tree1 = new TreeNode<Integer>().arrayToTree(nums1);
+        TreeNode<Integer> tree1 = TreeNode.arrayToTree(nums1);
 
         Assertions.assertEquals(2, new Q111MinDepth().minDepth(tree1),
                 " 比对失败，最小深度计算错误错误。");
 
         Integer[] nums2 = new Integer[]{2, null, 3, null, 4, null, 5, null, 6};
-        TreeNode<Integer>  tree2 = new TreeNode<Integer>().arrayToTree(nums2);
+        TreeNode<Integer>  tree2 = TreeNode.arrayToTree(nums2);
 
         Assertions.assertEquals(5, new Q111MinDepth().minDepth(tree2),
                 "比对失败，最小深度计算错误错误。");
 
         Integer[] nums3 = new Integer[]{2, null, 3, null, 4, 1, 5, null, 7};
-        TreeNode<Integer>  tree3 = new TreeNode<Integer>().arrayToTree(nums3);
+        TreeNode<Integer>  tree3 = TreeNode.arrayToTree(nums3);
 
         Assertions.assertEquals(4, new Q111MinDepth().minDepth(tree3),
                 "比对失败，最小深度计算错误错误。");

@@ -20,7 +20,7 @@ public class Q222CountCompleteTreeNodesTest {
     public void testNotFUllBinaryTree() {
         // 构建完全二叉树
         Integer[] nums = new Integer[]{1, 2, 3, 4, 5, 6};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
 
         int result = new Q222CountCompleteTreeNodes().countNodes(root);
 
@@ -32,7 +32,7 @@ public class Q222CountCompleteTreeNodesTest {
     public void testFUllBinaryTree() {
         // 构建完全二叉树
         Integer[] nums2 = new Integer[]{1, 2, 3, 4, 5, 6, 7};
-        TreeNode<Integer> root2 = new TreeNode<Integer>().arrayToTree(nums2);
+        TreeNode<Integer> root2 = TreeNode.arrayToTree(nums2);
 
         int result2 = new Q222CountCompleteTreeNodes().countNodes(root2);
 
@@ -45,7 +45,7 @@ public class Q222CountCompleteTreeNodesTest {
     public void testEmpty() {
         // 构建完全二叉树
         Integer[] nums3 = new Integer[0];
-        TreeNode<Integer> root3 = new TreeNode<Integer>().arrayToTree(nums3);
+        TreeNode<Integer> root3 = TreeNode.arrayToTree(nums3);
 
         int result3 = new Q222CountCompleteTreeNodes().countNodes(root3);
 

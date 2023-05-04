@@ -20,7 +20,7 @@ public class Q105ConstructBinaryTreeFromPreorderAndInorderTraversalTest {
 
         TreeNode<Integer> tree = new Q105ConstructBinaryTreeFromPreorderAndInorderTraversal().buildTree(
                 new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7});
-        Integer[] array = new TreeNode<Integer>().treeToArray(tree );
+        Integer[] array = TreeNode.treeToArray(tree );
         Assertions.assertArrayEquals(new Integer[]{3, 9, 20, null, null, 15, 7}, array,
                 "比对失败，前序数组和中序数组构成的二叉搜索树与与实际预期不相等。");
 

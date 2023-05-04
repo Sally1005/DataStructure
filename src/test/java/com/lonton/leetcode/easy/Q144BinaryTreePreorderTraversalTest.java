@@ -18,7 +18,7 @@ public class Q144BinaryTreePreorderTraversalTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{1, null, 2, 3};
-        TreeNode<Integer>  root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer>  root = TreeNode.arrayToTree(nums);
 
         Assertions.assertArrayEquals(new Integer[]{1, 2, 3},
                new Q144BinaryTreePreorderTraversal().preorderTraversal(root).toArray(),

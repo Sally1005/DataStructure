@@ -22,7 +22,7 @@ public class Q236LowestCommonAncestorOfBinaryTreeTest {
     public void testBothINLeftAndRightBinaryTree() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 5, 1, 6, 2, 0, 8, null, null, 7, 4};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
 
         Assertions.assertEquals(3,
                 new Q236LowestCommonAncestorOfBinaryTree().lowestCommonAncestor(root, root.getLeft(), root.getRight()).getVal(),
@@ -33,7 +33,7 @@ public class Q236LowestCommonAncestorOfBinaryTreeTest {
     public void testBothINLeftBinaryTree() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 5, 1, 6, 2, 0, 8, null, null, 7, 4};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
         Assertions.assertEquals(5,
                 new Q236LowestCommonAncestorOfBinaryTree().lowestCommonAncestor(root, root.getLeft(), root.getLeft().getRight().getRight()).getVal(),
                 "当p和q都在左子树上时，求二叉树的最近公共祖先错误。");
@@ -43,7 +43,7 @@ public class Q236LowestCommonAncestorOfBinaryTreeTest {
     public void testBothINRightBinaryTree() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 5, 1, 6, 2, 0, 8, null, null, 7, 4};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
         Assertions.assertEquals(1,
                 new Q236LowestCommonAncestorOfBinaryTree().lowestCommonAncestor(root, root.getRight(), root.getRight().getRight()).getVal(),
                 "当p和q都在右子树上时，求二叉树的最近公共祖先错误。");
@@ -54,7 +54,7 @@ public class Q236LowestCommonAncestorOfBinaryTreeTest {
     public void testSame() {
         // 构建二叉树
         Integer[] nums = new Integer[]{1, 2};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
         Assertions.assertEquals(1,
                 new Q236LowestCommonAncestorOfBinaryTree().lowestCommonAncestor(root, root, root.getRight()).getVal(),
                 "当p和根节点相同时，求二叉树的最近公共祖先错误。");
@@ -64,7 +64,7 @@ public class Q236LowestCommonAncestorOfBinaryTreeTest {
     public void testEmpty() {
         // 构建二叉树
         Integer[] nums = new Integer[0];
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
         Assertions.assertNull(new Q236LowestCommonAncestorOfBinaryTree().lowestCommonAncestor(root, null, null), "当二叉树为空树时，求二叉树的最近公共祖先错误。");
     }
 }

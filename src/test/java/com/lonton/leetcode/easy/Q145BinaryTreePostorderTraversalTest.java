@@ -20,7 +20,7 @@ public class Q145BinaryTreePostorderTraversalTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{1, null, 2, 3};
-        TreeNode<Integer>  root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer>  root = TreeNode.arrayToTree(nums);
 
         Assertions.assertArrayEquals(new Integer[]{3,2,1},
                new  Q145BinaryTreePostorderTraversal().postorderTraversal(root).toArray(),

@@ -18,7 +18,7 @@ public class Q437PathSumIIITest {
 
         // 构建二叉树
         Integer[] nums = new Integer[]{10, 5, -3, 3, 2, null, 11, 3, -2, null, 1};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
 
         // 断言
         Assertions.assertEquals(3, new Q437PathSumIII().pathSum(root, 8),

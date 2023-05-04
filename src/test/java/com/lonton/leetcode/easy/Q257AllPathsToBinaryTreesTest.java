@@ -17,7 +17,7 @@ public class Q257AllPathsToBinaryTreesTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{1, 2, 3, null, 5};
-        TreeNode<Integer>  root = new TreeNode<Integer> ().arrayToTree(nums);
+        TreeNode<Integer>  root = TreeNode.arrayToTree(nums);
 
         // 断言
         Assertions.assertEquals(2,

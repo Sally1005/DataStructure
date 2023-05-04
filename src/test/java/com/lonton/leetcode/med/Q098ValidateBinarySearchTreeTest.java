@@ -19,7 +19,7 @@ public class Q098ValidateBinarySearchTreeTest {
     public void testFalse() {
         // 构建二叉树
         Integer[] nums = new Integer[]{5, 1, 4, null, null, 3, 6};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
 
         Assertions.assertFalse(new Q098ValidateBinarySearchTree().isValidBST(root), "比对失败，验证二叉搜索树错误。");
     }
@@ -28,7 +28,7 @@ public class Q098ValidateBinarySearchTreeTest {
     public void testTrue() {
         // 构建二叉树
         Integer[] nums2 = new Integer[]{2, 1, 3};
-        TreeNode<Integer> root2 = new TreeNode<Integer>().arrayToTree(nums2);
+        TreeNode<Integer> root2 = TreeNode.arrayToTree(nums2);
 
         Assertions.assertTrue(new Q098ValidateBinarySearchTree().isValidBST(root2), "比对失败，验证二叉搜索树错误。");
     }

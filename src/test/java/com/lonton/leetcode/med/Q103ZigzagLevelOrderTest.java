@@ -23,7 +23,7 @@ public class Q103ZigzagLevelOrderTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
 
         List<List<Integer>> expected = new ArrayList<>(
                 Arrays.asList(Collections.singletonList(3), Arrays.asList(20, 9), Arrays.asList(15, 7)));

@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 public class Q701InsertNodeInBSTTest {
     @Test
     public void test() {
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(new Integer[]{4, 2, 7, 1, 3});
+        TreeNode<Integer> root = TreeNode.arrayToTree(new Integer[]{4, 2, 7, 1, 3});
         TreeNode<Integer> tree = new Q701InsertNodeInBST().insertIntoBST(root, 5);
 
         Assertions.assertArrayEquals(new Integer[]{4, 2, 7, 1, 3, 5}, tree.treeToArray(tree ),

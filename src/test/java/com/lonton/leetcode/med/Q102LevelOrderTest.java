@@ -22,7 +22,7 @@ public class Q102LevelOrderTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
 
         List<List<Integer>> expected = new ArrayList<>(
                 Arrays.asList(Arrays.asList(3), Arrays.asList(9, 20), Arrays.asList(15, 7)));

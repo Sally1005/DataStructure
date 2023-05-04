@@ -17,7 +17,7 @@ public class Q404SumOfLeftLeavesTest {
     public void test() {
         // 构建二叉树
         Integer[] nums = new Integer[]{3, 9, 20, null, null, 15, 7};
-        TreeNode<Integer> root = new TreeNode<Integer>().arrayToTree(nums);
+        TreeNode<Integer> root = TreeNode.arrayToTree(nums);
 
         Assertions.assertEquals(24, new Q404SumOfLeftLeaves().sumOfLeftLeaves(root),
                 " 左叶子之和计算错误。");
