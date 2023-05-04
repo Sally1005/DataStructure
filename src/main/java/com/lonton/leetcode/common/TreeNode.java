@@ -41,9 +41,9 @@ public class TreeNode<T> {
      * @param array 数组
      * @return treeNode
      */
-    public TreeNode<T> arrayToTree(T[] array) {
+    public static <T> TreeNode<T> arrayToTree(T[] array) {
         // 构建一棵二叉树
-        TreeNode<T> tree = new TreeNode<T>();
+        TreeNode<T> tree = new TreeNode<>();
         // 如果数组为空，则返回空数组
         if (array.length == 0) return null;
         // 数组第一个为根节点
@@ -58,7 +58,7 @@ public class TreeNode<T> {
         for (dataIdx = 1; dataIdx < array.length; dataIdx += 2) {
             // 放置左节点
             if (array[dataIdx] != null) {
-                TreeNode<T> left = new TreeNode<T>(array[dataIdx]);
+                TreeNode<T> left = new TreeNode<>(array[dataIdx]);
                 // 挂树
                 treeNodes.get(treeIdx).setLeft(left);
                 // 加到集合中
@@ -66,7 +66,7 @@ public class TreeNode<T> {
             }
             // 放置右节点
             if (dataIdx + 1 < array.length && array[dataIdx + 1] != null) {
-                TreeNode<T> right = new TreeNode<T>(array[dataIdx + 1]);
+                TreeNode<T> right = new TreeNode<>(array[dataIdx + 1]);
                 treeNodes.get(treeIdx).setRight(right);
                 treeNodes.add(right);
             }
@@ -82,7 +82,7 @@ public class TreeNode<T> {
      * @param root 二叉树根节点
      * @return 数组
      */
-    public T[] treeToArray(@NonNull TreeNode<T> root) {
+    public static <T> T[] treeToArray(@NonNull TreeNode<T> root) {
         // 由于不知道数组长度，先将元素存入list中
         List<T> list = new ArrayList<>();
         // 需要向队列中添加null,ArrayDequeue不能添加null

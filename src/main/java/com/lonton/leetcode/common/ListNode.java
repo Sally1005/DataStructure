@@ -30,7 +30,7 @@ public class ListNode<T> {
      * @param arr 数组
      * @return 链表
      */
-    public ListNode<T> arrayToList(T[] arr) {
+    public static <T> ListNode<T> arrayToList(T[] arr) {
         if (arr.length == 0) {
             return null;
         }
