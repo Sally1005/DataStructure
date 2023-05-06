@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * 二叉树类
- * <p/>
  *
  * @author 张利红
  */
@@ -45,6 +44,7 @@ public class BinaryTree<T> {
         top.setId(vo.getId());
         top.setData(vo.getData());
         top.setLevel(vo.getLevel());
+        top.setParentId(vo.getParentId());
         this.root = top;
         map.put(top.getId(), top);
         // 循环遍历树节点
@@ -56,6 +56,7 @@ public class BinaryTree<T> {
             node.setId(voId);
             node.setData(nodeVo.getData());
             node.setLevel(nodeVo.getLevel());
+            node.setParentId(nodeVo.getParentId());
             map.put(voId, node);
             // 构建父子节点关系
             TreeNode parentNode = map.get(nodeVo.getParentId());
@@ -97,7 +98,7 @@ public class BinaryTree<T> {
         /**
          * 父节点id
          */
-        Integer parentId;
+        private Integer parentId;
 
         /**
          * 是否为左子节点 1 为左 0为右
@@ -109,6 +110,15 @@ public class BinaryTree<T> {
          */
         private Integer level;
 
+        /**
+         * 二叉树构造方法
+         *
+         * @param id       id
+         * @param data     当前节点
+         * @param parentId 父节点id
+         * @param isLeft   是否为左子节点 1 为左 0为右
+         * @param level    当前节点层级
+         */
         public TreeNode(Integer id, String data, Integer parentId, Integer isLeft, Integer level) {
             this.id = id;
             this.data = data;
