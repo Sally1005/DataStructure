@@ -9,7 +9,6 @@ import java.util.Stack;
 
 /**
  * 前序遍历
- * <p/>
  *
  * @author 张利红
  */
@@ -36,7 +35,7 @@ public class PreTraverser implements ITraverser {
      */
     protected void recursive(BinaryTree.TreeNode root, IVisitor visitor) {
         // 根节点
-        visitor.visit(root, visitor.predicates());
+        visitor.visit(root, visitor);
         if (visitor.getFoundNode() != null) {
             return;
         }

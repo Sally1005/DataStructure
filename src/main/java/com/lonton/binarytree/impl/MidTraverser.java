@@ -10,7 +10,6 @@ import java.util.Stack;
 
 /**
  * 中序遍历
- * <p/>
  *
  * @author 张利红
  */
@@ -44,8 +43,8 @@ public class MidTraverser implements ITraverser {
             }
         }
 
-        //当前节点
-        visitor.visit(root, visitor.predicates());
+        // 当前节点
+        visitor.visit(root, visitor);
         if (visitor.getFoundNode() != null) {
             return;
         }

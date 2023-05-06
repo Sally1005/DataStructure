@@ -9,7 +9,6 @@ import java.util.Stack;
 
 /**
  * 后序遍历
- * <p/>
  *
  * @author 张利红
  */
@@ -25,6 +24,7 @@ public class PostTraverser implements ITraverser {
      * @param param   可变参数
      * @return 节点
      */
+    @Override
     public BinaryTree.TreeNode traverse(BinaryTree tree, IVisitor visitor, Object... param) {
         recursive(tree.getRoot(), visitor);
         return tree.getRoot();
@@ -56,7 +56,7 @@ public class PostTraverser implements ITraverser {
         }
 
         // 当前节点
-        visitor.visit(root, visitor.predicates());
+        visitor.visit(root,visitor);
 
     }
 
