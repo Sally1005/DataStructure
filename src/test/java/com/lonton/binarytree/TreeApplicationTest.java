@@ -1,31 +1,27 @@
 package com.lonton.binarytree;
 
+import com.lonton.binarytree.impl.CountHeightVisitor;
 import com.lonton.binarytree.impl.MidTraverser;
+import com.lonton.binarytree.impl.NodeNumVisitor;
 import com.lonton.binarytree.impl.PostTraverser;
 import com.lonton.binarytree.impl.PreTraverser;
-import com.lonton.binarytree.mapper.TreeNodeMapper;
-import com.lonton.binarytree.impl.CountHeightVisitor;
-import com.lonton.binarytree.impl.NodeNumVisitor;
 import com.lonton.binarytree.impl.PrintVisitor;
 import com.lonton.binarytree.impl.SearchVisitor;
+import com.lonton.binarytree.mapper.TreeNodeMapper;
 import com.lonton.binarytree.pojo.BinaryTree;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
-
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 
 /**
  * 二叉树单元测试
- * <p/>
  *
  * @author 张利红
  */
@@ -63,7 +59,7 @@ public class TreeApplicationTest {
         list.add("西瓜");
         list.add("哈密瓜");
         log.info("前序遍历打印二叉树:{}", list);
-        Assertions.assertEquals(list,visitor.getRes(), " 前序遍历打印二叉树实际得到的结果与预期结果不相等。");
+        Assertions.assertEquals(list, visitor.getRes(), " 前序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
 
@@ -186,41 +182,79 @@ public class TreeApplicationTest {
         Assertions.assertEquals(list, visitor.getRes(), " 前序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
-
     /**
-     * 中序测试过滤
+     * 中序打印二叉树
      */
     @Test
-    public void midFilter() {
-        SearchVisitor visitor = new SearchVisitor();
-        List<Predicate<BinaryTree.TreeNode>> predicates = new ArrayList<>();
-        // 取与关系
-        predicates.add(treeNode -> treeNode.getLevel() > 2 && treeNode.getId() < 5);
-        visitor.setFilters(predicates);
+    public void midPrint() {
+        PrintVisitor visitor = new PrintVisitor();
         new MidTraverser().traverse(BuildTree(), visitor);
-        List<String> actual = new ArrayList<>();
-        for (BinaryTree.TreeNode treeNode : visitor.getFilterNode()) {
-            actual.add(treeNode.getData());
-        }
         List<String> list = new ArrayList<>();
         list.add("橙子");
-        log.info("中序过滤二叉树:{}", list);
-        Assertions.assertEquals(list, actual, " 中序过滤二叉树实际得到的结果与预期结果不相等。");
+        list.add("柑橘类");
+        list.add("沃柑");
+        list.add("水果");
+        list.add("西瓜");
+        list.add("瓜果类");
+        list.add("哈密瓜");
+        log.info("中序遍历打印二叉树:{}", list);
+        Assertions.assertEquals(list, visitor.getRes(), " 中序遍历打印二叉树实际得到的结果与预期结果不相等。");
     }
 
     /**
-     * Stream流过滤练习示例
+     * 后序打印二叉树
      */
     @Test
-    public void testFilterByStream() {
-        List<BinaryTree.TreeNode> list = treeNodeMapper.list();
-        list.stream() // 1) 创建流-> 1. 单列集合：collection、set 2. 双列集合：先map.entrySet/keySet转成单列集合
-                // 3.数组：Arrays.stream(数组名)或者Stream.of(数组)
-                .distinct() // 去重
-                .sorted((o1, o2) -> o2.getId() - o1.getId()) // 按照id进行降序排序
-                .filter(treeNode -> treeNode.getIsLeft() == 0) // 过滤
-                .limit(3) // 限制流的长度，多的部分将会被抛弃
-                .skip(1) // 跳过前1个元素（最大、最小）
-                .forEach(treeNode -> log.info("为左节点的节点：{}", treeNode.getData()));
+    public void postPrint() {
+        PrintVisitor visitor = new PrintVisitor();
+        new PostTraverser().traverse(BuildTree(), visitor);
+        List<String> list = new ArrayList<>();
+        list.add("橙子");
+        list.add("沃柑");
+        list.add("柑橘类");
+        list.add("西瓜");
+        list.add("哈密瓜");
+        list.add("瓜果类");
+        list.add("水果");
+        log.info("后序遍历打印二叉树:{}", list);
+        Assertions.assertEquals(list, visitor.getRes(), " 后序遍历打印二叉树实际得到的结果与预期结果不相等。");
+    }
+
+    /**
+     * 后序过滤二叉树后求树的高度
+     */
+    @Test
+    public void postFilterCountHeight() {
+        CountHeightVisitor visitor = new CountHeightVisitor();
+        visitor.addFilter(node -> node.getId() > 2);
+        visitor.addFilter(node -> node.getParentId() < 2);
+        new PostTraverser().traverse(BuildTree(), visitor);
+        Assertions.assertEquals(2, visitor.getHeight(), " 后序过滤二叉树后求树的高度实际得到的结果与预期结果不相等。");
+    }
+
+    /**
+     * 后序过滤打印二叉树
+     */
+    @Test
+    public void postFilterPrint() {
+        PrintVisitor visitor = new PrintVisitor();
+        visitor.addFilter(node -> node.getId() > 2);
+        visitor.addFilter(node -> node.getParentId() < 2);
+        new PostTraverser().traverse(BuildTree(), visitor);
+        List<String> list = new ArrayList<>();
+        list.add("瓜果类");
+        Assertions.assertEquals(list, visitor.getRes(), " 后序过滤打印二叉树实际得到的结果与预期结果不相等。");
+    }
+
+    /**
+     * 后序过滤二叉树后求树的节点个数
+     */
+    @Test
+    public void postFilterNodeNum() {
+        NodeNumVisitor visitor = new NodeNumVisitor();
+        visitor.addFilter(node -> node.getId() > 2);
+        visitor.addFilter(node -> node.getParentId() < 2);
+        new PostTraverser().traverse(BuildTree(), visitor);
+        Assertions.assertEquals(1, visitor.getCount(), " 后序过滤二叉树后求树的节点个数实际得到的结果与预期结果不相等。");
     }
 }
