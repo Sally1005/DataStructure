@@ -4,7 +4,6 @@ import com.lonton.binarytree.pojo.BinaryTree;
 
 /**
  * 遍历接口
- * <p/>
  *
  * @author 张利红
  */
