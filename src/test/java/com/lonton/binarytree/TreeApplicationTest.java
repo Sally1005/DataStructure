@@ -48,7 +48,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void pre() {
-        PrintVisitor visitor = new PrintVisitor();
+        PrintVisitor<BinaryTree.TreeNode<String>> visitor = new PrintVisitor<>();
         new PreTraverser().traverse(BuildTree(), visitor);
         List<String> list = new ArrayList<>();
         list.add("水果");
@@ -68,7 +68,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void mid() {
-        PrintVisitor visitor = new PrintVisitor();
+        PrintVisitor<BinaryTree.TreeNode<String>> visitor = new PrintVisitor<>();
         new MidTraverser().traverse(BuildTree(), visitor);
         List<String> list = new ArrayList<>();
         list.add("橙子");
@@ -87,7 +87,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void post() {
-        PrintVisitor visitor = new PrintVisitor();
+        PrintVisitor<BinaryTree.TreeNode<String>> visitor = new PrintVisitor<>();
         new PostTraverser().traverse(BuildTree(), visitor);
         List<String> list = new ArrayList<>();
         list.add("橙子");
@@ -107,7 +107,7 @@ public class TreeApplicationTest {
     @Test
     public void preOrderTraversalSearch() {
         int id = 1;
-        SearchVisitor visitor = new SearchVisitor();
+        SearchVisitor<BinaryTree.TreeNode<String>> visitor = new SearchVisitor<>();
         visitor.setId(id);
         new PreTraverser().traverse(BuildTree(), visitor, id);
         String target = visitor.getFoundNode().getData();
@@ -121,7 +121,7 @@ public class TreeApplicationTest {
     @Test
     public void midOrderTraversalSearch() {
         int id = 3;
-        SearchVisitor visitor = new SearchVisitor();
+        SearchVisitor<BinaryTree.TreeNode<String>> visitor = new SearchVisitor<>();
         visitor.setId(id);
         new MidTraverser().traverse(BuildTree(), visitor, id);
         String target = visitor.getFoundNode().getData();
@@ -135,7 +135,7 @@ public class TreeApplicationTest {
     @Test
     public void postOrderTraversalSearch() {
         int id = 3;
-        SearchVisitor visitor = new SearchVisitor();
+        SearchVisitor<BinaryTree.TreeNode<String>> visitor = new SearchVisitor<>();
         visitor.setId(id);
         new PostTraverser().traverse(BuildTree(), visitor, id);
         String target = visitor.getFoundNode().getData();
@@ -148,7 +148,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void countHeight() {
-        CountHeightVisitor visitor = new CountHeightVisitor();
+        CountHeightVisitor<BinaryTree.TreeNode<Integer>> visitor = new CountHeightVisitor<>();
         new PostTraverser().traverse(BuildTree(), visitor);
         Assertions.assertEquals(3, visitor.getHeight(), " 计算树的高度实际得到的结果与预期结果不相等。");
     }
@@ -158,7 +158,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void nodeNum() {
-        NodeNumVisitor visitor = new NodeNumVisitor();
+        NodeNumVisitor<BinaryTree.TreeNode<Integer>> visitor = new NodeNumVisitor<>();
         new PreTraverser().traverse(BuildTree(), visitor);
         Assertions.assertEquals(7, visitor.getCount(), " 计算树的节点个数实际得到的结果与预期结果不相等。");
     }
@@ -168,7 +168,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void prePrint() {
-        PrintVisitor visitor = new PrintVisitor();
+        PrintVisitor<BinaryTree.TreeNode<String>> visitor = new PrintVisitor<>();
         new PreTraverser().traverse(BuildTree(), visitor);
         List<String> list = new ArrayList<>();
         list.add("水果");
@@ -187,7 +187,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void midPrint() {
-        PrintVisitor visitor = new PrintVisitor();
+        PrintVisitor<BinaryTree.TreeNode<String>> visitor = new PrintVisitor<>();
         new MidTraverser().traverse(BuildTree(), visitor);
         List<String> list = new ArrayList<>();
         list.add("橙子");
@@ -206,7 +206,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void postPrint() {
-        PrintVisitor visitor = new PrintVisitor();
+        PrintVisitor<BinaryTree.TreeNode<String>> visitor = new PrintVisitor<>();
         new PostTraverser().traverse(BuildTree(), visitor);
         List<String> list = new ArrayList<>();
         list.add("橙子");
@@ -225,7 +225,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void postFilterCountHeight() {
-        CountHeightVisitor visitor = new CountHeightVisitor();
+        CountHeightVisitor<BinaryTree.TreeNode<Integer>> visitor = new CountHeightVisitor<>();
         visitor.addFilter(node -> node.getId() > 2);
         visitor.addFilter(node -> node.getParentId() < 2);
         new PostTraverser().traverse(BuildTree(), visitor);
@@ -237,7 +237,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void postFilterPrint() {
-        PrintVisitor visitor = new PrintVisitor();
+        PrintVisitor<BinaryTree.TreeNode<Integer>> visitor = new PrintVisitor<>();
         visitor.addFilter(node -> node.getId() > 2);
         visitor.addFilter(node -> node.getParentId() < 2);
         new PostTraverser().traverse(BuildTree(), visitor);
@@ -251,7 +251,7 @@ public class TreeApplicationTest {
      */
     @Test
     public void postFilterNodeNum() {
-        NodeNumVisitor visitor = new NodeNumVisitor();
+        NodeNumVisitor<BinaryTree.TreeNode<Integer>> visitor = new NodeNumVisitor<>();
         visitor.addFilter(node -> node.getId() > 2);
         visitor.addFilter(node -> node.getParentId() < 2);
         new PostTraverser().traverse(BuildTree(), visitor);
