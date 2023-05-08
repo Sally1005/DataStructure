@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author 张利红
  */
 @Slf4j
-public class CountHeightVisitor extends AVisitor {
+public class CountHeightVisitor<T> extends AVisitor<T> {
     // 初始高度
     private int height;
 
@@ -19,12 +19,12 @@ public class CountHeightVisitor extends AVisitor {
      * 计算树高
      *
      * @param node  节点
-     * @param param 可变参数
+     * @param param 求高visitor
      * @return 树高
      */
 
     @Override
-    public Object doVisit(BinaryTree.TreeNode node, Object... param) {
+    public Object doVisit(BinaryTree.TreeNode<T> node, Object... param) {
             if ( node.getLevel() > height) {
                 this.height = node.getLevel();
             }
@@ -41,7 +41,7 @@ public class CountHeightVisitor extends AVisitor {
     }
 
     @Override
-    public BinaryTree.TreeNode getFoundNode() {
+    public BinaryTree.TreeNode<T> getFoundNode() {
         return null;
     }
 }

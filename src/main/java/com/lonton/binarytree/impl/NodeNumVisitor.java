@@ -9,7 +9,7 @@ import com.lonton.binarytree.pojo.BinaryTree;
  * @author 张利红
  */
 
-public class NodeNumVisitor extends AVisitor {
+public class NodeNumVisitor<T> extends AVisitor<T> {
     // 初始节点数
     int count;
 
@@ -17,11 +17,11 @@ public class NodeNumVisitor extends AVisitor {
      * 计算节点个数
      *
      * @param node  节点
-     * @param param 可变参数
+     * @param param 求节点个数visitor
      * @return 节点个数
      */
     @Override
-    public Object doVisit(BinaryTree.TreeNode node, Object... param) {
+    public Object doVisit(BinaryTree.TreeNode<T> node, Object... param) {
         count++;
         return this.count;
     }
@@ -36,7 +36,7 @@ public class NodeNumVisitor extends AVisitor {
     }
 
     @Override
-    public BinaryTree.TreeNode getFoundNode() {
+    public BinaryTree.TreeNode<T> getFoundNode() {
         return null;
     }
 
